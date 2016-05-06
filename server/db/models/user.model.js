@@ -4,43 +4,11 @@ var mongoose = require('mongoose');
 var _ = require('lodash');
 
 var schema = new mongoose.Schema({
-    username: {
-        type: String,
-        unique: true
-    },
     email: {
         type: String,
         unique: true
     },
     password: {
-        type: String
-    },
-    isAdmin: {
-        type: Boolean,
-        default: false
-    },
-    isSeller: {
-        type: Boolean,
-        default: false
-    },
-    role: {
-        type: String,
-        enum: ['Admin', 'Customer', 'Seller']
-    },
-    passwordReset: {
-        type: Boolean,
-        default: false
-    },
-    firstName: {
-        type: String
-    },
-    lastName: {
-        type: String
-    },
-    bio: {
-        type: String
-    },
-    avatar: {
         type: String
     },
     salt: {
@@ -61,14 +29,6 @@ var schema = new mongoose.Schema({
         username: String,
         email: String,
         token: String
-    },
-    storeName: {
-        type: String,
-        default: null
-    },
-    backgroundColor: {
-        type: String,
-        default: 'white'
     }
 });
 
