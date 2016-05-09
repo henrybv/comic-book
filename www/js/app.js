@@ -1,4 +1,4 @@
-var base = 'http://192.168.1.183:1337'
+var base = 'http://192.168.1.133:1337'
 // Ionic Starter App
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
@@ -6,7 +6,7 @@ var base = 'http://192.168.1.183:1337'
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-var core = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'fsaPreBuilt'])
+var core = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'fsaPreBuilt', 'ngCordova'])
 
 core.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -39,7 +39,12 @@ core.config(function($stateProvider, $urlRouterProvider) {
   .state('camera', {
     url: '/camera/:storyId',
     templateUrl: 'js/camera/camera.template.html',
-    controller: 'cameraCtrl'
+    controller: 'CameraCtrl',
+    resolve: {
+      story: function(StoryFactory, $stateParams) {
+        return StoryFactory.getStoryById($stateParams.storyId);
+      }
+    }
   })
   .state('storyCreate', {
     url: '/storyCreate',
@@ -65,6 +70,16 @@ core.config(function($stateProvider, $urlRouterProvider) {
     url: '/login',
     templateUrl: 'js/login/login.html',
     controller: 'LoginCtrl'
+  })
+  .state('story', {
+    url: '/story/:storyId',
+    templateUrl: 'js/story/story.template.html',
+    controller: 'StoryCtrl',
+    resolve: {
+      story: function(StoryFactory, $stateParams) {
+        return StoryFactory.getStoryById($stateParams.storyId);
+      }
+    }
   });
 
 

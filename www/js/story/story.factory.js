@@ -1,8 +1,8 @@
 core.factory('StoryFactory', function($http) {
 
-	var StoryFactoryObj = {};
+	var StoryFactory = {};
 
-	StoryFactoryObj.createNewStory = function(storyObj){
+	StoryFactory.createNewStory = function(storyObj){
 		console.log(storyObj);
 		return $http.post(base + '/api/stories', storyObj)
 		.then((res) => {
@@ -11,8 +11,15 @@ core.factory('StoryFactory', function($http) {
 		})
 	};
 
+	StoryFactory.getStoryById = function(storyId) {
+		return $http.get(base + '/api/stories/' + storyId)
+		.then(function(story) {
+			return story.data;
+		});
+	};
 
 
-	return StoryFactoryObj;
+
+	return StoryFactory;
 
 });

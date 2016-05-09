@@ -14,6 +14,14 @@ router.get('/', function(req, res, next) {
     .catch(next);
 });
 
+router.get('/:storyId', function(req, res, next) {
+    Story.findById(req.params.storyId).exec()
+    .then(function(story) {
+        res.status(200).send(story);
+    })
+    .catch(next);
+});
+
 router.post('/', function(req, res, next) {
     console.log('req session ID:', req.session.id);
     console.log('req session in route to create story', req.session)
