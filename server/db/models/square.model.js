@@ -2,6 +2,22 @@
 
 var mongoose = require('mongoose');
 
+var addonChildSchema = new mongoose.Schema({
+    bubble: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Addon'
+    },
+    coordinateX: {
+        type: Number
+    },
+    coordinateY: {
+        type: Number
+    },
+    text: {
+        type: String
+    }
+});
+
 var schema = new mongoose.Schema({
     creator: {
         type: mongoose.Schema.Types.ObjectId,
@@ -29,21 +45,6 @@ var schema = new mongoose.Schema({
     }
 });
 
-var addonChildSchema = new mongoose.Schema({
-    bubble: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Addon'
-    },
-    coordinateX: {
-        type: Number
-    },
-    coordinateY: {
-        type: Number
-    },
-    text: {
-        type: String
-    }
-});
 
 
 // schema.statics.changeInventory = function(productIdArray, quantityChangeArray){

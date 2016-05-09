@@ -1,6 +1,6 @@
 module.exports = {
   "DATABASE_URI": "mongodb://localhost:27017/comic-book",
-  "SESSION_SECRET": "Optimus Prime is my real dad",
+  "SESSION_SECRET": "wheresHenry",
   "TWITTER": {
     "consumerKey": "zpkcKkWmn5zDqUPYa1n4vZE86",
     "consumerSecret": "1BOz1zLhSoVZsHSDR5ODI8KzC9RjKOJHY5ko1HllnVgkkn9lvj",

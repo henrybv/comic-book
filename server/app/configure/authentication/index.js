@@ -30,14 +30,24 @@ module.exports = function (app) {
     app.use(passport.initialize());
     app.use(passport.session());
 
+    app.use('/', function(req, res, next){
+        // console.log('COOKIE id : ', req.cookie._id);
+           console.log('session : ', req.session);
+           console.log('session id ', req.session.id);
+            // console.log('COOKIE whole: ', req.cookie);
+        next();
+    })
+
     // When we give a cookie to the browser, it is just the userId (encrypted with our secret).
     passport.serializeUser(function (user, done) {
+        console.log('id in serializeUser', user)
         done(null, user.id);
     });
 
     // When we receive a cookie from the browser, we use that id to set our req.user
     // to a user found in the database.
     passport.deserializeUser(function (id, done) {
+        console.log('id in deserializeUser', id)
         UserModel.findById(id, done);
     });
 

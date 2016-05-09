@@ -8,6 +8,9 @@ var schema = new mongoose.Schema({
         type: String,
         unique: true
     },
+    session: {
+        type: String
+    },
     password: {
         type: String
     },
