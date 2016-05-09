@@ -1,0 +1,63 @@
+<form ua-signup ng-submit="sendSignup(signup)">
+  <ion-view title="Sign Up">
+    <ion-content>
+      <div class="list list-inset">
+        <label class="item item-input">
+          <span class="input-label">Email</span>
+          <input type="email" name="email" ng-model="signup.email" class="form-control" id="email">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Password</span>
+          <input type="password" name="password" ng-model="signup.password" class="form-control" id="signup-password">
+        </label>
+      </div>
+      <div class="padding">
+        <button type="submit" class="button button-block button-positive">
+          <span ng-show="!loading">Create Account</span>
+          <i ng-show="loading" class="ion-loading-b"></i>
+        </button>
+      </div>
+      <h3 style="text-align: center; font-size: 18px;">Already have an account?</h3>
+      <div class="padding">
+        <button ui-sref="login" class="button button-block button-positive">
+          <span ng-show="!loading">Login</span>
+          <i ng-show="loading" class="ion-loading-b"></i>
+        </button>
+      </div>
+    </ion-content>
+  </ion-view>
+  <div class="bar bar-footer bar-assertive" ng-show="error">
+    <div class="title">{{ error.message }}</div>
+  </div>
+</form>
+
+<!-- <form id="signup-form" name="signupForm" ng-submit="signupForm.$valid && sendSignup(signup)">
+
+    <alert type="danger" ng-show="error">
+        {{ error }}
+    </alert>
+
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" ng-model="signup.username" class="form-control" id="username" placeholder="Enter username">
+    </div>
+    <div class="form-group">
+        <label for="email">Email address</label>
+        <input type="email" name="email" ng-model="signup.email" class="form-control" id="email" placeholder="Enter email">
+    </div>
+    <div class="form-group">
+        <label for="signup-password">Password</label>
+        <input type="password" name="password" ng-model="signup.password" class="form-control" id="signup-password" placeholder="Password">
+    </div>
+    <button type="submit" class="btn btn-default">Sign up</button>
+
+    <div>
+        <p><oauth-button provider-name="Twitter" verb="Sign up"></oauth-button></p>
+        <p><oauth-button provider-name="Facebook" verb="Sign up"></oauth-button></p>
+        <p><oauth-button provider-name="Google" verb="Sign up"></oauth-button></p>
+    </div>
+
+
+</form> -->
+
+<pre>{{ signupForm |json }}</pre>

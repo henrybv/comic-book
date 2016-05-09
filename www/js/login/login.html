@@ -1,0 +1,56 @@
+<form ua-login ng-submit="sendLogin(login)">
+  <ion-view title="Login">
+    <ion-content>
+      <div class="list list-inset">
+        <label class="item item-input">
+          <span class="input-label">Email</span>
+          <input type="email" name="email" ng-model="login.email" class="form-control" id="email">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Password</span>
+          <input type="password" name="password" ng-model="login.password" class="form-control" id="login-password">
+        </label>
+      </div>
+      <div class="padding">
+        <button type="submit" class="button button-block button-positive">
+          <span ng-show="!loading">Login</span>
+          <i ng-show="loading" class="ion-loading-b"></i>
+        </button>
+      </div>
+      <h3 style="text-align: center; font-size: 18px;">Don't have an account?</h3>
+      <div class="padding">
+        <button ui-sref="signup" class="button button-block button-positive">
+          <span ng-show="!loading">Sign Up</span>
+          <i ng-show="loading" class="ion-loading-b"></i>
+        </button>
+      </div>
+    </ion-content>
+  </ion-view>
+  <div class="bar bar-footer bar-assertive" ng-show="error">
+    <div class="title">{{ error.message }}</div>
+  </div>
+</form>
+
+
+<!-- <form id="login-form" name="loginForm" ng-submit="loginForm.$valid && sendLogin(login)">
+
+    <alert type="danger" ng-show="error">
+        {{ error }}
+    </alert>
+    <div>
+    <div class="form-group">
+        <label for="email">Email address</label>
+        <input type="text" ng-model="login.email" class="form-control" id="email" placeholder="Enter email">
+    </div>
+    <div class="form-group">
+        <label for="login-password">Password</label>
+        <input type="password" ng-model="login.password" class="form-control" id="login-password" placeholder="Password">
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+</div>
+    <div>
+        <p><oauth-button provider-name="Twitter" verb="Sign in"></oauth-button></p>
+        <p><oauth-button provider-name="Facebook" verb="Sign in"></oauth-button></p>
+        <p><oauth-button provider-name="Google" verb="Sign in"></oauth-button></p>
+    </div>
+</form> -->

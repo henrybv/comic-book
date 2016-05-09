@@ -42,22 +42,15 @@ module.exports = function (app) {
             // req.logIn will establish our session.
             req.logIn(user, function (loginErr) {
                 if (loginErr) return next(loginErr);
+                // We respond with a response object that has user with _id and email.
+                // req.session.userID = user._id;
+                
+                console.log('req session after login', req.session)
+                console.log('req session ID:', req.session.id);
 
-                updateCartWhenLoggingIn(user, req.session)
-                .then(function() {
-                    if(user.isAdmin === true) {
-                        return garbageCollectStrayCarts();
-                    } else {
-                        return;
-                    }
-                })
-                .then(function() {
-                    // We respond with a response object that has user with _id and email.
-                    res.status(200).send({
-                        user: user.sanitize()
-                    });
+                res.status(200).send({
+                    user: user.sanitize()
                 });
-
             });
 
         };
