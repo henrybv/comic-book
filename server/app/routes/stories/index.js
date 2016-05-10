@@ -14,12 +14,25 @@ router.get('/', function(req, res, next) {
     .catch(next);
 });
 
+router.get('/:id', function(req, res, next) {
+    Story.findOne({_id: req.params.id}).exec()
+    .then(function(stories) {
+        res.status(200).send(stories);
+    })
+    .catch(next);
+});
+
+router.get('/user/:id', function(req, res, next) {
+    Story.find({owner: req.params.id}).exec()
+    .then(function(stories) {
+        res.status(200).send(stories);
+    })
+    .catch(next);
+});
+
 router.post('/', function(req, res, next) {
-    console.log('req session ID:', req.session.id);
-    console.log('req session in route to create story', req.session)
     Story.create(req.body)
     .then(function(stories) {
-        console.log("story created!", stories);
         res.status(200).send(stories);
     })
     .catch(next);

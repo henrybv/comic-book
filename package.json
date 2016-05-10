@@ -3,17 +3,18 @@
   "version": "1.1.1",
   "description": "An Ionic project",
   "main": "server/start.js",
- "scripts": {
-   "start": "nodemon --watch server -e js,html server/start.js",
-   "postinstall": "gulp build"
- },
+  "scripts": {
+    "start": "nodemon --watch server -e js,html server/start.js",
+    "postinstall": "gulp build"
+  },
   "dependencies": {
     "express-session": "^1.13.0",
     "gulp": "^3.5.6",
     "gulp-concat": "^2.2.0",
     "gulp-minify-css": "^0.3.0",
     "gulp-rename": "^1.2.0",
-    "gulp-sass": "^2.0.4"
+    "gulp-sass": "^2.0.4",
+    "jsonwebtoken": "^6.2.0"
   },
   "devDependencies": {
     "bower": "^1.3.3",

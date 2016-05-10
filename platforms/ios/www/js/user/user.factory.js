@@ -16,9 +16,11 @@ core.factory('UserFactory', function($http) {
     };
 
     UserFactory.signup = function(newUser) {
-    	console.log("UserFactory")
         return $http.post(base + '/api/members/', newUser)
-        .then(getData)
+        //Jeff: returned entire res instead of res.data
+        .then(function(data) {
+            return data
+        })
         .then(function(createdUser) {
             return createdUser;
         });

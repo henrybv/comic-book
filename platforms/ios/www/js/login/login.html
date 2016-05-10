@@ -1,4 +1,4 @@
-<form ua-login ng-submit="sendLogin(login)">
+<form ua-login>
   <ion-view title="Login">
     <ion-content>
       <div class="list list-inset">
@@ -12,7 +12,7 @@
         </label>
       </div>
       <div class="padding">
-        <button type="submit" class="button button-block button-positive">
+        <button ng-click="sendLogin(login)" class="button button-block button-positive">
           <span ng-show="!loading">Login</span>
           <i ng-show="loading" class="ion-loading-b"></i>
         </button>
@@ -21,6 +21,12 @@
       <div class="padding">
         <button ui-sref="signup" class="button button-block button-positive">
           <span ng-show="!loading">Sign Up</span>
+          <i ng-show="loading" class="ion-loading-b"></i>
+        </button>
+      </div>
+      <div class="padding">
+        <button ng-click="logout()" class="button button-block button-positive">
+          <span ng-show="!loading">Log Out!</span>
           <i ng-show="loading" class="ion-loading-b"></i>
         </button>
       </div>

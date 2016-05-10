@@ -4,13 +4,17 @@ var express = require('express');
 var app = express();
 module.exports = app;
 var session = require('express-session');
+//Require jwt and config to create json web token secrets
+var config = require('./config'); // get our config file
 
-
+//Set secret that is contained in the config.js in this directory
+app.set('superSecret', config.secret); // secret variable
 
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', "*");
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    //Jeff: Added a few things along with content-type below:
+    res.header('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
     next();
 });
 // Pass our express application pipeline into the configuration
