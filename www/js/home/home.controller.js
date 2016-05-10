@@ -1,6 +1,10 @@
-core.controller('homeCtrl', function($scope) {
+core.controller('homeCtrl', function($scope, $state, allStories) {
 
 	$scope.name = "Hello"
+	$scope.stories = allStories
 
-	$scope.stories= [{name: "Story A"}, {name: "Story B"}, {name: "Story C"}]
+	$scope.changeState = function(id){
+		$state.go('story', {id: id})
+	}
+
 });

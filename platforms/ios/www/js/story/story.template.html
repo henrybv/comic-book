@@ -1,0 +1,17 @@
+<form ua-storyCreate>
+  <ion-view title="{{story.title}}">
+    <ion-content>
+      <div class="list list-inset">
+        <label class="item item-input">
+          <span class="input-label">Imagine Panels Here</span>
+        </label>
+      </div>
+      <div class="padding">
+        <button ng-click=changeState() class="button button-block button-positive">
+          <span ng-show="!loading">My Stories</span>
+          <i ng-show="loading" class="ion-loading-b"></i>
+        </button>
+      </div>
+    </ion-content>
+  </ion-view>
+</form>
