@@ -5,6 +5,8 @@ var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var updateCartWhenLoggingIn = require('./updateCartWhenLoggingIn.js');
 var garbageCollectStrayCarts = require('./garbageCollectStrayCarts.js');
+var jwt    = require('jsonwebtoken'); // used to create, sign, and verify tokens
+
 
 module.exports = function (app) {
 
@@ -45,11 +47,18 @@ module.exports = function (app) {
                 // We respond with a response object that has user with _id and email.
                 // req.session.userID = user._id;
                 
-                console.log('req session after login', req.session)
-                console.log('req session ID:', req.session.id);
+                //Jeff: Creation of Token on LogIn
+                var token = jwt.sign({user: user}, app.get('superSecret'), {
+                  // expiresInMinutes: 1440 // expires in 24 hours
+                });
 
+                console.log("JWT: ", token)
+
+                //Jeff: Changed this to res.json (and added 'success' through 'token') --  a mistake?
                 res.status(200).send({
-                    user: user.sanitize()
+                    user: user.sanitize(),
+                    success: true,
+                    token: token
                 });
             });
 
@@ -58,5 +67,7 @@ module.exports = function (app) {
         passport.authenticate('local', authCb)(req, res, next);
 
     });
+
+
 
 };

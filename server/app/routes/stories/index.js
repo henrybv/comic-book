@@ -18,16 +18,21 @@ router.get('/:storyId', function(req, res, next) {
     Story.findById(req.params.storyId).exec()
     .then(function(story) {
         res.status(200).send(story);
+    });
+});
+
+router.get('/user/:userId', function(req, res, next) {
+    console.log('user id', req.params.userId)
+    Story.find({owner: req.params.userId}).exec()
+    .then(function(stories) {
+        res.status(200).send(stories);
     })
     .catch(next);
 });
 
 router.post('/', function(req, res, next) {
-    console.log('req session ID:', req.session.id);
-    console.log('req session in route to create story', req.session)
     Story.create(req.body)
     .then(function(stories) {
-        console.log("story created!", stories);
         res.status(200).send(stories);
     })
     .catch(next);

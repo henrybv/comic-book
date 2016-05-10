@@ -48,20 +48,32 @@
         ]);
     });
 
-    app.service('AuthService', function ($http, Session, $rootScope, AUTH_EVENTS, $q) {
+    app.service('AuthService', function ($http, Session, $rootScope, AUTH_EVENTS, $q, $localStorage) {
 
         function onSuccessfulLogin(response) {
             var data = response.data;
-            Session.create(data.id, data.user);
+            // Jeff: Session Info Delete
+            // Session.create(data.id, data.user);
+            $localStorage.token = data.token;
+            $localStorage.user = data.user
             $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-            return data.user;
+            //Jeff: Changed return to 'return data' instead of data.user so that token info is revealed
+            return data;
         }
 
         // Uses the session factory to see if an
         // authenticated user is currently registered.
+        //Jeff: changed session to localStorage
         this.isAuthenticated = function () {
-            return !!Session.user;
+            // return !!Session.user;
+            return !!$localStorage.user;
         };
+
+        //Added a function that resolves for the user from the
+        //localStorage Token
+        this.getUserFromToken = function(){
+            if($localStorage.user) return $q.when($localStorage.user)
+        }
 
         this.getLoggedInUser = function (fromServer) {
 
@@ -73,13 +85,19 @@
             // Optionally, if true is given as the fromServer parameter,
             // then this cached value will not be used.
 
+            // Jeff: Instead of returning a promise with the Session.user, 
+            // we want to return the user stored in localStorage
             if (this.isAuthenticated() && fromServer !== true) {
-                return $q.when(Session.user);
+                console.log("got into that wierd section of getLoggedInUser", $localStorage.user)
+                // return $q.when(Session.user);
+                return $q.when($localStorage.user);
             }
 
             // Make request GET /session.
             // If it returns a user, call onSuccessfulLogin with the response.
             // If it returns a 401 response, we catch it and instead resolve to null.
+            // Jeff: to Verify Token, maybe we want to verify the token in this '/session' get request
+            // We can do this by passing the $localStorage object whith this get request
             return $http.get(base + '/session').then(onSuccessfulLogin).catch(function () {
                 return null;
             });
@@ -94,9 +112,13 @@
                 });
         };
 
+         //Jeff: delete localStorage upon Logout
+         //I also removed the get request to logout, which just ran a logout() function
         this.logout = function () {
             return $http.get(base + '/logout').then(function () {
-                Session.destroy();
+                // Session.destroy();
+                delete $localStorage.token;
+                delete $localStorage.user;
                 $rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
             });
         };

@@ -19,6 +19,4 @@ core.controller('CameraCtrl', function(story, $scope, $cordovaCamera) {
             // An error occured. Show a message to the user
         });
     }
-
-
 });

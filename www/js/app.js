@@ -1,4 +1,9 @@
 var base = 'http://192.168.1.133:1337'
+//FULLSTACK BASE
+// var base = 'http://192.168.1.183:1337'
+//HOME BASE
+// var base = 'http://192.168.1.7:1337'
+
 // Ionic Starter App
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
@@ -6,7 +11,7 @@ var base = 'http://192.168.1.133:1337'
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-var core = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'fsaPreBuilt', 'ngCordova'])
+var core = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'fsaPreBuilt', 'ngCordova', 'ngStorage'])
 
 core.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -34,7 +39,13 @@ core.config(function($stateProvider, $urlRouterProvider) {
   .state('home', {
     url: '/home',
     templateUrl: 'js/home/home.template.html',
-    controller: 'homeCtrl'
+    controller: 'homeCtrl',
+    resolve: {
+      allStories: function (StoryFactory, $localStorage){
+        console.log('ran it')
+        return StoryFactory.getAllStories($localStorage.user._id)
+      }
+    }
   })
   .state('camera', {
     url: '/camera/:storyId',
@@ -49,15 +60,10 @@ core.config(function($stateProvider, $urlRouterProvider) {
   .state('storyCreate', {
     url: '/storyCreate',
     templateUrl: 'js/story/story.create.template.html',
-    controller: 'storyCreateCtrl',
+    controller: 'StoryCreateCtrl',
     resolve: {
       loggedInUser: function (AuthService){
         return AuthService.getLoggedInUser()
-        // .then(function(user) {
-        //   console.log(user, 'this is user');
-        //   return user;
-        //   // if(!user) $state.go('login');
-        // })
       }
     }
   })
@@ -82,56 +88,6 @@ core.config(function($stateProvider, $urlRouterProvider) {
     }
   });
 
-
-  // // setup an abstract state for the tabs directive
-  // .state('tab', {
-  //   url: '/tab',
-  //   abstract: true,
-  //   templateUrl: 'templates/tabs.html'
-  // })
-
-  // // Each tab has its own nav history stack:
-
-  // .state('tab.dash', {
-  //   url: '/dash',
-  //   views: {
-  //     'tab-dash': {
-  //       templateUrl: 'templates/tab-dash.html',
-  //       controller: 'DashCtrl'
-  //     }
-  //   }
-  // })
-
-  // .state('tab.chats', {
-  //     url: '/chats',
-  //     views: {
-  //       'tab-chats': {
-  //         templateUrl: 'templates/tab-chats.html',
-  //         controller: 'ChatsCtrl'
-  //       }
-  //     }
-  //   })
-  //   .state('tab.chat-detail', {
-  //     url: '/chats/:chatId',
-  //     views: {
-  //       'tab-chats': {
-  //         templateUrl: 'templates/chat-detail.html',
-  //         controller: 'ChatDetailCtrl'
-  //       }
-  //     }
-  //   })
-
-  // .state('tab.account', {
-  //   url: '/account',
-  //   views: {
-  //     'tab-account': {
-  //       templateUrl: 'templates/tab-account.html',
-  //       controller: 'AccountCtrl'
-  //     }
-  //   }
-  // });
-
-  // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/signup');
 
 });

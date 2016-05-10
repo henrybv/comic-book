@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 core.controller('storyCreateCtrl', function($scope, StoryFactory, loggedInUser, AuthService, $state, $rootScope, StoryFactory) {
 
 	$scope.story = {};
@@ -9,7 +10,14 @@ core.controller('storyCreateCtrl', function($scope, StoryFactory, loggedInUser, 
 		.then(function(story) {
 			$state.go('story', { storyId: story._id })
 		});
+=======
+core.controller('StoryCtrl', function($scope, StoryFactory, $state, $localStorage, story) {
+>>>>>>> master
 
+	$scope.story = story;
+	
+	$scope.changeState = function() {
+		$state.go('home')
 	}
 
 });
