@@ -1,8 +1,9 @@
 core.factory('StoryFactory', function($http, $localStorage) {
 
-	var StoryFactoryObj = {};
+	var StoryFactory = {};
 
-	StoryFactoryObj.createNewStory = function(storyObj){
+
+	StoryFactory.createNewStory = function(storyObj){
 		return $http.post(base + '/api/stories', storyObj)
 		.then(function(res) {
 			console.log("story created front end!", res);
@@ -10,14 +11,25 @@ core.factory('StoryFactory', function($http, $localStorage) {
 		})
 	};
 
-	StoryFactoryObj.getAllStories = function(id){
+
+	StoryFactory.getStoryById = function(storyId) {
+		return $http.get(base + '/api/stories/' + storyId)
+		.then(function(story) {
+			return story.data;
+		});
+	};
+
+
+	StoryFactory.getAllStories = function(id){
+		console.log('get all stories func')
 		return $http.get(base + '/api/stories/user/' + id)
 		.then(function(res) {
+			console.log('response heard')
 			return res.data;
 		})
 	};
 
-	StoryFactoryObj.getStory = function(id){
+	StoryFactory.getStory = function(id){
 		return $http.get(base + '/api/stories/' + id)
 		.then(function(res) {
 			return res.data;
@@ -25,6 +37,6 @@ core.factory('StoryFactory', function($http, $localStorage) {
 	};
 
 
-	return StoryFactoryObj;
+	return StoryFactory;
 
 });

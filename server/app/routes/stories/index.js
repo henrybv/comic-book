@@ -14,16 +14,16 @@ router.get('/', function(req, res, next) {
     .catch(next);
 });
 
-router.get('/:id', function(req, res, next) {
-    Story.findOne({_id: req.params.id}).exec()
-    .then(function(stories) {
-        res.status(200).send(stories);
-    })
-    .catch(next);
+router.get('/:storyId', function(req, res, next) {
+    Story.findById(req.params.storyId).exec()
+    .then(function(story) {
+        res.status(200).send(story);
+    });
 });
 
-router.get('/user/:id', function(req, res, next) {
-    Story.find({owner: req.params.id}).exec()
+router.get('/user/:userId', function(req, res, next) {
+    console.log('user id', req.params.userId)
+    Story.find({owner: req.params.userId}).exec()
     .then(function(stories) {
         res.status(200).send(stories);
     })
