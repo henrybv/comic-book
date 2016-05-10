@@ -1,7 +1,8 @@
 <ion-view view-title="Account">
 	<ion-content>
-	    <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}">
-	    <img ng-show="imgURI === undefined" ng-src="http://placehold.it/300x300">
+	    <img ng-show="true" id='tempImage' ng-src="{{imgURI}}">
+	 <!--    <img ng-show="imgURI === undefined" ng-src="http://placehold.it/300x300"> -->
 	    <button class="button" ng-click="takePicture()">Take Picture</button>
+	    <button class="button" ng-click="openPhotoLibrary()">Select Photo From Library</button>
 	</ion-content>
 </ion-view>
