@@ -1,8 +1,12 @@
-var base = 'http://192.168.1.133:1337'
+var base = 'http://192.168.1.204:1337';
+// var base = 'http://192.168.1.133:1337'
 //FULLSTACK BASE
 // var base = 'http://192.168.1.183:1337'
 //HOME BASE
 // var base = 'http://192.168.1.7:1337'
+
+// 127.0.0.1 dynamically routes to your local IP.
+// var base = 'http://127.0.0.1:27017:1337'
 
 // Ionic Starter App
 
@@ -13,7 +17,14 @@ var base = 'http://192.168.1.133:1337'
 // 'starter.controllers' is found in controllers.js
 var core = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'fsaPreBuilt', 'ngCordova', 'ngStorage'])
 
-core.run(function($ionicPlatform) {
+core.run(function($ionicPlatform, $rootScope) {
+
+  // event listener listening for state changes + put on rootScope
+  $rootScope.$on('$stateChangeSuccess', function(event, toState) {
+   $rootScope.$state = toState;
+   console.log($rootScope.$state.name);
+  });
+
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)

@@ -25,24 +25,6 @@ var schema = new mongoose.Schema({
     }]
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // //get total price ARRAY of all products AT CURRENT PRICE IN DATABASE
 // schema.methods.getLiveProductPrices = function(){
 //     return mongoose.model('Order').findById(this._id)
