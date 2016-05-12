@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <ion-view title="{{story.title}}">
   <ion-content>
     <div class="padding">
@@ -9,7 +8,7 @@
     </div>
   </ion-content>
 </ion-view>
-=======
+
 <form ua-storyCreate>
   <ion-view title="{{story.title}}">
     <ion-content>
@@ -19,7 +18,7 @@
         </label>
       </div>
       <div class="padding">
-        <button ng-click=changeState() class="button button-block button-positive">
+        <button ui-sref="home" class="button button-block button-positive">
           <span ng-show="!loading">My Stories</span>
           <i ng-show="loading" class="ion-loading-b"></i>
         </button>
@@ -27,4 +26,3 @@
     </ion-content>
   </ion-view>
 </form>
->>>>>>> master

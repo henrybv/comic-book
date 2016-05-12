@@ -12,7 +12,8 @@ var schema = new mongoose.Schema({
         default: '/img/border.jpg'
     },
     type: {
-      enum: ['sticker', 'border', 'bubble']
+      type: String, 
+      enum: ['sticker', 'border', 'bubble', 'filter']
     }
 });
 

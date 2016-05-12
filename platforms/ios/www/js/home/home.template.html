@@ -1,4 +1,4 @@
-<ion-view view-title="Stories">
+<ion-view view-title="Home">
   <ion-content>
     <ion-list>
       <ion-item class="item-remove-animate item-avatar item-icon-right" ui-sref="storyCreate" style="background-color: green;" type="item-text-wrap" >
@@ -11,6 +11,11 @@
         <img ng-src="{{chat.face}}">
         <h2>{{story.title}}</h2>
         <p>{{chat.lastText}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" ui-sref="testState">
+        <img ng-src="{{chat.face}}">
+        <h2>TEST STATE (DELETE)</h2>
         <i class="icon ion-chevron-right icon-accessory"></i>
       </ion-item>
     </ion-list>

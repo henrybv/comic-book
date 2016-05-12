@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 core.controller('CameraCtrl', function(story, $scope, $cordovaCamera) {
 	
 	 $scope.takePicture = function() {
@@ -20,12 +19,4 @@ core.controller('CameraCtrl', function(story, $scope, $cordovaCamera) {
             // An error occured. Show a message to the user
         });
     }
-
-
-=======
-core.controller('CameraCtrl', function($scope) {
-	$scope.createNewStory = function(){
-		// Inject Story Factory and make Post request
-	}
->>>>>>> master
 });

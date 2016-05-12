@@ -1,6 +1,7 @@
-var base = 'http://192.168.1.133:1337'
-//FULLSTACK BASE
-// var base = 'http://192.168.1.183:1337'
+//FULLSTACK BASE - Eric
+// var base = 'http://192.168.1.133:1337'
+//FULLSTACK BASE - Jeff
+var base = 'http://192.168.1.183:1337'
 //HOME BASE
 // var base = 'http://192.168.1.7:1337'
 
@@ -13,14 +14,20 @@ var base = 'http://192.168.1.133:1337'
 // 'starter.controllers' is found in controllers.js
 var core = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'fsaPreBuilt', 'ngCordova', 'ngStorage'])
 
-core.run(function($ionicPlatform) {
+core.run(function($ionicPlatform, $rootScope, $state) {
+
+  //Creates an event listener for state changes and adds them to the $rootScope
+  // $rootScope.$on('$stateChangeSuccess', function(event, toState){
+  //   $rootScope.$state = toState
+  //   console.log($rootScope.$state.name)
+  // })
+
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
-
     }
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
@@ -42,7 +49,6 @@ core.config(function($stateProvider, $urlRouterProvider) {
     controller: 'homeCtrl',
     resolve: {
       allStories: function (StoryFactory, $localStorage){
-        console.log('ran it')
         return StoryFactory.getAllStories($localStorage.user._id)
       }
     }
@@ -86,8 +92,18 @@ core.config(function($stateProvider, $urlRouterProvider) {
         return StoryFactory.getStoryById($stateParams.storyId);
       }
     }
-  });
+  })
+  .state('testState', {
+    url: '/testState',
+    templateUrl: 'js/testState/testState.template.html',
+    controller: 'testStateCtrl',
+    resolve: {
+      getAddons: function(TestFactory, $stateParams) {
+        return TestFactory.getFilters()
+      }
+    }
+  })
 
   $urlRouterProvider.otherwise('/signup');
 
-});
+})

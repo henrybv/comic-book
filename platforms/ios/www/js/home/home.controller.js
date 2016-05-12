@@ -4,7 +4,7 @@ core.controller('homeCtrl', function($scope, $state, allStories) {
 	$scope.stories = allStories
 
 	$scope.changeState = function(id){
-		$state.go('story', {id: id})
+		$state.go('story', {storyId: id})
 	}
 
 });

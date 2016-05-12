@@ -1,12 +1,10 @@
-<<<<<<< HEAD
-var base = 'http://192.168.1.133:1337'
-=======
-//FULLSTACK BASE
+//FULLSTACK BASE - Eric
+// var base = 'http://192.168.1.133:1337'
+//FULLSTACK BASE - Jeff
 var base = 'http://192.168.1.183:1337'
 //HOME BASE
 // var base = 'http://192.168.1.7:1337'
 
->>>>>>> master
 // Ionic Starter App
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
@@ -14,20 +12,22 @@ var base = 'http://192.168.1.183:1337'
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-<<<<<<< HEAD
-var core = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'fsaPreBuilt', 'ngCordova'])
-=======
-var core = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'fsaPreBuilt', 'ngStorage'])
->>>>>>> master
+var core = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'fsaPreBuilt', 'ngCordova', 'ngStorage'])
 
-core.run(function($ionicPlatform) {
+core.run(function($ionicPlatform, $rootScope, $state) {
+
+  //Creates an event listener for state changes and adds them to the $rootScope
+  // $rootScope.$on('$stateChangeSuccess', function(event, toState){
+  //   $rootScope.$state = toState
+  //   console.log($rootScope.$state.name)
+  // })
+
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
-
     }
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
@@ -56,16 +56,12 @@ core.config(function($stateProvider, $urlRouterProvider) {
   .state('camera', {
     url: '/camera/:storyId',
     templateUrl: 'js/camera/camera.template.html',
-<<<<<<< HEAD
     controller: 'CameraCtrl',
     resolve: {
       story: function(StoryFactory, $stateParams) {
         return StoryFactory.getStoryById($stateParams.storyId);
       }
     }
-=======
-    controller: 'CameraCtrl'
->>>>>>> master
   })
   .state('storyCreate', {
     url: '/storyCreate',
@@ -74,16 +70,6 @@ core.config(function($stateProvider, $urlRouterProvider) {
     resolve: {
       loggedInUser: function (AuthService){
         return AuthService.getLoggedInUser()
-      }
-    }
-  })
-  .state('story', {
-    url: '/story/:id',
-    templateUrl: 'js/story/story.template.html',
-    controller: 'StoryCtrl',
-    resolve: {
-      story: function (StoryFactory, $stateParams){
-        return StoryFactory.getStory($stateParams.id)
       }
     }
   })
@@ -106,8 +92,13 @@ core.config(function($stateProvider, $urlRouterProvider) {
         return StoryFactory.getStoryById($stateParams.storyId);
       }
     }
-  });
+  })
+  .state('testState', {
+    url: '/testState',
+    templateUrl: 'js/testState/testState.template.html',
+    controller: 'testStateCtrl'
+  })
 
   $urlRouterProvider.otherwise('/signup');
 
-});
+})
