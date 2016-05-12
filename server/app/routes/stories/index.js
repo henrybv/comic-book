@@ -7,7 +7,7 @@ var fs = require('fs');
 var path = require('path');
 module.exports = router;
 
-
+//get all stories
 router.get('/', function(req, res, next) {
     Story.find({}).exec()
     .then(function(stories) {
@@ -16,9 +16,10 @@ router.get('/', function(req, res, next) {
     .catch(next);
 });
 
-//get a specific story
+//TEST THIS
+//get a specific story and all its squares
 router.get('/:storyId', function(req, res, next) {
-    Story.findById(req.params.storyId).exec()
+    Story.findById(req.params.storyId).populate('squares').exec()
     .then(function(story) {
         res.status(200).send(story);
     })
@@ -44,18 +45,16 @@ router.post('/', function(req, res, next) {
 });
 
 //create new square AND update story with a new square
-router.put('/:storyId/square', function(req, res, next){
+router.put('/:storyId/squares', function(req, res, next){
     var SQUARETOSEND;
     return mongoose.model('Square').create({})
     .then(function(newSquare){
-        console.log('NEW SQUARE: ', newSquare);
-        var writeToPath = path.join(__dirname, '../../assets/' + newSquare._id);
-        // CONSIDER WRITING TO FIREBASE INSTEAD
+        // console.log('NEW SQUARE: ', newSquare);
+        // var writeToPath = path.join(__dirname, '../../assets/' + newSquare._id);
         // fs.writeFile(writeToPath, req.body.dataUrl, function(err) {
-            console.log('hit callback');
+            // console.log('hit callback');
         // })
-        return mongoose.model('Square')
-        .findByIdAndUpdate(newSquare._id, {upsert: true, new: true})
+        return mongoose.model('Square').findByIdAndUpdate(newSquare._id, {upsert: true, new: true})
     })
     .then(function(square) {
         SQUARETOSEND = square;

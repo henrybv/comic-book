@@ -1,6 +1,7 @@
-var base = 'http://192.168.1.184:1337'
+
+// var base = 'http://192.168.0.20:1337'
 //FULLSTACK BASE
-// var base = 'http://192.168.1.183:1337'
+var base = 'http://192.168.1.184:1337'
 //HOME BASE
 // var base = 'http://192.168.1.7:1337'
 

@@ -2,12 +2,6 @@ core.controller('CameraCtrl', function(story, $scope, $cordovaCamera, $cordovaFi
 	$scope.story = story;
     console.log('current story: ', $scope.story)
 
-    var context = document.getElementById('one').getContext('2d');
-    var img = new Image();
-    img.onload = function(){
-        context.drawImage(img, 0, 0);
-    }
-    img.src = '/Users/Debanshi/comic-book/server/app/assets/5733a34ec85339ef0b76ea56'
 
     $scope.takePicture = function() {
         var options = { 
@@ -28,9 +22,7 @@ core.controller('CameraCtrl', function(story, $scope, $cordovaCamera, $cordovaFi
             // An error occured. Show a message to the user
             console.log(err);
         });
-
     }
-
 
     $scope.openPhotoLibrary = function() { 
         console.log('in open photo library')
@@ -62,21 +54,35 @@ core.controller('CameraCtrl', function(story, $scope, $cordovaCamera, $cordovaFi
                         // }
                 var c = Grafi.contrast(b)
                 context.putImageData(c, 0, 0);
-                console.log('canvas', canvas)
-                console.log('imageData', c)
-                console.log('image', image);
                 var dataURL = canvas.toDataURL('image/png');
-                console.log('data URL', dataURL)
-
-
                 
-                var x = CameraFactory.createSquareAndUpdateStory(dataURL, $scope.story._id)
-                console.log('x equals', x)
-                // .then(function(updatedStory){
-                //     console.log('controller receives', updatedStory)
-                // })
-                // var dataURL2 = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream');
-                // console.log('data URL', dataURL2)
+                CameraFactory.createSquareAndUpdateStory(dataURL, $scope.story._id)
+            }
+
+        }, function(err) {
+                // error
+                console.log(err);
+        });
+    }
+
+    $scope.getImageURI = function(){
+        console.log('image id', $scope.story.squares[0])
+        CameraFactory.getImageURI($scope.story.squares[0])
+        .then(function(dataURI){
+            console.log(dataURI);
+        })
+    }
+
+});
+
+
+    // var context = document.getElementById('one').getContext('2d');
+    // var img = new Image();
+    // img.onload = function(){
+    //     context.drawImage(img, 0, 0);
+    // }
+    // img.src = '/Users/Debanshi/comic-book/server/app/assets/5733a34ec85339ef0b76ea56'
+
 
                 // function dataURLToBlob(dataURL) {
                 //     var BASE64_MARKER = ';base64,';
@@ -106,21 +112,3 @@ core.controller('CameraCtrl', function(story, $scope, $cordovaCamera, $cordovaFi
                 // console.log('dataURL to blob', x)
                 // var url = URL.createObjectURL(x);
                 // console.log('url from create object url', url)
-
-
-            }
-
-
-
-            }, function(err) {
-                // error
-                console.log(err);
-            });
-        }
-
-            
-
-
-
-
-});
