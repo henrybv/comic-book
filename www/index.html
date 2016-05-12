@@ -33,6 +33,10 @@
     <script src="js/story/story.factory.js"></script>
     <script src="js/camera/camera.factory.js"></script>
     <script src="js/camera/grafi.factory.js"></script>
+
+
+    <!-- Directives -->
+    <script src="js/navbar/navbar.main/navbar.main.directive.js"></script>
     
     <!-- Controllers -->
     <script src="js/controllers.js"></script>
@@ -46,15 +50,35 @@
 
     <script src="js/services.js"></script>
   </head>
+
   <body ng-app="starter">
-    HELLO WORLD
     <!--
       The nav bar that will be updated as we navigate between views.
     -->
-    <ion-nav-bar class="bar-stable">
-      <ion-nav-back-button>
-      </ion-nav-back-button>
+
+    <ion-nav-bar class = "bar-stable">
+        <ion-nav-back-button></ion-nav-back-button>
+
+   <!--      <ion-nav-buttons hide-back-button="{{toState == 'home'}}" side="left">
+            <button id="saveButton" class="button button-clear">Back</button>
+        </ion-nav-buttons> -->
+
+        <ion-nav-buttons side="left">
+            <button id="saveButton" class="button button-clear" ng-if="'home' | isState">Profile</button>
+        </ion-nav-buttons>    
+
+    <!--     <ion-nav-buttons side="right">
+            <button id="saveButton" class="button button-clear">Skip</button>
+        </ion-nav-buttons> -->
+        <ion-nav-buttons side="right">
+            <button class="button button-dark button-clear" ng-if="'home' | isState">Settings</button>
+        </ion-nav-buttons>
+
     </ion-nav-bar>
+
+
+      <!-- <navbar-home></navbar-home> -->
+
     <!--
       The views will be rendered in the <ion-nav-view> directive below
       Templates are in the /templates folder (but you could also
