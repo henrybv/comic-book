@@ -3,6 +3,8 @@ var router = require('express').Router();
 var mongoose = require('mongoose');
 var Story = mongoose.model('Story');
 var Promise = require('bluebird');
+var fs = require('fs');
+var path = require('path');
 module.exports = router;
 
 
@@ -14,20 +16,23 @@ router.get('/', function(req, res, next) {
     .catch(next);
 });
 
+//get a specific story
 router.get('/:storyId', function(req, res, next) {
     Story.findById(req.params.storyId).exec()
     .then(function(story) {
         res.status(200).send(story);
-    });
+    })
+    .catch(next)
 });
 
+//get all stories for a given user
 router.get('/user/:userId', function(req, res, next) {
     console.log('user id', req.params.userId)
     Story.find({owner: req.params.userId}).exec()
     .then(function(stories) {
         res.status(200).send(stories);
     })
-    .catch(next);
+    .catch(next)
 });
 
 router.post('/', function(req, res, next) {
@@ -35,158 +40,59 @@ router.post('/', function(req, res, next) {
     .then(function(stories) {
         res.status(200).send(stories);
     })
-    .catch(next);
+    .catch(next)
+});
+
+//create new square AND update story with a new square
+router.put('/:storyId/square', function(req, res, next){
+    var SQUARETOSEND;
+    return mongoose.model('Square').create({})
+    .then(function(newSquare){
+        console.log('NEW SQUARE: ', newSquare);
+        var writeToPath = path.join(__dirname, '../../assets/' + newSquare._id);
+        // CONSIDER WRITING TO FIREBASE INSTEAD
+        // fs.writeFile(writeToPath, req.body.dataUrl, function(err) {
+            console.log('hit callback');
+        // })
+        return mongoose.model('Square')
+        .findByIdAndUpdate(newSquare._id, {upsert: true, new: true})
+    })
+    .then(function(square) {
+        SQUARETOSEND = square;
+        console.log('SQUARE WITH SRC PATH AS FINAL IMAGE: ', square)
+        return Story.findByIdAndUpdate(req.params.storyId, {$push: {'squares': square._id}}, {upsert: true, new: true});
+    })
+    .then(function(){
+        console.log('still access to SQUARE', SQUARETOSEND)
+        res.status(200).send(SQUARETOSEND);
+    })
+    .catch(next)
 });
 
 
-// router.put('/:id', function(req, res, next){
-//     Order.findByIdAndUpdate(req.params.id, req.body, {new: true})
-//     .then(function(order){
-//         if (!order) res.sendStatus(404);
-//         else res.send(order);
-//     })
-//     .then(null, next)
-//     .catch(next);
-// });
-
-// router.get('/getComplete/:userId', function(req, res, next) {
-//     Order.find({user: req.params.userId, status: 'complete'}).populate('products.product user')
-//     .then(function(orders) {
-//         res.status(200).send(orders);
-//     })
-//     .catch(next);
-// });
-
-// // //*******WILL THIS STILL BE USED?**************
-// // router.get('/findOneOrder', function(req, res, next) {
-// //     Order.findOne({sessionId: req.session.id}).exec()
-// //     .then(function(order) {
-// //         res.status(200).send(order);
-// //     })
-// //     .catch(next);
-// // });
 
 
-// router.get('/getCart', function(req, res, next) {
-//     Order.findOne({sessionId: req.session.id, status: 'cart'})
-//     .populate('products.product')
-//     .then(function(order) {
-//         res.status(200).send(order);
-//     })
-//     .catch(next);
-// });
 
 
-// router.get('/getRecentComplete/:orderId', function(req, res, next){
-//     Order.findOne({sessionId: req.session.id, _id: req.params.orderId, status: 'complete'})
-//     .populate('products.product')
-//     .then(function(order) {
-//         res.status(200).send(order);
-//     })
-//     .catch(next);
-// });
 
-// router.get('/getAllComplete', function(req, res, next){
-//     Order.find({sessionId: req.session.id, status: 'complete'})
-//     .populate('products.product')
-//     .then(function(orders) {
-//         res.status(200).send(orders);
-//     })
-//     .catch(next);
-// });
+    // function decodeBase64Image(dataString) {
+    //   var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
+    //   var response = {};
+    //   if (matches.length !== 3) {
+    //     return new Error('Invalid input string');
+    //   }
+    //   response.type = matches[1];
+    //   response.data = new Buffer(matches[2], 'base64');
+    //   return response;
+    // }
+    // var imageBuffer = decodeBase64Image(req.body.dataUrl);
+    // console.log('IMAGE BUFFER: ', imageBuffer);
 
 
-// router.put('/addToCart/:productId', function(req,res,next){
-//     var userId = req.user ? req.user._id: undefined;
-//     Order.findOrCreate(req.session.id, userId)
-//     .then(function(order){
-//         return order.addProduct(req.params.productId, req.body.quantity);
-//     })
-//     .then(function(updatedCart){
-//         return Order.findOne({_id: updatedCart._id}).populate('products.product');
-//     })
-//     .then(function(updatedCart) {
-//         res.send(updatedCart);
-//     })
-//     .catch(next);
-// });
-
-// router.put('/removeOneFromCart/:productId', function(req,res,next){
-//     Order.findOne({sessionId: req.session.id, status: 'cart'})
-//     .then(function(order){
-//         return order.deleteOneProduct(req.params.productId);
-//     })
-//     .then(function(updatedCart){
-//         return Order.findOne({_id: updatedCart._id}).populate('products.product');
-//     })
-//     .then(function(updatedCart) {
-//         res.send(updatedCart);
-//     })
-//     .catch(next);
-// });
 
 
-// router.get('/findOneOrder', function(req, res, next) {
-//     Order.findOne({sessionId: req.session.id}).popular('user').exec()
-//     .then(function(order) {
-//         res.status(200).send(order);
-//     })
-//     .catch(next);
-// });
 
-// router.put('/removeFromCart/:productId', function(req,res,next){
-//     Order.findOne({sessionId: req.session.id, status:'cart'})
-//     .then(function(order){
-//         return order.deleteProduct(req.params.productId);
-//     })
-//     .then(function(updatedCart){
-//         console.log('NOT HAPPENING updatedCart in remove from cart', updatedCart);
-//         res.send(updatedCart);
-//     })
-//     .catch(next);
-// });
 
-// router.get('/findOneOrderById/:orderId', function(req, res, next) {
-//     Order.findOne({_id: req.params.orderId}).populate('products').exec()
-//     .then(function(order) {
-//         res.status(200).send(order);
-//     })
-//     .catch(next);
-// });
 
-// router.put('/changeStatus/:orderId/:newStatus', function(req, res, next){
-//     var newStatus = req.params.newStatus;
-//     return Order.findOne({sessionId: req.session.id, _id: req.params.orderId}).exec()
-//     .then(function(order){
-//         var currentStatus = order.status;
-//         if (currentStatus === 'cart' && newStatus === 'complete') {
-//             return order.cartToComplete();
-//         }
-//         if (currentStatus === 'complete' && newStatus === 'cancelled') {
-//             return order.cancel();
-//         }
-//         else {
-//             return order
-//         }
-//     })
-//     .then(function(updatedOrder){
-//         console.log('updated order after confirmatin', updatedOrder)
-//         res.json(updatedOrder);
-//     })
-//     .catch(next);
-// })
-
-// router.delete('/:orderId', function(req, res, next) {
-
-//     if(!req.user.isAdmin) return res.sendStatus(401);
-//     Order.findByIdAndRemove({_id: req.params.orderId})
-//     .then(function(order){
-//         res.send(order);
-//     })
-//     .catch(next)
-// });
-
-// // router.get('/checkout')
-// // //get checkout info
 
 

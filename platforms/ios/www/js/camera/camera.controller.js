@@ -1,14 +1,23 @@
-core.controller('CameraCtrl', function(story, $scope, $cordovaCamera, $cordovaFileTransfer) {
-	
-	$scope.takePicture = function() {
+core.controller('CameraCtrl', function(story, $scope, $cordovaCamera, $cordovaFileTransfer, Grafi, $localStorage, CameraFactory) {
+	$scope.story = story;
+    console.log('current story: ', $scope.story)
+
+    var context = document.getElementById('one').getContext('2d');
+    var img = new Image();
+    img.onload = function(){
+        context.drawImage(img, 0, 0);
+    }
+    img.src = '/Users/Debanshi/comic-book/server/app/assets/5733a34ec85339ef0b76ea56'
+
+    $scope.takePicture = function() {
         var options = { 
             quality : 75, 
             destinationType : Camera.DestinationType.DATA_URL, 
             sourceType : Camera.PictureSourceType.CAMERA, 
             allowEdit : true,
             encodingType: Camera.EncodingType.JPEG,
-            targetWidth: 300,
-            targetHeight: 300,
+            targetWidth: 375,
+            targetHeight: 375,
             popoverOptions: CameraPopoverOptions,
             saveToPhotoAlbum: false
         };
@@ -17,7 +26,9 @@ core.controller('CameraCtrl', function(story, $scope, $cordovaCamera, $cordovaFi
             $scope.imgURI = "data:image/jpeg;base64," + imageData;
         }, function(err) {
             // An error occured. Show a message to the user
+            console.log(err);
         });
+
     }
 
 
@@ -32,42 +43,73 @@ core.controller('CameraCtrl', function(story, $scope, $cordovaCamera, $cordovaFi
             popoverOptions: CameraPopoverOptions,
             saveToPhotoAlbum: false
         };
-    // }
 
         $cordovaCamera.getPicture(options).then(function(imageData) {
-            console.log('in get pictures')
-            //console.log(imageData);
-            //console.log(options);   
-            var image = document.getElementById('tempImage');
-            image.src = imageData;  
-            console.log('image', image)
+            var image = new Image();
+            image.src = imageData;
+            var canvas = document.getElementById('myCanvas');
+            var context = canvas.getContext('2d');
 
-            var server = "http://192.168.1.133:1337/www/img",
-                filePath = imageData;
+            image.onload = function (){
+                context.drawImage(image, 0, 0);  
+                var imageData = context.getImageData(0,0, canvas.width, canvas.height);
+                var a = Grafi.edge(imageData, {level: 20});
+                var b = Grafi.invert(a)
+                        // for (var i=0; i < data.length; i+=4){
+                        //   data[i]     = 255 - data[i];     // red
+                        //   data[i + 1] = 255 - data[i + 1]; // green
+                        //   data[i + 2] = 255 - data[i + 2]; // blue
+                        // }
+                var c = Grafi.contrast(b)
+                context.putImageData(c, 0, 0);
+                console.log('canvas', canvas)
+                console.log('imageData', c)
+                console.log('image', image);
+                var dataURL = canvas.toDataURL('image/png');
+                console.log('data URL', dataURL)
 
-            var date = new Date();
 
-            var options = {
-                fileKey: "file",
-                fileName: imageData.substr(imageData.lastIndexOf('/') + 1),
-                chunkedMode: false,
-                mimeType: "image/jpg",
-                targetWidth: 300,
-                targetHeight: 300
-            };
+                
+                var x = CameraFactory.createSquareAndUpdateStory(dataURL, $scope.story._id)
+                console.log('x equals', x)
+                // .then(function(updatedStory){
+                //     console.log('controller receives', updatedStory)
+                // })
+                // var dataURL2 = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream');
+                // console.log('data URL', dataURL2)
 
-            // $cordovaFileTransfer.upload(server, filePath, options).then(function(result) {
-            //     console.log("SUCCESS: " + JSON.stringify(result.response));
-            //     console.log('Result_' + result.response[0] + '_ending');
-            //     alert("success");
-            //     alert(JSON.stringify(result.response));
+                // function dataURLToBlob(dataURL) {
+                //     var BASE64_MARKER = ';base64,';
+                //     if (dataURL.indexOf(BASE64_MARKER) == -1) {
+                //       var parts = dataURL.split(',');
+                //       var contentType = parts[0].split(':')[1];
+                //       var raw = decodeURIComponent(parts[1]);
 
-            // }, function(err) {
-            //     console.log("ERROR: " + JSON.stringify(err));
-            //     //alert(JSON.stringify(err));
-            // }, function (progress) {
-            //     // constant progress updates
-            // });
+                //       return new Blob([raw], {type: contentType});
+                //     }
+
+                //     var parts = dataURL.split(BASE64_MARKER);
+                //     var contentType = parts[0].split(':')[1];
+                //     var raw = window.atob(parts[1]);
+                //     var rawLength = raw.length;
+
+                //     var uInt8Array = new Uint8Array(rawLength);
+
+                //     for (var i = 0; i < rawLength; ++i) {
+                //       uInt8Array[i] = raw.charCodeAt(i);
+                //     }
+
+                //     return new Blob([uInt8Array], {type: contentType});
+                // }
+
+                // var x = dataURLToBlob(dataURL);
+                // console.log('dataURL to blob', x)
+                // var url = URL.createObjectURL(x);
+                // console.log('url from create object url', url)
+
+
+            }
+
 
 
             }, function(err) {
@@ -75,6 +117,8 @@ core.controller('CameraCtrl', function(story, $scope, $cordovaCamera, $cordovaFi
                 console.log(err);
             });
         }
+
+            
 
 
 
