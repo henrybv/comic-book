@@ -2,15 +2,17 @@
   <ion-content>
     <ion-list>
       <ion-item class="item-remove-animate item-avatar item-icon-right" ui-sref="storyCreate" style="background-color: green;" type="item-text-wrap" >
-        <!-- <img ng-src="{{chat.face}}"> -->
-        <h1>Create Story</h1>
-        <p>{{chat.lastText}}</p>
+        <img ng-src="{{chat.face}}">
+        <h2>Create Story</h2>
+        <!-- <p>{{chat.lastText}}</p> -->
         <i class="icon ion-chevron-right icon-accessory"></i>
       </ion-item>
       <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" ng-repeat="story in stories" ng-click="changeState(story._id)">
-        <img ng-src="{{chat.face}}">
+        <!-- <img ng-src="{{chat.face}}"> -->
+        <img ng-src="assets/sample_comic.jpg">
         <h2>{{story.title}}</h2>
-        <p>{{chat.lastText}}</p>
+        <p>Placeholder: collaborators' names</p>
+        <!-- <p>{{chat.lastText}}</p> -->
         <i class="icon ion-chevron-right icon-accessory"></i>
       </ion-item>
       <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" ui-sref="testState">

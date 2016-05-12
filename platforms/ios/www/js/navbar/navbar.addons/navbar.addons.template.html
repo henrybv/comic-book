@@ -1,9 +1,18 @@
-<ion-scroll direction="x" id="scroll">
-	<div>
-	    <button class="button" ng-repeat="option in options" ng-click="test()">
+<ion-content id="addons">
+	<ion-content id="addonsStates">
+	    <button class="button" id="stateButtons" ng-repeat="state in states" ng-click="changeNav(state.state)">
 			<div>
-	    		<img src="{{option.image}}">
+	    		<div>{{state.state}}</div>
 	    	</div>
 	    </button>
-	</div>
-</ion-scroll>
+	</ion-content>
+	<ion-scroll direction="x" id="addonsBottom">
+		<div>
+		    <button class="button" ng-repeat="addon in addons | filter: {type: addonType}" ng-click="test()">
+				<div>
+		    		<img src="{{ addon.source }}">
+		    	</div>
+		    </button>
+		</div>
+	</ion-scroll>
+</ion-content>
