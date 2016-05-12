@@ -1,11 +1,9 @@
-// var base = 'http://192.168.0.20:1337'
-// var base = 'http://192.168.1.204:1337';
+//FULLSTACK BASE - Eric
 // var base = 'http://192.168.1.133:1337'
-//FULLSTACK BASE
-// var base = 'http://192.168.1.184:1337'
+//FULLSTACK BASE - Jeff
+
 //HOME BASE
 // var base = 'http://192.168.1.7:1337'
-
 // 127.0.0.1 dynamically routes to your local IP.
 var base = 'http://127.0.0.1:27017:1337'
 
@@ -18,7 +16,8 @@ var base = 'http://127.0.0.1:27017:1337'
 // 'starter.controllers' is found in controllers.js
 var core = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'fsaPreBuilt', 'ngCordova', 'ngStorage'])
 
-core.run(function($ionicPlatform, $rootScope) {
+
+core.run(function($ionicPlatform, $rootScope, $state) {
 
   // event listener listening for state changes + put on rootScope
   $rootScope.$on('$stateChangeSuccess', function(event, toState) {
@@ -32,7 +31,6 @@ core.run(function($ionicPlatform, $rootScope) {
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
-
     }
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
@@ -54,7 +52,6 @@ core.config(function($stateProvider, $urlRouterProvider) {
     controller: 'homeCtrl',
     resolve: {
       allStories: function (StoryFactory, $localStorage){
-        console.log('ran it')
         return StoryFactory.getAllStories($localStorage.user._id)
       }
     }
@@ -98,8 +95,18 @@ core.config(function($stateProvider, $urlRouterProvider) {
         return StoryFactory.getStoryById($stateParams.storyId);
       }
     }
-  });
+  })
+  .state('testState', {
+    url: '/testState',
+    templateUrl: 'js/testState/testState.template.html',
+    controller: 'testStateCtrl',
+    resolve: {
+      getAddons: function(TestFactory, $stateParams) {
+        return TestFactory.getFilters()
+      }
+    }
+  })
 
   $urlRouterProvider.otherwise('/signup');
 
-});
+})
