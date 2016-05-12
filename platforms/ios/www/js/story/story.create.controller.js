@@ -9,7 +9,7 @@ core.controller('StoryCreateCtrl', function($scope, StoryFactory, $state, $local
 			$scope.story.owner = $localStorage.user._id;
 			StoryFactory.createNewStory($scope.story)
 			.then(function(story) {
-				$state.go('story')
+				$state.go('camera', {storyId: story._id})
 			});	
 		}
 	}

@@ -7,4 +7,5 @@ core.controller('homeCtrl', function($scope, $state, allStories) {
 		$state.go('story', {storyId: id})
 	}
 
+
 });

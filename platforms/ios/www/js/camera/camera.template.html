@@ -1,7 +1,10 @@
 <ion-view view-title="Account">
 	<ion-content>
-	    <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}">
-	    <img ng-show="imgURI === undefined" ng-src="http://placehold.it/300x300">
+		<canvas id='myCanvas' width='375' height='375'></canvas>
 	    <button class="button" ng-click="takePicture()">Take Picture</button>
+	    <button class="button" ng-click="openPhotoLibrary()">Select Photo From Library</button>
+	    <button class="button" ng-click="getImageURI()">Get Image URI</button>
+	    <!-- <img src='/Users/Debanshi/comic-book/server/app/assets/5733a34ec85339ef0b76ea56'> -->
+<!-- 	    <canvas id='one'></canvas> -->
 	</ion-content>
 </ion-view>

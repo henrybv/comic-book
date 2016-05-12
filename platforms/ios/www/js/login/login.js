@@ -21,7 +21,6 @@ app.controller('LoginCtrl', function ($scope, AuthService, $state, $localStorage
                 //The way this works now is that the user is assigned a new token EVERY time he logs in
                 //I think this is what we want, but we may want to prevent an already logged (with persistant local storage data) from logging in
                 //again and creating a new token. I do not think this matters for our purposes.
-
                 console.log($localStorage)
                 $state.go('home');
             }
