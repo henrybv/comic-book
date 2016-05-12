@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 //FULLSTACK BASE - Eric
 // var base = 'http://192.168.1.133:1337'
 //FULLSTACK BASE - Jeff
 var base = 'http://192.168.1.183:1337'
+=======
+
+// var base = 'http://192.168.0.20:1337'
+//FULLSTACK BASE
+var base = 'http://192.168.1.184:1337'
+>>>>>>> master
 //HOME BASE
 // var base = 'http://192.168.1.7:1337'
 
@@ -13,6 +20,7 @@ var base = 'http://192.168.1.183:1337'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 var core = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'fsaPreBuilt', 'ngCordova', 'ngStorage'])
+<<<<<<< HEAD
 
 core.run(function($ionicPlatform, $rootScope, $state) {
 
@@ -21,6 +29,8 @@ core.run(function($ionicPlatform, $rootScope, $state) {
   //   $rootScope.$state = toState
   //   console.log($rootScope.$state.name)
   // })
+=======
+>>>>>>> master
 
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -49,6 +59,7 @@ core.config(function($stateProvider, $urlRouterProvider) {
     controller: 'homeCtrl',
     resolve: {
       allStories: function (StoryFactory, $localStorage){
+        console.log('ran it')
         return StoryFactory.getAllStories($localStorage.user._id)
       }
     }
