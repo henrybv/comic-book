@@ -2,17 +2,6 @@ core.factory('CameraFactory', function($http){
   var CameraFactory = {};
   
   //At point of saving image, creates the new square in the story and then calls the "save image function"
-  CameraFactory.urlToCanvas = function(url, canvasId){
-        var newImage = new Image();
-        newImage.src = url;
-        var canvas = document.getElementById(canvasId)
-        var context = canvas.getContext('2d');
-        newImage.onload = function(){
-            context.drawImage(newImage, 0, 0);
-        }
-    }
-
-
   CameraFactory.createSquare = function(dataUrl, storyId, userId){
     return $http.put(base + '/api/stories/' + storyId + '/squares', {creator: userId})
     .then(function(newSquare){
@@ -24,9 +13,19 @@ core.factory('CameraFactory', function($http){
       return updatedSquare.data
     })
   }
-
-
+  
   return CameraFactory;
 })
+
+
+  // CameraFactory.urlToCanvas = function(url, canvasId){
+  //       var newImage = new Image();
+  //       newImage.src = url;
+  //       var canvas = document.getElementById(canvasId)
+  //       var context = canvas.getContext('2d');
+  //       newImage.onload = function(){
+  //           context.drawImage(newImage, 0, 0);
+  //       }
+  //   }
 
 

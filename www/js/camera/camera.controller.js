@@ -1,9 +1,18 @@
 core.controller('CameraCtrl', function(story, $scope, $cordovaCamera, $cordovaFileTransfer, Grafi, $localStorage, CameraFactory) {
 	$scope.story = story;
+    $scope.currentUser = $localStorage.user._id;
     $scope.currentSquare;
     $scope.currentDataURL;
-    $scope.currentUser = $localStorage.user._id;
-    $scope.canvas = document.getElementById('myCanvas');
+    $scope.canvas = document.getElementById('imageCanvas');
+    $scope.addons = document.getElementById('addonCanvas');
+
+
+    var combineLayers = function(canvasId1, canvasId2){
+        var imageContext = $scope.canvas.getContext('2d');
+        var addonsContext = $scope.addons.getContext('2d');
+        imageContext.drawImage(addonsContext, 0, 0);
+    }
+
 
     var urlToCanvas = function(url, canvas){
         var newImage = new Image();
@@ -87,5 +96,8 @@ core.controller('CameraCtrl', function(story, $scope, $cordovaCamera, $cordovaFi
             $scope.currentSquare = square;
         })
     }
+
+
+
 
 });
