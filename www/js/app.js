@@ -5,7 +5,8 @@
 //HOME BASE
 // var base = 'http://192.168.1.7:1337'
 // 127.0.0.1 dynamically routes to your local IP.
-var base = 'http://127.0.0.1:27017:1337'
+// var base = 'http://127.0.0.1:27017:1337'
+var base = 'http://192.168.1.204:1337'
 
 // Ionic Starter App
 

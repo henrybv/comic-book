@@ -1,10 +1,14 @@
 <ion-view view-title="Account">
 	<ion-content>
 		<div class="clearthis">
-		    <img ng-src="http://placehold.it/375x500">
+		    <img ng-src="http://placehold.it/375x375">
 	    </div>
 	</ion-content>
     </ion-footer-bar>
-		<navbar-addon id="navbarAddon" test="testFunc()"></navbar-addon>
+    	<div>{{filters}}</div>
+  		<div>
+	    	<!-- <navbar-addonstates id="navbarAddonStates" changeNav="changeNav()"></navbar-addonstates> -->
+			<navbar-addon id="navbarAddon" test="testFunc()" addons="allAddons"></navbar-addon>
+		</div>
 	</ion-footer-bar>
 </ion-view>

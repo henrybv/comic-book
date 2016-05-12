@@ -1,6 +1,7 @@
 core.factory('CameraFactory', function($http){
   var CameraFactory = {};
   
+  //At point of saving image, creates the new square in the story and then calls the "save image function"
   CameraFactory.createSquareAndUpdateStory = function(dataUrl, storyId){
     console.log('factory hit')
     $http.put(base + '/api/stories/' + storyId + '/squares')
@@ -17,6 +18,8 @@ core.factory('CameraFactory', function($http){
 
   var firebaseImages = new Firebase("https://torrid-inferno-1552.firebaseio.com/");
   
+  //save image function updates the square with link to image data
+  //NEED TO PASS IN OWNER IN REQ BODY
   var saveImage = function(dataUrl, squareId){
     console.log('saveImage called')
     firebaseImages.child(String(squareId)).set({'url': dataUrl})
@@ -27,7 +30,7 @@ core.factory('CameraFactory', function($http){
     })
   }
 
-//TEST THIS
+//NEED TO DEBUG THIS
 //get specific image
   CameraFactory.getImageURI = function(squareId){
     firebaseImages.on('child_added', function(snapshot){
@@ -38,7 +41,7 @@ core.factory('CameraFactory', function($http){
     })
   }
 
-  //TEST THIS
+  //NEED TO DEBUG THIS
   //get all images for a story
   CameraFactory.getImages = function(storyId){
     $http.get(base + '/api/stories/' + storyId + '/squares')

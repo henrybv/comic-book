@@ -1,8 +1,11 @@
 /* Empty. Add your own CSS if you like */
 
+#addons {
+	height: 200px;
+}
 
 #navbarAddon {
-
+	height: 200px;
 	position: absolute;
     bottom: 0px;
 	overflow: scroll;
@@ -12,7 +15,23 @@
     0px 0px 20px #000;
 }
 
-#scroll {
+#addonsStates {
+	position: relative;
+	height:24%;
 	overflow: scroll;
 	white-space: nowrap;
 }
+
+#stateButtons {
+	height: 75%;
+	width: 25%;
+}
+
+#addonsBottom {
+	height:75%;
+	position: relative;
+	bottom: 0px;
+	overflow: scroll;
+	white-space: nowrap;
+}
+
