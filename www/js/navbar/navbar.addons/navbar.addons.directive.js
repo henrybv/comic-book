@@ -78,7 +78,7 @@ core.directive('navbarAddon', function($rootScope) {
             }
         },
         {
-            state: "CHANGE",
+            state: "COMIFY",
             function: function() {
                 scope.setButtons('addonStates')
             }
