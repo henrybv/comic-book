@@ -1,11 +1,5 @@
-//FULLSTACK BASE - Eric
-var base = 'http://192.168.1.133:1337'
-//FULLSTACK BASE - Jeff
-
-//HOME BASE
-// var base = 'http://192.168.1.7:1337'
-// 127.0.0.1 dynamically routes to your local IP.
 // var base = 'http://127.0.0.1:27017:1337'
+var base = 'http://192.168.1.204:1337'
 
 // Ionic Starter App
 
@@ -14,7 +8,7 @@ var base = 'http://192.168.1.133:1337'
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-var core = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'fsaPreBuilt', 'ngCordova', 'ngStorage'])
+var core = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'fsaPreBuilt', 'ngCordova', 'ngStorage', 'hmTouchEvents' ])
 
 
 core.run(function($ionicPlatform, $rootScope, $state) {
@@ -74,6 +68,9 @@ core.config(function($stateProvider, $urlRouterProvider) {
     resolve: {
       story: function(StoryFactory, $stateParams) {
         return StoryFactory.getStoryById($stateParams.storyId);
+      },
+      getAddons: function(CameraFactory, $stateParams) {
+        return CameraFactory.getFilters()
       }
     }
   })
@@ -107,16 +104,6 @@ core.config(function($stateProvider, $urlRouterProvider) {
     resolve: {
       story: function(StoryFactory, $stateParams) {
         return StoryFactory.getStoryById($stateParams.storyId);
-      }
-    }
-  })
-  .state('testState', {
-    url: '/testState',
-    templateUrl: 'js/testState/testState.template.html',
-    controller: 'testStateCtrl',
-    resolve: {
-      getAddons: function(TestFactory, $stateParams) {
-        return TestFactory.getFilters()
       }
     }
   })
