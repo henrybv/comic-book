@@ -11,6 +11,10 @@ var schema = new mongoose.Schema({
         type: String,
         default: '/img/border.jpg'
     },
+    thumbnail: {
+        type: String,
+        default: '/img/border.jpg'
+    },
     type: {
       type: String, 
       enum: ['sticker', 'border', 'bubble', 'filter']

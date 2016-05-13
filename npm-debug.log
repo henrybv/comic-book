@@ -1,9 +1,7 @@
 0 info it worked if it ends with ok
-1 verbose cli [ '/usr/local/Cellar/node/5.10.0/bin/node',
-1 verbose cli   '/usr/local/bin/npm',
-1 verbose cli   'i' ]
-2 info using npm@3.8.5
-3 info using node@v5.10.0
+1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'install' ]
+2 info using npm@3.8.6
+3 info using node@v5.6.0
 4 silly loadCurrentTree Starting
 5 silly install loadCurrentTree
 6 silly install readLocalPackageData
@@ -43,6 +41,531 @@
 29 silly mapToRegistry   spec: 'latest',
 29 silly mapToRegistry   type: 'tag' }
 30 silly mapToRegistry uri https://registry.npmjs.org/path
+<<<<<<< HEAD
+31 verbose request uri https://registry.npmjs.org/firebase
+32 verbose request no auth needed
+33 info attempt registry request try #1 at 7:49:35 PM
+34 verbose request id 3b0e863e18607381
+35 verbose etag "8NDZLJGEFOMCJH8QZG49AASJW"
+36 http request GET https://registry.npmjs.org/firebase
+37 verbose request uri https://registry.npmjs.org/path
+38 verbose request no auth needed
+39 info attempt registry request try #1 at 7:49:35 PM
+40 verbose etag "B8KARNLJXO0PFB2O4C6CPHL6X"
+41 http request GET https://registry.npmjs.org/path
+42 http 200 https://registry.npmjs.org/path
+43 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+43 verbose headers   etag: '"CBVXRTOXF4CTTO5DFJG8I8IA0"',
+43 verbose headers   'content-type': 'application/json',
+43 verbose headers   'cache-control': 'max-age=300',
+43 verbose headers   'content-length': '5451',
+43 verbose headers   'accept-ranges': 'bytes',
+43 verbose headers   date: 'Thu, 12 May 2016 23:49:35 GMT',
+43 verbose headers   via: '1.1 varnish',
+43 verbose headers   age: '109',
+43 verbose headers   connection: 'keep-alive',
+43 verbose headers   'x-served-by': 'cache-atl6238-ATL',
+43 verbose headers   'x-cache': 'HIT',
+43 verbose headers   'x-cache-hits': '1',
+43 verbose headers   'x-timer': 'S1463096975.264878,VS0,VE0',
+43 verbose headers   vary: 'Accept-Encoding' }
+44 silly get cb [ 200,
+44 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+44 silly get     etag: '"CBVXRTOXF4CTTO5DFJG8I8IA0"',
+44 silly get     'content-type': 'application/json',
+44 silly get     'cache-control': 'max-age=300',
+44 silly get     'content-length': '5451',
+44 silly get     'accept-ranges': 'bytes',
+44 silly get     date: 'Thu, 12 May 2016 23:49:35 GMT',
+44 silly get     via: '1.1 varnish',
+44 silly get     age: '109',
+44 silly get     connection: 'keep-alive',
+44 silly get     'x-served-by': 'cache-atl6238-ATL',
+44 silly get     'x-cache': 'HIT',
+44 silly get     'x-cache-hits': '1',
+44 silly get     'x-timer': 'S1463096975.264878,VS0,VE0',
+44 silly get     vary: 'Accept-Encoding' } ]
+45 verbose get saving path to /Users/macuser/.npm/registry.npmjs.org/path/.cache.json
+46 verbose correctMkdir /Users/macuser/.npm correctMkdir not in flight; initializing
+47 http 304 https://registry.npmjs.org/firebase
+48 verbose headers { date: 'Thu, 12 May 2016 23:49:35 GMT',
+48 verbose headers   via: '1.1 varnish',
+48 verbose headers   'cache-control': 'max-age=300',
+48 verbose headers   etag: '"8NDZLJGEFOMCJH8QZG49AASJW"',
+48 verbose headers   age: '0',
+48 verbose headers   connection: 'keep-alive',
+48 verbose headers   'x-served-by': 'cache-atl6245-ATL',
+48 verbose headers   'x-cache': 'HIT',
+48 verbose headers   'x-cache-hits': '1',
+48 verbose headers   'x-timer': 'S1463096975.265016,VS0,VE34',
+48 verbose headers   vary: 'Accept-Encoding' }
+49 silly get cb [ 304,
+49 silly get   { date: 'Thu, 12 May 2016 23:49:35 GMT',
+49 silly get     via: '1.1 varnish',
+49 silly get     'cache-control': 'max-age=300',
+49 silly get     etag: '"8NDZLJGEFOMCJH8QZG49AASJW"',
+49 silly get     age: '0',
+49 silly get     connection: 'keep-alive',
+49 silly get     'x-served-by': 'cache-atl6245-ATL',
+49 silly get     'x-cache': 'HIT',
+49 silly get     'x-cache-hits': '1',
+49 silly get     'x-timer': 'S1463096975.265016,VS0,VE34',
+49 silly get     vary: 'Accept-Encoding' } ]
+50 verbose etag https://registry.npmjs.org/firebase from cache
+51 verbose get saving firebase to /Users/macuser/.npm/registry.npmjs.org/firebase/.cache.json
+52 verbose correctMkdir /Users/macuser/.npm correctMkdir not in flight; initializing
+53 silly resolveWithNewModule path@0.12.7 checking installable status
+54 silly cache add args [ 'path@^0.12.7', null ]
+55 verbose cache add spec path@^0.12.7
+56 silly cache add parsed spec Result {
+56 silly cache add   raw: 'path@^0.12.7',
+56 silly cache add   scope: null,
+56 silly cache add   name: 'path',
+56 silly cache add   rawSpec: '^0.12.7',
+56 silly cache add   spec: '>=0.12.7 <0.13.0',
+56 silly cache add   type: 'range' }
+57 silly addNamed path@>=0.12.7 <0.13.0
+58 verbose addNamed ">=0.12.7 <0.13.0" is a valid semver range for path
+59 silly addNameRange { name: 'path', range: '>=0.12.7 <0.13.0', hasData: false }
+60 silly mapToRegistry name path
+61 silly mapToRegistry using default registry
+62 silly mapToRegistry registry https://registry.npmjs.org/
+63 silly mapToRegistry data Result {
+63 silly mapToRegistry   raw: 'path',
+63 silly mapToRegistry   scope: null,
+63 silly mapToRegistry   name: 'path',
+63 silly mapToRegistry   rawSpec: '',
+63 silly mapToRegistry   spec: 'latest',
+63 silly mapToRegistry   type: 'tag' }
+64 silly mapToRegistry uri https://registry.npmjs.org/path
+65 verbose addNameRange registry:https://registry.npmjs.org/path not in flight; fetching
+66 verbose get https://registry.npmjs.org/path not expired, no request
+67 silly addNameRange number 2 { name: 'path', range: '>=0.12.7 <0.13.0', hasData: true }
+68 silly addNameRange versions [ 'path', [ '0.4.9', '0.4.10', '0.11.14', '0.12.7' ] ]
+69 silly addNamed path@0.12.7
+70 verbose addNamed "0.12.7" is a plain semver version for path
+71 silly resolveWithNewModule firebase@2.4.2 checking installable status
+72 silly cache add args [ 'firebase@^2.4.2', null ]
+73 verbose cache add spec firebase@^2.4.2
+74 silly cache add parsed spec Result {
+74 silly cache add   raw: 'firebase@^2.4.2',
+74 silly cache add   scope: null,
+74 silly cache add   name: 'firebase',
+74 silly cache add   rawSpec: '^2.4.2',
+74 silly cache add   spec: '>=2.4.2 <3.0.0',
+74 silly cache add   type: 'range' }
+75 silly addNamed firebase@>=2.4.2 <3.0.0
+76 verbose addNamed ">=2.4.2 <3.0.0" is a valid semver range for firebase
+77 silly addNameRange { name: 'firebase', range: '>=2.4.2 <3.0.0', hasData: false }
+78 silly mapToRegistry name firebase
+79 silly mapToRegistry using default registry
+80 silly mapToRegistry registry https://registry.npmjs.org/
+81 silly mapToRegistry data Result {
+81 silly mapToRegistry   raw: 'firebase',
+81 silly mapToRegistry   scope: null,
+81 silly mapToRegistry   name: 'firebase',
+81 silly mapToRegistry   rawSpec: '',
+81 silly mapToRegistry   spec: 'latest',
+81 silly mapToRegistry   type: 'tag' }
+82 silly mapToRegistry uri https://registry.npmjs.org/firebase
+83 verbose addNameRange registry:https://registry.npmjs.org/firebase not in flight; fetching
+84 verbose get https://registry.npmjs.org/firebase not expired, no request
+85 silly addNameRange number 2 { name: 'firebase', range: '>=2.4.2 <3.0.0', hasData: true }
+86 silly addNameRange versions [ 'firebase',
+86 silly addNameRange   [ '0.0.0',
+86 silly addNameRange     '0.5.0',
+86 silly addNameRange     '0.5.1',
+86 silly addNameRange     '0.5.2',
+86 silly addNameRange     '0.5.3',
+86 silly addNameRange     '0.5.4',
+86 silly addNameRange     '0.6.0',
+86 silly addNameRange     '0.6.1',
+86 silly addNameRange     '0.6.2',
+86 silly addNameRange     '0.6.3',
+86 silly addNameRange     '0.6.4',
+86 silly addNameRange     '0.6.5',
+86 silly addNameRange     '0.6.6',
+86 silly addNameRange     '0.6.7',
+86 silly addNameRange     '0.6.8',
+86 silly addNameRange     '0.6.9',
+86 silly addNameRange     '0.6.10',
+86 silly addNameRange     '0.6.11',
+86 silly addNameRange     '0.6.14',
+86 silly addNameRange     '0.6.15',
+86 silly addNameRange     '0.6.16',
+86 silly addNameRange     '0.6.17',
+86 silly addNameRange     '0.6.19',
+86 silly addNameRange     '0.6.21',
+86 silly addNameRange     '0.6.22',
+86 silly addNameRange     '1.0.1',
+86 silly addNameRange     '1.0.1-npm',
+86 silly addNameRange     '1.0.2',
+86 silly addNameRange     '1.0.3',
+86 silly addNameRange     '1.0.4',
+86 silly addNameRange     '1.0.5',
+86 silly addNameRange     '1.0.10',
+86 silly addNameRange     '1.0.10-2',
+86 silly addNameRange     '1.0.11',
+86 silly addNameRange     '1.0.12',
+86 silly addNameRange     '1.0.13',
+86 silly addNameRange     '1.0.14',
+86 silly addNameRange     '1.0.15',
+86 silly addNameRange     '1.0.15-2',
+86 silly addNameRange     '1.0.15-3',
+86 silly addNameRange     '1.0.17',
+86 silly addNameRange     '1.0.18',
+86 silly addNameRange     '1.0.19',
+86 silly addNameRange     '1.0.20',
+86 silly addNameRange     '1.0.21',
+86 silly addNameRange     '1.0.23',
+86 silly addNameRange     '1.0.24',
+86 silly addNameRange     '1.1.0',
+86 silly addNameRange     '1.1.1',
+86 silly addNameRange     '1.1.2',
+86 silly addNameRange     '1.2.0-beta.1-0',
+86 silly addNameRange     '1.2.0-beta.2',
+86 silly addNameRange     '1.1.3',
+86 silly addNameRange     '1.2.0-beta.3',
+86 silly addNameRange     '2.0.0',
+86 silly addNameRange     '2.0.1',
+86 silly addNameRange     '2.0.2',
+86 silly addNameRange     '2.0.3',
+86 silly addNameRange     '2.0.4',
+86 silly addNameRange     '2.0.5',
+86 silly addNameRange     '2.0.6',
+86 silly addNameRange     '2.1.0',
+86 silly addNameRange     '2.1.1',
+86 silly addNameRange     '2.1.2',
+86 silly addNameRange     '1.2.0',
+86 silly addNameRange     '2.2.0',
+86 silly addNameRange     '2.2.1',
+86 silly addNameRange     '2.2.2',
+86 silly addNameRange     '2.2.3',
+86 silly addNameRange     '2.2.4',
+86 silly addNameRange     '2.2.5',
+86 silly addNameRange     '2.2.6',
+86 silly addNameRange     '2.2.7',
+86 silly addNameRange     '2.2.8',
+86 silly addNameRange     '2.2.9',
+86 silly addNameRange     '2.3.0',
+86 silly addNameRange     '2.3.1',
+86 silly addNameRange     '2.3.2',
+86 silly addNameRange     '2.4.0',
+86 silly addNameRange     '2.4.1',
+86 silly addNameRange     '2.4.2' ] ]
+87 silly addNamed firebase@2.4.2
+88 verbose addNamed "2.4.2" is a plain semver version for firebase
+89 silly cache afterAdd path@0.12.7
+90 verbose afterAdd /Users/macuser/.npm/path/0.12.7/package/package.json not in flight; writing
+91 verbose correctMkdir /Users/macuser/.npm correctMkdir not in flight; initializing
+92 verbose afterAdd /Users/macuser/.npm/path/0.12.7/package/package.json written
+93 silly cache afterAdd firebase@2.4.2
+94 verbose afterAdd /Users/macuser/.npm/firebase/2.4.2/package/package.json not in flight; writing
+95 verbose correctMkdir /Users/macuser/.npm correctMkdir not in flight; initializing
+96 verbose afterAdd /Users/macuser/.npm/firebase/2.4.2/package/package.json written
+97 silly addShrinkwrap Found shrinkwrap in firebase package/npm-shrinkwrap.json
+98 silly addShrinkwrap Completed reading shrinkwrap in firebase
+99 silly fetchPackageMetaData faye-websocket@https://registry.npmjs.org/faye-websocket/-/faye-websocket-0.9.3.tgz
+100 silly fetchOtherPackageData faye-websocket@https://registry.npmjs.org/faye-websocket/-/faye-websocket-0.9.3.tgz
+101 silly cache add args [ 'faye-websocket@https://registry.npmjs.org/faye-websocket/-/faye-websocket-0.9.3.tgz',
+101 silly cache add   null ]
+102 verbose cache add spec faye-websocket@https://registry.npmjs.org/faye-websocket/-/faye-websocket-0.9.3.tgz
+103 silly cache add parsed spec Result {
+103 silly cache add   raw: 'faye-websocket@https://registry.npmjs.org/faye-websocket/-/faye-websocket-0.9.3.tgz',
+103 silly cache add   scope: null,
+103 silly cache add   name: 'faye-websocket',
+103 silly cache add   rawSpec: 'https://registry.npmjs.org/faye-websocket/-/faye-websocket-0.9.3.tgz',
+103 silly cache add   spec: 'https://registry.npmjs.org/faye-websocket/-/faye-websocket-0.9.3.tgz',
+103 silly cache add   type: 'remote' }
+104 silly mapToRegistry name faye-websocket@https://registry.npmjs.org/faye-websocket/-/faye-websocket-0.9.3.tgz
+105 silly mapToRegistry using default registry
+106 silly mapToRegistry registry https://registry.npmjs.org/
+107 silly mapToRegistry data Result {
+107 silly mapToRegistry   raw: 'faye-websocket@https://registry.npmjs.org/faye-websocket/-/faye-websocket-0.9.3.tgz',
+107 silly mapToRegistry   scope: null,
+107 silly mapToRegistry   name: 'faye-websocket',
+107 silly mapToRegistry   rawSpec: 'https://registry.npmjs.org/faye-websocket/-/faye-websocket-0.9.3.tgz',
+107 silly mapToRegistry   spec: 'https://registry.npmjs.org/faye-websocket/-/faye-websocket-0.9.3.tgz',
+107 silly mapToRegistry   type: 'remote' }
+108 silly mapToRegistry uri https://registry.npmjs.org/faye-websocket/-/faye-websocket-0.9.3.tgz
+109 verbose addRemoteTarball https://registry.npmjs.org/faye-websocket/-/faye-websocket-0.9.3.tgz not in flight; adding
+110 verbose addRemoteTarball [ 'https://registry.npmjs.org/faye-websocket/-/faye-websocket-0.9.3.tgz',
+110 verbose addRemoteTarball   null ]
+111 info retry fetch attempt 1 at 7:49:35 PM
+112 info attempt registry request try #1 at 7:49:35 PM
+113 http fetch GET https://registry.npmjs.org/faye-websocket/-/faye-websocket-0.9.3.tgz
+114 http fetch 200 https://registry.npmjs.org/faye-websocket/-/faye-websocket-0.9.3.tgz
+115 silly fetchAndShaCheck shasum 482a505b0df0ae626b969866d3bd740cdb962e83
+116 verbose addTmpTarball /var/folders/w1/71jq2cyx7hbf0ycd1nd7z0q40000gn/T/npm-56144-715acc24/registry.npmjs.org/faye-websocket/-/faye-websocket-0.9.3.tgz not in flight; adding
+117 verbose correctMkdir /Users/macuser/.npm correctMkdir not in flight; initializing
+118 verbose addTmpTarball validating metadata from /var/folders/w1/71jq2cyx7hbf0ycd1nd7z0q40000gn/T/npm-56144-715acc24/registry.npmjs.org/faye-websocket/-/faye-websocket-0.9.3.tgz
+119 verbose tar unpack /var/folders/w1/71jq2cyx7hbf0ycd1nd7z0q40000gn/T/npm-56144-715acc24/registry.npmjs.org/faye-websocket/-/faye-websocket-0.9.3.tgz
+120 verbose tar unpacking to /var/folders/w1/71jq2cyx7hbf0ycd1nd7z0q40000gn/T/npm-56144-715acc24/unpack-e89935c0
+121 silly gentlyRm /var/folders/w1/71jq2cyx7hbf0ycd1nd7z0q40000gn/T/npm-56144-715acc24/unpack-e89935c0 is being purged
+122 verbose gentlyRm don't care about contents; nuking /var/folders/w1/71jq2cyx7hbf0ycd1nd7z0q40000gn/T/npm-56144-715acc24/unpack-e89935c0
+123 silly gunzTarPerm modes [ '755', '644' ]
+124 silly gunzTarPerm extractEntry package.json
+125 silly gunzTarPerm extractEntry README.md
+126 silly gunzTarPerm extractEntry CHANGELOG.md
+127 silly gunzTarPerm extractEntry examples/autobahn_client.js
+128 silly gunzTarPerm extractEntry examples/client.js
+129 silly gunzTarPerm extractEntry examples/proxy_server.js
+130 silly gunzTarPerm extractEntry examples/server.js
+131 silly gunzTarPerm extractEntry examples/haproxy.conf
+132 silly gunzTarPerm extractEntry examples/sse.html
+133 silly gunzTarPerm extractEntry examples/ws.html
+134 silly gunzTarPerm extractEntry lib/faye/eventsource.js
+135 silly gunzTarPerm extractEntry lib/faye/websocket.js
+136 silly gunzTarPerm extractEntry lib/faye/websocket/api.js
+137 silly gunzTarPerm extractEntry lib/faye/websocket/client.js
+138 silly gunzTarPerm extractEntry lib/faye/websocket/api/event.js
+139 silly gunzTarPerm extractEntry lib/faye/websocket/api/event_target.js
+140 verbose correctMkdir /Users/macuser/.npm correctMkdir not in flight; initializing
+141 silly cache afterAdd faye-websocket@0.9.3
+142 verbose afterAdd /Users/macuser/.npm/faye-websocket/0.9.3/package/package.json not in flight; writing
+143 verbose correctMkdir /Users/macuser/.npm correctMkdir not in flight; initializing
+144 verbose afterAdd /Users/macuser/.npm/faye-websocket/0.9.3/package/package.json written
+145 silly fetchPackageMetaData websocket-driver@https://registry.npmjs.org/websocket-driver/-/websocket-driver-0.5.2.tgz
+146 silly fetchOtherPackageData websocket-driver@https://registry.npmjs.org/websocket-driver/-/websocket-driver-0.5.2.tgz
+147 silly cache add args [ 'websocket-driver@https://registry.npmjs.org/websocket-driver/-/websocket-driver-0.5.2.tgz',
+147 silly cache add   null ]
+148 verbose cache add spec websocket-driver@https://registry.npmjs.org/websocket-driver/-/websocket-driver-0.5.2.tgz
+149 silly cache add parsed spec Result {
+149 silly cache add   raw: 'websocket-driver@https://registry.npmjs.org/websocket-driver/-/websocket-driver-0.5.2.tgz',
+149 silly cache add   scope: null,
+149 silly cache add   name: 'websocket-driver',
+149 silly cache add   rawSpec: 'https://registry.npmjs.org/websocket-driver/-/websocket-driver-0.5.2.tgz',
+149 silly cache add   spec: 'https://registry.npmjs.org/websocket-driver/-/websocket-driver-0.5.2.tgz',
+149 silly cache add   type: 'remote' }
+150 silly mapToRegistry name websocket-driver@https://registry.npmjs.org/websocket-driver/-/websocket-driver-0.5.2.tgz
+151 silly mapToRegistry using default registry
+152 silly mapToRegistry registry https://registry.npmjs.org/
+153 silly mapToRegistry data Result {
+153 silly mapToRegistry   raw: 'websocket-driver@https://registry.npmjs.org/websocket-driver/-/websocket-driver-0.5.2.tgz',
+153 silly mapToRegistry   scope: null,
+153 silly mapToRegistry   name: 'websocket-driver',
+153 silly mapToRegistry   rawSpec: 'https://registry.npmjs.org/websocket-driver/-/websocket-driver-0.5.2.tgz',
+153 silly mapToRegistry   spec: 'https://registry.npmjs.org/websocket-driver/-/websocket-driver-0.5.2.tgz',
+153 silly mapToRegistry   type: 'remote' }
+154 silly mapToRegistry uri https://registry.npmjs.org/websocket-driver/-/websocket-driver-0.5.2.tgz
+155 verbose addRemoteTarball https://registry.npmjs.org/websocket-driver/-/websocket-driver-0.5.2.tgz not in flight; adding
+156 verbose addRemoteTarball [ 'https://registry.npmjs.org/websocket-driver/-/websocket-driver-0.5.2.tgz',
+156 verbose addRemoteTarball   null ]
+157 info retry fetch attempt 1 at 7:49:35 PM
+158 info attempt registry request try #1 at 7:49:35 PM
+159 http fetch GET https://registry.npmjs.org/websocket-driver/-/websocket-driver-0.5.2.tgz
+160 http fetch 200 https://registry.npmjs.org/websocket-driver/-/websocket-driver-0.5.2.tgz
+161 silly fetchAndShaCheck shasum 8c7c85da0713b4060556b4d71c01775ee1269eb9
+162 verbose addTmpTarball /var/folders/w1/71jq2cyx7hbf0ycd1nd7z0q40000gn/T/npm-56144-715acc24/registry.npmjs.org/websocket-driver/-/websocket-driver-0.5.2.tgz not in flight; adding
+163 verbose correctMkdir /Users/macuser/.npm correctMkdir not in flight; initializing
+164 verbose addTmpTarball validating metadata from /var/folders/w1/71jq2cyx7hbf0ycd1nd7z0q40000gn/T/npm-56144-715acc24/registry.npmjs.org/websocket-driver/-/websocket-driver-0.5.2.tgz
+165 verbose tar unpack /var/folders/w1/71jq2cyx7hbf0ycd1nd7z0q40000gn/T/npm-56144-715acc24/registry.npmjs.org/websocket-driver/-/websocket-driver-0.5.2.tgz
+166 verbose tar unpacking to /var/folders/w1/71jq2cyx7hbf0ycd1nd7z0q40000gn/T/npm-56144-715acc24/unpack-189d9408
+167 silly gentlyRm /var/folders/w1/71jq2cyx7hbf0ycd1nd7z0q40000gn/T/npm-56144-715acc24/unpack-189d9408 is being purged
+168 verbose gentlyRm don't care about contents; nuking /var/folders/w1/71jq2cyx7hbf0ycd1nd7z0q40000gn/T/npm-56144-715acc24/unpack-189d9408
+169 silly gunzTarPerm modes [ '755', '644' ]
+170 silly gunzTarPerm extractEntry package.json
+171 silly gunzTarPerm extractEntry README.md
+172 silly gunzTarPerm extractEntry CHANGELOG.md
+173 silly gunzTarPerm extractEntry examples/tcp_server.js
+174 silly gunzTarPerm extractEntry lib/websocket/driver.js
+175 silly gunzTarPerm extractEntry lib/websocket/http_parser.js
+176 silly gunzTarPerm extractEntry lib/websocket/streams.js
+177 silly gunzTarPerm extractEntry lib/websocket/driver/base.js
+178 silly gunzTarPerm extractEntry lib/websocket/driver/client.js
+179 silly gunzTarPerm extractEntry lib/websocket/driver/draft75.js
+180 silly gunzTarPerm extractEntry lib/websocket/driver/draft76.js
+181 silly gunzTarPerm extractEntry lib/websocket/driver/headers.js
+182 silly gunzTarPerm extractEntry lib/websocket/driver/hybi.js
+183 silly gunzTarPerm extractEntry lib/websocket/driver/proxy.js
+184 silly gunzTarPerm extractEntry lib/websocket/driver/server.js
+185 silly gunzTarPerm extractEntry lib/websocket/driver/hybi/frame.js
+186 silly gunzTarPerm extractEntry lib/websocket/driver/hybi/message.js
+187 silly gunzTarPerm extractEntry lib/websocket/driver/hybi/stream_reader.js
+188 verbose correctMkdir /Users/macuser/.npm correctMkdir not in flight; initializing
+189 silly cache afterAdd websocket-driver@0.5.2
+190 verbose afterAdd /Users/macuser/.npm/websocket-driver/0.5.2/package/package.json not in flight; writing
+191 verbose correctMkdir /Users/macuser/.npm correctMkdir not in flight; initializing
+192 verbose afterAdd /Users/macuser/.npm/websocket-driver/0.5.2/package/package.json written
+193 silly fetchPackageMetaData websocket-extensions@https://registry.npmjs.org/websocket-extensions/-/websocket-extensions-0.1.1.tgz
+194 silly fetchOtherPackageData websocket-extensions@https://registry.npmjs.org/websocket-extensions/-/websocket-extensions-0.1.1.tgz
+195 silly cache add args [ 'websocket-extensions@https://registry.npmjs.org/websocket-extensions/-/websocket-extensions-0.1.1.tgz',
+195 silly cache add   null ]
+196 verbose cache add spec websocket-extensions@https://registry.npmjs.org/websocket-extensions/-/websocket-extensions-0.1.1.tgz
+197 silly cache add parsed spec Result {
+197 silly cache add   raw: 'websocket-extensions@https://registry.npmjs.org/websocket-extensions/-/websocket-extensions-0.1.1.tgz',
+197 silly cache add   scope: null,
+197 silly cache add   name: 'websocket-extensions',
+197 silly cache add   rawSpec: 'https://registry.npmjs.org/websocket-extensions/-/websocket-extensions-0.1.1.tgz',
+197 silly cache add   spec: 'https://registry.npmjs.org/websocket-extensions/-/websocket-extensions-0.1.1.tgz',
+197 silly cache add   type: 'remote' }
+198 silly mapToRegistry name websocket-extensions@https://registry.npmjs.org/websocket-extensions/-/websocket-extensions-0.1.1.tgz
+199 silly mapToRegistry using default registry
+200 silly mapToRegistry registry https://registry.npmjs.org/
+201 silly mapToRegistry data Result {
+201 silly mapToRegistry   raw: 'websocket-extensions@https://registry.npmjs.org/websocket-extensions/-/websocket-extensions-0.1.1.tgz',
+201 silly mapToRegistry   scope: null,
+201 silly mapToRegistry   name: 'websocket-extensions',
+201 silly mapToRegistry   rawSpec: 'https://registry.npmjs.org/websocket-extensions/-/websocket-extensions-0.1.1.tgz',
+201 silly mapToRegistry   spec: 'https://registry.npmjs.org/websocket-extensions/-/websocket-extensions-0.1.1.tgz',
+201 silly mapToRegistry   type: 'remote' }
+202 silly mapToRegistry uri https://registry.npmjs.org/websocket-extensions/-/websocket-extensions-0.1.1.tgz
+203 verbose addRemoteTarball https://registry.npmjs.org/websocket-extensions/-/websocket-extensions-0.1.1.tgz not in flight; adding
+204 verbose addRemoteTarball [ 'https://registry.npmjs.org/websocket-extensions/-/websocket-extensions-0.1.1.tgz',
+204 verbose addRemoteTarball   null ]
+205 info retry fetch attempt 1 at 7:49:36 PM
+206 info attempt registry request try #1 at 7:49:36 PM
+207 http fetch GET https://registry.npmjs.org/websocket-extensions/-/websocket-extensions-0.1.1.tgz
+208 http fetch 200 https://registry.npmjs.org/websocket-extensions/-/websocket-extensions-0.1.1.tgz
+209 silly fetchAndShaCheck shasum 76899499c184b6ef754377c2dbb0cd6cb55d29e7
+210 verbose addTmpTarball /var/folders/w1/71jq2cyx7hbf0ycd1nd7z0q40000gn/T/npm-56144-715acc24/registry.npmjs.org/websocket-extensions/-/websocket-extensions-0.1.1.tgz not in flight; adding
+211 verbose correctMkdir /Users/macuser/.npm correctMkdir not in flight; initializing
+212 verbose addTmpTarball validating metadata from /var/folders/w1/71jq2cyx7hbf0ycd1nd7z0q40000gn/T/npm-56144-715acc24/registry.npmjs.org/websocket-extensions/-/websocket-extensions-0.1.1.tgz
+213 verbose tar unpack /var/folders/w1/71jq2cyx7hbf0ycd1nd7z0q40000gn/T/npm-56144-715acc24/registry.npmjs.org/websocket-extensions/-/websocket-extensions-0.1.1.tgz
+214 verbose tar unpacking to /var/folders/w1/71jq2cyx7hbf0ycd1nd7z0q40000gn/T/npm-56144-715acc24/unpack-82b8a041
+215 silly gentlyRm /var/folders/w1/71jq2cyx7hbf0ycd1nd7z0q40000gn/T/npm-56144-715acc24/unpack-82b8a041 is being purged
+216 verbose gentlyRm don't care about contents; nuking /var/folders/w1/71jq2cyx7hbf0ycd1nd7z0q40000gn/T/npm-56144-715acc24/unpack-82b8a041
+217 silly gunzTarPerm modes [ '755', '644' ]
+218 silly gunzTarPerm extractEntry package.json
+219 silly gunzTarPerm extractEntry README.md
+220 silly gunzTarPerm extractEntry CHANGELOG.md
+221 silly gunzTarPerm extractEntry lib/parser.js
+222 silly gunzTarPerm extractEntry lib/websocket_extensions.js
+223 silly gunzTarPerm extractEntry lib/pipeline/README.md
+224 silly gunzTarPerm extractEntry lib/pipeline/cell.js
+225 silly gunzTarPerm extractEntry lib/pipeline/functor.js
+226 silly gunzTarPerm extractEntry lib/pipeline/index.js
+227 silly gunzTarPerm extractEntry lib/pipeline/pledge.js
+228 silly gunzTarPerm extractEntry lib/pipeline/ring_buffer.js
+229 verbose correctMkdir /Users/macuser/.npm correctMkdir not in flight; initializing
+230 silly cache afterAdd websocket-extensions@0.1.1
+231 verbose afterAdd /Users/macuser/.npm/websocket-extensions/0.1.1/package/package.json not in flight; writing
+232 verbose correctMkdir /Users/macuser/.npm correctMkdir not in flight; initializing
+233 verbose afterAdd /Users/macuser/.npm/websocket-extensions/0.1.1/package/package.json written
+234 silly fetchNamedPackageData process
+235 silly mapToRegistry name process
+236 silly mapToRegistry using default registry
+237 silly mapToRegistry registry https://registry.npmjs.org/
+238 silly mapToRegistry data Result {
+238 silly mapToRegistry   raw: 'process',
+238 silly mapToRegistry   scope: null,
+238 silly mapToRegistry   name: 'process',
+238 silly mapToRegistry   rawSpec: '',
+238 silly mapToRegistry   spec: 'latest',
+238 silly mapToRegistry   type: 'tag' }
+239 silly mapToRegistry uri https://registry.npmjs.org/process
+240 verbose request uri https://registry.npmjs.org/process
+241 verbose request no auth needed
+242 info attempt registry request try #1 at 7:49:37 PM
+243 verbose etag "O9YCTNN8S7OJ13AKEE4122M4"
+244 http request GET https://registry.npmjs.org/process
+245 http 200 https://registry.npmjs.org/process
+246 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+246 verbose headers   etag: '"CZL9P2UC1DQVC7EP9EJDF2EO"',
+246 verbose headers   'content-type': 'application/json',
+246 verbose headers   'content-encoding': 'gzip',
+246 verbose headers   'cache-control': 'max-age=300',
+246 verbose headers   'content-length': '3382',
+246 verbose headers   'accept-ranges': 'bytes',
+246 verbose headers   date: 'Thu, 12 May 2016 23:49:37 GMT',
+246 verbose headers   via: '1.1 varnish',
+246 verbose headers   age: '178',
+246 verbose headers   connection: 'keep-alive',
+246 verbose headers   'x-served-by': 'cache-atl6229-ATL',
+246 verbose headers   'x-cache': 'HIT',
+246 verbose headers   'x-cache-hits': '1',
+246 verbose headers   'x-timer': 'S1463096977.764707,VS0,VE0',
+246 verbose headers   vary: 'Accept-Encoding' }
+247 silly get cb [ 200,
+247 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+247 silly get     etag: '"CZL9P2UC1DQVC7EP9EJDF2EO"',
+247 silly get     'content-type': 'application/json',
+247 silly get     'content-encoding': 'gzip',
+247 silly get     'cache-control': 'max-age=300',
+247 silly get     'content-length': '3382',
+247 silly get     'accept-ranges': 'bytes',
+247 silly get     date: 'Thu, 12 May 2016 23:49:37 GMT',
+247 silly get     via: '1.1 varnish',
+247 silly get     age: '178',
+247 silly get     connection: 'keep-alive',
+247 silly get     'x-served-by': 'cache-atl6229-ATL',
+247 silly get     'x-cache': 'HIT',
+247 silly get     'x-cache-hits': '1',
+247 silly get     'x-timer': 'S1463096977.764707,VS0,VE0',
+247 silly get     vary: 'Accept-Encoding' } ]
+248 verbose get saving process to /Users/macuser/.npm/registry.npmjs.org/process/.cache.json
+249 verbose correctMkdir /Users/macuser/.npm correctMkdir not in flight; initializing
+250 silly resolveWithNewModule process@0.11.3 checking installable status
+251 silly cache add args [ 'process@^0.11.1', null ]
+252 verbose cache add spec process@^0.11.1
+253 silly cache add parsed spec Result {
+253 silly cache add   raw: 'process@^0.11.1',
+253 silly cache add   scope: null,
+253 silly cache add   name: 'process',
+253 silly cache add   rawSpec: '^0.11.1',
+253 silly cache add   spec: '>=0.11.1 <0.12.0',
+253 silly cache add   type: 'range' }
+254 silly addNamed process@>=0.11.1 <0.12.0
+255 verbose addNamed ">=0.11.1 <0.12.0" is a valid semver range for process
+256 silly addNameRange { name: 'process', range: '>=0.11.1 <0.12.0', hasData: false }
+257 silly mapToRegistry name process
+258 silly mapToRegistry using default registry
+259 silly mapToRegistry registry https://registry.npmjs.org/
+260 silly mapToRegistry data Result {
+260 silly mapToRegistry   raw: 'process',
+260 silly mapToRegistry   scope: null,
+260 silly mapToRegistry   name: 'process',
+260 silly mapToRegistry   rawSpec: '',
+260 silly mapToRegistry   spec: 'latest',
+260 silly mapToRegistry   type: 'tag' }
+261 silly mapToRegistry uri https://registry.npmjs.org/process
+262 verbose addNameRange registry:https://registry.npmjs.org/process not in flight; fetching
+263 verbose get https://registry.npmjs.org/process not expired, no request
+264 silly addNameRange number 2 { name: 'process', range: '>=0.11.1 <0.12.0', hasData: true }
+265 silly addNameRange versions [ 'process',
+265 silly addNameRange   [ '0.4.9',
+265 silly addNameRange     '0.5.0',
+265 silly addNameRange     '0.5.1',
+265 silly addNameRange     '0.5.2',
+265 silly addNameRange     '0.6.0',
+265 silly addNameRange     '0.7.0',
+265 silly addNameRange     '0.8.0',
+265 silly addNameRange     '0.9.0',
+265 silly addNameRange     '0.10.0',
+265 silly addNameRange     '0.10.1',
+265 silly addNameRange     '0.11.0',
+265 silly addNameRange     '0.11.1',
+265 silly addNameRange     '0.11.2',
+265 silly addNameRange     '0.11.3' ] ]
+266 silly addNamed process@0.11.3
+267 verbose addNamed "0.11.3" is a plain semver version for process
+268 silly mapToRegistry name process
+269 silly mapToRegistry using default registry
+270 silly mapToRegistry registry https://registry.npmjs.org/
+271 silly mapToRegistry data Result {
+271 silly mapToRegistry   raw: 'process',
+271 silly mapToRegistry   scope: null,
+271 silly mapToRegistry   name: 'process',
+271 silly mapToRegistry   rawSpec: '',
+271 silly mapToRegistry   spec: 'latest',
+271 silly mapToRegistry   type: 'tag' }
+272 silly mapToRegistry uri https://registry.npmjs.org/process
+273 verbose addRemoteTarball https://registry.npmjs.org/process/-/process-0.11.3.tgz not in flight; adding
+274 verbose addRemoteTarball [ 'https://registry.npmjs.org/process/-/process-0.11.3.tgz',
+274 verbose addRemoteTarball   'd7d8fb7b3db3c0bfa9658b0dd9a4fa11e691ef3a' ]
+275 info retry fetch attempt 1 at 7:49:37 PM
+276 info attempt registry request try #1 at 7:49:37 PM
+277 http fetch GET https://registry.npmjs.org/process/-/process-0.11.3.tgz
+278 http fetch 200 https://registry.npmjs.org/process/-/process-0.11.3.tgz
+279 silly fetchAndShaCheck shasum d7d8fb7b3db3c0bfa9658b0dd9a4fa11e691ef3a
+280 verbose addTmpTarball /var/folders/w1/71jq2cyx7hbf0ycd1nd7z0q40000gn/T/npm-56144-715acc24/registry.npmjs.org/process/-/process-0.11.3.tgz not in flight; adding
+281 verbose addTmpTarball already have metadata; skipping unpack for process@0.11.3
+282 verbose correctMkdir /Users/macuser/.npm correctMkdir not in flight; initializing
+283 silly cache afterAdd process@0.11.3
+284 verbose afterAdd /Users/macuser/.npm/process/0.11.3/package/package.json not in flight; writing
+285 verbose correctMkdir /Users/macuser/.npm correctMkdir not in flight; initializing
+286 verbose afterAdd /Users/macuser/.npm/process/0.11.3/package/package.json written
+=======
 31 verbose request uri https://registry.npmjs.org/path
 32 verbose request no auth needed
 33 info attempt registry request try #1 at 1:43:48 PM
@@ -558,6 +1081,7 @@
 284 verbose afterAdd /Users/hbn/.npm/process/0.11.3/package/package.json not in flight; writing
 285 verbose correctMkdir /Users/hbn/.npm correctMkdir not in flight; initializing
 286 verbose afterAdd /Users/hbn/.npm/process/0.11.3/package/package.json written
+>>>>>>> master
 287 silly loadAllDepsIntoIdealTree Finishing
 288 silly idealTree:prePrune ionic-project@1.1.1
 288 silly idealTree:prePrune ├── abbrev@1.0.7
@@ -571,6 +1095,10 @@
 288 silly idealTree:prePrune ├── angular-animate@1.5.5
 288 silly idealTree:prePrune ├── angular-aria@1.5.5
 288 silly idealTree:prePrune ├── angular-awesome-slider@2.4.4
+<<<<<<< HEAD
+288 silly idealTree:prePrune ├── angular-hammer@2.1.10
+=======
+>>>>>>> master
 288 silly idealTree:prePrune ├── angular-material@1.0.8
 288 silly idealTree:prePrune ├── angular-messages@1.5.5
 288 silly idealTree:prePrune ├── angular-mocks@1.5.5
@@ -1154,6 +1682,10 @@
 288 silly idealTree:prePrune │ ├── gulp-util@3.0.7
 288 silly idealTree:prePrune │ └── object-assign@3.0.0
 288 silly idealTree:prePrune ├── gulplog@1.0.0
+<<<<<<< HEAD
+288 silly idealTree:prePrune ├── hammerjs@2.0.8
+=======
+>>>>>>> master
 288 silly idealTree:prePrune ├─┬ handlebars@4.0.5
 288 silly idealTree:prePrune │ └── source-map@0.4.4
 288 silly idealTree:prePrune ├─┬ har-validator@2.0.6
@@ -1732,6 +2264,10 @@
 290 silly currentTree ├── angular-animate@1.5.5
 290 silly currentTree ├── angular-aria@1.5.5
 290 silly currentTree ├── angular-awesome-slider@2.4.4
+<<<<<<< HEAD
+290 silly currentTree ├── angular-hammer@2.1.10
+=======
+>>>>>>> master
 290 silly currentTree ├── angular-material@1.0.8
 290 silly currentTree ├── angular-messages@1.5.5
 290 silly currentTree ├── angular-mocks@1.5.5
@@ -2311,6 +2847,10 @@
 290 silly currentTree │ ├── gulp-util@3.0.7
 290 silly currentTree │ └── object-assign@3.0.0
 290 silly currentTree ├── gulplog@1.0.0
+<<<<<<< HEAD
+290 silly currentTree ├── hammerjs@2.0.8
+=======
+>>>>>>> master
 290 silly currentTree ├─┬ handlebars@4.0.5
 290 silly currentTree │ └── source-map@0.4.4
 290 silly currentTree ├─┬ har-validator@2.0.6
@@ -2886,6 +3426,10 @@
 291 silly idealTree ├── angular-animate@1.5.5
 291 silly idealTree ├── angular-aria@1.5.5
 291 silly idealTree ├── angular-awesome-slider@2.4.4
+<<<<<<< HEAD
+291 silly idealTree ├── angular-hammer@2.1.10
+=======
+>>>>>>> master
 291 silly idealTree ├── angular-material@1.0.8
 291 silly idealTree ├── angular-messages@1.5.5
 291 silly idealTree ├── angular-mocks@1.5.5
@@ -3469,6 +4013,10 @@
 291 silly idealTree │ ├── gulp-util@3.0.7
 291 silly idealTree │ └── object-assign@3.0.0
 291 silly idealTree ├── gulplog@1.0.0
+<<<<<<< HEAD
+291 silly idealTree ├── hammerjs@2.0.8
+=======
+>>>>>>> master
 291 silly idealTree ├─┬ handlebars@4.0.5
 291 silly idealTree │ └── source-map@0.4.4
 291 silly idealTree ├─┬ har-validator@2.0.6
@@ -4097,8 +4645,13 @@
 352 silly install executeActions
 353 silly doSerial global-install 0
 354 silly doParallel fetch 6
+<<<<<<< HEAD
+355 verbose correctMkdir /Users/macuser/.npm/_locks correctMkdir not in flight; initializing
+356 verbose lock using /Users/macuser/.npm/_locks/staging-d45d189c5104516f.lock for /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging
+=======
 355 verbose correctMkdir /Users/hbn/.npm/_locks correctMkdir not in flight; initializing
 356 verbose lock using /Users/hbn/.npm/_locks/staging-707e7f1c80fc0c4b.lock for /Users/hbn/fullstack/comic-book/node_modules/.staging
+>>>>>>> master
 357 silly doParallel extract 6
 358 silly extract websocket-extensions@0.1.1
 359 silly extract websocket-driver@0.5.2
@@ -4106,6 +4659,50 @@
 361 silly extract process@0.11.3
 362 silly extract firebase@2.4.2
 363 silly extract path@0.12.7
+<<<<<<< HEAD
+364 verbose unbuild node_modules/.staging/websocket-extensions-3d8ae7e8
+365 verbose unbuild node_modules/.staging/websocket-driver-0f74682a
+366 verbose unbuild node_modules/.staging/faye-websocket-e5eda561
+367 verbose unbuild node_modules/.staging/process-bfc78d3e
+368 verbose unbuild node_modules/.staging/firebase-9e333703
+369 verbose unbuild node_modules/.staging/path-e0c60e49
+370 silly gentlyRm /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/websocket-extensions-3d8ae7e8 is being purged from base /Users/macuser/Fullstack/04_capstone/01_comic-book
+371 verbose gentlyRm don't care about contents; nuking /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/websocket-extensions-3d8ae7e8
+372 silly gentlyRm /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/websocket-driver-0f74682a is being purged from base /Users/macuser/Fullstack/04_capstone/01_comic-book
+373 verbose gentlyRm don't care about contents; nuking /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/websocket-driver-0f74682a
+374 silly gentlyRm /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/faye-websocket-e5eda561 is being purged from base /Users/macuser/Fullstack/04_capstone/01_comic-book
+375 verbose gentlyRm don't care about contents; nuking /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/faye-websocket-e5eda561
+376 silly gentlyRm /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/process-bfc78d3e is being purged from base /Users/macuser/Fullstack/04_capstone/01_comic-book
+377 verbose gentlyRm don't care about contents; nuking /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/process-bfc78d3e
+378 silly gentlyRm /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/firebase-9e333703 is being purged from base /Users/macuser/Fullstack/04_capstone/01_comic-book
+379 verbose gentlyRm don't care about contents; nuking /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/firebase-9e333703
+380 silly gentlyRm /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/path-e0c60e49 is being purged from base /Users/macuser/Fullstack/04_capstone/01_comic-book
+381 verbose gentlyRm don't care about contents; nuking /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/path-e0c60e49
+382 verbose tar unpack /Users/macuser/.npm/websocket-extensions/0.1.1/package.tgz
+383 verbose tar unpacking to /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/websocket-extensions-3d8ae7e8
+384 silly gentlyRm /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/websocket-extensions-3d8ae7e8 is being purged
+385 verbose gentlyRm don't care about contents; nuking /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/websocket-extensions-3d8ae7e8
+386 verbose tar unpack /Users/macuser/.npm/websocket-driver/0.5.2/package.tgz
+387 verbose tar unpacking to /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/websocket-driver-0f74682a
+388 silly gentlyRm /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/websocket-driver-0f74682a is being purged
+389 verbose gentlyRm don't care about contents; nuking /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/websocket-driver-0f74682a
+390 verbose tar unpack /Users/macuser/.npm/faye-websocket/0.9.3/package.tgz
+391 verbose tar unpacking to /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/faye-websocket-e5eda561
+392 silly gentlyRm /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/faye-websocket-e5eda561 is being purged
+393 verbose gentlyRm don't care about contents; nuking /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/faye-websocket-e5eda561
+394 verbose tar unpack /Users/macuser/.npm/process/0.11.3/package.tgz
+395 verbose tar unpacking to /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/process-bfc78d3e
+396 silly gentlyRm /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/process-bfc78d3e is being purged
+397 verbose gentlyRm don't care about contents; nuking /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/process-bfc78d3e
+398 verbose tar unpack /Users/macuser/.npm/firebase/2.4.2/package.tgz
+399 verbose tar unpacking to /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/firebase-9e333703
+400 silly gentlyRm /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/firebase-9e333703 is being purged
+401 verbose gentlyRm don't care about contents; nuking /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/firebase-9e333703
+402 verbose tar unpack /Users/macuser/.npm/path/0.12.7/package.tgz
+403 verbose tar unpacking to /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/path-e0c60e49
+404 silly gentlyRm /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/path-e0c60e49 is being purged
+405 verbose gentlyRm don't care about contents; nuking /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/path-e0c60e49
+=======
 364 verbose unbuild node_modules/.staging/websocket-extensions-8d80cc13
 365 verbose unbuild node_modules/.staging/websocket-driver-2aca57af
 366 verbose unbuild node_modules/.staging/faye-websocket-6f88b135
@@ -4148,6 +4745,7 @@
 403 verbose tar unpacking to /Users/hbn/fullstack/comic-book/node_modules/.staging/path-acb2267d
 404 silly gentlyRm /Users/hbn/fullstack/comic-book/node_modules/.staging/path-acb2267d is being purged
 405 verbose gentlyRm don't care about contents; nuking /Users/hbn/fullstack/comic-book/node_modules/.staging/path-acb2267d
+>>>>>>> master
 406 silly gunzTarPerm modes [ '755', '644' ]
 407 silly gunzTarPerm modes [ '755', '644' ]
 408 silly gunzTarPerm modes [ '755', '644' ]
@@ -4174,21 +4772,51 @@
 429 silly gunzTarPerm extractEntry README.md
 430 silly gunzTarPerm extractEntry CHANGELOG.md
 431 silly gunzTarPerm extractEntry README.md
+<<<<<<< HEAD
+432 silly gunzTarPerm extractEntry LICENSE
+433 silly gunzTarPerm extractEntry README.md
+434 silly gunzTarPerm extractEntry lib/README
+=======
 432 silly gunzTarPerm extractEntry CHANGELOG.md
 433 silly gunzTarPerm extractEntry README.md
 434 silly gunzTarPerm extractEntry LICENSE
+>>>>>>> master
 435 silly gunzTarPerm extractEntry .npmignore
 436 silly gunzTarPerm modified mode [ '.npmignore', 438, 420 ]
 437 silly gunzTarPerm extractEntry README.md
 438 silly gunzTarPerm modified mode [ 'README.md', 438, 420 ]
 439 silly gunzTarPerm extractEntry README.md
+<<<<<<< HEAD
+440 silly gunzTarPerm extractEntry CHANGELOG.md
+=======
 440 silly gunzTarPerm extractEntry lib/README
+>>>>>>> master
 441 silly gunzTarPerm extractEntry browser.js
 442 silly gunzTarPerm extractEntry index.js
 443 silly gunzTarPerm extractEntry LICENSE
 444 silly gunzTarPerm modified mode [ 'LICENSE', 438, 420 ]
 445 silly gunzTarPerm extractEntry path.js
 446 silly gunzTarPerm modified mode [ 'path.js', 438, 420 ]
+<<<<<<< HEAD
+447 silly gunzTarPerm extractEntry examples/autobahn_client.js
+448 silly gunzTarPerm extractEntry lib/firebase-node.js
+449 silly gunzTarPerm extractEntry examples/tcp_server.js
+450 silly gunzTarPerm extractEntry lib/firebase-web.js
+451 silly gunzTarPerm extractEntry test.js
+452 silly gunzTarPerm extractEntry npm-shrinkwrap.json
+453 silly gunzTarPerm extractEntry examples/client.js
+454 silly gunzTarPerm extractEntry examples/proxy_server.js
+455 silly gunzTarPerm extractEntry lib/websocket/driver.js
+456 silly gunzTarPerm extractEntry lib/websocket/http_parser.js
+457 silly gunzTarPerm extractEntry examples/server.js
+458 silly gunzTarPerm extractEntry examples/haproxy.conf
+459 silly gunzTarPerm extractEntry lib/websocket/streams.js
+460 silly gunzTarPerm extractEntry lib/websocket/driver/base.js
+461 silly gunzTarPerm extractEntry examples/sse.html
+462 silly gunzTarPerm extractEntry examples/ws.html
+463 silly gunzTarPerm extractEntry lib/websocket/driver/client.js
+464 silly gunzTarPerm extractEntry lib/websocket/driver/draft75.js
+=======
 447 silly gunzTarPerm extractEntry examples/tcp_server.js
 448 silly gunzTarPerm extractEntry examples/autobahn_client.js
 449 silly gunzTarPerm extractEntry lib/firebase-node.js
@@ -4207,10 +4835,21 @@
 462 silly gunzTarPerm extractEntry lib/websocket/driver/draft75.js
 463 silly gunzTarPerm extractEntry examples/sse.html
 464 silly gunzTarPerm extractEntry examples/ws.html
+>>>>>>> master
 465 silly gunzTarPerm extractEntry lib/faye/eventsource.js
 466 silly gunzTarPerm extractEntry lib/faye/websocket.js
 467 silly gunzTarPerm extractEntry lib/websocket/driver/draft76.js
 468 silly gunzTarPerm extractEntry lib/websocket/driver/headers.js
+<<<<<<< HEAD
+469 silly gunzTarPerm extractEntry lib/faye/websocket/api.js
+470 silly gunzTarPerm extractEntry lib/faye/websocket/client.js
+471 silly gentlyRm /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/path-e0c60e49/node_modules is being purged
+472 verbose gentlyRm don't care about contents; nuking /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/path-e0c60e49/node_modules
+473 silly gunzTarPerm extractEntry lib/websocket/driver/hybi.js
+474 silly gunzTarPerm extractEntry lib/websocket/driver/proxy.js
+475 silly gentlyRm /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/process-bfc78d3e/node_modules is being purged
+476 verbose gentlyRm don't care about contents; nuking /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/process-bfc78d3e/node_modules
+=======
 469 silly gentlyRm /Users/hbn/fullstack/comic-book/node_modules/.staging/path-acb2267d/node_modules is being purged
 470 verbose gentlyRm don't care about contents; nuking /Users/hbn/fullstack/comic-book/node_modules/.staging/path-acb2267d/node_modules
 471 silly gunzTarPerm extractEntry lib/faye/websocket/api.js
@@ -4219,12 +4858,35 @@
 474 silly gunzTarPerm extractEntry lib/websocket/driver/proxy.js
 475 silly gentlyRm /Users/hbn/fullstack/comic-book/node_modules/.staging/process-454eba66/node_modules is being purged
 476 verbose gentlyRm don't care about contents; nuking /Users/hbn/fullstack/comic-book/node_modules/.staging/process-454eba66/node_modules
+>>>>>>> master
 477 silly gunzTarPerm extractEntry lib/faye/websocket/api/event.js
 478 silly gunzTarPerm extractEntry lib/faye/websocket/api/event_target.js
 479 silly gunzTarPerm extractEntry lib/websocket/driver/server.js
 480 silly gunzTarPerm extractEntry lib/websocket/driver/hybi/frame.js
 481 silly gunzTarPerm extractEntry lib/websocket/driver/hybi/message.js
 482 silly gunzTarPerm extractEntry lib/websocket/driver/hybi/stream_reader.js
+<<<<<<< HEAD
+483 silly gentlyRm /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/firebase-9e333703/node_modules is being purged
+484 verbose gentlyRm don't care about contents; nuking /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/firebase-9e333703/node_modules
+485 silly gentlyRm /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/websocket-extensions-3d8ae7e8/node_modules is being purged
+486 verbose gentlyRm don't care about contents; nuking /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/websocket-extensions-3d8ae7e8/node_modules
+487 silly gentlyRm /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/faye-websocket-e5eda561/node_modules is being purged
+488 verbose gentlyRm don't care about contents; nuking /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/faye-websocket-e5eda561/node_modules
+489 silly gentlyRm /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/websocket-driver-0f74682a/node_modules is being purged
+490 verbose gentlyRm don't care about contents; nuking /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/websocket-driver-0f74682a/node_modules
+491 silly doParallel preinstall 6
+492 silly preinstall websocket-extensions@0.1.1 /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/websocket-extensions-3d8ae7e8
+493 info lifecycle websocket-extensions@0.1.1~preinstall: websocket-extensions@0.1.1
+494 silly preinstall websocket-driver@0.5.2 /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/websocket-driver-0f74682a
+495 info lifecycle websocket-driver@0.5.2~preinstall: websocket-driver@0.5.2
+496 silly preinstall faye-websocket@0.9.3 /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/faye-websocket-e5eda561
+497 info lifecycle faye-websocket@0.9.3~preinstall: faye-websocket@0.9.3
+498 silly preinstall process@0.11.3 /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/process-bfc78d3e
+499 info lifecycle process@0.11.3~preinstall: process@0.11.3
+500 silly preinstall firebase@2.4.2 /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/firebase-9e333703
+501 info lifecycle firebase@2.4.2~preinstall: firebase@2.4.2
+502 silly preinstall path@0.12.7 /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/path-e0c60e49
+=======
 483 silly gentlyRm /Users/hbn/fullstack/comic-book/node_modules/.staging/firebase-3e23ab19/node_modules is being purged
 484 verbose gentlyRm don't care about contents; nuking /Users/hbn/fullstack/comic-book/node_modules/.staging/firebase-3e23ab19/node_modules
 485 silly gentlyRm /Users/hbn/fullstack/comic-book/node_modules/.staging/websocket-extensions-8d80cc13/node_modules is being purged
@@ -4245,6 +4907,7 @@
 500 silly preinstall firebase@2.4.2 /Users/hbn/fullstack/comic-book/node_modules/.staging/firebase-3e23ab19
 501 info lifecycle firebase@2.4.2~preinstall: firebase@2.4.2
 502 silly preinstall path@0.12.7 /Users/hbn/fullstack/comic-book/node_modules/.staging/path-acb2267d
+>>>>>>> master
 503 info lifecycle path@0.12.7~preinstall: path@0.12.7
 504 silly lifecycle websocket-extensions@0.1.1~preinstall: no script for preinstall, continuing
 505 silly lifecycle websocket-driver@0.5.2~preinstall: no script for preinstall, continuing
@@ -4255,6 +4918,18 @@
 510 silly doReverseSerial remove 0
 511 silly doSerial move 0
 512 silly doSerial finalize 6
+<<<<<<< HEAD
+513 silly finalize /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/firebase/node_modules/faye-websocket/node_modules/websocket-driver/node_modules/websocket-extensions
+514 silly finalize /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/firebase/node_modules/faye-websocket/node_modules/websocket-driver
+515 silly finalize /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/firebase/node_modules/faye-websocket
+516 silly finalize /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/process
+517 silly finalize /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/firebase
+518 silly finalize /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/path
+519 silly doSerial build 6
+520 silly build websocket-extensions@0.1.1
+521 info linkStuff websocket-extensions@0.1.1
+522 silly linkStuff websocket-extensions@0.1.1 has /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/firebase/node_modules/faye-websocket/node_modules/websocket-driver/node_modules as its parent node_modules
+=======
 513 silly finalize /Users/hbn/fullstack/comic-book/node_modules/firebase/node_modules/faye-websocket/node_modules/websocket-driver/node_modules/websocket-extensions
 514 silly finalize /Users/hbn/fullstack/comic-book/node_modules/firebase/node_modules/faye-websocket/node_modules/websocket-driver
 515 silly finalize /Users/hbn/fullstack/comic-book/node_modules/firebase/node_modules/faye-websocket
@@ -4265,36 +4940,97 @@
 520 silly build websocket-extensions@0.1.1
 521 info linkStuff websocket-extensions@0.1.1
 522 silly linkStuff websocket-extensions@0.1.1 has /Users/hbn/fullstack/comic-book/node_modules/firebase/node_modules/faye-websocket/node_modules/websocket-driver/node_modules as its parent node_modules
+>>>>>>> master
 523 verbose linkBins websocket-extensions@0.1.1
 524 verbose linkMans websocket-extensions@0.1.1
 525 silly build websocket-driver@0.5.2
 526 info linkStuff websocket-driver@0.5.2
+<<<<<<< HEAD
+527 silly linkStuff websocket-driver@0.5.2 has /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/firebase/node_modules/faye-websocket/node_modules as its parent node_modules
+=======
 527 silly linkStuff websocket-driver@0.5.2 has /Users/hbn/fullstack/comic-book/node_modules/firebase/node_modules/faye-websocket/node_modules as its parent node_modules
+>>>>>>> master
 528 verbose linkBins websocket-driver@0.5.2
 529 verbose linkMans websocket-driver@0.5.2
 530 silly build faye-websocket@0.9.3
 531 info linkStuff faye-websocket@0.9.3
+<<<<<<< HEAD
+532 silly linkStuff faye-websocket@0.9.3 has /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/firebase/node_modules as its parent node_modules
+=======
 532 silly linkStuff faye-websocket@0.9.3 has /Users/hbn/fullstack/comic-book/node_modules/firebase/node_modules as its parent node_modules
+>>>>>>> master
 533 verbose linkBins faye-websocket@0.9.3
 534 verbose linkMans faye-websocket@0.9.3
 535 silly build process@0.11.3
 536 info linkStuff process@0.11.3
+<<<<<<< HEAD
+537 silly linkStuff process@0.11.3 has /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules as its parent node_modules
+=======
 537 silly linkStuff process@0.11.3 has /Users/hbn/fullstack/comic-book/node_modules as its parent node_modules
+>>>>>>> master
 538 verbose linkBins process@0.11.3
 539 verbose linkMans process@0.11.3
 540 silly build firebase@2.4.2
 541 info linkStuff firebase@2.4.2
+<<<<<<< HEAD
+542 silly linkStuff firebase@2.4.2 has /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules as its parent node_modules
+=======
 542 silly linkStuff firebase@2.4.2 has /Users/hbn/fullstack/comic-book/node_modules as its parent node_modules
+>>>>>>> master
 543 verbose linkBins firebase@2.4.2
 544 verbose linkMans firebase@2.4.2
 545 silly build path@0.12.7
 546 info linkStuff path@0.12.7
+<<<<<<< HEAD
+547 silly linkStuff path@0.12.7 has /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules as its parent node_modules
+=======
 547 silly linkStuff path@0.12.7 has /Users/hbn/fullstack/comic-book/node_modules as its parent node_modules
+>>>>>>> master
 548 verbose linkBins path@0.12.7
 549 verbose linkMans path@0.12.7
 550 silly doSerial global-link 0
 551 silly doParallel update-linked 0
 552 silly doSerial install 6
+<<<<<<< HEAD
+553 silly install websocket-extensions@0.1.1 /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/websocket-extensions-3d8ae7e8
+554 info lifecycle websocket-extensions@0.1.1~install: websocket-extensions@0.1.1
+555 silly lifecycle websocket-extensions@0.1.1~install: no script for install, continuing
+556 silly install websocket-driver@0.5.2 /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/websocket-driver-0f74682a
+557 info lifecycle websocket-driver@0.5.2~install: websocket-driver@0.5.2
+558 silly lifecycle websocket-driver@0.5.2~install: no script for install, continuing
+559 silly install faye-websocket@0.9.3 /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/faye-websocket-e5eda561
+560 info lifecycle faye-websocket@0.9.3~install: faye-websocket@0.9.3
+561 silly lifecycle faye-websocket@0.9.3~install: no script for install, continuing
+562 silly install process@0.11.3 /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/process-bfc78d3e
+563 info lifecycle process@0.11.3~install: process@0.11.3
+564 silly lifecycle process@0.11.3~install: no script for install, continuing
+565 silly install firebase@2.4.2 /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/firebase-9e333703
+566 info lifecycle firebase@2.4.2~install: firebase@2.4.2
+567 silly lifecycle firebase@2.4.2~install: no script for install, continuing
+568 silly install path@0.12.7 /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/path-e0c60e49
+569 info lifecycle path@0.12.7~install: path@0.12.7
+570 silly lifecycle path@0.12.7~install: no script for install, continuing
+571 silly doSerial postinstall 6
+572 silly postinstall websocket-extensions@0.1.1 /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/websocket-extensions-3d8ae7e8
+573 info lifecycle websocket-extensions@0.1.1~postinstall: websocket-extensions@0.1.1
+574 silly lifecycle websocket-extensions@0.1.1~postinstall: no script for postinstall, continuing
+575 silly postinstall websocket-driver@0.5.2 /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/websocket-driver-0f74682a
+576 info lifecycle websocket-driver@0.5.2~postinstall: websocket-driver@0.5.2
+577 silly lifecycle websocket-driver@0.5.2~postinstall: no script for postinstall, continuing
+578 silly postinstall faye-websocket@0.9.3 /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/faye-websocket-e5eda561
+579 info lifecycle faye-websocket@0.9.3~postinstall: faye-websocket@0.9.3
+580 silly lifecycle faye-websocket@0.9.3~postinstall: no script for postinstall, continuing
+581 silly postinstall process@0.11.3 /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/process-bfc78d3e
+582 info lifecycle process@0.11.3~postinstall: process@0.11.3
+583 silly lifecycle process@0.11.3~postinstall: no script for postinstall, continuing
+584 silly postinstall firebase@2.4.2 /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/firebase-9e333703
+585 info lifecycle firebase@2.4.2~postinstall: firebase@2.4.2
+586 silly lifecycle firebase@2.4.2~postinstall: no script for postinstall, continuing
+587 silly postinstall path@0.12.7 /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging/path-e0c60e49
+588 info lifecycle path@0.12.7~postinstall: path@0.12.7
+589 silly lifecycle path@0.12.7~postinstall: no script for postinstall, continuing
+590 verbose unlock done using /Users/macuser/.npm/_locks/staging-d45d189c5104516f.lock for /Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.staging
+=======
 553 silly install websocket-extensions@0.1.1 /Users/hbn/fullstack/comic-book/node_modules/.staging/websocket-extensions-8d80cc13
 554 info lifecycle websocket-extensions@0.1.1~install: websocket-extensions@0.1.1
 555 silly lifecycle websocket-extensions@0.1.1~install: no script for install, continuing
@@ -4333,16 +5069,34 @@
 588 info lifecycle path@0.12.7~postinstall: path@0.12.7
 589 silly lifecycle path@0.12.7~postinstall: no script for postinstall, continuing
 590 verbose unlock done using /Users/hbn/.npm/_locks/staging-707e7f1c80fc0c4b.lock for /Users/hbn/fullstack/comic-book/node_modules/.staging
+>>>>>>> master
 591 silly executeActions Finishing
 592 silly rollbackFailedOptional Starting
 593 silly rollbackFailedOptional Finishing
 594 silly runTopLevelLifecycles Starting
 595 silly install runTopLevelLifecycles
+<<<<<<< HEAD
+596 silly preinstall ionic-project@1.1.1 /Users/macuser/Fullstack/04_capstone/01_comic-book/ionic-project-851ab17f
+=======
 596 silly preinstall ionic-project@1.1.1 /Users/hbn/fullstack/comic-book/ionic-project-2d042b40
+>>>>>>> master
 597 info lifecycle ionic-project@1.1.1~preinstall: ionic-project@1.1.1
 598 silly lifecycle ionic-project@1.1.1~preinstall: no script for preinstall, continuing
 599 silly build ionic-project@1.1.1
 600 info linkStuff ionic-project@1.1.1
+<<<<<<< HEAD
+601 silly linkStuff ionic-project@1.1.1 has /Users/macuser/Fullstack/04_capstone as its parent node_modules
+602 verbose linkBins ionic-project@1.1.1
+603 verbose linkMans ionic-project@1.1.1
+604 silly install ionic-project@1.1.1 /Users/macuser/Fullstack/04_capstone/01_comic-book/ionic-project-851ab17f
+605 info lifecycle ionic-project@1.1.1~install: ionic-project@1.1.1
+606 silly lifecycle ionic-project@1.1.1~install: no script for install, continuing
+607 silly postinstall ionic-project@1.1.1 /Users/macuser/Fullstack/04_capstone/01_comic-book/ionic-project-851ab17f
+608 info lifecycle ionic-project@1.1.1~postinstall: ionic-project@1.1.1
+609 verbose lifecycle ionic-project@1.1.1~postinstall: unsafe-perm in lifecycle true
+610 verbose lifecycle ionic-project@1.1.1~postinstall: PATH: /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/macuser/Fullstack/04_capstone/01_comic-book/node_modules/.bin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+611 verbose lifecycle ionic-project@1.1.1~postinstall: CWD: /Users/macuser/Fullstack/04_capstone/01_comic-book
+=======
 601 silly linkStuff ionic-project@1.1.1 has /Users/hbn/fullstack as its parent node_modules
 602 verbose linkBins ionic-project@1.1.1
 603 verbose linkMans ionic-project@1.1.1
@@ -4354,6 +5108,7 @@
 609 verbose lifecycle ionic-project@1.1.1~postinstall: unsafe-perm in lifecycle true
 610 verbose lifecycle ionic-project@1.1.1~postinstall: PATH: /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/hbn/fullstack/comic-book/node_modules/.bin:/usr/local/Cellar/node/5.10.0/bin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 611 verbose lifecycle ionic-project@1.1.1~postinstall: CWD: /Users/hbn/fullstack/comic-book
+>>>>>>> master
 612 silly lifecycle ionic-project@1.1.1~postinstall: Args: [ '-c', 'gulp build' ]
 613 silly lifecycle ionic-project@1.1.1~postinstall: Returned: code: 1  signal: null
 614 info lifecycle ionic-project@1.1.1~postinstall: Failed to exec postinstall script
@@ -4369,6 +5124,16 @@
 619 verbose stack     at ChildProcess.<anonymous> (/usr/local/lib/node_modules/npm/lib/utils/spawn.js:24:14)
 619 verbose stack     at emitTwo (events.js:100:13)
 619 verbose stack     at ChildProcess.emit (events.js:185:7)
+<<<<<<< HEAD
+619 verbose stack     at maybeClose (internal/child_process.js:827:16)
+619 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:211:5)
+620 verbose pkgid ionic-project@1.1.1
+621 verbose cwd /Users/macuser/Fullstack/04_capstone/01_comic-book
+622 error Darwin 14.5.0
+623 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "install"
+624 error node v5.6.0
+625 error npm  v3.8.6
+=======
 619 verbose stack     at maybeClose (internal/child_process.js:850:16)
 619 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:215:5)
 620 verbose pkgid ionic-project@1.1.1
@@ -4377,6 +5142,7 @@
 623 error argv "/usr/local/Cellar/node/5.10.0/bin/node" "/usr/local/bin/npm" "i"
 624 error node v5.10.0
 625 error npm  v3.8.5
+>>>>>>> master
 626 error code ELIFECYCLE
 627 error ionic-project@1.1.1 postinstall: `gulp build`
 627 error Exit status 1
