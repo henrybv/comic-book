@@ -16,15 +16,16 @@
 
 <!-- FOR WHEN FRIENDS ARE ADDED -->
     <div ng-show="collabAdded">
-      <ion-scroll direction="x" id="addonsBottom">
+      <ion-scroll direction="x" id="addonsBottom" style="background-color:white;">
         <div>
+          <h4 style="text-align:center;margin-top:-4px">Collaborators:</h4>
           <div class="item item-avatar" style="display:inline-block;border:none" ng-repeat="collabr in collaborators">
             <img ng-src="http://loremflickr.com/420/240" style="max-height:55px;max-width:55px">
             <!-- change this to collabr.username once we put usernames on seed -->
             <p>{{collabr.email | cut:true:6:'..'}}</p>
             <br>
             <div style="text-align:center; background-color:#F08080;border-radius:5px;max-width:35px;" ng-click="removeCollabr(collabr)">
-              <p>X</p>
+              <p style="color:black;">X</p>
             </div>
           </div>
         </div>
@@ -41,7 +42,7 @@
       </div>
 
 <!-- SEARCH BY EMAIL INPUT -->
-      <div class="list list-inset" ng-show="clicked">
+      <div class="list list-inset" ng-show="clicked" style="margin-top:0px;">
         <h4 style="text-align:center;">Search for friends...</h4>
         <label class="item item-input">
           <span class="input-label">by email</span>
