@@ -1,6 +1,6 @@
 core.controller('CameraCtrl', function(story, $scope, $cordovaCamera, $cordovaFileTransfer, Grafi, $localStorage, CameraFactory) {
 	$scope.story = story;
-    console.log('current story: ', $scope.story)
+    console.log('current story: ', $scope.story._id)
 
 
     $scope.takePicture = function() {

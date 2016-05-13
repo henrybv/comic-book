@@ -1,17 +1,20 @@
-core.controller('storyCreateCtrl', function($scope, StoryFactory, loggedInUser, AuthService, $state, $rootScope, StoryFactory, $localStorage) {
 
-	$scope.story = {};
 
-	$scope.createNewStory = function(){
-		if (!$rootScope.currentUser) $state.go('login');
-		$scope.story.owner = $rootScope.currentUser._id;
-		StoryFactory.createNewStory($scope.story)
-		.then(function(story) {
-			$state.go('story', { storyId: story._id })
-		});
+// DO NOT USE, USE OTHER ONE WITH SAME NAME !!
+// core.controller('StoryCreateCtrl', function($scope, StoryFactory, loggedInUser, AuthService, $state, $rootScope, StoryFactory, $localStorage) {
 
-	};
-});
+// 	$scope.story = {};
+
+// 	$scope.createNewStory = function(){
+// 		if (!$rootScope.currentUser) $state.go('login');
+// 		$scope.story.owner = $rootScope.currentUser._id;
+// 		StoryFactory.createNewStory($scope.story)
+// 		.then(function(story) {
+// 			$state.go('story', { storyId: story._id })
+// 		});
+
+// 	};
+// });
 
 
 

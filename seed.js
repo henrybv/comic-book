@@ -38,19 +38,55 @@ var userSeed = [
         password: '123',
     },
     {
-        email: 'me1@me.com',
+        email: 'debanshi@me.com',
         password: '123',
     },
     {
-        email: 'me2@me.com',
+        email: 'jeff@me.com',
         password: '123',
     },
     {
-        email: 'me3@me.com',
+        email: 'henry@me.com',
         password: '123',
     },
     {
-        email: 'me4@me.com',
+        email: 'eric@me.com',
+        password: '123',
+    },
+    {
+        email: 'kat@me.com',
+        password: '123',
+    },
+    {
+        email: 'rafi@me.com',
+        password: '123',
+    },
+    {
+        email: 'dan@me.com',
+        password: '123',
+    },
+    {
+        email: 'gabe@me.com',
+        password: '123',
+    },
+    {
+        email: 'omri@me.com',
+        password: '123',
+    },
+    {
+        email: 'joe@me.com',
+        password: '123',
+    },
+    {
+        email: 'jose@me.com',
+        password: '123',
+    },
+    {
+        email: 'david@me.com',
+        password: '123',
+    },
+    {
+        email: 'nimit@me.com',
         password: '123',
     }
 ];

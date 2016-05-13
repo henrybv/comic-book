@@ -1,25 +1,53 @@
 <ion-view view-title="Home">
   <ion-content>
-    <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ui-sref="storyCreate" style="background-color: green;" type="item-text-wrap" >
-        <img ng-src="{{chat.face}}">
-        <h2>Create Story</h2>
-        <!-- <p>{{chat.lastText}}</p> -->
-        <i class="icon ion-chevron-right icon-accessory"></i>
-      </ion-item>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" ng-repeat="story in stories" ng-click="changeState(story._id)">
-        <!-- <img ng-src="{{chat.face}}"> -->
+
+<!-- create story button -->
+    <div class="padding">
+      <button ng-click="" class="button button-block button-positive" ui-sref="storyCreate" style="background-color:#387ef5;margin-top:70px;">
+        <span><strong>Create New Story</strong></span>
+      </button>
+    </div>
+
+    <div style="text-align:center;">
+      <button class="button button-default button-secondary" style="background-color:#32db64;margin-bottom:20px;margin-right:10px;" ng-click="getMyStories()">
+        <strong><span class="button-inner" style="color:white;">My Stories</span></strong>
+        <ion-button-effect></ion-button-effect>
+      </button>
+      <button class="button button-default button-secondary" style="background-color:#32db64;margin-bottom:20px;margin-left:10px;" ng-click="getMyCollabs()">
+        <strong><span class="button-inner" style="color:white;">My Collabs</span></strong>
+        <ion-button-effect></ion-button-effect>
+      </button>
+    </div>
+
+<!-- my stories -->
+    <ion-list ng-show="showMyStories" style="margin-bottom:200px">
+      <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" ng-repeat="story in myStories" ng-click="changeState(story._id)">
         <img ng-src="assets/sample_comic.jpg">
         <h2>{{story.title}}</h2>
         <p>Placeholder: collaborators' names</p>
-        <!-- <p>{{chat.lastText}}</p> -->
         <i class="icon ion-chevron-right icon-accessory"></i>
       </ion-item>
       <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" ui-sref="testState">
-        <img ng-src="{{chat.face}}">
+        <img src="http://www.clipartbest.com/cliparts/jTx/odj/jTxodjb8c.gif">
         <h2>TEST STATE (DELETE)</h2>
         <i class="icon ion-chevron-right icon-accessory"></i>
       </ion-item>
     </ion-list>
+
+<!-- collabs -->
+    <ion-list ng-show="showMyCollabs">
+      <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" ng-repeat="story in myCollabs" ng-click="changeState(story._id)">
+        <img ng-src="assets/sample_comic.jpg">
+        <h2>{{story.title}}</h2>
+        <p>Placeholder: collaborators' names</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+    </ion-list>
+
+
+    <div style="text-align:center;" ng-hide="showMyCollabs || showMyStories">
+      <img src="http://pbs.twimg.com/profile_images/1900718264/POW.PNG" style="width:350px;height:250px;margin-top:25px">
+    </div>
+
   </ion-content>
 </ion-view>

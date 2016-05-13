@@ -4,6 +4,9 @@ var mongoose = require('mongoose');
 var _ = require('lodash');
 
 var schema = new mongoose.Schema({
+    username: {
+        type: String
+    },
     email: {
         type: String,
         unique: true
@@ -14,16 +17,10 @@ var schema = new mongoose.Schema({
     salt: {
         type: String
     },
-    twitter: {
-        id: String,
-        username: String,
-        token: String,
-        tokenSecret: String
-    },
-    facebook: {
-        id: String,
-        username: String
-    },
+    myStories: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Story'
+    }],
     google: {
         id: String,
         username: String,
