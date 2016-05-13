@@ -1,5 +1,5 @@
 // var base = 'http://127.0.0.1:27017:1337'
-var base = 'http://192.168.1.204:1337'
+var base = 'http://192.168.1.133:1337'
 
 // Ionic Starter App
 
