@@ -1,15 +1,5 @@
-//FULLSTACK BASE - Eric
-// var base = 'http://192.168.1.133:1337'
-//FULLSTACK BASE - Jeff
-
-//HOME BASE
-// var base = 'http://192.168.1.7:1337'
-// 127.0.0.1 dynamically routes to your local IP.
-
-
 // var base = 'http://127.0.0.1:27017:1337'
 var base = 'http://192.168.1.204:1337'
-
 
 // Ionic Starter App
 
@@ -55,10 +45,21 @@ core.config(function($stateProvider, $urlRouterProvider) {
     templateUrl: 'js/home/home.template.html',
     controller: 'homeCtrl',
     resolve: {
-      allStories: function (StoryFactory, $localStorage){
-        return StoryFactory.getAllStories($localStorage.user._id)
+      myStories: function (StoryFactory, $localStorage){
+        return StoryFactory.getMyStories($localStorage.user._id);
+      },
+      myCollabs: function(StoryFactory, $localStorage) {
+        return  StoryFactory.getMyCollabs($localStorage.user._id);
       }
     }
+  })
+  .state('home.myStories', {
+    url: '/home/myStories',
+    templateUrl: 'js/home/home.myStories.template.html'
+  })
+  .state('home.myCollabs', {
+    url: '/home/myCollabs',
+    templateUrl: 'js/home/home.myCollabs.template.html'
   })
   .state('camera', {
     url: '/camera/:storyId',
@@ -80,6 +81,9 @@ core.config(function($stateProvider, $urlRouterProvider) {
     resolve: {
       loggedInUser: function (AuthService){
         return AuthService.getLoggedInUser()
+      },
+      allUsers: function(UserFactory) {
+        return UserFactory.getAllUsers();
       }
     }
   })
