@@ -1,16 +1,14 @@
-<ion-content id="addons">
-	<ion-content id="addonsStates">
-	    <button class="button" id="stateButtons" ng-repeat="state in states" ng-click="changeNav(state.state)">
-			<div>
-	    		<div>{{state.state}}</div>
-	    	</div>
+<ion-content scroll="false" id="addons">
+	<ion-content scroll="false" id="addonsStates">
+	    <button class="button" id="stateButtons" ng-repeat="button in activeButtons" ng-click="button.function()" ng-style="{'width': myWidth() }">
+	    		<div>{{button.state}}</div>
 	    </button>
 	</ion-content>
 	<ion-scroll direction="x" id="addonsBottom">
-		<div>
-		    <button class="button" ng-repeat="addon in addons | filter: {type: addonType}" ng-click="test()">
+		<div id="squareAndAddonFrames">
+		    <button id="transparent" class="button" ng-repeat="addon in addons | filter: {type: addonType}" ng-click="addon.addonFunction()">
 				<div>
-		    		<img src="{{ addon.source }}">
+		    		<img src="{{ addon.thumbnail }}">
 		    	</div>
 		    </button>
 		</div>

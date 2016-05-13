@@ -2,7 +2,6 @@ core.factory('StoryFactory', function($http, $localStorage) {
 
 	var StoryFactory = {};
 
-
 	StoryFactory.createNewStory = function(storyObj){
 		return $http.post(base + '/api/stories', storyObj)
 		.then(function(res) {

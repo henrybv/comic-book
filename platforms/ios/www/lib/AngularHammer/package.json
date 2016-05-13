@@ -1,0 +1,115 @@
+{
+  "_args": [
+    [
+      "angular-hammer",
+      "/Users/macuser/Fullstack/04_capstone/01_comic-book"
+    ]
+  ],
+  "_from": "angular-hammer@latest",
+  "_id": "angular-hammer@2.1.10",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/angular-hammer",
+  "_npmUser": {
+    "email": "ryan@ryanmullins.org",
+    "name": "ryanmullins"
+  },
+  "_npmVersion": "1.4.28",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "angular-hammer",
+    "raw": "angular-hammer",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/angular-hammer/-/angular-hammer-2.1.10.tgz",
+  "_shasum": "37ddb4b04c9783ed450a6252399294bb6da3333e",
+  "_shrinkwrap": null,
+  "_spec": "angular-hammer",
+  "_where": "/Users/macuser/Fullstack/04_capstone/01_comic-book",
+  "author": {
+    "name": "Ryan S Mullins"
+  },
+  "browser": {
+    "angular": "./node_modules/angular/angular.js",
+    "angular-hammer": "./angular.hammer.js",
+    "hammerjs": "./node_modules/hammerjs/hammer.js"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browserify-shim": {
+    "angular": {
+      "exports": "angular"
+    }
+  },
+  "bugs": {
+    "url": "https://github.com/RyanMullins/angular-hammer/issues"
+  },
+  "dependencies": {},
+  "description": "Hammer.js support for Angular.js applications",
+  "devDependencies": {
+    "angular": ">=1.2.0",
+    "browserify": "^8.0.3",
+    "browserify-shim": "^3.8.2",
+    "finalhandler": "^0.3.2",
+    "grunt": "^0.4.5",
+    "grunt-browserify": "^3.2.1",
+    "grunt-concurrent": "^1.0.0",
+    "grunt-contrib-copy": "^0.7.0",
+    "grunt-contrib-requirejs": "^0.4.4",
+    "grunt-contrib-uglify": "^0.6.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-jsdoc": "^0.5.7",
+    "grunt-nodemon": "^0.3.0",
+    "grunt-webpack": "^1.0.8",
+    "hammerjs": ">=2.0.0",
+    "serve-static": "^1.7.1",
+    "uglify-save-license": "^0.4.1",
+    "webpack": "^1.4.15",
+    "webpack-dev-server": "^1.7.0"
+  },
+  "directories": {
+    "example": "examples"
+  },
+  "dist": {
+    "shasum": "37ddb4b04c9783ed450a6252399294bb6da3333e",
+    "tarball": "https://registry.npmjs.org/angular-hammer/-/angular-hammer-2.1.10.tgz"
+  },
+  "gitHead": "d2d40497bc86322e7b9d68b8aa471bf81a5fedf5",
+  "homepage": "http://ryanmullins.github.io/angular-hammer/",
+  "keywords": [
+    "hammer",
+    "angular",
+    "javascript",
+    "touch",
+    "gesture"
+  ],
+  "license": "MIT",
+  "main": "angular.hammer.js",
+  "maintainers": [
+    {
+      "email": "ryan@ryanmullins.org",
+      "name": "ryanmullins"
+    }
+  ],
+  "name": "angular-hammer",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RyanMullins/angular-hammer.git"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "2.1.10"
+}

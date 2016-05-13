@@ -23,6 +23,7 @@ router.get('/:storyId', function(req, res, next) {
     .populate('squares friends')
     .exec()
     .then(function(story) {
+        console.log('get story from route', story)
         res.status(200).send(story);
     })
     .catch(next)
@@ -63,7 +64,7 @@ router.post('/', function(req, res, next) {
 //create new square AND update story with a new square
 router.put('/:storyId/squares', function(req, res, next){
     var SQUARETOSEND;
-    return mongoose.model('Square').create({})
+    return mongoose.model('Square').create({creator: req.body.creator})
     .then(function(newSquare){
         // console.log('NEW SQUARE: ', newSquare);
         // var writeToPath = path.join(__dirname, '../../assets/' + newSquare._id);

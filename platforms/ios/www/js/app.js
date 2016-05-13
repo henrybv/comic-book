@@ -1,3 +1,6 @@
+
+//FULLSTACK BASE - Debanshi
+var base = 'http://192.168.1.184:1337'
 //FULLSTACK BASE - Eric
 // var base = 'http://192.168.1.133:1337'
 //FULLSTACK BASE - Jeff
@@ -6,7 +9,10 @@
 // var base = 'http://192.168.1.7:1337'
 // 127.0.0.1 dynamically routes to your local IP.
 // var base = 'http://127.0.0.1:27017:1337'
-var base = 'http://192.168.1.204:1337'
+
+// var base = 'http://127.0.0.1:27017:1337'
+// var base = 'http://192.168.1.204:1337'
+
 
 // Ionic Starter App
 
@@ -15,7 +21,7 @@ var base = 'http://192.168.1.204:1337'
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-var core = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'fsaPreBuilt', 'ngCordova', 'ngStorage'])
+var core = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'fsaPreBuilt', 'ngCordova', 'ngStorage', 'hmTouchEvents' ])
 
 
 core.run(function($ionicPlatform, $rootScope, $state) {
@@ -52,10 +58,21 @@ core.config(function($stateProvider, $urlRouterProvider) {
     templateUrl: 'js/home/home.template.html',
     controller: 'homeCtrl',
     resolve: {
-      allStories: function (StoryFactory, $localStorage){
-        return StoryFactory.getAllStories($localStorage.user._id)
+      myStories: function (StoryFactory, $localStorage){
+        return StoryFactory.getMyStories($localStorage.user._id);
+      },
+      myCollabs: function(StoryFactory, $localStorage) {
+        return  StoryFactory.getMyCollabs($localStorage.user._id);
       }
     }
+  })
+  .state('home.myStories', {
+    url: '/home/myStories',
+    templateUrl: 'js/home/home.myStories.template.html'
+  })
+  .state('home.myCollabs', {
+    url: '/home/myCollabs',
+    templateUrl: 'js/home/home.myCollabs.template.html'
   })
   .state('camera', {
     url: '/camera/:storyId',
@@ -64,6 +81,9 @@ core.config(function($stateProvider, $urlRouterProvider) {
     resolve: {
       story: function(StoryFactory, $stateParams) {
         return StoryFactory.getStoryById($stateParams.storyId);
+      },
+      getAddons: function(CameraFactory, $stateParams) {
+        return CameraFactory.getFilters()
       }
     }
   })
@@ -74,6 +94,9 @@ core.config(function($stateProvider, $urlRouterProvider) {
     resolve: {
       loggedInUser: function (AuthService){
         return AuthService.getLoggedInUser()
+      },
+      allUsers: function(UserFactory) {
+        return UserFactory.getAllUsers();
       }
     }
   })
@@ -94,16 +117,6 @@ core.config(function($stateProvider, $urlRouterProvider) {
     resolve: {
       story: function(StoryFactory, $stateParams) {
         return StoryFactory.getStoryById($stateParams.storyId);
-      }
-    }
-  })
-  .state('testState', {
-    url: '/testState',
-    templateUrl: 'js/testState/testState.template.html',
-    controller: 'testStateCtrl',
-    resolve: {
-      getAddons: function(TestFactory, $stateParams) {
-        return TestFactory.getFilters()
       }
     }
   })
