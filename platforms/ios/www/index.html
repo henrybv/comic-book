@@ -31,8 +31,15 @@
     <!-- Factories -->
     <script src="js/user/user.factory.js"></script>
     <script src="js/story/story.factory.js"></script>
+    <script src="js/testState/testState.factory.js"></script>
     <script src="js/camera/camera.factory.js"></script>
     <script src="js/camera/grafi.factory.js"></script>
+
+
+    <!-- Directives -->
+    <script src="js/navbar/navbar.main/navbar.main.directive.js"></script>
+    <script src="js/navbar/navbar.addons/navbar.addons.directive.js"></script>
+    <script src="js/navbar/navbar.addons.states/navbar.addons.states.directive.js"></script>
     
     <!-- Controllers -->
     <script src="js/controllers.js"></script>
@@ -44,21 +51,40 @@
     <script src="js/camera/camera.controller.js"></script>
     <script src="js/testState/testState.controller.js"></script>
 
-    <!-- Directives -->
-    <script src="js/navbar/navbar.addons/navbar.addons.directive.js"></script>
-
     <script src="js/services.js"></script>
   </head>
+
   <body ng-app="starter" class="platform-ios platform-cordova platform-webview">
-    HELLO WORLD
     <!--
       The nav bar that will be updated as we navigate between views.
     -->
-    <ion-nav-bar class="bar-stable">
-      <ion-nav-back-button>
-      </ion-nav-back-button>
+
+    <ion-nav-bar class = "bar-stable">
+        <ion-nav-back-button></ion-nav-back-button>
+
+   <!--      <ion-nav-buttons hide-back-button="{{toState == 'home'}}" side="left">
+            <button id="saveButton" class="button button-clear">Back</button>
+        </ion-nav-buttons> -->
+
+        <ion-nav-buttons side="left">
+            <button id="saveButton" class="button button-clear" ng-if="'home' | isState">Profile</button>
+        </ion-nav-buttons>    
+
+    <!--     <ion-nav-buttons side="right">
+            <button id="saveButton" class="button button-clear">Skip</button>
+        </ion-nav-buttons> -->
+        <ion-nav-buttons side="right">
+            <button class="button button-dark button-clear" ng-if="'home' | isState">Settings</button>
+        </ion-nav-buttons>
+
     </ion-nav-bar>
 
+<<<<<<< HEAD
+=======
+
+      <!-- <navbar-home></navbar-home> -->
+
+>>>>>>> master
     <!--
       The views will be rendered in the <ion-nav-view> directive below
       Templates are in the /templates folder (but you could also

@@ -1,15 +1,9 @@
-<<<<<<< HEAD
-core.controller('CameraCtrl', function(story, $scope, $cordovaCamera) {
-	
-	 $scope.takePicture = function() {
-=======
 core.controller('CameraCtrl', function(story, $scope, $cordovaCamera, $cordovaFileTransfer, Grafi, $localStorage, CameraFactory) {
 	$scope.story = story;
     console.log('current story: ', $scope.story)
 
 
     $scope.takePicture = function() {
->>>>>>> master
         var options = { 
             quality : 75, 
             destinationType : Camera.DestinationType.DATA_URL, 
@@ -29,9 +23,6 @@ core.controller('CameraCtrl', function(story, $scope, $cordovaCamera, $cordovaFi
             console.log(err);
         });
     }
-<<<<<<< HEAD
-});
-=======
 
     $scope.openPhotoLibrary = function() { 
         console.log('in open photo library')
@@ -121,4 +112,3 @@ core.controller('CameraCtrl', function(story, $scope, $cordovaCamera, $cordovaFi
                 // console.log('dataURL to blob', x)
                 // var url = URL.createObjectURL(x);
                 // console.log('url from create object url', url)
->>>>>>> master
