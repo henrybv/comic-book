@@ -5,7 +5,6 @@ core.factory('StoryFactory', function($http, $localStorage) {
 	StoryFactory.createNewStory = function(storyObj){
 		return $http.post(base + '/api/stories', storyObj)
 		.then(function(res) {
-			console.log("story created front end!", res);
 			return res.data;
 		})
 	};
@@ -19,20 +18,25 @@ core.factory('StoryFactory', function($http, $localStorage) {
 	};
 
 
-	StoryFactory.getAllStories = function(id){
-		console.log('get all stories func')
-		return $http.get(base + '/api/stories/user/' + id)
+	StoryFactory.getMyStories = function(userId){
+		return $http.get(base + '/api/stories/user/' + userId)
 		.then(function(res) {
-			console.log('response heard')
 			return res.data;
-		})
+		});
 	};
 
-	StoryFactory.getStory = function(id){
-		return $http.get(base + '/api/stories/' + id)
+	StoryFactory.getMyCollabs = function(userId){
+		return $http.get(base + '/api/stories/collaborator/' + userId)
 		.then(function(res) {
 			return res.data;
-		})
+		});
+	};
+
+	StoryFactory.getStory = function(storyId){
+		return $http.get(base + '/api/stories/' + storyId)
+		.then(function(res) {
+			return res.data;
+		});
 	};
 
 

@@ -13,19 +13,38 @@ core.factory('CameraFactory', function($http){
       return updatedSquare.data
     })
   }
-  
+
+  //DONT NEED THIS ANYMORE
+  //get all images for a story
+  // CameraFactory.getImages = function(storyId){
+  //   $http.get(base + '/api/stories/' + storyId + '/squares')
+  //   .then(function(storyWithSquares){
+  //     var squares = storyWithSquares.data;
+  //     var squareURIs = squares.map(function(square){
+  //       firebaseImages.on('child_added', function(snapshot){
+  //         return snapshot.val()
+  //       }, function(errorObject){
+  //         console.log('error: ', errorObject.code)
+  //       })
+  //     })
+  //     return squareURIs;
+  //   })
+  // }
+
+  //--------DIRECTIVE FUNCTIONS------//
+  CameraFactory.getFilters = function(){
+    console.log("Got into the factory")
+    return $http.get(base + '/api/addons')
+    .then(function(res) {
+      console.log("addons", res.data);
+      return res.data;
+    })
+  };
+
+
+
   return CameraFactory;
 })
 
-
-  // CameraFactory.urlToCanvas = function(url, canvasId){
-  //       var newImage = new Image();
-  //       newImage.src = url;
-  //       var canvas = document.getElementById(canvasId)
-  //       var context = canvas.getContext('2d');
-  //       newImage.onload = function(){
-  //           context.drawImage(newImage, 0, 0);
-  //       }
-  //   }
 
 

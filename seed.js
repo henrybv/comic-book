@@ -38,19 +38,55 @@ var userSeed = [
         password: '123',
     },
     {
-        email: 'me1@me.com',
+        email: 'debanshi@me.com',
         password: '123',
     },
     {
-        email: 'me2@me.com',
+        email: 'jeff@me.com',
         password: '123',
     },
     {
-        email: 'me3@me.com',
+        email: 'henry@me.com',
         password: '123',
     },
     {
-        email: 'me4@me.com',
+        email: 'eric@me.com',
+        password: '123',
+    },
+    {
+        email: 'kat@me.com',
+        password: '123',
+    },
+    {
+        email: 'rafi@me.com',
+        password: '123',
+    },
+    {
+        email: 'dan@me.com',
+        password: '123',
+    },
+    {
+        email: 'gabe@me.com',
+        password: '123',
+    },
+    {
+        email: 'omri@me.com',
+        password: '123',
+    },
+    {
+        email: 'joe@me.com',
+        password: '123',
+    },
+    {
+        email: 'jose@me.com',
+        password: '123',
+    },
+    {
+        email: 'david@me.com',
+        password: '123',
+    },
+    {
+        email: 'nimit@me.com',
         password: '123',
     }
 ];
@@ -59,79 +95,247 @@ var addonSeed = [
     {
         name: 'Bubble A',
         source: 'https://placehold.it/125x125/934636/025462/?text=Bubble+A+125+x+125',
+        thumbnail: 'https://placehold.it/125x125/934636/025462/?text=Bubble+A+125+x+125',
         type: 'bubble'
     },    
     {
         name: 'Bubble B',
         source: 'https://placehold.it/125x125/934636/025462/?text=Bubble+B+125+x+125',
+        thumbnail: 'https://placehold.it/125x125/934636/025462/?text=Bubble+A+125+x+125',
         type: 'bubble'
     },    
     {
         name: 'Bubble C',
         source: 'https://placehold.it/125x125/934636/025462/?text=Bubble+C+125+x+125',
+        thumbnail: 'https://placehold.it/125x125/934636/025462/?text=Bubble+A+125+x+125',
         type: 'bubble'
     },    
     {
         name: 'Bubble D',
         source: 'https://placehold.it/125x125/934636/025462/?text=Bubble+D+125+x+125',
+        thumbnail: 'https://placehold.it/125x125/934636/025462/?text=Bubble+A+125+x+125',
         type: 'bubble'
     },    
     {
         name: 'Sticker A',
-        source: 'https://placehold.it/125x125/466636/025462/?text=Sticket+A+125+x+125',
+        source: 'assets/stickers/baaam.png',
+        thumbnail: 'assets/stickers/baaam.png',
         type: 'sticker'
     },
     {
         name: 'Sticker B',
-        source: 'https://placehold.it/125x125/466636/025462/?text=Sticket+B+125+x+125',
+        source: 'assets/stickers/boooom.png',
+        thumbnail: 'assets/stickers/boooom.png',
         type: 'sticker'
-    },    {
+    },    
+    {
         name: 'Sticker C',
-        source: 'https://placehold.it/125x125/466636/025462/?text=Sticket+C+125+x+125',
+        source: 'assets/stickers/call_me.png',
+        thumbnail: 'assets/stickers/call_me.png',
         type: 'sticker'
-    },    {
+    },    
+    {
         name: 'Sticker D',
-        source: 'https://placehold.it/125x125/466636/025462/?text=Sticket+D+125+x+125',
+        source: 'assets/stickers/coolio.png',
+        thumbnail: 'assets/stickers/coolio.png',
+        type: 'sticker'
+    },
+    {
+        name: 'Sticker E',
+        source: 'assets/stickers/exclamation.png',
+        thumbnail: 'assets/stickers/exclamation.png',
+        type: 'sticker'
+    },
+    {
+        name: 'Sticker F',
+        source: 'assets/stickers/exclamation2.png',
+        thumbnail: 'assets/stickers/exclamation2.png',
+        type: 'sticker'
+    },    
+    {
+        name: 'Sticker G',
+        source: 'assets/stickers/fist_bump.png',
+        thumbnail: 'assets/stickers/fist_bump.png',
+        type: 'sticker'
+    },    
+    {
+        name: 'Sticker H',
+        source: 'assets/stickers/huh.png',
+        thumbnail: 'assets/stickers/huh.png',
+        type: 'sticker'
+    },
+    {
+        name: 'Sticker I',
+        source: 'assets/stickers/i_like.png',
+        thumbnail: 'assets/stickers/i_like.png',
+        type: 'sticker'
+    },
+    {
+        name: 'Sticker J',
+        source: 'assets/stickers/kapow.png',
+        thumbnail: 'assets/stickers/kapow.png',
+        type: 'sticker'
+    },    
+    {
+        name: 'Sticker K',
+        source: 'assets/stickers/lolol.png',
+        thumbnail: 'assets/stickers/lolol.png',
+        type: 'sticker'
+    },    
+    {
+        name: 'Sticker L',
+        source: 'assets/stickers/luv_u.png',
+        thumbnail: 'assets/stickers/luv_u.png',
+        type: 'sticker'
+    },
+    {
+        name: 'Sticker M',
+        source: 'assets/stickers/okiedokie.png',
+        thumbnail: 'assets/stickers/okiedokie.png',
+        type: 'sticker'
+    },
+    {
+        name: 'Sticker N',
+        source: 'assets/stickers/omg.png',
+        thumbnail: 'assets/stickers/omg.png',
+        type: 'sticker'
+    },    
+    {
+        name: 'Sticker O',
+        source: 'assets/stickers/ooopsie.png',
+        thumbnail: 'assets/stickers/ooopsie.png',
+        type: 'sticker'
+    },    
+    {
+        name: 'Sticker P',
+        source: 'assets/stickers/pow.png',
+        thumbnail: 'assets/stickers/pow.png',
+        type: 'sticker'
+    },
+    {
+        name: 'Sticker Q',
+        source: 'assets/stickers/powpow.png',
+        thumbnail: 'assets/stickers/powpow.png',
+        type: 'sticker'
+    },
+    {
+        name: 'Sticker R',
+        source: 'assets/stickers/pretty_please.png',
+        thumbnail: 'assets/stickers/pretty_please.png',
+        type: 'sticker'
+    },    
+    {
+        name: 'Sticker S',
+        source: 'assets/stickers/so_sorry.png',
+        thumbnail: 'assets/stickers/so_sorry.png',
+        type: 'sticker'
+    },    
+    {
+        name: 'Sticker T',
+        source: 'assets/stickers/thank_you.png',
+        thumbnail: 'assets/stickers/thank_you.png',
+        type: 'sticker'
+    },
+    {
+        name: 'Sticker U',
+        source: 'assets/stickers/wow.png',
+        thumbnail: 'assets/stickers/wow.png',
+        type: 'sticker'
+    },
+    {
+        name: 'Sticker V',
+        source: 'assets/stickers/yessir.png',
+        thumbnail: 'assets/stickers/yessir.png',
+        type: 'sticker'
+    },    
+    {
+        name: 'Sticker W',
+        source: 'assets/stickers/zaaaaaaap.png',
+        thumbnail: 'assets/stickers/zaaaaaaap.png',
+        type: 'sticker'
+    },    
+    {
+        name: 'Sticker X',
+        source: 'assets/stickers/zaaap.png',
+        thumbnail: 'assets/stickers/zaaap.png',
         type: 'sticker'
     },
     {
         name: 'Border A',
-        source: 'https://placehold.it/125x125/233376/025462/?text=Border+A+125+x+125',
+        source: 'assets/borders/thumbnails/blackcircle_tn.png',
+        thumbnail: 'https://placehold.it/125x125/934636/025462/?text=Bubble+A+125+x+125',
         type: 'border'
     },
     {
         name: 'Border B',
-        source: 'https://placehold.it/125x125/233376/025462/?text=Border+B+125+x+125',
+        source: 'assets/borders/thumbnails/blackfunky_tn.png',
+        thumbnail: 'https://placehold.it/125x125/934636/025462/?text=Bubble+A+125+x+125',
         type: 'border'
     },    
     {
         name: 'Border C',
-        source: 'https://placehold.it/125x125/233376/025462/?text=Border+C+125+x+125',
+        source: 'assets/borders/thumbnails/blacksquare_tn.png',
+        thumbnail: 'https://placehold.it/125x125/934636/025462/?text=Bubble+A+125+x+125',
         type: 'border'
     },    
     {
         name: 'Border D',
-        source: 'https://placehold.it/125x125/233376/025462/?text=Border+D+125+x+125',
+        source: 'assets/borders/thumbnails/purpleframe_tn.png',
+        thumbnail: 'https://placehold.it/125x125/934636/025462/?text=Bubble+A+125+x+125',
+        type: 'border'
+    },
+    {
+        name: 'Border E',
+        source: 'assets/borders/thumbnails/redframe_tn.png',
+        thumbnail: 'https://placehold.it/125x125/934636/025462/?text=Bubble+A+125+x+125',
+        type: 'border'
+    },
+    {
+        name: 'Border F',
+        source: 'assets/borders/thumbnails/redheart_tn.png',
+        thumbnail: 'https://placehold.it/125x125/934636/025462/?text=Bubble+A+125+x+125',
+        type: 'border'
+    },    
+    {
+        name: 'Border G',
+        source: 'assets/borders/thumbnails/whitecircle_tn.png',
+        thumbnail: 'https://placehold.it/125x125/934636/025462/?text=Bubble+A+125+x+125',
+        type: 'border'
+    },    
+    {
+        name: 'Border H',
+        source: 'assets/borders/thumbnails/whitefunky_tn.png',
+        thumbnail: 'https://placehold.it/125x125/934636/025462/?text=Bubble+A+125+x+125',
+        type: 'border'
+    },
+    {
+        name: 'Border I',
+        source: 'assets/borders/thumbnails/whitesquare_tn.png',
+        thumbnail: 'https://placehold.it/125x125/934636/025462/?text=Bubble+A+125+x+125',
         type: 'border'
     },
     {
         name: 'Filter A',
         source: 'https://placehold.it/125x125/563376/025462/?text=Filter+A+125+x+125',
+        thumbnail: 'https://placehold.it/125x125/934636/025462/?text=Bubble+A+125+x+125',
         type: 'filter'
     },
     {
         name: 'Filter B',
         source: 'https://placehold.it/125x125/563376/025462/?text=Filter+B+125+x+125',
+        thumbnail: 'https://placehold.it/125x125/934636/025462/?text=Bubble+A+125+x+125',
         type: 'filter'
     },    
     {
         name: 'Filter C',
         source: 'https://placehold.it/125x125/563376/025462/?text=Filter+C+125+x+125',
+        thumbnail: 'https://placehold.it/125x125/934636/025462/?text=Bubble+A+125+x+125',
         type: 'filter'
     },    
     {
         name: 'Filter D',
         source: 'https://placehold.it/125x125/563376/025462/?text=Filter+D+125+x+125',
+        thumbnail: 'https://placehold.it/125x125/934636/025462/?text=Bubble+A+125+x+125',
         type: 'filter'
     },
 

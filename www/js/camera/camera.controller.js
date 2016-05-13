@@ -1,12 +1,11 @@
-core.controller('CameraCtrl', function(story, $scope, $cordovaCamera, $cordovaFileTransfer, Grafi, $localStorage, CameraFactory) {
+core.controller('CameraCtrl', function(story, getAddons, $scope, $cordovaCamera, $cordovaFileTransfer, Grafi, $localStorage, CameraFactory) {
 	$scope.story = story;
     $scope.currentUser = $localStorage.user._id;
     $scope.currentSquare;
-    // $scope.currentDataURL = '../../img/mike.png';
-    $scope.currentDataURL;
+    $scope.currentDataURL = '../../img/mike.png';
+    // $scope.currentDataURL;
 
     var urlToCanvas = function(url, canvasId){
-        console.log('in url to canvas');
         var canvas = document.getElementById(canvasId);
         var newImage = new Image();
         newImage.src = url;
@@ -38,8 +37,6 @@ core.controller('CameraCtrl', function(story, $scope, $cordovaCamera, $cordovaFi
     }
 
     var greyPosterFilter = function(canvasId, img){
-        // var img = new Image();
-        // img.src = $scope.currentDataURL;
         Caman("#"+canvasId, img, function() {
             this.posterize(3);
             this.greyscale();
@@ -48,8 +45,6 @@ core.controller('CameraCtrl', function(story, $scope, $cordovaCamera, $cordovaFi
     }
 
     var colorPosterFilter = function(canvasId, img){
-        // var img = new Image();
-        // img.src = $scope.currentDataURL;
         Caman("#"+canvasId, img, function() {
             this.posterize(3);
             this.noise(3);
@@ -58,8 +53,6 @@ core.controller('CameraCtrl', function(story, $scope, $cordovaCamera, $cordovaFi
     }
 
     var brownPosterFilter = function(canvasId, img){
-        // var image = new Image();
-        // image.src = $scope.currentDataURL;
         Caman('#'+canvasId, img, function(){
             this.hazyDays(5);
             this.love(5);
@@ -70,8 +63,6 @@ core.controller('CameraCtrl', function(story, $scope, $cordovaCamera, $cordovaFi
     }
 
     var blackFilter = function(canvasId, img){
-        // var image = new Image();
-        // image.src = $scope.currentDataURL;
         Caman('#'+canvasId, img, function() {
             this.brightness(4);
             this.contrast(10);
@@ -80,8 +71,6 @@ core.controller('CameraCtrl', function(story, $scope, $cordovaCamera, $cordovaFi
             this.render()
         });
     }
-
-
 
     // urlToCanvas($scope.currentDataURL, 'imageCanvas');
 
@@ -109,6 +98,7 @@ core.controller('CameraCtrl', function(story, $scope, $cordovaCamera, $cordovaFi
     }
 
     $scope.takePicture = function() {
+        console.log("THE CAMERA RAN ON THE ISOLATE SCOPE")
         var options = { 
             quality : 75, 
             destinationType : Camera.DestinationType.DATA_URL, 
@@ -129,6 +119,7 @@ core.controller('CameraCtrl', function(story, $scope, $cordovaCamera, $cordovaFi
     }
 
     $scope.openPhotoLibrary = function() { 
+
         var options = {
             quality: 50,
             destinationType: Camera.DestinationType.FILE_URI,
@@ -148,13 +139,106 @@ core.controller('CameraCtrl', function(story, $scope, $cordovaCamera, $cordovaFi
     }
 
        $scope.saveImage = function(){
-        CameraFactory.createSquare($scope.currentDataURL, $scope.story._id, $scope.currentUser)
+        var canvas = document.getElementById('imageCanvas');
+        var finalDataURL = canvas.toDataURL('image/png')
+        CameraFactory.createSquare(finalDataURL, $scope.story._id, $scope.currentUser)
         .then(function(square){
             $scope.currentSquare = square;
         })
     }
 
+    // var combineLayers = function(imageCanvasId, addonCanvasId){
+    //     var imageCanvas = document.getElementById(imageCanvasId);
+    //     canvas.setAttribute('style', 'z-index=1')
+    //     var addonCanvas = document.getElementById(addonCanvasId);
+    //     canvas.setAttribute('style', 'z-index=2')
+    //     var imageContext = imageCanvas.getContext('2d');
+    //     var addonsContext = addonCanvas.getContext('2d');
+    //     imageContext.drawImage(addonsContext, 0, 0);
+    // }
 
+    // $scope.canvas = document.getElementById('imageCanvas');
+    // $scope.addons = document.getElementById('addonCanvas');
+
+
+
+
+   
+
+
+    //--------DIRECTIVE--------//
+
+    $scope.test = function(){
+        console.log("HELLO")
+    }
+    //Filters from Database Resolve
+    $scope.allAddons = getAddons
+    console.log($scope.allAddons)
+
+    //Create Sticker Div
+ 
+    // var w = document.getElementById('stickerWrapper');
+
+    // w.style.left = '50px';
+    // w.style.top = '100px'
+
+    $scope.stickersArray = []
+    stickercounter = 1;
+    $scope.sticker = function (img){
+        console.log('STICKER', img)
+
+        //Create image element with unique ID
+        if(stickercounter < 4){
+            // var sticker = new Image()
+            // sticker.src = img
+            // console.log(sticker)
+
+            // sticker.setAttribute("src", img)
+            // sticker.setAttribute("hm-panmove", 'onHammer')
+            // sticker.setAttribute("ng-click", "test()")
+            $scope.stickersArray.push({source: img, id: stickercounter})
+
+            console.log($scope.stickersArray)
+            //Grab that element and set it to a variable;
+            // w.appendChild(sticker)
+            stickercounter++
+        } else {
+            //Run an Error that tells them they have too many stickers!
+            console.log("Too Many Stickers!")
+        }
+        // $scope.$compile()
+    }    
+    $scope.bubble = function (img){
+        console.log('BUBBLE')
+    }    
+    $scope.border = function (img){
+        console.log('BORDER')
+    }    
+    $scope.filter = function (img){
+        console.log('FILTER')
+    }
+
+    $scope.onHammer = function onHammer (event) {
+
+        var currentElem = document.getElementById(event.element[0].id);
+
+        var x = event.center.x - 80,
+            y = event.center.y - 130;
+
+        currentElem.style.left = x + 'px';
+        currentElem.style.top = y + 'px';
+        console.log("hammer ran", currentElem)
+
+      console.log("Coords", x, y);
+
+    };
+
+
+});
+
+
+
+//OLD SKETCH FILTER
     // $scope.filterImage = function(filterType, canvasId){
     //     // var canvas = $scope.canvas;
     //     var canvas = document.getElementById(canvasId);
@@ -181,22 +265,7 @@ core.controller('CameraCtrl', function(story, $scope, $cordovaCamera, $cordovaFi
     //     $scope.currentDataURL = canvas.toDataURL('image/png');
     // }
 
-  
-
-    // $scope.canvas = document.getElementById('imageCanvas');
-    // $scope.addons = document.getElementById('addonCanvas');
-
-
-    // var combineLayers = function(imageCanvasId, addonCanvasId){
-    //     var imageCanvas = document.getElementById(imageCanvasId);
-    //     canvas.setAttribute('style', 'z-index=1')
-    //     var addonCanvas = document.getElementById(addonCanvasId);
-    //     canvas.setAttribute('style', 'z-index=2')
-    //     var imageContext = imageCanvas.getContext('2d');
-    //     var addonsContext = addonCanvas.getContext('2d');
-    //     imageContext.drawImage(addonsContext, 0, 0);
-    // }
-
+//FUNCTION TO UPDATE CANVAS
     // var updateCanvas = function(canvasId, changeFunct){
     //     var canvas = document.getElementById(canvasId);
     //     var context = canvas.getContext('2d');
@@ -206,4 +275,4 @@ core.controller('CameraCtrl', function(story, $scope, $cordovaCamera, $cordovaFi
     //     context.putImageData(finalImageData, 0, 0);
     // }
 
-});
+
