@@ -1,10 +1,32 @@
 <ion-view view-title="Account">
-	<ion-content>
-		<canvas id='myCanvas' width='375' height='375'></canvas>
-	    <button class="button" ng-click="takePicture()">Take Picture</button>
+	<ion-content scroll="false">
+		<canvas ng-show="Camera" id='myCanvas' width='375' height='375'></canvas>
+		<!-- <div id="stickerWrapper"> -->
+		  	<!-- <div id="speechBubble"> -->
+<!-- 		    	<textarea elastic ng-model="model.input" class="inputBubble" placeholder="Text"></textarea> -->
+			<!-- </div> -->
+			<img ng-src={{sticker.source}} id="sticker{{sticker.id}}" ng-repeat="sticker in stickersArray" hm-panmove='onHammer' ng-click="test()" style="position:absolute; top:'0px'; left:'0px'">{{ sticker }}</img>
+		<!-- </div> -->
+<!-- 		<img ng-show="!Camera" src='https://placehold.it/375x375'></img> -->
+<!-- 	    <button class="button" ng-click="takePicture()">Take Picture</button>
 	    <button class="button" ng-click="openPhotoLibrary()">Select Photo From Library</button>
-	    <button class="button" ng-click="getImageURI()">Get Image URI</button>
-	    <!-- <img src='/Users/Debanshi/comic-book/server/app/assets/5733a34ec85339ef0b76ea56'> -->
-<!-- 	    <canvas id='one'></canvas> -->
+	    <button class="button" ng-click="getImageURI()">Get Image URI</button> -->
 	</ion-content>
+	</ion-footer-bar>
+    	<div>{{filters}}</div>
+  		<div>
+			<navbar-addon 
+			id="navbarAddon" 
+			test="testFunc()" 
+			addons="allAddons"
+			takepicture="takePicture()"
+			openphotolibrary="openPhotoLibrary()"
+			onhammer="onHammer()"
+			sticker="sticker"
+			bubble="bubble"
+			border="border"
+			filter="filter"
+			></navbar-addon>
+		</div>
+	</ion-footer-bar>
 </ion-view>

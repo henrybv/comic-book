@@ -5,6 +5,7 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title></title>
 
+
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
@@ -16,7 +17,9 @@
     -->
 
     <!-- ionic/angularjs js -->
+    <script src="lib/hammerjs/hammer.js"></script>
     <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/AngularHammer/angular.hammer.js"></script>
     <script src="lib/ngstorage/ngStorage.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
@@ -31,7 +34,6 @@
     <!-- Factories -->
     <script src="js/user/user.factory.js"></script>
     <script src="js/story/story.factory.js"></script>
-    <script src="js/testState/testState.factory.js"></script>
     <script src="js/camera/camera.factory.js"></script>
     <script src="js/camera/grafi.factory.js"></script>
 
@@ -49,7 +51,6 @@
     <script src="js/story/story.create.controller.js"></script>
     <script src="js/story/story.controller.js"></script>
     <script src="js/camera/camera.controller.js"></script>
-    <script src="js/testState/testState.controller.js"></script>
 
     <script src="js/services.js"></script>
   </head>
@@ -59,7 +60,7 @@
       The nav bar that will be updated as we navigate between views.
     -->
 
-    <ion-nav-bar class = "bar-stable">
+    <ion-nav-bar class="bar-stable">
         <ion-nav-back-button></ion-nav-back-button>
 
    <!--      <ion-nav-buttons hide-back-button="{{toState == 'home'}}" side="left">
@@ -67,24 +68,24 @@
         </ion-nav-buttons> -->
 
         <ion-nav-buttons side="left">
-            <button id="saveButton" class="button button-clear" ng-if="'home' | isState">Profile</button>
+            <button id="saveButton" class="button button-clear" ng-if="&apos;home&apos; | isState">Profile</button>
         </ion-nav-buttons>    
 
     <!--     <ion-nav-buttons side="right">
             <button id="saveButton" class="button button-clear">Skip</button>
         </ion-nav-buttons> -->
         <ion-nav-buttons side="right">
-            <button class="button button-dark button-clear" ng-if="'home' | isState">Settings</button>
+            <button class="button button-dark button-clear" ng-if="&apos;home&apos; | isState">Settings</button>
         </ion-nav-buttons>
 
     </ion-nav-bar>
 
-<<<<<<< HEAD
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
 =======
 
       <!-- <navbar-home></navbar-home> -->
 
->>>>>>> master
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; master
     <!--
       The views will be rendered in the <ion-nav-view> directive below
       Templates are in the /templates folder (but you could also
