@@ -2,6 +2,11 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
 	$scope.story = story;
 	console.log('story in storyCTRL', $scope.story)
 
+    if ($scope.story.squares.length === 0){
+        console.log('story in if statement', $scope.story)
+        $state.go('camera', {storyId: $scope.story._id})
+    }
+
 	$scope.goToCamera = function(){
 		$state.go('camera', {storyId: $scope.story._id})
 	}

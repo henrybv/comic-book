@@ -1,11 +1,28 @@
-<ion-view view-title="Account">
+<ion-view view-title="Edit Image">
 	<ion-content>
-		<canvas id='imageCanvas' width='375' height='375'></canvas>
+		<!-- <canvas id='imageCanvas' width='375' height='375'></canvas> -->
+
+		<canvas id='imageCanvas' width='375' height='375' data-caman-hidpi-disabled="true"></canvas>
 	    <button class="button" ng-click="takePicture()">Take Picture</button>
 	    <button class="button" ng-click="openPhotoLibrary()">Select Photo From Library</button>
-	    <button class="button" ng-click="getImageURI()">Get Image URI</button>
-	    <button class="button" ng-click="saveImage()">Save Image</button>
-	    <button class="button" ng-click="filterImage()">Filter Image</button>
-	    <canvas id='newCanvas' width='375' height='375'></canvas>
+	    
+	    <button class="button" ng-click="greyPosterFilter('imageCanvas')">Grey Poster</button>
+	    <button class="button" ng-click="colorPosterFilter('imageCanvas')">Color Poster</button>
+	    <button class = "button" ng-click="brownPosterFilter('imageCanvas')">Brown Poster</button>
+	    <button class = "button" ng-click="blackFilter('imageCanvas')">Black</button>
+
+
+	    <canvas id='greyImage'width='125' height='125' data-caman-hidpi-disabled="true" ng-click="applyFilter('grey', 'imageCanvas')"></canvas>
+	    <canvas id='posterImage' width='125' height='125' data-caman-hidpi-disabled="true" ng-click="applyFilter('poster', 'imageCanvas')"></canvas>
+	    <canvas id='brownImage' width='125' height='125' data-caman-hidpi-disabled="true" ng-click="applyFilter('brown', 'imageCanvas')"></canvas>
+	    <canvas id='blackImage' width='125' height='125' data-caman-hidpi-disabled="true" ng-click="applyFilter('black', 'imageCanvas')"></canvas>
+
+	  
+	  <!--   <button class="button" ng-click="saveImage()">Save Image</button> -->
+	  <!--   <button class="button" ng-click="filterImage()">Filter Image</button> -->
+	    <button class="button" ng-click="filterImage('posterize')">Filter Image: Posterize</button>
+
+	  <!--   <canvas id='newCanvas' width='375' height='375'></canvas> -->
+
 	</ion-content>
 </ion-view>
