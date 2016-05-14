@@ -6,10 +6,23 @@
 	</ion-content>
 	<ion-scroll direction="x" id="addonsBottom">
 		<div id="squareAndAddonFrames">
-		    <button id="transparent" class="button" ng-repeat="addon in addons | filter: {type: addonType}" ng-click="addon.addonFunction()">
+		    <button ng-show='isAddon' id="transparent" class="button" ng-repeat="addon in addons | filter: {type: addonType}" ng-click="addon.addonFunction()">
 				<div>
 		    		<img src="{{ addon.thumbnail }}">
 		    	</div>
+		    </button>
+
+		    <button ng-show='!isAddon' id="transparent" class="button" ng-click="applyfilter('grey','imageCanvas')">
+				<canvas id='grey' width='125' height='125' data-caman-hidpi-disabled="true"></canvas>
+		    </button>
+		    <button ng-if='!isAddon' id="transparent" class="button" ng-click="applyfilter('poster','imageCanvas')">
+				<canvas id='poster' width='125' height='125' data-caman-hidpi-disabled="true"></canvas>
+		    </button>
+		    <button ng-if='!isAddon' id="transparent" class="button" ng-click="applyfilter('brown','imageCanvas')">
+				<canvas id='brown' width='125' height='125' data-caman-hidpi-disabled="true"></canvas>
+		    </button>
+		    <button ng-if='!isAddon' id="transparent" class="button" ng-click="applyfilter('black','imageCanvas')">
+				<canvas id='black' width='125' height='125' data-caman-hidpi-disabled="true"></canvas>
 		    </button>
 		</div>
 	</ion-scroll>

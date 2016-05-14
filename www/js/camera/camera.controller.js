@@ -1,142 +1,85 @@
-core.controller('CameraCtrl', function(story, getAddons, $scope, $cordovaCamera, $cordovaFileTransfer, Grafi, $localStorage, CameraFactory) {
+core.controller('CameraCtrl', function(story, getAddons, $scope, $cordovaCamera, $cordovaFileTransfer, Grafi, $localStorage, CameraFactory, FilterFactory) {
 	$scope.story = story;
     $scope.currentUser = $localStorage.user._id;
     $scope.currentSquare;
-    $scope.currentDataURL = '../../img/mike.png';
+    $scope.url = '../../img/ben.png';
+    $scope.filtersarr = ['grey', 'poster', 'brown', 'black'];
     // $scope.currentDataURL;
 
-    var urlToCanvas = function(url, canvasId){
+    var urlToCanvas = function(url, canvasId, x, y){
+        console.log('in urlToCanvas with parameters:', url, canvasId, x, y);
+        var x = x || 0;
+        var y = y || 0;
         var canvas = document.getElementById(canvasId);
         var newImage = new Image();
         newImage.src = url;
         // newImage.crossOrigin = '';
         var context = canvas.getContext('2d');
         newImage.onload = function(){
-            context.drawImage(newImage, 0, 0);
+            context.drawImage(newImage, x, y);
         }
         var dataURL = canvas.toDataURL('image/png');
     }
 
-    $scope.applyFilter = function(filter, canvasId){
-        console.log('in apply filter')
+    $scope.applyfilter = function(filter, canvasId){
+        console.log('in apply filter in camera ctrl')
+        applyfilter(filter, canvasId);
+    }
+
+    var applyfilter = function(filter, canvasId){
+        console.log('in applyfilter other function')
         var img = new Image();
-        img.src = $scope.currentDataURL;
-        clearFilter(canvasId, img)
-        if (filter === 'grey') greyPosterFilter(canvasId, img);
-        if (filter === 'poster') colorPosterFilter(canvasId, img);
-        if (filter === 'brown') brownPosterFilter(canvasId, img);
-        if (filter === 'black') blackFilter(canvasId, img);
+        // img.src = $scope.currentDataURL;
+        img.src = $scope.url;
+        if (canvasId === 'imageCanvas') FilterFactory.clearFilter(canvasId, img)
+        if (filter === 'grey') FilterFactory.greyPosterFilter(canvasId, img);
+        if (filter === 'poster') FilterFactory.colorPosterFilter(canvasId, img);
+        if (filter === 'brown') FilterFactory.brownPosterFilter(canvasId, img);
+        if (filter === 'black') FilterFactory.blackFilter(canvasId, img);
     }
 
-    var clearFilter = function(canvasId, img){
-        console.log('in clear filter');
-        Caman('#'+canvasId, img, function(){
-            this.revert(false);
-            this.render();
-        })
-    }
+    urlToCanvas($scope.url, 'imageCanvas');
 
-    var greyPosterFilter = function(canvasId, img){
-        Caman("#"+canvasId, img, function() {
-            this.posterize(3);
-            this.greyscale();
-            this.render()
-        });
-    }
+    // $scope.takePicture = function() {
+    //     console.log("THE CAMERA RAN ON THE ISOLATE SCOPE")
+    //     var options = { 
+    //         quality : 75, 
+    //         destinationType : Camera.DestinationType.DATA_URL, 
+    //         sourceType : Camera.PictureSourceType.CAMERA, 
+    //         allowEdit : true,
+    //         encodingType: Camera.EncodingType.JPEG,
+    //         targetWidth: 375,
+    //         targetHeight: 375,
+    //         popoverOptions: CameraPopoverOptions,
+    //         saveToPhotoAlbum: false
+    //     };
+    //     $cordovaCamera.getPicture(options).then(function(imageURL) {
+    //         // $scope.imgURI = "data:image/jpeg;base64," + imageData;
+    //         $scope.currentDataURL = imageURL;
+    //         urlToCanvas(imageURL, 'imageCanvas');
+            // setFilterThumbnails();
+    //     });
+    // }
 
-    var colorPosterFilter = function(canvasId, img){
-        Caman("#"+canvasId, img, function() {
-            this.posterize(3);
-            this.noise(3);
-            this.render()
-        });
-    }
+    // $scope.openPhotoLibrary = function() { 
 
-    var brownPosterFilter = function(canvasId, img){
-        Caman('#'+canvasId, img, function(){
-            this.hazyDays(5);
-            this.love(5);
-            this.grungy(5);
-            this.noise(5);
-            this.render();
-        })
-    }
-
-    var blackFilter = function(canvasId, img){
-        Caman('#'+canvasId, img, function() {
-            this.brightness(4);
-            this.contrast(10);
-            this.sinCity(2);
-            this.noise(4);
-            this.render()
-        });
-    }
-
-    // urlToCanvas($scope.currentDataURL, 'imageCanvas');
-
-    var setFilterThumbnails = function(){
-        var canvas1 = document.getElementById('greyImage')
-        var context1 = canvas1.getContext('2d')
-        var canvas2 = document.getElementById('posterImage')
-        var context2 = canvas2.getContext('2d')
-        var canvas3 = document.getElementById('brownImage')
-        var context3 = canvas3.getContext('2d')
-        var canvas4 = document.getElementById('blackImage')
-        var context4 = canvas4.getContext('2d')
-        var thumbnail = new Image();
-        thumbnail.src = $scope.currentDataURL;
-        thumbnail.onload = function(){
-            context1.drawImage(thumbnail, 0, 0, thumbnail.width, thumbnail.height, 0, 0, canvas1.width, canvas1.height)
-            greyPosterFilter('greyImage', thumbnail)
-            context2.drawImage(thumbnail, 0, 0, thumbnail.width, thumbnail.height, 0, 0, canvas2.width, canvas2.height)
-            colorPosterFilter('posterImage', thumbnail)
-            context3.drawImage(thumbnail, 0, 0, thumbnail.width, thumbnail.height, 0, 0, canvas3.width, canvas3.height)
-            brownPosterFilter('brownImage', thumbnail)
-            context4.drawImage(thumbnail, 0, 0, thumbnail.width, thumbnail.height, 0, 0, canvas4.width, canvas4.height)
-            blackFilter('blackImage', thumbnail)
-        }    
-    }
-
-    $scope.takePicture = function() {
-        console.log("THE CAMERA RAN ON THE ISOLATE SCOPE")
-        var options = { 
-            quality : 75, 
-            destinationType : Camera.DestinationType.DATA_URL, 
-            sourceType : Camera.PictureSourceType.CAMERA, 
-            allowEdit : true,
-            encodingType: Camera.EncodingType.JPEG,
-            targetWidth: 375,
-            targetHeight: 375,
-            popoverOptions: CameraPopoverOptions,
-            saveToPhotoAlbum: false
-        };
-        $cordovaCamera.getPicture(options).then(function(imageURL) {
-            // $scope.imgURI = "data:image/jpeg;base64," + imageData;
-            $scope.currentDataURL = imageURL;
-            urlToCanvas(imageURL, 'imageCanvas');
-            setFilterThumbnails();
-        });
-    }
-
-    $scope.openPhotoLibrary = function() { 
-
-        var options = {
-            quality: 50,
-            destinationType: Camera.DestinationType.FILE_URI,
-            sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-            allowEdit: true,
-            encodingType: Camera.EncodingType.JPEG,
-            targetWidth: 375,
-            targetHeight: 375,
-            popoverOptions: CameraPopoverOptions,
-            saveToPhotoAlbum: false
-        };
-        $cordovaCamera.getPicture(options).then(function(imageURL) {
-            $scope.currentDataURL = imageURL;
-            urlToCanvas(imageURL, 'imageCanvas');
-            setFilterThumbnails();
-        });
-    }
+    //     var options = {
+    //         quality: 50,
+    //         destinationType: Camera.DestinationType.FILE_URI,
+    //         sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+    //         allowEdit: true,
+    //         encodingType: Camera.EncodingType.JPEG,
+    //         targetWidth: 375,
+    //         targetHeight: 375,
+    //         popoverOptions: CameraPopoverOptions,
+    //         saveToPhotoAlbum: false
+    //     };
+    //     $cordovaCamera.getPicture(options).then(function(imageURL) {
+    //         $scope.currentDataURL = imageURL;
+    //         urlToCanvas(imageURL, 'imageCanvas');
+    //         setFilterThumbnails();
+    //     });
+    // }
 
        $scope.saveImage = function(){
         var canvas = document.getElementById('imageCanvas');
@@ -147,15 +90,21 @@ core.controller('CameraCtrl', function(story, getAddons, $scope, $cordovaCamera,
         })
     }
 
-    // var combineLayers = function(imageCanvasId, addonCanvasId){
-    //     var imageCanvas = document.getElementById(imageCanvasId);
-    //     canvas.setAttribute('style', 'z-index=1')
-    //     var addonCanvas = document.getElementById(addonCanvasId);
-    //     canvas.setAttribute('style', 'z-index=2')
-    //     var imageContext = imageCanvas.getContext('2d');
-    //     var addonsContext = addonCanvas.getContext('2d');
-    //     imageContext.drawImage(addonsContext, 0, 0);
-    // }
+    var combineLayers = function(imageCanvasId, addonCanvasId, x, y){
+        var imageCanvas = document.getElementById(imageCanvasId);
+        canvas.setAttribute('style', 'z-index=1')
+        var addonCanvas = document.getElementById(addonCanvasId);
+        canvas.setAttribute('style', 'z-index=2')
+        var imageContext = imageCanvas.getContext('2d');
+        var addonsContext = addonCanvas.getContext('2d');
+        imageContext.drawImage(addonsContext, x, y);
+    }
+
+    $scope.addStickersToCanvas = function(){
+        $scope.stickersArray.forEach(function(sticker){
+            urlToCanvas(sticker.source, 'imageCanvas', sticker.x, sticker.y)
+        })
+    }
 
     // $scope.canvas = document.getElementById('imageCanvas');
     // $scope.addons = document.getElementById('addonCanvas');
@@ -171,6 +120,9 @@ core.controller('CameraCtrl', function(story, getAddons, $scope, $cordovaCamera,
     $scope.test = function(){
         console.log("HELLO")
     }
+
+    
+
     //Filters from Database Resolve
     $scope.allAddons = getAddons
     console.log($scope.allAddons)
@@ -185,19 +137,12 @@ core.controller('CameraCtrl', function(story, getAddons, $scope, $cordovaCamera,
     $scope.stickersArray = []
     stickercounter = 1;
     $scope.sticker = function (img){
+        console.log('in sticker function in ctrl!!')
         console.log('STICKER', img)
 
         //Create image element with unique ID
         if(stickercounter < 4){
-            // var sticker = new Image()
-            // sticker.src = img
-            // console.log(sticker)
-
-            // sticker.setAttribute("src", img)
-            // sticker.setAttribute("hm-panmove", 'onHammer')
-            // sticker.setAttribute("ng-click", "test()")
-            $scope.stickersArray.push({source: img, id: stickercounter})
-
+            $scope.stickersArray.push({source: img, id: stickercounter, x: 2, y: 28})
             console.log($scope.stickersArray)
             //Grab that element and set it to a variable;
             // w.appendChild(sticker)
@@ -207,23 +152,49 @@ core.controller('CameraCtrl', function(story, getAddons, $scope, $cordovaCamera,
             console.log("Too Many Stickers!")
         }
         // $scope.$compile()
-    }    
+
+
+        //WORK ON THIS TONIGHT!!!!!
+        // $('#sticker'+stickercounter).dblclick(function(){
+        //     console.log('in doyble click')
+        //     $scope.stickersArray.splice(Number(stickercounter),1);
+        // })
+
+    }
+
+    // $(document).on('dbclick', '#sticker1', function(){
+    //     console.log('in doyble click')
+    //     $scope.stickersArray.splice(0,1);
+    // })
+
+
     $scope.bubble = function (img){
         console.log('BUBBLE')
     }    
     $scope.border = function (img){
         console.log('BORDER')
     }    
-    $scope.filter = function (img){
-        console.log('FILTER')
-    }
+    // $scope.filter = function (img){
+    //     console.log('FILTER')
+    // }
 
     $scope.onHammer = function onHammer (event) {
 
         var currentElem = document.getElementById(event.element[0].id);
-
         var x = event.center.x - 80,
             y = event.center.y - 130;
+
+
+        //DEBANSHI'S UPDATES
+        var index;
+        $scope.stickersArray.forEach(function(sticker, idx){
+            if ('sticker'+sticker.id === event.element[0].id) {
+                index = idx;
+            }
+        })
+        $scope.stickersArray[index].x = x
+        $scope.stickersArray[index].y = y
+        //END OF DEBANSHI'S UPDATES
 
         currentElem.style.left = x + 'px';
         currentElem.style.top = y + 'px';

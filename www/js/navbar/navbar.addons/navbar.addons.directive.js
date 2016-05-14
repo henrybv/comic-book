@@ -7,13 +7,15 @@ core.directive('navbarAddon', function($rootScope) {
         onhammer: "&",
         takepicture: "&",
         openphotolibrary: "&",
+        applyfilter: "=",
         addons: "=",
-        sticker: "=",
-        bubble: "=",
+        sticker: "=", 
+        bubble: "=", 
         border: "=",
-        filter: "="
+        filter: "=",
+        url: "="
     },
-    link: function (scope, element) {
+    link: function (scope, element, attrs) {
 
         //Adds proper functions to addons:
         for (var i = 0; i < scope.addons.length; i++) {
@@ -21,6 +23,7 @@ core.directive('navbarAddon', function($rootScope) {
             scope.addons[i].addonFunction = function(){
 
                 if(this.type === "sticker"){
+                    console.log('this source', this.source)
                     scope.sticker(this.source)
                 }
                 if(this.type === "bubble"){
@@ -29,20 +32,40 @@ core.directive('navbarAddon', function($rootScope) {
                 if(this.type === "border"){
                     scope.border(this.source)
                 }
-                if(this.type === "filter"){
-                    scope.filter(this.source)
-                }
             }
 
             // console.log(scope.addons[i])
         }
 
+        var isAddon = true;
         //Functions from Camera Controller
         scope.changeNav = function(addon){
-            //Changes addonType to the current addon Tab
+            console.log('addon', addon)
             scope.addonType = addon;
+            //Changes addonType to the current addon Tab
+            if (addon === 'filter') {
+                var isAddon = false;
+                setFilterThumbnails();
+            }
+            else isAddon = true;
         };
-        
+
+        var setFilterThumbnails = function(){
+        var filtersarr = ['grey', 'poster', 'brown', 'black'];
+        filtersarr.forEach(function(filter){
+            var canvas = document.getElementById(filter);
+            var context = canvas.getContext('2d');
+            var thumbnail = new Image();
+            thumbnail.src = scope.url;
+            thumbnail.crossOrigin = '';
+            thumbnail.onload = function(){
+                context.drawImage(thumbnail, 0, 0, thumbnail.width, thumbnail.height, 0, 0, canvas.width, canvas.height)
+                scope.applyfilter(filter,filter);
+            }
+        })
+    }
+
+
         //This Sets Width of Directive Buttons
         scope.myWidth = function(){
             newWidth = Math.floor((100/scope.activeButtons.length))
@@ -57,7 +80,6 @@ core.directive('navbarAddon', function($rootScope) {
             if (buttonType === 'pictureFunctions') {                
                 scope.activeButtons = scope.pictureFunctions;
             }
-
         };
 
 
@@ -120,6 +142,7 @@ core.directive('navbarAddon', function($rootScope) {
         {
             state: 'sticker',
             function: function(){
+                console.log('in here')
                 scope.changeNav('sticker')
             }
         }

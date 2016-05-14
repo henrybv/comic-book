@@ -86,6 +86,7 @@ core.config(function($stateProvider, $urlRouterProvider) {
         return StoryFactory.getStoryById($stateParams.storyId);
       },
       getAddons: function(CameraFactory, $stateParams) {
+        console.log('in get addons')
         return CameraFactory.getFilters()
       }
     }
