@@ -15,7 +15,11 @@
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
-
+    <!-- Jquery Scripts -->
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+<!--     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+ -->
     <!-- ionic/angularjs js -->
     <script src="lib/hammerjs/hammer.js"></script>
     <script src="lib/ionic/js/ionic.bundle.js"></script>
@@ -29,6 +33,12 @@
     <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/camanjs/4.1.2/caman.full.min.js"></script>
     <script type="text/javascript" src="lib/caman/dist/caman.full.min.js"></script>
+    
+    <!-- html2canvas scripts -->
+    <script src="js/components/jquery.min.js"></script>
+    <script src="js/components/angular-route.min.js"></script>
+    <script src="js/components/angular-sanitize.min.js"></script>
+    <script src="js/components/html2canvas.js"></script>
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
@@ -39,12 +49,13 @@
     <script src="js/story/story.factory.js"></script>
     <script src="js/camera/camera.factory.js"></script>
     <script src="js/camera/grafi.factory.js"></script>
+    <script src="js/camera/filter.factory.js"></script>
 
 
     <!-- Directives -->
     <script src="js/navbar/navbar.main/navbar.main.directive.js"></script>
     <script src="js/navbar/navbar.addons/navbar.addons.directive.js"></script>
-    <script src="js/navbar/navbar.addons.states/navbar.addons.states.directive.js"></script>
+    <script src="js/navbar/navbar.addons/navbar.elastic.directive.js"></script>
     
     <!-- Controllers -->
     <script src="js/controllers.js"></script>

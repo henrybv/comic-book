@@ -1,3 +1,66 @@
+<<<<<<< HEAD
+<ion-view view-title="Camera" id="container">
+<!-- 	IMPORTANT: Make sure we KEEP the ID's that I added to Ion-view and Ion-content -->
+	<ion-content scroll="false" id="addonWrapper" class="canvasAndAddonContainer">
+
+		<p id="addonError" style="display: none;">Too Many Stickers!</p>
+		<p id="addonSuccessfulDelete" style="display: none;">Successfully Deleted</p>
+		<div id="puff"></div>
+		
+		<canvas id='myCanvas' width='375' height='375'></canvas>
+
+		<img 
+		ng-src={{sticker.source}} 
+		id="sticker{{sticker.id}}" 
+		ng-repeat="sticker in stickersArray" 
+		hm-panmove='onHammer'
+	    hm-press="onPress"
+	    hm-pressup="onHammerEnd"
+	    hm-panend="onHammerEnd"
+		ng-click="test()" 
+		class="addonDivs"
+		addtype="sticker" 
+		style="
+			position:absolute; 
+			top:0px; 
+			left:0px">
+		</img>	
+
+	    <textarea 
+	    elastic 
+	    ng-model="model.input" 
+	    class="inputBubble addonDivs" 
+	    id="bubble{{bubble.id}}"
+	    style="position: absolute;
+			  top: 0px;
+			  left: 0px;
+			  background-color: white;
+			  border-radius: 30px;
+			  overflow: hidden;
+			  height: 20px"
+	    placeholder="Text"
+	    hm-panmove="onHammer"
+	    hm-press="onPress"
+	    hm-pressup="onHammerEnd"
+	    hm-panend="onHammerEnd"
+	    ng-repeat="bubble in bubblesArray" ></textarea>
+
+<!-- 	    <img
+	    src='assets/icons/delete_.png'
+	    id="deleteDiv"
+	    style="display: none;"
+	    >
+	    </img> -->
+
+	</ion-content>
+	</ion-footer-bar id="footerbar">
+  		<div 
+  		id="navbarAddonWrapper"
+  		ng-if="currentNav === 'navbarAddon'">
+
+			<navbar-addon 
+			id="navbarAddon"
+=======
 <ion-view view-title="Edit Image">
 	<ion-content scroll="false">
 	
@@ -23,6 +86,7 @@
   		<div>
 			<navbar-addon 
 			id="navbarAddon" 
+>>>>>>> master
 			test="testFunc()" 
 			addons="allAddons"
 			takepicture="takePicture()"
@@ -33,6 +97,20 @@
 			border="border"
 			filter="filter"
 			></navbar-addon>
+<<<<<<< HEAD
+
+		</div>
+
+		<div
+	
+		id='navbarDelete'
+		ng-if="currentNav === 'navbarDelete'"
+		>
+			<div
+			id="navbarDeleteInner"
+			> DELETE </div>
+=======
+>>>>>>> master
 		</div>
 	</ion-footer-bar>
 </ion-view>

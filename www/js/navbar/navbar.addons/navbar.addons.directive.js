@@ -7,13 +7,15 @@ core.directive('navbarAddon', function($rootScope) {
         onhammer: "&",
         takepicture: "&",
         openphotolibrary: "&",
+        applyfilter: "=",
         addons: "=",
-        sticker: "=",
-        bubble: "=",
+        sticker: "=", 
+        bubble: "=", 
         border: "=",
-        filter: "="
+        filter: "=",
+        url: "="
     },
-    link: function (scope, element) {
+    link: function (scope, element, attrs) {
 
         //Adds proper functions to addons:
         for (var i = 0; i < scope.addons.length; i++) {
@@ -29,6 +31,7 @@ core.directive('navbarAddon', function($rootScope) {
                 if(this.type === "border"){
                     scope.border(this.source)
                 }
+
                 if(this.type === "filter"){
                     scope.filter(this.source)
                 }
@@ -39,10 +42,29 @@ core.directive('navbarAddon', function($rootScope) {
 
         //Functions from Camera Controller
         scope.changeNav = function(addon){
-            //Changes addonType to the current addon Tab
             scope.addonType = addon;
+            //Changes addonType to the current addon Tab
+            if (scope.addonType === 'filter') {
+                setFilterThumbnails();
+            }
         };
-        
+
+        var setFilterThumbnails = function(){
+        var filtersarr = ['grey', 'poster', 'brown', 'black'];
+        filtersarr.forEach(function(filter){
+            var canvas = document.getElementById(filter);
+            var context = canvas.getContext('2d');
+            var thumbnail = new Image();
+            thumbnail.src = scope.url;
+            thumbnail.crossOrigin = '';
+            thumbnail.onload = function(){
+                context.drawImage(thumbnail, 0, 0, thumbnail.width, thumbnail.height, 0, 0, canvas.width, canvas.height)
+                scope.applyfilter(filter,filter);
+            }
+        })
+    }
+
+
         //This Sets Width of Directive Buttons
         scope.myWidth = function(){
             newWidth = Math.floor((100/scope.activeButtons.length))
@@ -57,7 +79,6 @@ core.directive('navbarAddon', function($rootScope) {
             if (buttonType === 'pictureFunctions') {                
                 scope.activeButtons = scope.pictureFunctions;
             }
-
         };
 
 
@@ -100,36 +121,37 @@ core.directive('navbarAddon', function($rootScope) {
             }
         },
         {
-            state: 'filter',
+            state: 'Filter',
             function: function(){
                 scope.changeNav('filter')
             }
         }, 
         {
-            state: 'border',
+            state: 'Border',
             function: function(){
                 scope.changeNav('border')
             }
         },
         {
-            state: 'bubble',
+            state: 'Bubble',
             function: function(){
                 scope.changeNav('bubble')
             }
         },
         {
-            state: 'sticker',
+            state: 'Sticker',
             function: function(){
+                console.log('in here')
                 scope.changeNav('sticker')
             }
-        }
+        },
         ]
+
+        
 
         //Starting Set of Buttons and Filters
         scope.addonType = 'filter';
         window.onload = scope.setButtons('pictureFunctions');
-
-        // scope.activeButtons = scope.addonStates;
 
     }
   };
