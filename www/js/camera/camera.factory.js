@@ -44,8 +44,6 @@ core.factory('CameraFactory', function($http){
     })
   };
 
-
-
   return CameraFactory;
 })
 

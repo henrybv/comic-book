@@ -1,29 +1,37 @@
-core.controller('CameraCtrl', function($state, story, getAddons, $scope, $cordovaCamera, $cordovaFileTransfer, Grafi, $localStorage, CameraFactory, FilterFactory) {
+core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $cordovaCamera, $cordovaFileTransfer, Grafi, $localStorage, CameraFactory, FilterFactory) {
 	$scope.story = story;
     $scope.currentUser = $localStorage.user._id;
     $scope.currentSquare;
     $scope.stickersArray = [];
+    $scope.test;
 
     //REMOVE LINK WHEN USING URL FROM PHOTO / ALBUM LIBRARY
     $scope.url = '../../img/ben.png';
     // $scope.url;
 
     var urlToCanvas = function(url, canvasId, x, y){
-        console.log('in urlToCanvas with parameters:', url, canvasId, x, y);
+        console.log('parameters', url, canvasId, x, y)
         var x = x || 0;
         var y = y || 0;
-        var canvas = document.getElementById(canvasId);
+        var canvas = document.getElementById('imageCanvas');
+        var context = canvas.getContext('2d');
         var newImage = new Image();
         newImage.src = url;
+        console.log('new image', newImage)
         // newImage.crossOrigin = '';
-        var context = canvas.getContext('2d');
         newImage.onload = function(){
-            context.drawImage(newImage, x, y);
+            context.drawImage(newImage, x, y, canvas.width, canvas.height);
+            var dataURL = canvas.toDataURL('image/png');
+            // console.log(dataURL);
+            $scope.test = dataURL;
+            $scope.$digest();
         }
-        var dataURL = canvas.toDataURL('image/png');
     }
     //REMOVE WHEN USING URL FROM PHOTO / ALBUM LIBRARY
     urlToCanvas($scope.url, 'imageCanvas');
+
+    
+    
 
     $scope.applyfilter = function(filter, canvasId){
         console.log('in apply filter in camera ctrl')
@@ -78,42 +86,70 @@ core.controller('CameraCtrl', function($state, story, getAddons, $scope, $cordov
         $cordovaCamera.getPicture(options).then(function(imageURL) {
             $scope.url = imageURL;
             urlToCanvas(imageURL, 'imageCanvas');
-            setFilterThumbnails();
+            // setFilterThumbnails();
         });
     }
 
-    $scope.saveImage = function(){
-        var canvas = document.getElementById('imageCanvas');
-        $scope.stickersArray.forEach(function(sticker){
-            urlToCanvas(sticker.source, 'imageCanvas', sticker.x, sticker.y)
-        })
-        var finalDataURL = canvas.toDataURL('image/png')
-        CameraFactory.createSquare(finalDataURL, $scope.story._id, $scope.currentUser)
-        .then(function(square){
-            $scope.currentSquare = square;
-            console.log('saved image, in ctrl', $scope.currentSquare)
-            $state.go('story', {storyId: $scope.story._id});
-        })
-    }
 
-    var combineLayers = function(imageCanvasId, addonCanvasId, x, y){
-        var imageCanvas = document.getElementById(imageCanvasId);
-        canvas.setAttribute('style', 'z-index=1')
-        var addonCanvas = document.getElementById(addonCanvasId);
-        canvas.setAttribute('style', 'z-index=2')
-        var imageContext = imageCanvas.getContext('2d');
-        var addonsContext = addonCanvas.getContext('2d');
-        imageContext.drawImage(addonsContext, x, y);
-    }
 
-    // $scope.addStickersToCanvas = function(){
+    // var combineLayers = function(imageCanvasId, addonCanvasId, x, y){
+    //     var imageCanvas = document.getElementById(imageCanvasId);
+    //     canvas.setAttribute('style', 'z-index=1')
+    //     var addonCanvas = document.getElementById(addonCanvasId);
+    //     canvas.setAttribute('style', 'z-index=2')
+    //     var imageContext = imageCanvas.getContext('2d');
+    //     var addonsContext = addonCanvas.getContext('2d');
+    //     imageContext.drawImage(addonsContext, x, y);
+    // }
+
+    // var addStickersToCanvas = function(){
     //     $scope.stickersArray.forEach(function(sticker){
     //         urlToCanvas(sticker.source, 'imageCanvas', sticker.x, sticker.y)
     //     })
     // }
 
-    // $scope.canvas = document.getElementById('imageCanvas');
-    // $scope.addons = document.getElementById('addonCanvas');
+   var addStickersToCanvas = function(){
+        console.log('in add stickers to canvas funct', $scope.stickersArray)
+        var canvas = document.getElementById('imageCanvas');
+        var context = canvas.getContext('2d');
+        var onloadsRunning = [];
+        $scope.stickersArray.forEach(function(sticker){
+            var x = sticker.x;
+            var y = sticker.y;
+            var newImage = new Image();
+            // newImage.crossOrigin = '';
+            newImage.src = sticker.source;
+            var onloadPromise = $q(function(resolve, reject){
+                newImage.onload = function(){
+                    context.drawImage(newImage, 0, 0);
+                    resolve();
+                    // var dataURL = canvas.toDataURL('image/png');
+                }
+                newImage.onerror = reject;
+            })
+            onloadsRunning.push(onloadPromise);
+            // return dataURL;
+        })
+        return $q.all(onloadsRunning);
+    }
+
+
+    $scope.saveImage = function(){
+        addStickersToCanvas()
+        .then(function(){
+            var canvas = document.getElementById('imageCanvas');
+            var finalDataURL = canvas.toDataURL('image/png')
+            CameraFactory.createSquare(finalDataURL, $scope.story._id, $scope.currentUser)
+        })        
+        .then(function(square){
+            $scope.currentSquare = square;
+            console.log('saved image, in ctrl', $scope.currentSquare)
+            $state.go('story', {storyId: $scope.story._id});
+        })
+        .catch(function(err){
+            console.error(err);
+        })
+    }
 
     // FOR HTML2CANVASS ////////////
     // FOR GRABBING
@@ -323,7 +359,7 @@ core.controller('CameraCtrl', function($state, story, getAddons, $scope, $cordov
             currentElem.style.left = x - diffX + 'px';
         }
 
-        console.log("Coords", x, y);
+        // console.log("Coords", x, y);
 
     };
 
@@ -335,15 +371,15 @@ core.controller('CameraCtrl', function($state, story, getAddons, $scope, $cordov
             currenty = event.center.y - 130;
 
 
-        //DEBANSHI'S UPDATES
-        var index;
-        $scope.stickersArray.forEach(function(sticker, idx){
-            if ('sticker'+sticker.id === event.element[0].id) {
-                index = idx;
-            }
-        })
-        $scope.stickersArray[index].x = currentx
-        $scope.stickersArray[index].y = currenty
+        // //DEBANSHI'S UPDATES
+        // var index;
+        // $scope.stickersArray.forEach(function(sticker, idx){
+        //     if ('sticker'+sticker.id === event.element[0].id) {
+        //         index = idx;
+        //     }
+        // })
+        // $scope.stickersArray[index].x = currentx
+        // $scope.stickersArray[index].y = currenty
         //END OF DEBANSHI'S UPDATES
 
         // currentElem.style.left = currentx + 'px';
@@ -360,15 +396,41 @@ core.controller('CameraCtrl', function($state, story, getAddons, $scope, $cordov
     //This Function Runs once an addon is stopped dragging and/or a pressed addon is released
     $scope.onHammerEnd = function onHammerEnd (event) {
 
-
-        //find the current element
-        var currentElem = document.getElementById(event.element[0].id)
-
         //Reshow the Addon Navbar
         $scope.currentNav = 'navbarAddon'
 
+        //find the current element
+        var currentElem = document.getElementById(event.element[0].id)
+        // var currentx = event.center.x - 80,
+        //     currenty = event.center.y - 130;
+        var currentx = currentElem.style.left,
+            currenty = currentElem.style.top;
 
-        console.log("onHammerEnd", event.center.y, currentElem.className)
+         if(event.element[0].id[0] === 's') {        
+            var index;
+            $scope.stickersArray.forEach(function(sticker, idx){
+                if ('sticker'+sticker.id === event.element[0].id) {
+                    index = idx;
+                }
+            })
+            console.log("StickersArray HERE", $scope.stickersArray )
+            $scope.stickersArray[index].x = currentx
+            $scope.stickersArray[index].y = currenty
+        }
+        if(event.element[0].id[0] === 'b') {        
+            var index;
+            $scope.bubblesArray.forEach(function(bubble, idx){
+                if ('bubble'+bubble.id === event.element[0].id) {
+                    index = idx;
+                }
+            })
+            console.log("StickersArray HERE", $scope.stickersArray )
+            $scope.bubblesArray[index].x = currentx
+            $scope.bubblesArray[index].y = currenty
+        }
+
+
+        console.log("onHammerEnd", event.center.x, event.center.y, currentElem.className)
         //Run delete Function if sticker/bubble is active AND event occurred below certain point on screen
         if(event.center.y > 490 && currentElem.className.indexOf('addonActive') > -1){
 
