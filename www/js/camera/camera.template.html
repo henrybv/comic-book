@@ -1,7 +1,6 @@
-<ion-view view-title="Edit Image">
-	<ion-content scroll="true">
-<!-- 	<ion-content scroll="false">
- -->
+<ion-view view-title="Edit Image" id="container">
+	<ion-content scroll="false" id="addonWrapper" class="canvasAndAddonContainer">
+
 <!-- PLACEHOLDER BUBBLE -->
 	  	<textarea rows="4" cols="50" id='new' style="border:solid black 3px;max-width:120px"></textarea>
 		<h1 ng-click="previewImage()" id="one">PREVIEW IMG</h1>
@@ -11,26 +10,56 @@
 		<button class="button" ng-click="addStickersToCanvas
 		()">Add stickers to canvas</button>
 
+		<p id="addonError" style="display: none;">Too Many Stickers!</p>
+		<p id="addonSuccessfulDelete" style="display: none;">Successfully Deleted</p>
+		<div id="puff"></div>
+		
 
-		<img ng-src={{sticker.source}} 
-			id="sticker{{sticker.id}}" 
-			ng-repeat="sticker in stickersArray" 
-			hm-panmove='onHammer' 
-			ng-click="test()" 
-			ng-dbclick = 'remove()' 
-			style="position:absolute !important; top:0px; left:0px">{{ sticker }}
-		</img>
+		<img 
+		ng-src={{sticker.source}} 
+		id="sticker{{sticker.id}}" 
+		ng-repeat="sticker in stickersArray" 
+		hm-panmove='onHammer'
+	    hm-press="onPress"
+	    hm-pressup="onHammerEnd"
+	    hm-panend="onHammerEnd"
+		ng-click="test()" 
+		class="addonDivs"
+		addtype="sticker" 
+		style="
+			position:absolute; 
+			top:0px; 
+			left:0px">
+		</img>	
 
+	    <textarea 
+	    elastic 
+	    ng-model="model.input" 
+	    class="inputBubble addonDivs" 
+	    id="bubble{{bubble.id}}"
+	    style="position: absolute;
+			  top: 0px;
+			  left: 0px;
+			  background-color: white;
+			  border-radius: 30px;
+			  overflow: hidden;
+			  height: 20px"
+	    placeholder="Text"
+	    hm-panmove="onHammer"
+	    hm-press="onPress"
+	    hm-pressup="onHammerEnd"
+	    hm-panend="onHammerEnd"
+	    ng-repeat="bubble in bubblesArray" ></textarea>
 
 		
 		<button class="button" ng-click="saveImage()">Save Image</button>
 
 	</ion-content>
-	</ion-footer-bar>
-    	<div>{{filters}}</div>
-  		<div>
+  	<div 
+  		id="navbarAddonWrapper"
+  		ng-if="currentNav === 'navbarAddon'">
 			<navbar-addon 
-			id="navbarAddon" 
+			id="navbarAddon"
 			test="testFunc()" 
 			addons="allAddons",
 			url="url",
@@ -44,6 +73,15 @@
 			filtersarr='filtersarr'
 			applyfilter='applyfilter'
 			></navbar-addon>
-		</div>
-	</ion-footer-bar>
+	</div>
+
+	<div
+
+	id='navbarDelete'
+	ng-if="currentNav === 'navbarDelete'"
+	>
+		<div
+		id="navbarDeleteInner"
+		> DELETE </div>
+	</div>
 </ion-view>

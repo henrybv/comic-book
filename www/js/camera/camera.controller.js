@@ -2,6 +2,7 @@ core.controller('CameraCtrl', function(story, getAddons, $scope, $cordovaCamera,
 	$scope.story = story;
     $scope.currentUser = $localStorage.user._id;
     $scope.currentSquare;
+
     //REMOVE LINK WHEN USING URL FROM PHOTO / ALBUM LIBRARY
     $scope.url = '../../img/ben.png';
     // $scope.url;
@@ -80,14 +81,14 @@ core.controller('CameraCtrl', function(story, getAddons, $scope, $cordovaCamera,
         });
     }
 
-       $scope.saveImage = function(){
-        var canvas = document.getElementById('imageCanvas');
-        var finalDataURL = canvas.toDataURL('image/png')
-        CameraFactory.createSquare(finalDataURL, $scope.story._id, $scope.currentUser)
-        .then(function(square){
-            $scope.currentSquare = square;
-        })
-    }
+    // $scope.saveImage = function(){
+       //  var canvas = document.getElementById('imageCanvas');
+       //  var finalDataURL = canvas.toDataURL('image/png')
+       //  CameraFactory.createSquare(finalDataURL, $scope.story._id, $scope.currentUser)
+       //  .then(function(square){
+       //      $scope.currentSquare = square;
+       //  })
+    // }
 
     var combineLayers = function(imageCanvasId, addonCanvasId, x, y){
         var imageCanvas = document.getElementById(imageCanvasId);
@@ -166,72 +167,166 @@ core.controller('CameraCtrl', function(story, getAddons, $scope, $cordovaCamera,
 
   //--------DIRECTIVE--------//
 
-    $scope.test = function(){
-        console.log("HELLO")
-    }
 
-    
+    //-----ADDON FUNCTIONS-----//
 
     //Filters from Database Resolve
     $scope.allAddons = getAddons
+    $scope.currentNav = 'navbarAddon'
     console.log($scope.allAddons)
 
-    //Create Sticker Div
- 
-    // var w = document.getElementById('stickerWrapper');
 
-    // w.style.left = '50px';
-    // w.style.top = '100px'
-
-    $scope.stickersArray = []
-    stickercounter = 1;
+    //Stickers
+    var stickercounter = 0;
+    var stickerIdCounter = 1;
     $scope.sticker = function (img){
         console.log('in sticker function in ctrl!!')
         console.log('STICKER', img)
 
+        if(!$scope.stickersArray) $scope.stickersArray = []
         //Create image element with unique ID
         if(stickercounter < 4){
+            //Push element data into the stickersArray;
             $scope.stickersArray.push({source: img, id: stickercounter, x: 2, y: 28})
             console.log($scope.stickersArray)
             //Grab that element and set it to a variable;
             // w.appendChild(sticker)
             stickercounter++
+            stickerIdCounter++;
+      
         } else {
-            //Run an Error that tells them they have too many stickers!
+            onErrorFunc()
             console.log("Too Many Stickers!")
         }
         // $scope.$compile()
 
-
-        //WORK ON THIS TONIGHT!!!!!
-        // $('#sticker'+stickercounter).dblclick(function(){
-        //     console.log('in doyble click')
-        //     $scope.stickersArray.splice(Number(stickercounter),1);
-        // })
-
+    console.log($scope.stickersArray)
     }
 
-    // $(document).on('dbclick', '#sticker1', function(){
-    //     console.log('in doyble click')
-    //     $scope.stickersArray.splice(0,1);
-    // })
+    //Bubbles
+    var bubblecounter = 0;  
+    var bubbleIdcounter = 1;  
+    $scope.bubble = function (){
+        if(!$scope.bubblesArray) $scope.bubblesArray = []
+        if(bubblecounter < 4){
+            $scope.bubblesArray.push({id: bubbleIdcounter, text:' '})
+            bubblecounter++;
+            bubbleIdcounter++;
+        } else {
+            onErrorFunc()
+        }
+    }  
 
-
-    $scope.bubble = function (img){
-        console.log('BUBBLE')
-    }    
+    //Border  
     $scope.border = function (img){
         console.log('BORDER')
-    }    
-    // $scope.filter = function (img){
-    //     console.log('FILTER')
-    // }
+    } 
+
+    //Filter   
+    $scope.filter = function (img){
+        console.log('FILTER')
+    }
+
+
+    //REMOVE ADDONs
+    $scope.removeAddon = function(eventId) {
+        console.log("removeAddon!", eventId)
+        document.getElementById(eventId).remove()
+
+        if (eventId[0] === 's') {
+          --stickercounter
+          console.log("stickercounter", stickercounter) 
+          for (var i = 0; i < $scope.stickersArray.length; i++) {
+                if($scope.stickersArray[i].id === Number(eventId.slice(-1))) {
+                    $scope.stickersArray.splice(i, 1)
+                    //Adds success notification to users screen
+                    onSuccessfulDelete()
+                }
+           } 
+        } 
+
+        if (eventId[0] === 'b') {
+            --bubblecounter
+            console.log("bubblecounter", bubblecounter) 
+            for (var i = 0; i < $scope.bubblesArray.length; i++) {
+                console.log("bubble ids", $scope.bubblesArray[i].id, Number(eventId.slice(-1)))
+                if($scope.bubblesArray[i].id === Number(eventId.slice(-1))) {
+                    $scope.bubblesArray.splice(i, 1)
+                    //Adds success notification to users screen
+                    onSuccessfulDelete()
+                }
+            } 
+        }
+
+        console.log($scope.bubblesArray, $scope.stickersArray)
+    }
+
+    // Hammer Counter Variables:
+    // x and y are used to grab current coordinates of the element for use in drawing
+    // diffX and diffY are used to allow for draggin of stickers based on click and not center
+    // offset is NOT being used, but might be helpful with drawing to canvas 
+    var x,
+        y,
+        diffX,
+        diffY,
+        offset;
+    var hammerCounter = 0
 
     $scope.onHammer = function onHammer (event) {
 
+        // Grabs current Element
         var currentElem = document.getElementById(event.element[0].id);
-        var x = event.center.x - 80,
-            y = event.center.y - 130;
+        // y Coordinate
+        var currentTop = Number(currentElem.style.top.substring(0, currentElem.style.top.length-2))
+        // x Coordinate
+        var currentLeft = Number(currentElem.style.left.substring(0, currentElem.style.left.length-2))
+
+        // var currentCenter = [(currentLeft + (currentWidth/2)), (currentTop + (currentHeight/2))]
+
+        if(!hammerCounter){ 
+            console.log("This Ran", currentElem.className)
+            diffX = event.center.x - currentLeft;
+            diffY = event.center.y - currentTop;
+            // Grab the current elements offset from the screen.
+            // This is important because otherwise we only have its position relative
+            // to its Div (ie, (0,0) refers to the top left of the DIV, not the screen (might effect canvas drawing)
+            offset = $('#' + event.element[0].id).offset();
+            // // Then refer to 
+            // var x = evt.pageX - offset.left;
+            ++hammerCounter
+
+        }
+
+        x = event.center.x
+        y = event.center.y
+
+
+        // if((y > 60 && y < 550) && currentElem.className === 'addonDivs activated') {
+        //     currentElem.style.top = y - diffY + 'px';
+        // }        
+        // if((y > 60 && y < 700) && currentElem.className === 'addonDivs activated addonActive') {
+        //     currentElem.style.top = y - diffY + 'px';
+        // }
+        // if((x + 25) > 0 && x < 375) {   
+        //     currentElem.style.left = x - diffX + 'px';
+        // }        
+        if(y > 60 && y < 600) {
+            currentElem.style.top = y - diffY + 'px';
+        }          
+        if((x + 25) > 0 && x < 375) {   
+            currentElem.style.left = x - diffX + 'px';
+        }
+
+        console.log("Coords", x, y);
+
+    };
+
+
+    $scope.onPress = function onPress (event) {
+
+        var currentElem = document.getElementById(event.element[0].id);
+        var currentx = event.center.x - 80,
+            currenty = event.center.y - 130;
 
 
         //DEBANSHI'S UPDATES
@@ -241,18 +336,99 @@ core.controller('CameraCtrl', function(story, getAddons, $scope, $cordovaCamera,
                 index = idx;
             }
         })
-        $scope.stickersArray[index].x = x
-        $scope.stickersArray[index].y = y
+        $scope.stickersArray[index].x = currentx
+        $scope.stickersArray[index].y = currenty
         //END OF DEBANSHI'S UPDATES
 
-        currentElem.style.left = x + 'px';
-        currentElem.style.top = y + 'px';
-        console.log("hammer ran", currentElem)
+        // currentElem.style.left = currentx + 'px';
+        // currentElem.style.top = currenty + 'px';
 
-      console.log("Coords", x, y);
+        //Find the sticker and make its background Active (red), and 'draggable'(doesnt do anything expcept allow the garbage can to be 'droppable later')
+        $("#addonWrapper").find('#' + event.element[0].id).addClass('addonActive')
+
+        //Add the delete Button onto the DOM
+        $scope.currentNav = 'navbarDelete'
 
     };
 
+    //This Function Runs once an addon is stopped dragging and/or a pressed addon is released
+    $scope.onHammerEnd = function onHammerEnd (event) {
+
+
+        //find the current element
+        var currentElem = document.getElementById(event.element[0].id)
+
+        //Reshow the Addon Navbar
+        $scope.currentNav = 'navbarAddon'
+
+
+        console.log("onHammerEnd", event.center.y, currentElem.className)
+        //Run delete Function if sticker/bubble is active AND event occurred below certain point on screen
+        if(event.center.y > 490 && currentElem.className.indexOf('addonActive') > -1){
+
+            //Poof Animation Runs
+            $('#puff').css({
+                left: event.center.x - 20 + 'px',
+                top: event.center.y - 80 + 'px'
+            }).show();
+            animatePoof();
+
+            //Remove Addon Function Runs
+            $scope.removeAddon(event.element[0].id)
+
+        }
+
+        //Remove Active Class from selected sticker/bubble
+        $("#addonWrapper").find('#' + event.element[0].id).removeClass('addonActive')
+
+
+        //Decrement hammerCounter
+        --hammerCounter
+
+    };     
+
+    var onErrorFunc = function () {
+        console.log('onErrorFunc')
+        $('#addonError').appendTo('#addonWrapper').slideDown("slow")
+
+        setTimeout(function(){
+            $('#addonError').fadeOut();
+        }, 3000)
+
+    }     
+
+    var onSuccessfulDelete = function () {
+        console.log('onSuccessfulDelete')
+        $('#addonSuccessfulDelete').appendTo('#addonWrapper').slideDown("slow")
+
+        setTimeout(function(){
+            $('#addonSuccessfulDelete').fadeOut();
+        }, 3000)
+
+    } 
+
+    function animatePoof() {
+        console.log("animate Poof Ran")
+        var bgTop = 0,
+            frame = 0,
+            frames = 6,
+            frameSize = 32,
+            frameRate = 80,
+            puff = $('#puff');
+        var animate = function(){
+            if(frame < frames){
+                puff.css({
+                    backgroundPosition: "0 " + bgTop + "px"
+                });
+                bgTop = bgTop - frameSize;
+                frame++;
+                setTimeout(animate, frameRate);
+            }
+        };
+        
+        animate();
+        setTimeout("$('#puff').hide()", frames * frameRate);
+    }
 
 });
 

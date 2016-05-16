@@ -23,7 +23,6 @@ core.directive('navbarAddon', function($rootScope) {
             scope.addons[i].addonFunction = function(){
 
                 if(this.type === "sticker"){
-                    console.log('this source', this.source)
                     scope.sticker(this.source)
                 }
                 if(this.type === "bubble"){
@@ -32,22 +31,22 @@ core.directive('navbarAddon', function($rootScope) {
                 if(this.type === "border"){
                     scope.border(this.source)
                 }
+
+                if(this.type === "filter"){
+                    scope.filter(this.source)
+                }
             }
 
             // console.log(scope.addons[i])
         }
 
-        var isAddon = true;
         //Functions from Camera Controller
         scope.changeNav = function(addon){
-            console.log('addon', addon)
             scope.addonType = addon;
             //Changes addonType to the current addon Tab
-            if (addon === 'filter') {
-                var isAddon = false;
+            if (scope.addonType === 'filter') {
                 setFilterThumbnails();
             }
-            else isAddon = true;
         };
 
         var setFilterThumbnails = function(){
@@ -100,7 +99,7 @@ core.directive('navbarAddon', function($rootScope) {
             }
         },
         {
-            state: "CHANGE",
+            state: "COMIFY",
             function: function() {
                 scope.setButtons('addonStates')
             }
@@ -122,37 +121,37 @@ core.directive('navbarAddon', function($rootScope) {
             }
         },
         {
-            state: 'filter',
+            state: 'Filter',
             function: function(){
                 scope.changeNav('filter')
             }
         }, 
         {
-            state: 'border',
+            state: 'Border',
             function: function(){
                 scope.changeNav('border')
             }
         },
         {
-            state: 'bubble',
+            state: 'Bubble',
             function: function(){
                 scope.changeNav('bubble')
             }
         },
         {
-            state: 'sticker',
+            state: 'Sticker',
             function: function(){
                 console.log('in here')
                 scope.changeNav('sticker')
             }
-        }
+        },
         ]
+
+        
 
         //Starting Set of Buttons and Filters
         scope.addonType = 'filter';
         window.onload = scope.setButtons('pictureFunctions');
-
-        // scope.activeButtons = scope.addonStates;
 
     }
   };
