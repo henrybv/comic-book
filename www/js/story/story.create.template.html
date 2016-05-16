@@ -1,4 +1,4 @@
-<form ua-storyCreate>
+<form ua-storyCreate> -->
   <ion-view title="New Story">
     <ion-content>
       <div class="list list-inset">
@@ -9,10 +9,59 @@
       </div>
       <div class="padding">
         <button ng-click="createNewStory()" class="button button-block button-positive">
-          <span ng-show="!loading">Create Story</span>
+          <span>Create Story</span>
           <i ng-show="loading" class="ion-loading-b"></i>
         </button>
       </div>
+
+<!-- FOR WHEN FRIENDS ARE ADDED -->
+    <div ng-show="collabAdded">
+      <ion-scroll direction="x" id="addonsBottom" style="background-color:white;">
+        <div>
+          <h4 style="text-align:center;margin-top:-4px">Collaborators:</h4>
+          <div class="item item-avatar" style="display:inline-block;border:none" ng-repeat="collabr in collaborators">
+            <img ng-src="http://loremflickr.com/420/240" style="max-height:55px;max-width:55px">
+            <!-- change this to collabr.username once we put usernames on seed -->
+            <p>{{collabr.email | cut:true:6:'..'}}</p>
+            <br>
+            <div style="text-align:center; background-color:#F08080;border-radius:5px;max-width:35px;" ng-click="removeCollabr(collabr)">
+              <p style="color:black;">X</p>
+            </div>
+          </div>
+        </div>
+      </ion-scroll>
+    </div>
+
+
+<!-- ADD FRIENDS BUTTON -->
+      <div style="text-align:center;" ng-hide="clicked">
+        <button class="button button-default button-secondary" style="background-color:#32db64;" ng-click="showAllUsers()">
+          <strong><span class="button-inner" style="color:white;">Add Friends</span></strong>
+          <ion-button-effect></ion-button-effect>
+        </button>
+      </div>
+
+<!-- SEARCH BY EMAIL INPUT -->
+      <div class="list list-inset" ng-show="clicked" style="margin-top:0px;">
+        <h4 style="text-align:center;">Search for friends...</h4>
+        <label class="item item-input">
+          <span class="input-label">by email</span>
+          <input type="text" ng-model="searchedEmail" class="form-control">
+        </label>
+      </div>
+
+<!-- LIST OF ALL USERS TO SEARCH FROM -->
+  <div style="display: block;">
+      <ion-list ng-show="clicked">
+        <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" ng-repeat="user in allUsers | filter: {email: searchedEmail}" ng-click=addFriend(user) ng-hide="user.collabr">
+          <img ng-src="http://loremflickr.com/420/240">
+          <!-- maybe search by username -->
+          <h2>{{ user.email }}</h2>
+          <p>placeholder</p>
+        </ion-item>
+      </ion-list>
+  </div>
+
     </ion-content>
   </ion-view>
-</form>
+<!-- </form>

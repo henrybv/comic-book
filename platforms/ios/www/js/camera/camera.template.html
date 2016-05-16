@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <ion-view view-title="Camera" id="container">
 <!-- 	IMPORTANT: Make sure we KEEP the ID's that I added to Ion-view and Ion-content -->
 	<ion-content scroll="false" id="addonWrapper" class="canvasAndAddonContainer">
@@ -59,6 +60,33 @@
 
 			<navbar-addon 
 			id="navbarAddon"
+=======
+<ion-view view-title="Edit Image">
+	<ion-content scroll="false">
+	
+		<canvas id='imageCanvas' width='375' height='375' data-caman-hidpi-disabled="true"></canvas>
+
+
+		<img ng-src={{sticker.source}} id="sticker{{sticker.id}}" ng-repeat="sticker in stickersArray" hm-panmove='onHammer' ng-click="test()" style="position:absolute; top:'0px'; left:'0px'">{{ sticker }}</img>
+<!-- 	    <button class="button" ng-click="takePicture()">Take Picture</button>
+	    <button class="button" ng-click="openPhotoLibrary()">Select Photo From Library</button> -->
+	    
+	    <canvas id='greyImage'width='125' height='125' data-caman-hidpi-disabled="true" ng-click="applyFilter('grey', 'imageCanvas')"></canvas>
+	    <canvas id='posterImage' width='125' height='125' data-caman-hidpi-disabled="true" ng-click="applyFilter('poster', 'imageCanvas')"></canvas>
+	    <canvas id='brownImage' width='125' height='125' data-caman-hidpi-disabled="true" ng-click="applyFilter('brown', 'imageCanvas')"></canvas>
+	    <canvas id='blackImage' width='125' height='125' data-caman-hidpi-disabled="true" ng-click="applyFilter('black', 'imageCanvas')"></canvas>
+
+	  
+		<button class="button" ng-click="saveImage()">Save Image</button>
+
+
+	</ion-content>
+	</ion-footer-bar>
+    	<div>{{filters}}</div>
+  		<div>
+			<navbar-addon 
+			id="navbarAddon" 
+>>>>>>> master
 			test="testFunc()" 
 			addons="allAddons"
 			takepicture="takePicture()"
@@ -69,6 +97,7 @@
 			border="border"
 			filter="filter"
 			></navbar-addon>
+<<<<<<< HEAD
 
 		</div>
 
@@ -80,6 +109,8 @@
 			<div
 			id="navbarDeleteInner"
 			> DELETE </div>
+=======
+>>>>>>> master
 		</div>
 	</ion-footer-bar>
 </ion-view>

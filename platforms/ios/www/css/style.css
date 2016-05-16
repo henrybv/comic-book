@@ -28,6 +28,7 @@
   width:100%;
   z-index: 5;
     -webkit-box-shadow: 
+<<<<<<< HEAD
   0px 0px 10px #000;
   border-radius: 5px
 
@@ -42,6 +43,9 @@
   font-family: Impact, Charcoal, sans-serif;
   font-size: 50px;
   text-align: center
+=======
+	0px 0px 10px #000;
+>>>>>>> master
 }
 
 #addonsStates {
@@ -61,6 +65,10 @@
 	white-space: nowrap;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 #squareAndAddonFrames {
 	height: 125px;
 	width: 125px;
@@ -70,6 +78,7 @@
 	background: white;
 }*/
 
+<<<<<<< HEAD
 .canvasAndAddonContainer {
     overflow: hidden;
     width: 100%;
@@ -246,5 +255,7 @@
 
 
 
+=======
+>>>>>>> master
 
 

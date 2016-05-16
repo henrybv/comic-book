@@ -11,7 +11,11 @@ core.factory('UserFactory', function($http) {
     UserFactory.getAllUsers = function(){
         return $http.get(base +'/api/members/')
         .then(function(users){
-            return users.data;
+            var users = users.data;
+            users.forEach(function(user) {
+                user.collabr = false;
+            });
+            return users;
         });
     };
 

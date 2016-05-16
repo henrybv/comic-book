@@ -1,12 +1,13 @@
-<ion-view view-title="Camera" id="container">
+<ion-view view-title="Edit Image" id="container">
 <!-- 	IMPORTANT: Make sure we KEEP the ID's that I added to Ion-view and Ion-content -->
 	<ion-content scroll="false" id="addonWrapper" class="canvasAndAddonContainer">
+	
+		<canvas id='imageCanvas' width='375' height='375' data-caman-hidpi-disabled="true"></canvas>
 
 		<p id="addonError" style="display: none;">Too Many Stickers!</p>
 		<p id="addonSuccessfulDelete" style="display: none;">Successfully Deleted</p>
 		<div id="puff"></div>
 		
-		<canvas id='myCanvas' width='375' height='375'></canvas>
 
 		<img 
 		ng-src={{sticker.source}} 
@@ -44,19 +45,14 @@
 	    hm-panend="onHammerEnd"
 	    ng-repeat="bubble in bubblesArray" ></textarea>
 
-<!-- 	    <img
-	    src='assets/icons/delete_.png'
-	    id="deleteDiv"
-	    style="display: none;"
-	    >
-	    </img> -->
+
+
+
 
 	</ion-content>
-	</ion-footer-bar id="footerbar">
-  		<div 
+  	<div 
   		id="navbarAddonWrapper"
   		ng-if="currentNav === 'navbarAddon'">
-
 			<navbar-addon 
 			id="navbarAddon"
 			test="testFunc()" 
@@ -69,17 +65,15 @@
 			border="border"
 			filter="filter"
 			></navbar-addon>
+	</div>
 
-		</div>
+	<div
 
+	id='navbarDelete'
+	ng-if="currentNav === 'navbarDelete'"
+	>
 		<div
-	
-		id='navbarDelete'
-		ng-if="currentNav === 'navbarDelete'"
-		>
-			<div
-			id="navbarDeleteInner"
-			> DELETE </div>
-		</div>
-	</ion-footer-bar>
+		id="navbarDeleteInner"
+		> DELETE </div>
+	</div>
 </ion-view>

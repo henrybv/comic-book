@@ -1,7 +1,12 @@
 <form ua-signup ng-submit="sendSignup(signup)">
   <ion-view title="Sign Up">
     <ion-content>
+
       <div class="list list-inset">
+        <label class="item item-input">
+          <span class="input-label">Username</span>
+          <input type="text" name="userame" ng-model="signup.username" class="form-control" id="username">
+        </label>
         <label class="item item-input">
           <span class="input-label">Email</span>
           <input type="email" name="email" ng-model="signup.email" class="form-control" id="email">

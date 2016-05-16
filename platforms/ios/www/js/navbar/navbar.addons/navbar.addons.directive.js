@@ -47,8 +47,65 @@ core.directive('navbarAddon', function($rootScope) {
         scope.myWidth = function(){
             newWidth = Math.floor((100/scope.activeButtons.length))
             return newWidth.toString() + '%'
+<<<<<<< HEAD
         }
 
+        scope.setButtons = function(buttonType){
+            // var divElem = document.getElementsByClassName("button buttonsToGrab")
+            if (buttonType === 'addonStates') {
+                scope.activeButtons = scope.addonStates;
+            }
+            if (buttonType === 'pictureFunctions') {                
+                scope.activeButtons = scope.pictureFunctions;
+            }
+
+        };
+
+
+        //Take Picture Directive
+        scope.pictureFunctions = [
+        {
+            state: "CAMERA",
+            function: function(){
+                scope.takepicture()
+                scope.setButtons('addonStates')
+            }
+        },
+        {
+            state: "LIBRARY",
+            function: function() {
+                scope.openphotolibrary()
+                scope.setButtons('addonStates')
+            }
+        },
+        {
+            state: "CHANGE",
+            function: function() {
+                scope.setButtons('addonStates')
+            }
+=======
+>>>>>>> master
+        }
+        // {
+        //     state: 'TEST',
+        //     function: function(){
+        //         setButtons('addonStates')
+        //     }
+        // }
+        ]
+
+<<<<<<< HEAD
+        //Addons Directive
+        scope.addonStates = [
+        {
+            state: '<---',
+            function: function(){
+                scope.setButtons('pictureFunctions')
+            }
+        },
+        {
+            state: 'Filter',
+=======
         scope.setButtons = function(buttonType){
             // var divElem = document.getElementsByClassName("button buttonsToGrab")
             if (buttonType === 'addonStates') {
@@ -100,24 +157,34 @@ core.directive('navbarAddon', function($rootScope) {
             }
         },
         {
-            state: 'Filter',
+            state: 'filter',
+>>>>>>> master
             function: function(){
                 scope.changeNav('filter')
             }
         }, 
         {
+<<<<<<< HEAD
             state: 'Border',
+=======
+            state: 'border',
+>>>>>>> master
             function: function(){
                 scope.changeNav('border')
             }
         },
         {
+<<<<<<< HEAD
             state: 'Bubble',
+=======
+            state: 'bubble',
+>>>>>>> master
             function: function(){
                 scope.changeNav('bubble')
             }
         },
         {
+<<<<<<< HEAD
             state: 'Sticker',
             function: function(){
                 scope.changeNav('sticker')
@@ -127,10 +194,24 @@ core.directive('navbarAddon', function($rootScope) {
 
         
 
+=======
+            state: 'sticker',
+            function: function(){
+                scope.changeNav('sticker')
+            }
+        }
+        ]
+
+>>>>>>> master
         //Starting Set of Buttons and Filters
         scope.addonType = 'filter';
         window.onload = scope.setButtons('pictureFunctions');
 
+<<<<<<< HEAD
+=======
+        // scope.activeButtons = scope.addonStates;
+
+>>>>>>> master
     }
   };
 })

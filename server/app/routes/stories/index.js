@@ -19,14 +19,17 @@ router.get('/', function(req, res, next) {
 //TEST THIS
 //get a specific story and all its squares
 router.get('/:storyId', function(req, res, next) {
-    Story.findById(req.params.storyId).populate('squares').exec()
+    Story.findById(req.params.storyId)
+    .populate('squares friends')
+    .exec()
     .then(function(story) {
+        console.log('get story from route', story)
         res.status(200).send(story);
     })
     .catch(next)
 });
 
-//get all stories for a given user
+//get all stories created by a user
 router.get('/user/:userId', function(req, res, next) {
     console.log('user id', req.params.userId)
     Story.find({owner: req.params.userId}).exec()
@@ -36,10 +39,24 @@ router.get('/user/:userId', function(req, res, next) {
     .catch(next)
 });
 
-router.post('/', function(req, res, next) {
-    Story.create(req.body)
+// get all stories a user is a collaborator on
+router.get('/collaborator/:userId', function(req, res, next) {
+    Story.find({friends: req.params.userId}).exec()
     .then(function(stories) {
         res.status(200).send(stories);
+    })
+    .catch(next)
+});
+
+router.post('/', function(req, res, next) {
+    Story.create(req.body)
+    .then(function(story) {
+        console.log('story before populate', story)
+        return  Story.findById(story._id).populate('friends');
+    })
+    .then(function(story) {
+        console.log('story in after populate', story)
+        res.send(story);
     })
     .catch(next)
 });
@@ -47,14 +64,15 @@ router.post('/', function(req, res, next) {
 //create new square AND update story with a new square
 router.put('/:storyId/squares', function(req, res, next){
     var SQUARETOSEND;
-    return mongoose.model('Square').create({})
+    return mongoose.model('Square').create({creator: req.body.creator})
     .then(function(newSquare){
         // console.log('NEW SQUARE: ', newSquare);
         // var writeToPath = path.join(__dirname, '../../assets/' + newSquare._id);
         // fs.writeFile(writeToPath, req.body.dataUrl, function(err) {
             // console.log('hit callback');
         // })
-        return mongoose.model('Square').findByIdAndUpdate(newSquare._id, {upsert: true, new: true})
+        return mongoose.model('Square')
+        .findByIdAndUpdate(newSquare._id, {upsert: true, new: true})
     })
     .then(function(square) {
         SQUARETOSEND = square;
