@@ -17,17 +17,16 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
 
     var urlToNewCanvas = function(url, canvasId){
     	var canvas = document.createElement('canvas');
-    	canvas.setAttribute = ('id', canvasId);
-    	// canvas.setAttribute = ('width', '375');
-    	// canvas.setAttribute = ('height', '375');
+        canvas.id = canvasId;
+        canvas.width = canvas.height = 115;
         var context = canvas.getContext('2d');
         var newImage = new Image();
-        newImage.src = url;
-        newImage.onload = function(){
-            context.drawImage(newImage, 0, 0);
-        }
         var elem = document.getElementById('here')
         elem.appendChild(canvas);
+        newImage.src = url;
+        newImage.onload = function(){
+            context.drawImage(newImage, 0, 0, newImage.width, newImage.height, 0, 0, canvas.width, canvas.height);
+        }
     }
 
 	

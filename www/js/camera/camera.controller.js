@@ -1,7 +1,8 @@
-core.controller('CameraCtrl', function(story, getAddons, $scope, $cordovaCamera, $cordovaFileTransfer, Grafi, $localStorage, CameraFactory, FilterFactory) {
+core.controller('CameraCtrl', function($state, story, getAddons, $scope, $cordovaCamera, $cordovaFileTransfer, Grafi, $localStorage, CameraFactory, FilterFactory) {
 	$scope.story = story;
     $scope.currentUser = $localStorage.user._id;
     $scope.currentSquare;
+    $scope.stickersArray = [];
 
     //REMOVE LINK WHEN USING URL FROM PHOTO / ALBUM LIBRARY
     $scope.url = '../../img/ben.png';
@@ -81,14 +82,19 @@ core.controller('CameraCtrl', function(story, getAddons, $scope, $cordovaCamera,
         });
     }
 
-    // $scope.saveImage = function(){
-       //  var canvas = document.getElementById('imageCanvas');
-       //  var finalDataURL = canvas.toDataURL('image/png')
-       //  CameraFactory.createSquare(finalDataURL, $scope.story._id, $scope.currentUser)
-       //  .then(function(square){
-       //      $scope.currentSquare = square;
-       //  })
-    // }
+    $scope.saveImage = function(){
+        var canvas = document.getElementById('imageCanvas');
+        $scope.stickersArray.forEach(function(sticker){
+            urlToCanvas(sticker.source, 'imageCanvas', sticker.x, sticker.y)
+        })
+        var finalDataURL = canvas.toDataURL('image/png')
+        CameraFactory.createSquare(finalDataURL, $scope.story._id, $scope.currentUser)
+        .then(function(square){
+            $scope.currentSquare = square;
+            console.log('saved image, in ctrl', $scope.currentSquare)
+            $state.go('story', {storyId: $scope.story._id});
+        })
+    }
 
     var combineLayers = function(imageCanvasId, addonCanvasId, x, y){
         var imageCanvas = document.getElementById(imageCanvasId);
@@ -100,11 +106,11 @@ core.controller('CameraCtrl', function(story, getAddons, $scope, $cordovaCamera,
         imageContext.drawImage(addonsContext, x, y);
     }
 
-    $scope.addStickersToCanvas = function(){
-        $scope.stickersArray.forEach(function(sticker){
-            urlToCanvas(sticker.source, 'imageCanvas', sticker.x, sticker.y)
-        })
-    }
+    // $scope.addStickersToCanvas = function(){
+    //     $scope.stickersArray.forEach(function(sticker){
+    //         urlToCanvas(sticker.source, 'imageCanvas', sticker.x, sticker.y)
+    //     })
+    // }
 
     // $scope.canvas = document.getElementById('imageCanvas');
     // $scope.addons = document.getElementById('addonCanvas');
