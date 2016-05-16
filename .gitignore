@@ -1,2 +1,4 @@
 node_modules
 server/env
+bower_components
+.DS_Store
