@@ -1,28 +1,60 @@
-<ion-view view-title="Edit Image">
-	<ion-content scroll="false">
+<ion-view view-title="Edit Image" id="container">
+<!-- 	IMPORTANT: Make sure we KEEP the ID's that I added to Ion-view and Ion-content -->
+	<ion-content scroll="false" id="addonWrapper" class="canvasAndAddonContainer">
 	
 		<canvas id='imageCanvas' width='375' height='375' data-caman-hidpi-disabled="true"></canvas>
 
+		<p id="addonError" style="display: none;">Too Many Stickers!</p>
+		<p id="addonSuccessfulDelete" style="display: none;">Successfully Deleted</p>
+		<div id="puff"></div>
+		
 
-		<img ng-src={{sticker.source}} id="sticker{{sticker.id}}" ng-repeat="sticker in stickersArray" hm-panmove='onHammer' ng-click="test()" style="position:absolute; top:'0px'; left:'0px'">{{ sticker }}</img>
-<!-- 	    <button class="button" ng-click="takePicture()">Take Picture</button>
-	    <button class="button" ng-click="openPhotoLibrary()">Select Photo From Library</button> -->
-	    
-	    <canvas id='greyImage'width='125' height='125' data-caman-hidpi-disabled="true" ng-click="applyFilter('grey', 'imageCanvas')"></canvas>
-	    <canvas id='posterImage' width='125' height='125' data-caman-hidpi-disabled="true" ng-click="applyFilter('poster', 'imageCanvas')"></canvas>
-	    <canvas id='brownImage' width='125' height='125' data-caman-hidpi-disabled="true" ng-click="applyFilter('brown', 'imageCanvas')"></canvas>
-	    <canvas id='blackImage' width='125' height='125' data-caman-hidpi-disabled="true" ng-click="applyFilter('black', 'imageCanvas')"></canvas>
+		<img 
+		ng-src={{sticker.source}} 
+		id="sticker{{sticker.id}}" 
+		ng-repeat="sticker in stickersArray" 
+		hm-panmove='onHammer'
+	    hm-press="onPress"
+	    hm-pressup="onHammerEnd"
+	    hm-panend="onHammerEnd"
+		ng-click="test()" 
+		class="addonDivs"
+		addtype="sticker" 
+		style="
+			position:absolute; 
+			top:0px; 
+			left:0px">
+		</img>	
 
-	  
-		<button class="button" ng-click="saveImage()">Save Image</button>
+	    <textarea 
+	    elastic 
+	    ng-model="model.input" 
+	    class="inputBubble addonDivs" 
+	    id="bubble{{bubble.id}}"
+	    style="position: absolute;
+			  top: 0px;
+			  left: 0px;
+			  background-color: white;
+			  border-radius: 30px;
+			  overflow: hidden;
+			  height: 20px"
+	    placeholder="Text"
+	    hm-panmove="onHammer"
+	    hm-press="onPress"
+	    hm-pressup="onHammerEnd"
+	    hm-panend="onHammerEnd"
+	    ng-repeat="bubble in bubblesArray" ></textarea>
+
+
+
 
 
 	</ion-content>
-	<!-- </ion-footer-bar> -->
-    	<div>{{filters}}</div>
-  		<div>
+  	<div 
+  		id="navbarAddonWrapper"
+  		ng-if="currentNav === 'navbarAddon'">
 			<navbar-addon 
-			id="navbarAddon" 
+			id="navbarAddon"
 			test="testFunc()" 
 			addons="allAddons"
 			takepicture="takePicture()"
@@ -33,6 +65,15 @@
 			border="border"
 			filter="filter"
 			></navbar-addon>
-		</div>
-	<!-- </ion-footer-bar> -->
+	</div>
+
+	<div
+
+	id='navbarDelete'
+	ng-if="currentNav === 'navbarDelete'"
+	>
+		<div
+		id="navbarDeleteInner"
+		> DELETE </div>
+	</div>
 </ion-view>
