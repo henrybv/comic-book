@@ -77,6 +77,16 @@ core.config(function($stateProvider, $urlRouterProvider) {
     url: '/home/myCollabs',
     templateUrl: 'js/home/home.myCollabs.template.html'
   })
+  .state('settings', {
+    url: '/settings',
+    templateUrl: 'js/settings/settings.template.html',
+    controller: 'MyAccountCtrl',
+    resolve: {
+      loggedInUser: function(AuthService) {
+        return AuthService.getLoggedInUser()
+      }
+    }
+  })
   .state('camera', {
     url: '/camera/:storyId',
     templateUrl: 'js/camera/camera.template.html',
