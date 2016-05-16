@@ -1,4 +1,12 @@
-var base = 'http://192.168.1.183:1337'
+//FULLSTACK BASE - Debanshi
+var base = 'http://192.168.1.184:1337'
+// var base = 'http://192.168.0.20:1337'
+//FULLSTACK BASE - Eric
+// var base = 'http://192.168.1.133:1337'
+//FULLSTACK BASE - Jeff
+
+//HOME BASE
+// var base = 'http://192.168.1.183:1337'
 // var base = 'http://192.168.1.7:1337'
 // 127.0.0.1 dynamically routes to your local IP.
 // var base = 'http://127.0.0.1:27017:1337'
@@ -79,6 +87,7 @@ core.config(function($stateProvider, $urlRouterProvider) {
         return StoryFactory.getStoryById($stateParams.storyId);
       },
       getAddons: function(CameraFactory, $stateParams) {
+        console.log('in get addons')
         return CameraFactory.getFilters()
       }
     }
