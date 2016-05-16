@@ -1,22 +1,64 @@
-<ion-view view-title="Account">
-	<ion-content scroll="false">
-		<canvas ng-show="Camera" id='myCanvas' width='375' height='375'></canvas>
-		<!-- <div id="stickerWrapper"> -->
-		  	<!-- <div id="speechBubble"> -->
-<!-- 		    	<textarea elastic ng-model="model.input" class="inputBubble" placeholder="Text"></textarea> -->
-			<!-- </div> -->
-			<img ng-src={{sticker.source}} id="sticker{{sticker.id}}" ng-repeat="sticker in stickersArray" hm-panmove='onHammer' ng-click="test()" style="position:absolute; top:'0px'; left:'0px'">{{ sticker }}</img>
-		<!-- </div> -->
-<!-- 		<img ng-show="!Camera" src='https://placehold.it/375x375'></img> -->
-<!-- 	    <button class="button" ng-click="takePicture()">Take Picture</button>
-	    <button class="button" ng-click="openPhotoLibrary()">Select Photo From Library</button>
-	    <button class="button" ng-click="getImageURI()">Get Image URI</button> -->
+<ion-view view-title="Camera" id="container">
+<!-- 	IMPORTANT: Make sure we KEEP the ID's that I added to Ion-view and Ion-content -->
+	<ion-content scroll="false" id="addonWrapper" class="canvasAndAddonContainer">
+
+		<p id="addonError" style="display: none;">Too Many Stickers!</p>
+		<p id="addonSuccessfulDelete" style="display: none;">Successfully Deleted</p>
+		<div id="puff"></div>
+		
+		<canvas id='myCanvas' width='375' height='375'></canvas>
+
+		<img 
+		ng-src={{sticker.source}} 
+		id="sticker{{sticker.id}}" 
+		ng-repeat="sticker in stickersArray" 
+		hm-panmove='onHammer'
+	    hm-press="onPress"
+	    hm-pressup="onHammerEnd"
+	    hm-panend="onHammerEnd"
+		ng-click="test()" 
+		class="addonDivs"
+		addtype="sticker" 
+		style="
+			position:absolute; 
+			top:0px; 
+			left:0px">
+		</img>	
+
+	    <textarea 
+	    elastic 
+	    ng-model="model.input" 
+	    class="inputBubble addonDivs" 
+	    id="bubble{{bubble.id}}"
+	    style="position: absolute;
+			  top: 0px;
+			  left: 0px;
+			  background-color: white;
+			  border-radius: 30px;
+			  overflow: hidden;
+			  height: 20px"
+	    placeholder="Text"
+	    hm-panmove="onHammer"
+	    hm-press="onPress"
+	    hm-pressup="onHammerEnd"
+	    hm-panend="onHammerEnd"
+	    ng-repeat="bubble in bubblesArray" ></textarea>
+
+<!-- 	    <img
+	    src='assets/icons/delete_.png'
+	    id="deleteDiv"
+	    style="display: none;"
+	    >
+	    </img> -->
+
 	</ion-content>
-	</ion-footer-bar>
-    	<div>{{filters}}</div>
-  		<div>
+	</ion-footer-bar id="footerbar">
+  		<div 
+  		id="navbarAddonWrapper"
+  		ng-if="currentNav === 'navbarAddon'">
+
 			<navbar-addon 
-			id="navbarAddon" 
+			id="navbarAddon"
 			test="testFunc()" 
 			addons="allAddons"
 			takepicture="takePicture()"
@@ -27,6 +69,17 @@
 			border="border"
 			filter="filter"
 			></navbar-addon>
+
+		</div>
+
+		<div
+	
+		id='navbarDelete'
+		ng-if="currentNav === 'navbarDelete'"
+		>
+			<div
+			id="navbarDeleteInner"
+			> DELETE </div>
 		</div>
 	</ion-footer-bar>
 </ion-view>

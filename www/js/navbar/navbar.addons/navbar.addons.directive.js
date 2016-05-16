@@ -100,36 +100,36 @@ core.directive('navbarAddon', function($rootScope) {
             }
         },
         {
-            state: 'filter',
+            state: 'Filter',
             function: function(){
                 scope.changeNav('filter')
             }
         }, 
         {
-            state: 'border',
+            state: 'Border',
             function: function(){
                 scope.changeNav('border')
             }
         },
         {
-            state: 'bubble',
+            state: 'Bubble',
             function: function(){
                 scope.changeNav('bubble')
             }
         },
         {
-            state: 'sticker',
+            state: 'Sticker',
             function: function(){
                 scope.changeNav('sticker')
             }
-        }
+        },
         ]
+
+        
 
         //Starting Set of Buttons and Filters
         scope.addonType = 'filter';
         window.onload = scope.setButtons('pictureFunctions');
-
-        // scope.activeButtons = scope.addonStates;
 
     }
   };
