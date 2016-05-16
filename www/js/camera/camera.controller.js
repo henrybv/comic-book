@@ -1,9 +1,8 @@
 core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $cordovaCamera, $cordovaFileTransfer, Grafi, $localStorage, CameraFactory, FilterFactory) {
 	$scope.story = story;
     $scope.currentUser = $localStorage.user._id;
-    $scope.currentSquare;
+    // $scope.currentSquare;
     $scope.stickersArray = [];
-    $scope.test;
 
     //REMOVE LINK WHEN USING URL FROM PHOTO / ALBUM LIBRARY
     $scope.url = '../../img/ben.png';
@@ -17,7 +16,6 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         var context = canvas.getContext('2d');
         var newImage = new Image();
         newImage.src = url;
-        console.log('new image', newImage)
         // newImage.crossOrigin = '';
         newImage.onload = function(){
             context.drawImage(newImage, x, y, canvas.width, canvas.height);
@@ -67,7 +65,6 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
             // $scope.imgURI = "data:image/jpeg;base64," + imageData;
             $scope.url = imageURL;
             urlToCanvas(imageURL, 'imageCanvas');
-            setFilterThumbnails();
         });
     }
 
@@ -86,7 +83,6 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         $cordovaCamera.getPicture(options).then(function(imageURL) {
             $scope.url = imageURL;
             urlToCanvas(imageURL, 'imageCanvas');
-            // setFilterThumbnails();
         });
     }
 
@@ -102,14 +98,8 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
     //     imageContext.drawImage(addonsContext, x, y);
     // }
 
-    // var addStickersToCanvas = function(){
-    //     $scope.stickersArray.forEach(function(sticker){
-    //         urlToCanvas(sticker.source, 'imageCanvas', sticker.x, sticker.y)
-    //     })
-    // }
 
    var addStickersToCanvas = function(){
-        console.log('in add stickers to canvas funct', $scope.stickersArray)
         var canvas = document.getElementById('imageCanvas');
         var context = canvas.getContext('2d');
         var onloadsRunning = [];
@@ -117,18 +107,15 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
             var x = sticker.x;
             var y = sticker.y;
             var newImage = new Image();
-            // newImage.crossOrigin = '';
             newImage.src = sticker.source;
             var onloadPromise = $q(function(resolve, reject){
                 newImage.onload = function(){
                     context.drawImage(newImage, 0, 0);
                     resolve();
-                    // var dataURL = canvas.toDataURL('image/png');
                 }
                 newImage.onerror = reject;
             })
             onloadsRunning.push(onloadPromise);
-            // return dataURL;
         })
         return $q.all(onloadsRunning);
     }
@@ -142,8 +129,8 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
             CameraFactory.createSquare(finalDataURL, $scope.story._id, $scope.currentUser)
         })        
         .then(function(square){
-            $scope.currentSquare = square;
-            console.log('saved image, in ctrl', $scope.currentSquare)
+            // $scope.currentSquare = square;
+            // console.log('saved image, in ctrl', $scope.currentSquare)
             $state.go('story', {storyId: $scope.story._id});
         })
         .catch(function(err){
@@ -499,44 +486,4 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
     }
 
 });
-
-
-
-//OLD SKETCH FILTER
-    // $scope.filterImage = function(filterType, canvasId){
-    //     // var canvas = $scope.canvas;
-    //     var canvas = document.getElementById(canvasId);
-    //     var filterType = filterType || 'sketch';
-    //     var context = canvas.getContext('2d');
-    //     var imageData = context.getImageData(0,0, canvas.width, canvas.height);
-    //     var finalImageData;
-    //     if (filterType === 'sketch'){
-    //         var a = Grafi.edge(imageData, {level: 20});
-    //         var b = Grafi.invert(a)
-    //             // for (var i=0; i < a.length; i+=4){
-    //             //   a[i]     = 255 - a[i];     // red
-    //             //   a[i + 1] = 255 - a[i + 1]; // green
-    //             //   a[i + 2] = 255 - a[i + 2]; // blue
-    //             // }
-    //         var c = Grafi.contrast(a)
-    //         // var c = Grafi.brightness(a);
-    //         finalImageData = c;
-    //     }
-    //     if (filterType === 'posterize'){
-    //         finalImageData = Grafi.posterize(imageData)
-    //     }
-    //     context.putImageData(finalImageData, 0, 0);
-    //     $scope.url = canvas.toDataURL('image/png');
-    // }
-
-//FUNCTION TO UPDATE CANVAS
-    // var updateCanvas = function(canvasId, changeFunct){
-    //     var canvas = document.getElementById(canvasId);
-    //     var context = canvas.getContext('2d');
-    //     var imageData = context.getImageData(0,0, canvas.width, canvas.height);
-    //     var dataURL = canvas.toDataURL('image/png');
-    //     var newImageData = changeFunct(dataURL);
-    //     context.putImageData(finalImageData, 0, 0);
-    // }
-
 
