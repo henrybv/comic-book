@@ -1,22 +1,17 @@
 //FULLSTACK BASE - Debanshi
 // var base = 'http://192.168.1.184:1337'
+// var base = 'http://192.168.1.183:1337'
 // var base = 'http://192.168.0.20:1337'
+// var base = 'http://192.168.1.184:1337'
 //FULLSTACK BASE - Eric
 var base = 'http://192.168.1.133:1337'
+// var base = 'http://192.168.0.20:1337'
 //FULLSTACK BASE - Jeff
-
-//HOME BASE
-// var base = 'http://192.168.1.183:1337'
-// var base = 'http://192.168.1.7:1337'
-// 127.0.0.1 dynamically routes to your local IP.
-// var base = 'http://127.0.0.1:27017:1337'
-// var base = 'http://localhost:1337'
-// var base = 'http://127.0.0.1:27017:1337'
-// var base = 'http://192.168.1.204:1337'
 // var base = 'http://192.168.1.133:1337'
+//FULLSTACK BASE - Henry
+// var base = 'http://192.168.1.204:1337'
+
 // var base = 'http://localhost:1337';
-
-
 
 // Ionic Starter App
 
@@ -70,6 +65,7 @@ core.config(function($stateProvider, $urlRouterProvider) {
       }
     }
   })
+<<<<<<< HEAD
   // .state('home.myStories', {
   //   url: '/home/myStories',
   //   templateUrl: 'js/home/home.myStories.template.html'
@@ -78,6 +74,26 @@ core.config(function($stateProvider, $urlRouterProvider) {
   //   url: '/home/myCollabs',
   //   templateUrl: 'js/home/home.myCollabs.template.html'
   // })
+=======
+  .state('home.myStories', {
+    url: '/home/myStories',
+    templateUrl: 'js/home/home.myStories.template.html'
+  })
+  .state('home.myCollabs', {
+    url: '/home/myCollabs',
+    templateUrl: 'js/home/home.myCollabs.template.html'
+  })
+  .state('settings', {
+    url: '/settings',
+    templateUrl: 'js/settings/settings.template.html',
+    controller: 'MyAccountCtrl',
+    resolve: {
+      loggedInUser: function(AuthService) {
+        return AuthService.getLoggedInUser()
+      }
+    }
+  })
+>>>>>>> master
   .state('camera', {
     url: '/camera/:storyId',
     templateUrl: 'js/camera/camera.template.html',
