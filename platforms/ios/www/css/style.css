@@ -28,7 +28,6 @@
   width:100%;
   z-index: 5;
     -webkit-box-shadow: 
-<<<<<<< HEAD
   0px 0px 10px #000;
   border-radius: 5px
 
@@ -43,9 +42,6 @@
   font-family: Impact, Charcoal, sans-serif;
   font-size: 50px;
   text-align: center
-=======
-	0px 0px 10px #000;
->>>>>>> master
 }
 
 #addonsStates {
@@ -65,10 +61,7 @@
 	white-space: nowrap;
 }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> master
 #squareAndAddonFrames {
 	height: 125px;
 	width: 125px;
@@ -78,7 +71,6 @@
 	background: white;
 }*/
 
-<<<<<<< HEAD
 .canvasAndAddonContainer {
     overflow: hidden;
     width: 100%;
@@ -137,25 +129,103 @@
   overflow: hidden;
 }
 */
-.inputBubble {
+
+
+#textarea {
+  vertical-align: center;
   text-align: center;
-  background-color: white;
-  border: 0px;
-  border-radius: 5px;
+  background: transparent;
+  /*border: 0px;*/
+  border-radius: 37px;
+  width: 145px;
+  height: 40px;
   resize: none;
-  padding: 10px;
+  padding: 15px;
   border: 2px solid #000;
 }
 
-/*.circle {
+.inputBubble 
+{
   position: absolute;
-  top: 20;
-  left: 20;
-  height: 30px;
-  width: 30px;
-  border-radius: 30px;
-  display: inline-block;
-  background-color: blue;
+  /*background: transparent;*/
+  top: 0px;
+  left: 0px;
+  width: 145px;
+  background: #FFFFFF;
+  -webkit-border-radius: 37px;
+  -moz-border-radius: 37px;
+  border-radius: 37px;
+  /*border: #000000 solid 3px;*/
+}
+
+.inputBubble:after 
+{
+  position: absolute;
+  border-style: solid;
+  border-width: 67px 6px 0;
+  border-color: #FFFFFF transparent;
+  display: block;
+  width: 0;
+  z-index: 1;
+  margin-left: -6px;
+  bottom: -67px;
+  left: 69%;
+}
+
+.inputBubble:before 
+{
+  position: absolute;
+  border-style: solid;
+  border-width: 69px 8px 0;
+  border-color: #000000 transparent;
+  display: block;
+  width: 0;
+  z-index: 0;
+  margin-left: -8px;
+  bottom: -40px;
+  left: 69%;
+}
+
+.pointer {
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 35px 4px 0;
+  border-color: #FFFFFF transparent;
+  display: block;
+  width: 0;
+  z-index: 1;
+  margin-left: -6px;
+  bottom: -32px;
+  left: 70%;
+}
+
+.pointerBorder {
+  content: " ";
+  position: absolute;
+  border-style: solid;
+  border-width: 40px 6px 0px;
+  border-color: rgb(0, 0, 0) transparent;
+  display: block;
+  width: 0px;
+  z-index: 0;
+  margin-left: -8px;
+  bottom: -39px;
+  left: 70%;
+}
+
+/*.pointerBorder {
+  content: "";
+  position: absolute;
+  border-style: solid;
+  border-width: 69px 8px 0px;
+  border-color: rgb(0, 0, 0) transparent;
+  display: block;
+  width: 0px;
+  z-index: 0;
+  margin-left: -8px;
+  bottom: -67px;
+  left: 69%;
 }*/
 
 /*-------DELETE DIV--------*/
@@ -255,7 +325,5 @@
 
 
 
-=======
->>>>>>> master
 
 

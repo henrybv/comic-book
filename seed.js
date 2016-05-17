@@ -93,27 +93,51 @@ var userSeed = [
 
 var addonSeed = [
     {
-        name: 'Bubble A',
-        source: 'https://placehold.it/125x125/934636/025462/?text=Bubble+A+125+x+125',
-        thumbnail: 'https://placehold.it/125x125/934636/025462/?text=Bubble+A+125+x+125',
+        name: 'left_bottom_speech',
+        source: 'assets/bubbles/speech_leftBottom.png',
+        thumbnail: 'assets/bubbles/speech_leftBottom.png',
         type: 'bubble'
     },    
     {
-        name: 'Bubble B',
-        source: 'https://placehold.it/125x125/934636/025462/?text=Bubble+B+125+x+125',
-        thumbnail: 'https://placehold.it/125x125/934636/025462/?text=Bubble+A+125+x+125',
+        name: 'left_top_speech',
+        source: 'assets/bubbles/speech_leftTop.png',
+        thumbnail: 'assets/bubbles/speech_leftTop.png',
         type: 'bubble'
     },    
     {
-        name: 'Bubble C',
-        source: 'https://placehold.it/125x125/934636/025462/?text=Bubble+C+125+x+125',
-        thumbnail: 'https://placehold.it/125x125/934636/025462/?text=Bubble+A+125+x+125',
+        name: 'right_bottom_speech',
+        source: 'assets/bubbles/speech_rightBottom.png',
+        thumbnail: 'assets/bubbles/speech_rightBottom.png',
         type: 'bubble'
     },    
     {
-        name: 'Bubble D',
-        source: 'https://placehold.it/125x125/934636/025462/?text=Bubble+D+125+x+125',
-        thumbnail: 'https://placehold.it/125x125/934636/025462/?text=Bubble+A+125+x+125',
+        name: 'right_top_speech',
+        source: 'assets/bubbles/speech_rightTop.png',
+        thumbnail: 'assets/bubbles/speech_rightTop.png',
+        type: 'bubble'
+    },        
+    {
+        name: 'left_bottom_thought',
+        source: 'assets/bubbles/thought_leftBottom.png',
+        thumbnail: 'assets/bubbles/thought_leftBottom.png',
+        type: 'bubble'
+    },    
+    {
+        name: 'right_bottom_thought',
+        source: 'assets/bubbles/thought_rightBottom.png',
+        thumbnail: 'assets/bubbles/thought_rightBottom.png',
+        type: 'bubble'
+    },    
+    {
+        name: 'left_top_thought',
+        source: 'assets/bubbles/thought_leftTop.png',
+        thumbnail: 'assets/bubbles/thought_leftTop.png',
+        type: 'bubble'
+    },    
+    {
+        name: 'right_top_thought',
+        source: 'assets/bubbles/thought_rightTop.png',
+        thumbnail: 'assets/bubbles/thought_rightTop.png',
         type: 'bubble'
     },    
     {

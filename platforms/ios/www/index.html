@@ -17,9 +17,9 @@
     -->
     <!-- Jquery Scripts -->
     <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<!--     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-
+ -->
     <!-- ionic/angularjs js -->
     <script src="lib/hammerjs/hammer.js"></script>
     <script src="lib/ionic/js/ionic.bundle.js"></script>
@@ -33,6 +33,12 @@
     <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/camanjs/4.1.2/caman.full.min.js"></script>
     <script type="text/javascript" src="lib/caman/dist/caman.full.min.js"></script>
+    
+    <!-- html2canvas scripts -->
+    <script src="js/components/jquery.min.js"></script>
+    <script src="js/components/angular-route.min.js"></script>
+    <script src="js/components/angular-sanitize.min.js"></script>
+    <script src="js/components/html2canvas.js"></script>
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
@@ -43,6 +49,7 @@
     <script src="js/story/story.factory.js"></script>
     <script src="js/camera/camera.factory.js"></script>
     <script src="js/camera/grafi.factory.js"></script>
+    <script src="js/camera/filter.factory.js"></script>
 
 
     <!-- Directives -->
@@ -58,54 +65,30 @@
     <script src="js/story/story.create.controller.js"></script>
     <script src="js/story/story.controller.js"></script>
     <script src="js/camera/camera.controller.js"></script>
-<<<<<<< HEAD
-=======
 
     <!-- Filters -->
     <script src="js/filters/filters.js"></script>
->>>>>>> master
 
     <script src="js/services.js"></script>
 
   </head>
 
   <body ng-app="starter" class="platform-ios platform-cordova platform-webview">
-    <!--
-      The nav bar that will be updated as we navigate between views.
-    -->
-
     <ion-nav-bar class="bar-stable">
-        <ion-nav-back-button></ion-nav-back-button>
-
-   <!--      <ion-nav-buttons hide-back-button="{{toState == 'home'}}" side="left">
-            <button id="saveButton" class="button button-clear">Back</button>
-        </ion-nav-buttons> -->
-
-        <ion-nav-buttons side="left">
-            <button id="saveButton" class="button button-clear" ng-if="&apos;home&apos; | isState">Profile</button>
-        </ion-nav-buttons>    
-
-    <!--     <ion-nav-buttons side="right">
-            <button id="saveButton" class="button button-clear">Skip</button>
-        </ion-nav-buttons> -->
-        <ion-nav-buttons side="right">
-            <button class="button button-dark button-clear" ng-if="&apos;home&apos; | isState">Settings</button>
-        </ion-nav-buttons>
-
-    </ion-nav-bar>
-
-&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-=======
-
-      <!-- <navbar-home></navbar-home> -->
-
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; master
-    <!--
-      The views will be rendered in the <ion-nav-view> directive below
-      Templates are in the /templates folder (but you could also
-      have templates inline in this html file if you'd like).
-    -->
+      <ion-nav-buttons side="left"><button class="button button-icon ion-navicon"></button></ion-nav-buttons>
+      <ion-nav-back-button ng-if=" !&apos;home&apos; | isState"></ion-nav-back-button>
+      <ion-nav-buttons side="left">
+        <button ng-if=" &apos;home&apos; | isState" menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+        <!-- <button class="button button-icon ion-search"></button> -->
+        <button ng-if=" !&apos;home&apos; | isState" class="button icon-left ion-home"></button>
+      </ion-nav-buttons>
+      <ion-nav-buttons side="right">
+        <!-- <button class="button button-icon ion-ios-email"></button> -->
+        <button class="button button-icon ion-ios-people"></button>
+        <button ng-if=" &apos;home&apos; | isState" class="button button-icon ion-gear-a"></button>
+        <button ng-if=" &apos;camera&apos; | isState" class="button button-icon ion-grid"></button>
+      </ion-nav-buttons>
     <ion-nav-view>
     </ion-nav-view>
-  </body>
+  </ion-nav-bar></body>
 </html>

@@ -2,13 +2,13 @@
 	<ion-content scroll="false" id="addonWrapper" class="canvasAndAddonContainer">
 
 <!-- PLACEHOLDER BUBBLE -->
-	  	<textarea rows="4" cols="50" id='new' style="border:solid black 3px;max-width:120px"></textarea>
-		<h1 ng-click="previewImage()" id="one">PREVIEW IMG</h1>
+<!-- 	  	<textarea rows="4" cols="50" id='new' style="border:solid black 3px;max-width:120px"></textarea>
+		<h1 ng-click="previewImage()" id="one">PREVIEW IMG</h1> -->
 <!-- END OF PLACEHOLDER FOR BUBBLE -->
  
- <canvas id='imageCanvas' width='375' height='375' data-caman-hidpi-disabled="true"></canvas>
-		<button class="button" ng-click="addStickersToCanvas
-		()">Add stickers to canvas</button>
+ 		<canvas id='imageCanvas' width='375' height='375' data-caman-hidpi-disabled="true"></canvas>
+	<!-- 	<button class="button" ng-click="addStickersToCanvas
+		()">Add stickers to canvas</button> -->
 
 		<p id="addonError" style="display: none;">Too Many Stickers!</p>
 		<p id="addonSuccessfulDelete" style="display: none;">Successfully Deleted</p>
@@ -32,7 +32,7 @@
 			left:0px">
 		</img>	
 
-	    <textarea 
+<!-- 	    <textarea 
 	    elastic 
 	    ng-model="model.input" 
 	    class="inputBubble addonDivs" 
@@ -49,10 +49,30 @@
 	    hm-press="onPress"
 	    hm-pressup="onHammerEnd"
 	    hm-panend="onHammerEnd"
-	    ng-repeat="bubble in bubblesArray" ></textarea>
+	    ng-repeat="bubble in bubblesArray" ></textarea>	 -->   
+		    <div
+			    id="bubble{{bubble.id}}"
+		    	class="inputBubble"
+			    placeholder="Text"
+			    hm-panmove="onHammer"
+			    hm-press="onPress"
+			    hm-pressup="onHammerEnd"
+			    hm-panend="onHammerEnd"
+			    ng-repeat="bubble in bubblesArray"
+			    >
+
+			    <textarea
+			    id="textarea"
+			    placeholder="Text"
+			    scroll="false"
+			    elastic>
+			    </textarea>
+			    <div ng-style="{{bubble.pointerStyle}}"></div>
+			    <div ng-style="{{bubble.pointerBorderStyle}}"></div>
+		    </div>
 
 		
-		<button class="button" ng-click="saveImage()">Save Image</button>
+		<!-- <button class="button" ng-click="saveImage()">Save Image</button> -->
 
 	</ion-content>
   	<div 
