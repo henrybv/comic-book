@@ -21,4 +21,15 @@ app.filter('cut', function () {
     };
 });
 
-var face = 'yo'
+
+// app.filter('notEqual', function() {
+//   return function(user. story) {
+
+//     story.friends.forEach(function(friend) {
+//       if(friend !== user) {
+//         return user;
+//       }
+//     });
+
+//   };
+// });

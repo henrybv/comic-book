@@ -5,6 +5,7 @@ core.controller('homeCtrl', function($scope, $state, myStories, myCollabs) {
 	$scope.myCollabs = myCollabs;
 	$scope.showMyStories = false;
 	$scope.showMyCollabs = false;
+	console.log('stories: ', $scope.myStories)
 
 	$scope.changeState = function(id){
 		$state.go('story', {storyId: id})
