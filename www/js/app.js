@@ -116,7 +116,7 @@ core.config(function($stateProvider, $urlRouterProvider) {
   .state('story', {
     url: '/story/:storyId',
     templateUrl: 'js/story/story.template.html',
-    controller: 'StoryCtrl',
+    // controller: 'StoryCtrl',
     resolve: {
       story: function(StoryFactory, $stateParams) {
         return StoryFactory.getStoryById($stateParams.storyId);
