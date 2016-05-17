@@ -73,14 +73,14 @@ core.config(function($stateProvider, $urlRouterProvider) {
   //   url: '/home/myCollabs',
   //   templateUrl: 'js/home/home.myCollabs.template.html'
   // })
-  .state('home.myStories', {
-    url: '/home/myStories',
-    templateUrl: 'js/home/home.myStories.template.html'
-  })
-  .state('home.myCollabs', {
-    url: '/home/myCollabs',
-    templateUrl: 'js/home/home.myCollabs.template.html'
-  })
+  // .state('home.myStories', {
+  //   url: '/home/myStories',
+  //   templateUrl: 'js/home/home.myStories.template.html'
+  // })
+  // .state('home.myCollabs', {
+  //   url: '/home/myCollabs',
+  //   templateUrl: 'js/home/home.myCollabs.template.html'
+  // })
   .state('settings', {
     url: '/settings',
     templateUrl: 'js/settings/settings.template.html',
