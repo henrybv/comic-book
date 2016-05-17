@@ -1,10 +1,10 @@
 <ion-view view-title="Settings">
   <ion-content>
-<div class="container-fluid">
-	<div class="row row-centered">
-	<div class="col-xs-10 col-centered">
-	<div class="list-group">
-		<div class="list-group-item"><h3>Welcome, {{loggedInUser.first}}</h3></div>
+	<div class="container-fluid">
+		<div class="row row-centered">
+			<div class="col-xs-10 col-centered">
+			<div class="list-group">
+		<div class="list-group-item"><h3>Welcome, {{user.first}}</h3></div>
 		<div class="list-group-item">
 			<button class="btn btn-primary" ui-sref="movieQueue({userId: user._id})">Movies</button>
 		</div>
@@ -13,8 +13,8 @@
 		</div>
 		<div class="list-group-item">
 			<ol>
-				<ul>{{ loggedInUser.email }}</ul>
-				<ul>{{ loggedInUser.username }}</ul>
+				<ul>{{ user.email }}</ul>
+				<ul>{{ user.username }}</ul>
 				<ul><a ui-sref="billing">Billing Details</a></ul>
 			</ol>
 		</div>

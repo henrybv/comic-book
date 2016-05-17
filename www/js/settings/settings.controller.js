@@ -1,3 +1,4 @@
-core.controller('MyAccountCtrl', function($scope) {
-	// $scope.loggedInUser = loggedInUser;
+core.controller('SettingsCtrl', function($scope, $localStorage) {
+	$scope.user = $localStorage.user;
+
 });

@@ -74,12 +74,7 @@ core.config(function($stateProvider, $urlRouterProvider) {
   .state('settings', {
     url: '/settings',
     templateUrl: 'js/settings/settings.template.html',
-    controller: 'MyAccountCtrl',
-    // resolve: {
-    //   loggedInUser: function(AuthService) {
-    //     return AuthService.getLoggedInUser()
-    //   }
-    // }
+    controller: 'SettingsCtrl'
   })
   .state('camera', {
     url: '/camera/:storyId',
