@@ -1,28 +1,35 @@
-core.controller('CameraCtrl', function(story, getAddons, $scope, $cordovaCamera, $cordovaFileTransfer, Grafi, $localStorage, CameraFactory, FilterFactory) {
+core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $cordovaCamera, $cordovaFileTransfer, Grafi, $localStorage, CameraFactory, FilterFactory) {
 	$scope.story = story;
     $scope.currentUser = $localStorage.user._id;
-    $scope.currentSquare;
+    // $scope.currentSquare;
+    $scope.stickersArray = [];
 
     //REMOVE LINK WHEN USING URL FROM PHOTO / ALBUM LIBRARY
     $scope.url = '../../img/ben.png';
     // $scope.url;
 
     var urlToCanvas = function(url, canvasId, x, y){
-        console.log('in urlToCanvas with parameters:', url, canvasId, x, y);
+        console.log('parameters', url, canvasId, x, y)
         var x = x || 0;
         var y = y || 0;
-        var canvas = document.getElementById(canvasId);
+        var canvas = document.getElementById('imageCanvas');
+        var context = canvas.getContext('2d');
         var newImage = new Image();
         newImage.src = url;
         // newImage.crossOrigin = '';
-        var context = canvas.getContext('2d');
         newImage.onload = function(){
-            context.drawImage(newImage, x, y);
+            context.drawImage(newImage, x, y, canvas.width, canvas.height);
+            var dataURL = canvas.toDataURL('image/png');
+            // console.log(dataURL);
+            $scope.test = dataURL;
+            $scope.$digest();
         }
-        var dataURL = canvas.toDataURL('image/png');
     }
     //REMOVE WHEN USING URL FROM PHOTO / ALBUM LIBRARY
     urlToCanvas($scope.url, 'imageCanvas');
+
+    
+    
 
     $scope.applyfilter = function(filter, canvasId){
         console.log('in apply filter in camera ctrl')
@@ -58,7 +65,6 @@ core.controller('CameraCtrl', function(story, getAddons, $scope, $cordovaCamera,
             // $scope.imgURI = "data:image/jpeg;base64," + imageData;
             $scope.url = imageURL;
             urlToCanvas(imageURL, 'imageCanvas');
-            setFilterThumbnails();
         });
     }
 
@@ -77,37 +83,60 @@ core.controller('CameraCtrl', function(story, getAddons, $scope, $cordovaCamera,
         $cordovaCamera.getPicture(options).then(function(imageURL) {
             $scope.url = imageURL;
             urlToCanvas(imageURL, 'imageCanvas');
-            setFilterThumbnails();
         });
     }
 
-    // $scope.saveImage = function(){
-       //  var canvas = document.getElementById('imageCanvas');
-       //  var finalDataURL = canvas.toDataURL('image/png')
-       //  CameraFactory.createSquare(finalDataURL, $scope.story._id, $scope.currentUser)
-       //  .then(function(square){
-       //      $scope.currentSquare = square;
-       //  })
+
+
+    // var combineLayers = function(imageCanvasId, addonCanvasId, x, y){
+    //     var imageCanvas = document.getElementById(imageCanvasId);
+    //     canvas.setAttribute('style', 'z-index=1')
+    //     var addonCanvas = document.getElementById(addonCanvasId);
+    //     canvas.setAttribute('style', 'z-index=2')
+    //     var imageContext = imageCanvas.getContext('2d');
+    //     var addonsContext = addonCanvas.getContext('2d');
+    //     imageContext.drawImage(addonsContext, x, y);
     // }
 
-    var combineLayers = function(imageCanvasId, addonCanvasId, x, y){
-        var imageCanvas = document.getElementById(imageCanvasId);
-        canvas.setAttribute('style', 'z-index=1')
-        var addonCanvas = document.getElementById(addonCanvasId);
-        canvas.setAttribute('style', 'z-index=2')
-        var imageContext = imageCanvas.getContext('2d');
-        var addonsContext = addonCanvas.getContext('2d');
-        imageContext.drawImage(addonsContext, x, y);
+
+   var addStickersToCanvas = function(){
+        var canvas = document.getElementById('imageCanvas');
+        var context = canvas.getContext('2d');
+        var onloadsRunning = [];
+        $scope.stickersArray.forEach(function(sticker){
+            var x = sticker.x;
+            var y = sticker.y;
+            var newImage = new Image();
+            newImage.src = sticker.source;
+            var onloadPromise = $q(function(resolve, reject){
+                newImage.onload = function(){
+                    context.drawImage(newImage, 0, 0);
+                    resolve();
+                }
+                newImage.onerror = reject;
+            })
+            onloadsRunning.push(onloadPromise);
+        })
+        return $q.all(onloadsRunning);
     }
 
-    $scope.addStickersToCanvas = function(){
-        $scope.stickersArray.forEach(function(sticker){
-            urlToCanvas(sticker.source, 'imageCanvas', sticker.x, sticker.y)
+
+    $scope.saveImage = function(){
+        addStickersToCanvas()
+        .then(function(){
+            var canvas = document.getElementById('imageCanvas');
+            var finalDataURL = canvas.toDataURL('image/png')
+            CameraFactory.createSquare(finalDataURL, $scope.story._id, $scope.currentUser)
+        })        
+        .then(function(square){
+            // $scope.currentSquare = square;
+            // console.log('saved image, in ctrl', $scope.currentSquare)
+            $state.go('story', {storyId: $scope.story._id});
+        })
+        .catch(function(err){
+            console.error(err);
         })
     }
-
-    // $scope.canvas = document.getElementById('imageCanvas');
-    // $scope.addons = document.getElementById('addonCanvas');
 
     // FOR HTML2CANVASS ////////////
     // FOR GRABBING
@@ -313,7 +342,7 @@ core.controller('CameraCtrl', function(story, getAddons, $scope, $cordovaCamera,
             currentElem.style.left = x - diffX + 'px';
         }
 
-        console.log("Coords", x, y);
+        // console.log("Coords", x, y);
 
     };
 
@@ -344,9 +373,39 @@ core.controller('CameraCtrl', function(story, getAddons, $scope, $cordovaCamera,
         // Reshow the Addon Navbar
         $scope.currentNav = 'navbarAddon'
 
+        // var currentx = event.center.x - 80,
+        //     currenty = event.center.y - 130;
+        var currentx = currentElem.style.left,
+            currenty = currentElem.style.top;
+
+         if(event.element[0].id[0] === 's') {        
+            var index;
+            $scope.stickersArray.forEach(function(sticker, idx){
+                if ('sticker'+sticker.id === event.element[0].id) {
+                    index = idx;
+                }
+            })
+            console.log("StickersArray HERE", $scope.stickersArray )
+            $scope.stickersArray[index].x = currentx
+            $scope.stickersArray[index].y = currenty
+        }
+        if(event.element[0].id[0] === 'b') {        
+            var index;
+            $scope.bubblesArray.forEach(function(bubble, idx){
+                if ('bubble'+bubble.id === event.element[0].id) {
+                    index = idx;
+                }
+            })
+            console.log("StickersArray HERE", $scope.stickersArray )
+            $scope.bubblesArray[index].x = currentx
+            $scope.bubblesArray[index].y = currenty
+        }
+
         //Update final resting coordinates of the current Element
         updateCoordinates(event)
         console.log("Arrays b/s in HammerEnd", $scope.bubblesArray, $scope.stickersArray)
+
+        console.log("onHammerEnd", event.center.x, event.center.y, currentElem.className)
 
         //Run delete Function if sticker/bubble is active AND event occurred below certain point on screen
         if(event.center.y > 490 && currentElem.className.indexOf('addonActive') > -1){
@@ -567,5 +626,4 @@ core.controller('CameraCtrl', function(story, getAddons, $scope, $cordovaCamera,
     }
 
 });
-
 
