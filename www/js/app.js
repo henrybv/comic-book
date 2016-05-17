@@ -1,8 +1,8 @@
 //FULLSTACK BASE - Debanshi
-var base = 'http://192.168.1.184:1337'
+// var base = 'http://192.168.1.184:1337'
 // var base = 'http://192.168.0.20:1337'
 //FULLSTACK BASE - Eric
-// var base = 'http://192.168.1.133:1337'
+var base = 'http://192.168.1.133:1337'
 //FULLSTACK BASE - Jeff
 
 //HOME BASE
@@ -70,14 +70,14 @@ core.config(function($stateProvider, $urlRouterProvider) {
       }
     }
   })
-  .state('home.myStories', {
-    url: '/home/myStories',
-    templateUrl: 'js/home/home.myStories.template.html'
-  })
-  .state('home.myCollabs', {
-    url: '/home/myCollabs',
-    templateUrl: 'js/home/home.myCollabs.template.html'
-  })
+  // .state('home.myStories', {
+  //   url: '/home/myStories',
+  //   templateUrl: 'js/home/home.myStories.template.html'
+  // })
+  // .state('home.myCollabs', {
+  //   url: '/home/myCollabs',
+  //   templateUrl: 'js/home/home.myCollabs.template.html'
+  // })
   .state('camera', {
     url: '/camera/:storyId',
     templateUrl: 'js/camera/camera.template.html',
@@ -120,8 +120,33 @@ core.config(function($stateProvider, $urlRouterProvider) {
     templateUrl: 'js/story/story.template.html',
     controller: 'StoryCtrl',
     resolve: {
-      story: function(StoryFactory, $stateParams) {
+      story: function(StoryFactory, $stateParams, AuthService, UserFactory) {
         return StoryFactory.getStoryById($stateParams.storyId);
+      },
+      loggedInUser: function (AuthService){
+        return AuthService.getLoggedInUser();
+      },
+      allUsers: function(UserFactory, story, loggedInUser) {
+        return UserFactory.getAllUsers()
+        .then(function(users) {
+              var usersForCollabList = [];
+
+              console.log('loggedInUser: ', loggedInUser._id)
+
+              users.forEach(function(user) {
+                console.log('userId: ', user._id)
+                  var present = false;
+                  for (var i = 0; i < story.friends.length; i++) {
+                    if (story.friends[i]._id === user._id) present = true;
+                    // CURRENTLY NOT FILTERING OUT CURRENTLY LOGGED IN USER
+                    if (loggedInUser._id === user._id) present = true;
+                  };
+
+                  if (!present) usersForCollabList.push(user);
+              });
+
+              return usersForCollabList;
+        })
       }
     }
   })
