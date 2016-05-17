@@ -1,4 +1,4 @@
-core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $cordovaCamera, $cordovaFileTransfer, Grafi, $localStorage, CameraFactory, FilterFactory) {
+core.controller('CameraCtrl', function($q, $state, story, getAddons, $rootScope, $scope, $cordovaCamera, $cordovaFileTransfer, Grafi, $localStorage, CameraFactory, FilterFactory) {
 	$scope.story = story;
     $scope.currentUser = $localStorage.user._id;
     // $scope.currentSquare;
@@ -120,8 +120,8 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         return $q.all(onloadsRunning);
     }
 
-
     $scope.saveImage = function(){
+        console.log('save image is ran')
         addStickersToCanvas()
         .then(function(){
             var canvas = document.getElementById('imageCanvas');
@@ -137,6 +137,11 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
             console.error(err);
         })
     }
+
+    $scope.$on('saveImage', function(){
+        $scope.saveImage()
+        console.log("SaveImage .on")
+    })
 
     // FOR HTML2CANVASS ////////////
     // FOR GRABBING

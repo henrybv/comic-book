@@ -78,19 +78,19 @@
 
   <!-- Top navbar that changes based on states -->
     <ion-nav-bar class="bar-stable" ng-controller="Topnavbar">
-        <div ng-hide="getState()">
-            <ion-nav-back-button></ion-nav-back-button>
-        </div>
-    <ion-nav-buttons side="left">
-        <button ng-hide="'home' | isState" ui-sref="home" class="button icon-left ion-home"></button>
-      <!--   <button ng-if=" 'home' | isState" menu-toggle="left" class="button button-icon icon ion-navicon"></button> -->
-        <!-- <button ng-if=" 'camera' | isState" class="button button-icon ion-grid"></button> -->
-    </ion-nav-buttons>
-    <ion-nav-buttons side="right">
-        <!-- <button class="button button-icon ion-ios-email"></button> -->
-        <button ng-if=" 'home' | isState" class="button button-icon ion-person-add"></button>
-        <button ui-sref="settings" ng-if=" 'home' | isState" class="button button-icon ion-gear-a"></button>
-    </ion-nav-buttons>
+
+        <ion-nav-buttons side="left">
+            <button ng-hide="'home' | isState" ui-sref="home" class="button icon-left ion-home"></button>
+          <!--   <button ng-if=" 'home' | isState" menu-toggle="left" class="button button-icon icon ion-navicon"></button> -->
+        </ion-nav-buttons>
+        <ion-nav-buttons side="right">
+            <!-- <button class="button button-icon ion-ios-email"></button> -->
+            <button ng-if=" 'home' | isState" class="button button-icon ion-person-add"></button>
+            <button ui-sref="story" ng-if=" 'camera' | isState" class="button button-icon ion-grid"></button>
+            <button ui-sref="settings" ng-if=" 'home' | isState" class="button button-icon ion-gear-a"></button>
+            <button ng-click="save()" ng-if=" 'camera' | isState" class="button button-icon ion-checkmark-circled"></button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
 
     <ion-nav-view>
     </ion-nav-view>
