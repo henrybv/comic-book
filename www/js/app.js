@@ -4,12 +4,12 @@
 // var base = 'http://192.168.0.20:1337'
 // var base = 'http://192.168.1.184:1337'
 //FULLSTACK BASE - Eric
-var base = 'http://192.168.1.133:1337'
+// var base = 'http://192.168.1.133:1337'
 // var base = 'http://192.168.0.20:1337'
 //FULLSTACK BASE - Jeff
 // var base = 'http://192.168.1.133:1337'
 //FULLSTACK BASE - Henry
-// var base = 'http://192.168.1.204:1337'
+var base = 'http://192.168.1.204:1337'
 
 // var base = 'http://localhost:1337';
 
@@ -86,12 +86,7 @@ core.config(function($stateProvider, $urlRouterProvider) {
   .state('settings', {
     url: '/settings',
     templateUrl: 'js/settings/settings.template.html',
-    controller: 'MyAccountCtrl',
-    resolve: {
-      loggedInUser: function(AuthService) {
-        return AuthService.getLoggedInUser()
-      }
-    }
+    controller: 'SettingsCtrl'
   })
 >>>>>>> master
   .state('camera', {
@@ -103,7 +98,7 @@ core.config(function($stateProvider, $urlRouterProvider) {
         return StoryFactory.getStoryById($stateParams.storyId);
       },
       getAddons: function(CameraFactory, $stateParams) {
-        console.log('in get addons')
+        // console.log('in get addons')
         return CameraFactory.getFilters()
       }
     }
