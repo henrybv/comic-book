@@ -65,7 +65,6 @@ core.config(function($stateProvider, $urlRouterProvider) {
       }
     }
   })
-<<<<<<< HEAD
   // .state('home.myStories', {
   //   url: '/home/myStories',
   //   templateUrl: 'js/home/home.myStories.template.html'
@@ -74,7 +73,6 @@ core.config(function($stateProvider, $urlRouterProvider) {
   //   url: '/home/myCollabs',
   //   templateUrl: 'js/home/home.myCollabs.template.html'
   // })
-=======
   .state('home.myStories', {
     url: '/home/myStories',
     templateUrl: 'js/home/home.myStories.template.html'
@@ -88,7 +86,6 @@ core.config(function($stateProvider, $urlRouterProvider) {
     templateUrl: 'js/settings/settings.template.html',
     controller: 'SettingsCtrl'
   })
->>>>>>> master
   .state('camera', {
     url: '/camera/:storyId',
     templateUrl: 'js/camera/camera.template.html',
