@@ -44,6 +44,11 @@ core.factory('CameraFactory', function($http){
     })
   };
 
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> master
   return CameraFactory;
 })
 

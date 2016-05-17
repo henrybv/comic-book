@@ -216,7 +216,7 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         //Create image element with unique ID
         if(stickercounter < 4){
             //Push element data into the stickersArray;
-            $scope.stickersArray.push({source: img, id: stickercounter, x: 2, y: 28})
+            $scope.stickersArray.push({source: img, id: stickercounter, x: 0, y: 0})
             console.log($scope.stickersArray)
             //Grab that element and set it to a variable;
             // w.appendChild(sticker)
@@ -227,18 +227,24 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
             onErrorFunc()
             console.log("Too Many Stickers!")
         }
-        // $scope.$compile()
 
     console.log($scope.stickersArray)
     }
 
+
     //Bubbles
     var bubblecounter = 0;  
     var bubbleIdcounter = 1;  
-    $scope.bubble = function (){
+    $scope.bubble = function (bubbleName){
+        console.log(bubbleName)
         if(!$scope.bubblesArray) $scope.bubblesArray = []
+
+        // Creates an array of Pointer and PointerBorder Styling based on bubble name
+        var currentBubbleStyle = createBubbleStyle(bubbleName)
+        console.log(currentBubbleStyle)
+
         if(bubblecounter < 4){
-            $scope.bubblesArray.push({id: bubbleIdcounter, text:' '})
+            $scope.bubblesArray.push({id: bubbleIdcounter, pointerStyle:currentBubbleStyle[0], pointerBorderStyle: currentBubbleStyle[1] })
             bubblecounter++;
             bubbleIdcounter++;
         } else {
@@ -329,16 +335,6 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         x = event.center.x
         y = event.center.y
 
-
-        // if((y > 60 && y < 550) && currentElem.className === 'addonDivs activated') {
-        //     currentElem.style.top = y - diffY + 'px';
-        // }        
-        // if((y > 60 && y < 700) && currentElem.className === 'addonDivs activated addonActive') {
-        //     currentElem.style.top = y - diffY + 'px';
-        // }
-        // if((x + 25) > 0 && x < 375) {   
-        //     currentElem.style.left = x - diffX + 'px';
-        // }        
         if(y > 60 && y < 600) {
             currentElem.style.top = y - diffY + 'px';
         }          
@@ -357,18 +353,6 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         var currentx = event.center.x - 80,
             currenty = event.center.y - 130;
 
-
-        // //DEBANSHI'S UPDATES
-        // var index;
-        // $scope.stickersArray.forEach(function(sticker, idx){
-        //     if ('sticker'+sticker.id === event.element[0].id) {
-        //         index = idx;
-        //     }
-        // })
-        // $scope.stickersArray[index].x = currentx
-        // $scope.stickersArray[index].y = currenty
-        //END OF DEBANSHI'S UPDATES
-
         // currentElem.style.left = currentx + 'px';
         // currentElem.style.top = currenty + 'px';
 
@@ -383,11 +367,12 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
     //This Function Runs once an addon is stopped dragging and/or a pressed addon is released
     $scope.onHammerEnd = function onHammerEnd (event) {
 
-        //Reshow the Addon Navbar
+        // Grab Current Element
+        var currentElem = document.getElementById(event.element[0].id)
+
+        // Reshow the Addon Navbar
         $scope.currentNav = 'navbarAddon'
 
-        //find the current element
-        var currentElem = document.getElementById(event.element[0].id)
         // var currentx = event.center.x - 80,
         //     currenty = event.center.y - 130;
         var currentx = currentElem.style.left,
@@ -416,8 +401,12 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
             $scope.bubblesArray[index].y = currenty
         }
 
+        //Update final resting coordinates of the current Element
+        updateCoordinates(event)
+        console.log("Arrays b/s in HammerEnd", $scope.bubblesArray, $scope.stickersArray)
 
         console.log("onHammerEnd", event.center.x, event.center.y, currentElem.className)
+
         //Run delete Function if sticker/bubble is active AND event occurred below certain point on screen
         if(event.center.y > 490 && currentElem.className.indexOf('addonActive') > -1){
 
@@ -436,11 +425,47 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         //Remove Active Class from selected sticker/bubble
         $("#addonWrapper").find('#' + event.element[0].id).removeClass('addonActive')
 
-
         //Decrement hammerCounter
         --hammerCounter
 
-    };     
+    }; 
+
+
+    // Update the final resting place coordinates for each Sticker/Bubble Div for drawing to canvas
+    var updateCoordinates = function(event) {
+        
+        //find the current element
+        var currentElem = document.getElementById(event.element[0].id)
+        var currentx = currentElem.style.left,
+            currenty = currentElem.style.top;
+
+        //If its a StickerArray Event:
+        if(event.element[0].id[0] === 's') {        
+            var index;
+            $scope.stickersArray.forEach(function(sticker, idx){
+                if ('sticker'+sticker.id === event.element[0].id) {
+                    index = idx;
+                }
+            })
+            console.log("StickersArray HERE", $scope.stickersArray )
+            $scope.stickersArray[index].x = currentx
+            $scope.stickersArray[index].y = currenty
+        }
+
+        //If its a BubbleArray Event:
+        if(event.element[0].id[0] === 'b') {        
+            var index;
+            $scope.bubblesArray.forEach(function(bubble, idx){
+                if ('bubble'+bubble.id === event.element[0].id) {
+                    index = idx;
+                }
+            })
+            console.log("BubblesArray HERE", $scope.bubblesArray )
+            $scope.bubblesArray[index].x = currentx
+            $scope.bubblesArray[index].y = currenty
+        }
+
+    }   
 
     var onErrorFunc = function () {
         console.log('onErrorFunc')
@@ -483,6 +508,121 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         
         animate();
         setTimeout("$('#puff').hide()", frames * frameRate);
+    }
+
+    function createBubbleStyle(bubbleName) {
+        var bubbletype = bubbleName.split('_')
+        var pointer = {
+            content: '',
+            position: 'absolute',
+            'border-style': 'solid',
+            'border-color': '#FFFFFF transparent',
+            display: 'block',
+            width: '0',
+            'z-index': '1',
+            'margin-left': '-6px'
+        }
+        var pointerBorder = {
+              content: " ",
+              position: 'absolute',
+              'border-style': 'solid',
+              'border-color': 'rgb(0, 0, 0) transparent',
+              'display': 'block',
+              'width': '0px',
+              'z-index': '0',
+              'margin-left': '-8px'
+        }
+
+        var thoughtBubbleBig = {
+            'position': 'absolute',
+            'border-style': 'solid',
+            'border-radius': '2px',
+            'border-width': '2px',
+            'border-color': 'black',
+            'background': 'white',
+            'height': '25px',
+            'width': '25px',
+            'z-index': '4',
+            // 'margin-left': '-6px',
+            'border-radius': '50%'
+
+        }        
+        
+        var thoughtBubbleSmall = {
+            'position': 'absolute',
+            'border-style': 'solid',
+            'border-radius': '2px',
+            'border-width': '2px',
+            'border-color': 'black',
+            'background': 'white',
+            'height': '15px',
+            'width': '15px',
+            'z-index': '4',
+            'margin-left': '-6px',
+            'border-radius': '50%'
+        } 
+        console.log(bubbletype)
+        //['left', 'top']
+
+
+        if (bubbletype[2] === 'speech'){
+
+            //Left vs Right
+            if (bubbletype[0] === 'left') {
+                pointer['left'] = '30%';
+                pointerBorder['left'] = '30%';
+            } else if (bubbletype[0] === 'right') {
+                pointer['right'] = '30%';
+                pointerBorder['right'] = '28%';
+            }
+
+            //Top vs Bottom
+            if (bubbletype[1] === 'top'){
+                pointer['top'] = '-31px';
+                pointerBorder['top'] = "-37px"
+                pointer['border-width'] = '0px 4px 35px';
+                pointerBorder['border-width'] = '0px 6px 39px';
+            } else if (bubbletype[1] === 'bottom') {
+                pointer['bottom'] = '-32px';
+                pointerBorder['bottom'] = '-39px';
+                pointer['border-width'] = '35px 4px 0';
+                pointerBorder['border-width'] = '40px 6px 0px';
+            }
+
+            return [pointer, pointerBorder]
+        }
+
+        if (bubbletype[2] === 'thought'){
+            
+            //Left vs Right
+            if (bubbletype[0] === 'left') {
+                thoughtBubbleBig['left'] = '15%';
+                thoughtBubbleSmall['left'] = '30%';
+            } else if (bubbletype[0] === 'right') {
+                thoughtBubbleBig['right'] = '15%';
+                thoughtBubbleSmall['right'] = '25%';
+            }
+
+            //Top vs Bottom
+            if (bubbletype[1] === 'top'){
+                thoughtBubbleBig['top'] = '-18px';
+                thoughtBubbleSmall['top'] = "-30px";
+            } else if (bubbletype[1] === 'bottom') {
+                thoughtBubbleBig['bottom'] = '-18px';
+                thoughtBubbleSmall['bottom'] = '-30px';
+
+            }
+
+            return [thoughtBubbleBig, thoughtBubbleSmall]
+            // //Small Left
+            // 'left': '22%',
+            // 'bottom': '-32px',
+
+            // //Big Left
+            // 'left': '10%',
+            // 'bottom': '-15px',
+        }
+
     }
 
 });
