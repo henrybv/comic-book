@@ -104,13 +104,13 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         var context = canvas.getContext('2d');
         var onloadsRunning = [];
         $scope.stickersArray.forEach(function(sticker){
-            var x = sticker.x;
-            var y = sticker.y;
+            var x = Number(sticker.x.slice(0,-2));
+            var y = Number(sticker.y.slice(0,-2));
             var newImage = new Image();
             newImage.src = sticker.source;
             var onloadPromise = $q(function(resolve, reject){
                 newImage.onload = function(){
-                    context.drawImage(newImage, 0, 0);
+                    context.drawImage(newImage, x, y);
                     resolve();
                 }
                 newImage.onerror = reject;
