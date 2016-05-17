@@ -1,7 +1,62 @@
-<ion-view view-title="Settings">
+<ion-view view-title="User Profile">
   <ion-content>
-  Name: {{user}},
-  Username: {{user.username}},
-  Email: {{user.email}}
-  </ion-content>
+
+		<ion-item><h3>Welcome! </h3></ion-item>
+		<!-- Welcome, {{user.first}} -->
+
+		<ion-item>
+			<button class="btn btn-primary" ui-sref="movieQueue({userId: user._id})">My Stories</button>
+		</ion-item>
+
+		<ion-item>
+		
+			<button class="btn btn-primary" ui-sref="reviewsByUser({userId: user._id})">My Friends</button>
+		
+		</ion-item>
+
+		<ion-list>
+			<!-- <ol> -->
+				<ion-item>{{ user.email }}</ion-item>
+				<ion-item>{{ user.username }}</ion-item>
+				<!-- <ul><a ui-sref="billing">Billing Details</a></ul> -->
+			<!-- </ol> -->
+		</ion-list>
+		</div>
+	<!-- 	<div class="list-group-item">
+			<h4>Plan Details</h4>
+			<ul>
+				<li>Plan: {{subscription.plan}}</li>
+				<li>Price: ${{subscription.price}}</li>
+				<li>Active Movies Allowed: {{subscription.allowance}}</li>
+			</ul>
+			<ul class="list-inline"> 
+				<li><a ui-sref="subscription">Change Plan</a></li>
+				<li><a ui-sref="subcancel">Cancel Plan</a></li>
+			</ul>
+		</div> -->
+<!-- 		<div class="list-group-item">
+			<uib-accordion close-others="true">
+    			<uib-accordion-group heading='My Orders' >
+    				<div class="list-group-item" ng-repeat="order in orders">
+    					<ul>
+							<li>Movie: {{order.deliverables.title}}</li>
+							<li>Tracking #: {{order.tracking}}</li>
+							<li>Date: {{order.date}}</li>
+							<li>Status: {{order.status}}</li>
+    					</ul>
+					</div>
+    			</uib-accordion-group>
+    		</uib-accordion>
+		</div> -->
+		</div>
+	</div>
+	</div>
+</div>
+      <div class="padding">
+        <button ng-click="logout()" class="button button-block button-positive">
+          <span ng-show="!loading">Log Out</span>
+          <i ng-show="loading" class="ion-loading-b"></i>
+        </button>
+      </div>
+</ion-content>
 </ion-view>
