@@ -21,8 +21,6 @@ var core = angular.module('starter', ['ionic', 'starter.controllers', 'starter.s
 
 core.run(function($ionicPlatform, $rootScope, $state) {
 
-  $
-
   // event listener listening for state changes + put on rootScope
   $rootScope.$on('$stateChangeSuccess', function(event, toState) {
    $rootScope.$state = toState;
