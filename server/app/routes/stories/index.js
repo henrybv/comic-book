@@ -31,8 +31,9 @@ router.get('/:storyId', function(req, res, next) {
 
 //get all stories created by a user
 router.get('/user/:userId', function(req, res, next) {
-    console.log('user id', req.params.userId)
-    Story.find({owner: req.params.userId}).exec()
+    Story.find({owner: req.params.userId})
+    .populate('friends')
+    .exec()
     .then(function(stories) {
         res.status(200).send(stories);
     })
@@ -41,7 +42,9 @@ router.get('/user/:userId', function(req, res, next) {
 
 // get all stories a user is a collaborator on
 router.get('/collaborator/:userId', function(req, res, next) {
-    Story.find({friends: req.params.userId}).exec()
+    Story.find({friends: req.params.userId})
+    .populate('owner')
+    .exec()
     .then(function(stories) {
         res.status(200).send(stories);
     })
@@ -51,11 +54,9 @@ router.get('/collaborator/:userId', function(req, res, next) {
 router.post('/', function(req, res, next) {
     Story.create(req.body)
     .then(function(story) {
-        console.log('story before populate', story)
         return  Story.findById(story._id).populate('friends');
     })
     .then(function(story) {
-        console.log('story in after populate', story)
         res.send(story);
     })
     .catch(next)
@@ -77,13 +78,22 @@ router.put('/:storyId/squares', function(req, res, next){
     .then(function(square) {
         SQUARETOSEND = square;
         console.log('SQUARE WITH SRC PATH AS FINAL IMAGE: ', square)
-        return Story.findByIdAndUpdate(req.params.storyId, {$push: {'squares': square._id}}, {upsert: true, new: true});
+        return Story.findByIdAndUpdate(req.params.storyId, {$push: {'squares': square._id}}, { upsert: true, new: true });
     })
     .then(function(){
         console.log('still access to SQUARE', SQUARETOSEND)
         res.status(200).send(SQUARETOSEND);
     })
     .catch(next)
+});
+
+router.put('/:storyId/collaborators', function(req, res, next) {
+    Story.update({ _id: req.params.storyId },{ $pushAll: { friends: req.body.collaborators }},{ upsert: true, new: true })
+    .then(function(story) {
+        console.log('UPDATED STORY: ', story);
+        res.send(story);
+    })
+    .catch(next);
 });
 
 

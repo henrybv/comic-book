@@ -333,7 +333,7 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
 
     //Border  
     $scope.border = function (img){
-        console.log('BORDER')
+        console.log('BORDER', img)
         $scope.chosenBorder = {source: img}
     } 
 

@@ -1,8 +1,10 @@
 //FULLSTACK BASE - Debanshi
-var base = 'http://192.168.1.183:1337'
+// var base = 'http://192.168.1.184:1337'
+// var base = 'http://192.168.1.183:1337'
 // var base = 'http://192.168.0.20:1337'
 // var base = 'http://192.168.1.184:1337'
 //FULLSTACK BASE - Eric
+var base = 'http://192.168.1.183:1337'
 // var base = 'http://192.168.0.20:1337'
 //FULLSTACK BASE - Jeff
 // var base = 'http://192.168.1.133:1337'
@@ -62,23 +64,26 @@ core.config(function($stateProvider, $urlRouterProvider) {
       }
     }
   })
-  .state('home.myStories', {
-    url: '/home/myStories',
-    templateUrl: 'js/home/home.myStories.template.html'
-  })
-  .state('home.myCollabs', {
-    url: '/home/myCollabs',
-    templateUrl: 'js/home/home.myCollabs.template.html'
-  })
+  // .state('home.myStories', {
+  //   url: '/home/myStories',
+  //   templateUrl: 'js/home/home.myStories.template.html'
+  // })
+  // .state('home.myCollabs', {
+  //   url: '/home/myCollabs',
+  //   templateUrl: 'js/home/home.myCollabs.template.html'
+  // })
+  // .state('home.myStories', {
+  //   url: '/home/myStories',
+  //   templateUrl: 'js/home/home.myStories.template.html'
+  // })
+  // .state('home.myCollabs', {
+  //   url: '/home/myCollabs',
+  //   templateUrl: 'js/home/home.myCollabs.template.html'
+  // })
   .state('settings', {
     url: '/settings',
     templateUrl: 'js/settings/settings.template.html',
-    controller: 'MyAccountCtrl',
-    resolve: {
-      loggedInUser: function(AuthService) {
-        return AuthService.getLoggedInUser()
-      }
-    }
+    controller: 'SettingsCtrl'
   })
   .state('camera', {
     url: '/camera/:storyId',
@@ -89,7 +94,7 @@ core.config(function($stateProvider, $urlRouterProvider) {
         return StoryFactory.getStoryById($stateParams.storyId);
       },
       getAddons: function(CameraFactory, $stateParams) {
-        console.log('in get addons')
+        // console.log('in get addons')
         return CameraFactory.getFilters()
       }
     }
@@ -122,7 +127,7 @@ core.config(function($stateProvider, $urlRouterProvider) {
     templateUrl: 'js/story/story.template.html',
     controller: 'StoryCtrl',
     resolve: {
-      story: function(StoryFactory, $stateParams) {
+      story: function(StoryFactory, $stateParams, AuthService, UserFactory) {
         return StoryFactory.getStoryById($stateParams.storyId);
       },
       loggedInUser: function (AuthService){
@@ -146,7 +151,6 @@ core.config(function($stateProvider, $urlRouterProvider) {
                       if (loggedInUser._id === user._id) present = true;
                     };  
                   }
-
                   if (!present) usersForCollabList.push(user);
               });
 

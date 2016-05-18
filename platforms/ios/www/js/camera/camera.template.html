@@ -1,6 +1,13 @@
 <ion-view view-title="Edit Image" id="container">
 <<<<<<< Updated upstream
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
+>>>>>>> master
+	<ion-content scroll="false" id="addonWrapper" class="canvasAndAddonContainer">
+>>>>>>> master
 =======
 >>>>>>> Stashed changes
 	<ion-content scroll="false" id="addonWrapper" class="canvasAndAddonContainer">
@@ -20,6 +27,15 @@
  
  		<canvas id='imageCanvas' width='375' height='375' data-caman-hidpi-disabled="true"></canvas>
 >>>>>>> Stashed changes
+
+<!-- PLACEHOLDER BUBBLE -->
+	  	<textarea rows="4" cols="50" id='new' style="border:solid black 3px;max-width:120px"></textarea>
+		<h1 ng-click="previewImage()" id="one">PREVIEW IMG</h1>
+<!-- END OF PLACEHOLDER FOR BUBBLE -->
+ 
+ <canvas id='imageCanvas' width='375' height='375' data-caman-hidpi-disabled="true"></canvas>
+		<button class="button" ng-click="addStickersToCanvas
+		()">Add stickers to canvas</button>
 
 		<p id="addonError" style="display: none;">Too Many Stickers!</p>
 		<p id="addonSuccessfulDelete" style="display: none;">Successfully Deleted</p>
@@ -73,6 +89,13 @@
 	    hm-press="onPress"
 	    hm-pressup="onHammerEnd"
 	    hm-panend="onHammerEnd"
+<<<<<<< HEAD
+	    ng-repeat="bubble in bubblesArray" ></textarea>
+
+		
+		<button class="button" ng-click="saveImage()">Save Image</button>
+
+=======
 	    ng-repeat="bubble in bubblesArray" ></textarea>	 -->   
 		    <div
 			    id="bubble{{bubble.id}}"
@@ -108,6 +131,7 @@
 		
 		<button class="button" ng-click="saveImage()">Save Image</button>
 
+>>>>>>> master
 	</ion-content>
   	<div 
   		id="navbarAddonWrapper"

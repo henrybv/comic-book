@@ -20,6 +20,7 @@ core.directive('navbarAddon', function($rootScope) {
         //Adds proper functions to addons:
         for (var i = 0; i < scope.addons.length; i++) {
             
+            console.log(scope.addons[i])
             scope.addons[i].addonFunction = function(){
 
                 if(this.type === "sticker"){

@@ -46,6 +46,9 @@ core.factory('CameraFactory', function($http){
 
 <<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> master
 
 
 =======

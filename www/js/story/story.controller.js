@@ -1,20 +1,29 @@
-core.controller('StoryCtrl', function($scope, story, $state, $localStorage, CameraFactory) {
+core.controller('StoryCtrl', function($scope, story, $state, $localStorage, CameraFactory, loggedInUser, allUsers, StoryFactory, $rootScope) {
+    $scope.allUsers = allUsers;
+    $scope.currentUser = loggedInUser;
+    $scope.allUsers = allUsers;
+    $scope.clicked = false;
+    $scope.collaborators = [];
+    $scope.collabAdded = false;
 	$scope.story = story;
     // $scope.urlbaby;
 	// console.log('story in storyCTRL', $scope.story)
 
-    if ($scope.story.squares.length === 0){
-        console.log('story in if statement', $scope.story)
+    // $scope.allUsers.forEach(function(user) {
+    //     for (var i = 0; i < $scope.story.friends.length; i++) {
+    //         if ($scope.story.friends[i]._id === user._id) {
+    //             $scope.allUsers.splice(i, 1);
+    //         }
+    //     }
+    // });
+
+    $scope.goToCamera = function(){
         $state.go('camera', {storyId: $scope.story._id})
     }
 
-	$scope.goToCamera = function(){
-		$state.go('camera', {storyId: $scope.story._id})
-	}
-
-	$scope.changeState = function() {
-		$state.go('home')
-	}
+    $scope.changeState = function() {
+        $state.go('home')
+    }
 
 
     var urlToNewCanvas = function(url, canvasId){
@@ -31,7 +40,7 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
         }
     }
 
-	
+    
 // GETTING IMAGES FROM FIREBASE EVERY TIME ONE IS ADDED
     var ref = new Firebase('https://torrid-inferno-1552.firebaseio.com/' + $scope.story._id);
     ref.on('value', function(snapshot){
@@ -43,15 +52,53 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
         }
         var obj = snapshot.val();
         for (var squareId in obj){
-        	urlToNewCanvas(obj[squareId].url, squareId);
+            urlToNewCanvas(obj[squareId].url, squareId);
         }
-    })
 
-    // // var ref2 = new Firebase('https://torrid-inferno-1552.firebaseio.com/573a15210df53e1e9b2b357d/573a15210df53e1e9b2b357d/573a1b3d0df53e1e9b2b358e');
-    // var ref2 = new Firebase('https://torrid-inferno-1552.firebaseio.com/573a15210df53e1e9b2b357d');
-    // ref2.once('child_added', function(snapshot){
-    //     var obj = snapshot.val();
-    //     $scope.urlbaby = obj.url;
-    //     urlToNewCanvas(obj.url, 'bananas')
-    // })
+    });
+
+
+    // ADD FRIENDS FUNCTIONALITY
+
+    $scope.showAllUsers = function() {
+        $scope.clicked = true;
+    };
+
+    $scope.addFriend = function(user) {
+        $scope.collabAdded = true;
+        $scope.collaborators.push(user);
+        user.collabr = true;
+        // $scope.searchedEmail = '';
+    };
+
+    $scope.removeCollabr = function(user) {
+        var userId = user._id;
+        var collabArr = [];
+        $scope.collaborators.forEach(function(collbr) {
+            collabArr.push(collbr._id);
+        });
+        var index = collabArr.indexOf(userId);
+        $scope.collaborators.splice(index, 1);
+        user.collabr = false;
+    };
+
+
+    $scope.addCollaborators = function() {
+        var collabsIds = $scope.collaborators.map(function(collabr) {
+            return collabr._id;
+        });
+
+        $scope.clicked = false;
+        $scope.collaborators = [];
+        $scope.collabAdded = false;
+
+        StoryFactory.addCollaborators($scope.story._id, collabsIds)
+        .then(function(updatedStory) {
+            console.log('Updated Story', updatedStory);
+        });
+    };
+
+
+
 });
+

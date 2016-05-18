@@ -4,6 +4,12 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
 <<<<<<< Updated upstream
     $scope.currentSquare;
 =======
+<<<<<<< HEAD
+core.controller('CameraCtrl', function(story, getAddons, $scope, $cordovaCamera, $cordovaFileTransfer, Grafi, $localStorage, CameraFactory, FilterFactory) {
+	$scope.story = story;
+    $scope.currentUser = $localStorage.user._id;
+    $scope.currentSquare;
+=======
 core.controller('CameraCtrl', function($state, story, getAddons, $scope, $cordovaCamera, $cordovaFileTransfer, Grafi, $localStorage, CameraFactory, FilterFactory) {
 	$scope.story = story;
     $scope.currentUser = $localStorage.user._id;
@@ -11,10 +17,14 @@ core.controller('CameraCtrl', function($state, story, getAddons, $scope, $cordov
     $scope.stickersArray = [];
     $scope.test;
 >>>>>>> master
+<<<<<<< HEAD
 =======
     // $scope.currentSquare;
     $scope.stickersArray = [];
 >>>>>>> Stashed changes
+=======
+>>>>>>> master
+>>>>>>> master
 
     //REMOVE LINK WHEN USING URL FROM PHOTO / ALBUM LIBRARY
     $scope.url = '../../img/ben.png';
@@ -24,6 +34,9 @@ core.controller('CameraCtrl', function($state, story, getAddons, $scope, $cordov
     var urlToCanvas = function(url, canvasId, x, y){
 <<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> master
         console.log('in urlToCanvas with parameters:', url, canvasId, x, y);
         var x = x || 0;
         var y = y || 0;
@@ -42,6 +55,9 @@ core.controller('CameraCtrl', function($state, story, getAddons, $scope, $cordov
         newImage.onload = function(){
 <<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> master
             context.drawImage(newImage, x, y);
         }
         var dataURL = canvas.toDataURL('image/png');
@@ -61,15 +77,21 @@ core.controller('CameraCtrl', function($state, story, getAddons, $scope, $cordov
 <<<<<<< Updated upstream
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+=======
     
     
 
 >>>>>>> master
+<<<<<<< HEAD
 =======
     
     
 
 >>>>>>> Stashed changes
+=======
+>>>>>>> master
+>>>>>>> master
     $scope.applyfilter = function(filter, canvasId){
         console.log('in apply filter in camera ctrl')
         applyfilter(filter, canvasId);
@@ -127,6 +149,9 @@ core.controller('CameraCtrl', function($state, story, getAddons, $scope, $cordov
 
 <<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> master
     // $scope.saveImage = function(){
        //  var canvas = document.getElementById('imageCanvas');
        //  var finalDataURL = canvas.toDataURL('image/png')
@@ -149,6 +174,11 @@ core.controller('CameraCtrl', function($state, story, getAddons, $scope, $cordov
     $scope.addStickersToCanvas = function(){
         $scope.stickersArray.forEach(function(sticker){
             urlToCanvas(sticker.source, 'imageCanvas', sticker.x, sticker.y)
+<<<<<<< HEAD
+        })
+    }
+
+=======
         })
     }
 
@@ -216,7 +246,11 @@ core.controller('CameraCtrl', function($state, story, getAddons, $scope, $cordov
         })
     }
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+>>>>>>> master
+>>>>>>> master
     // $scope.canvas = document.getElementById('imageCanvas');
     // $scope.addons = document.getElementById('addonCanvas');
 =======
@@ -283,6 +317,11 @@ core.controller('CameraCtrl', function($state, story, getAddons, $scope, $cordov
 
 <<<<<<< Updated upstream
 <<<<<<< HEAD
+
+  //--------DIRECTIVE--------//
+
+=======
+<<<<<<< HEAD
   //--------DIRECTIVE--------//
 
 =======
@@ -290,11 +329,15 @@ core.controller('CameraCtrl', function($state, story, getAddons, $scope, $cordov
   //--------DIRECTIVE--------//
 
 >>>>>>> master
+<<<<<<< HEAD
 =======
 
   //--------DIRECTIVE--------//
 
 >>>>>>> Stashed changes
+=======
+>>>>>>> master
+>>>>>>> master
 
     //-----ADDON FUNCTIONS-----//
 
@@ -317,13 +360,20 @@ core.controller('CameraCtrl', function($state, story, getAddons, $scope, $cordov
             //Push element data into the stickersArray;
 <<<<<<< Updated upstream
 <<<<<<< HEAD
+            $scope.stickersArray.push({source: img, id: stickercounter, x: 2, y: 28})
+=======
+<<<<<<< HEAD
             $scope.stickersArray.push({source: img, id: stickercounter, x: 0, y: 0})
 =======
             $scope.stickersArray.push({source: img, id: stickercounter, x: 2, y: 28})
 >>>>>>> master
+<<<<<<< HEAD
 =======
             $scope.stickersArray.push({source: img, id: stickercounter, x: 0, y: 0})
 >>>>>>> Stashed changes
+=======
+>>>>>>> master
+>>>>>>> master
             console.log($scope.stickersArray)
             //Grab that element and set it to a variable;
             // w.appendChild(sticker)
@@ -453,6 +503,13 @@ core.controller('CameraCtrl', function($state, story, getAddons, $scope, $cordov
 <<<<<<< Updated upstream
 <<<<<<< HEAD
         console.log("Coords", x, y);
+<<<<<<< HEAD
+
+    };
+
+
+    $scope.onPress = function onPress (event) {
+=======
 =======
 =======
 >>>>>>> Stashed changes
@@ -470,8 +527,12 @@ core.controller('CameraCtrl', function($state, story, getAddons, $scope, $cordov
             currenty = event.center.y - 130;
 
 =======
+<<<<<<< HEAD
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> master
+>>>>>>> master
 
         var currentElem = document.getElementById(event.element[0].id);
         var currentx = event.center.x - 80,
@@ -479,6 +540,19 @@ core.controller('CameraCtrl', function($state, story, getAddons, $scope, $cordov
 
 <<<<<<< Updated upstream
 
+<<<<<<< HEAD
+        //DEBANSHI'S UPDATES
+        var index;
+        $scope.stickersArray.forEach(function(sticker, idx){
+            if ('sticker'+sticker.id === event.element[0].id) {
+                index = idx;
+            }
+        })
+        $scope.stickersArray[index].x = currentx
+        $scope.stickersArray[index].y = currenty
+        //END OF DEBANSHI'S UPDATES
+
+=======
         // //DEBANSHI'S UPDATES
         // var index;
         // $scope.stickersArray.forEach(function(sticker, idx){
@@ -491,8 +565,12 @@ core.controller('CameraCtrl', function($state, story, getAddons, $scope, $cordov
         //END OF DEBANSHI'S UPDATES
 
 >>>>>>> master
+<<<<<<< HEAD
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> master
+>>>>>>> master
         // currentElem.style.left = currentx + 'px';
         // currentElem.style.top = currenty + 'px';
 
@@ -656,6 +734,9 @@ core.controller('CameraCtrl', function($state, story, getAddons, $scope, $cordov
 
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+=======
+>>>>>>> master
 
 //OLD SKETCH FILTER
     // $scope.filterImage = function(filterType, canvasId){
@@ -699,4 +780,3 @@ core.controller('CameraCtrl', function($state, story, getAddons, $scope, $cordov
 
 });
 
->>>>>>> master
