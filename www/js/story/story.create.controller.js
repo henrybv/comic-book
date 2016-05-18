@@ -29,7 +29,7 @@ core.controller('StoryCreateCtrl', function($scope, StoryFactory, $state, $local
 				$scope.clicked = false;
 				$scope.collaborators = [];
 				$scope.collabAdded = false;
-				$state.go('camera', {storyId: story._id});
+				$state.go('story', {storyId: story._id});
 			});	
 		}
 	};

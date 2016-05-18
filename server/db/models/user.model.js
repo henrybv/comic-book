@@ -7,6 +7,10 @@ var schema = new mongoose.Schema({
     username: {
         type: String
     },
+    avatar: {
+        type: String,
+        default: '/img/default_avatar.jpg'
+    },
     email: {
         type: String,
         unique: true

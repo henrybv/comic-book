@@ -33,7 +33,6 @@ router.get('/', function(req, res, next) {
     .then(function(users){
         res.send(users);
         console.log('in members get route with users', users)
-
     })
     .catch(next);
 });
@@ -97,3 +96,11 @@ router.put('/:userId', function(req, res, next){
     }
 });
 
+router.put('/:userId/avatar', function(req, res, next) {
+    User.findAndModify(req.params.userId, {$set: {'avatar': req.body.avatar}}, {new: true})
+    .then(function(updatedAvatar) {
+        console.log('new avatar in user/avatar route', updatedAvatar)
+        res.status(200).send(updatedAvatar);
+    })
+    .catch(next);
+});

@@ -6,6 +6,3 @@ require('./user.model.js');
 require('./square.model.js');
 require('./story.model.js');
 require('./addon.model.js');
-
-// require('./order.model.js');
-// require('./product.model.js');

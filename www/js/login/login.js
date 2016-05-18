@@ -16,7 +16,6 @@ app.controller('LoginCtrl', function ($scope, AuthService, $state, $localStorage
         .then(function (data) {
             //Data looks like this {user:Object, success:true, Token: ...}
             if(data.user) {
-                console.log("AuthService user in LoginCtrl", data)
                 //Jeff: Local Storage is done here
                 //The way this works now is that the user is assigned a new token EVERY time he logs in
                 //I think this is what we want, but we may want to prevent an already logged (with persistant local storage data) from logging in

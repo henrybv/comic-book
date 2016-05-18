@@ -49,6 +49,7 @@
     <script src="js/camera/camera.factory.js"></script>
     <script src="js/camera/grafi.factory.js"></script>
     <script src="js/camera/filter.factory.js"></script>
+    <script src="js/settings/settings.factory.js"></script>
 
     <!-- Directives -->
     <script src="js/navbar/navbar.main/navbar.main.directive.js"></script>
@@ -84,7 +85,7 @@
         <ion-nav-buttons side="right">
             <button ng-if=" 'home' | isState" class="button button-icon ion-person-add"></button>
             <button ui-sref="story" ng-if=" 'camera' | isState" class="button button-icon ion-grid"></button>
-            <button ui-sref="settings" ng-if=" 'home' | isState" class="button button-icon ion-ios-gear"></button>
+            <button ui-sref="settings({storyId: story._id})" ng-if=" 'home' | isState" class="button button-icon ion-ios-gear"></button>
             <button ng-click="save()" ng-if=" 'camera' | isState" class="button button-icon ion-checkmark-circled"></button>
             <!-- <button class="button button-icon ion-ios-email"></button> -->
         </ion-nav-buttons>

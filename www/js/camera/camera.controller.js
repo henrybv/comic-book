@@ -28,9 +28,6 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $rootScope,
     //REMOVE WHEN USING URL FROM PHOTO / ALBUM LIBRARY
     urlToCanvas($scope.url, 'imageCanvas');
 
-    
-    
-
     $scope.applyfilter = function(filter, canvasId){
         console.log('in apply filter in camera ctrl')
         applyfilter(filter, canvasId);
@@ -104,13 +101,14 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $rootScope,
         var context = canvas.getContext('2d');
         var onloadsRunning = [];
         $scope.stickersArray.forEach(function(sticker){
-            var x = sticker.x;
-            var y = sticker.y;
+            console.log("STICKER", sticker)
+            var x = sticker.x
+            var y = sticker.y
             var newImage = new Image();
             newImage.src = sticker.source;
             var onloadPromise = $q(function(resolve, reject){
                 newImage.onload = function(){
-                    context.drawImage(newImage, 0, 0);
+                    context.drawImage(newImage, x, y);
                     resolve();
                 }
                 newImage.onerror = reject;
@@ -402,8 +400,8 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $rootScope,
                 }
             })
             console.log("StickersArray HERE", $scope.stickersArray )
-            $scope.bubblesArray[index].x = currentx
-            $scope.bubblesArray[index].y = currenty
+            $scope.bubblesArray[index].x = Number(currentx.slice(0, -2))
+            $scope.bubblesArray[index].y = Number(currenty.slice(0, -2))
         }
 
         //Update final resting coordinates of the current Element
