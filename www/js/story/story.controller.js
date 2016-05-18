@@ -1,7 +1,7 @@
 core.controller('StoryCtrl', function($scope, story, $state, $localStorage, CameraFactory) {
 	$scope.story = story;
     // $scope.urlbaby;
-	console.log('story in storyCTRL', $scope.story)
+	// console.log('story in storyCTRL', $scope.story)
 
     if ($scope.story.squares.length === 0){
         console.log('story in if statement', $scope.story)
@@ -36,9 +36,9 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
     var ref = new Firebase('https://torrid-inferno-1552.firebaseio.com/' + $scope.story._id);
     ref.on('value', function(snapshot){
         var here = document.getElementById('here');
-            console.log('HERE I AM', here)
+            console.log('Firebase Div:', here)
         while (here.firstChild){
-            console.log('HERE FIRST CHILD', here.firstChild)
+            // console.log('HERE FIRST CHILD', here.firstChild)
             here.removeChild(here.firstChild);
         }
         var obj = snapshot.val();

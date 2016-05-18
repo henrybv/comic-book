@@ -29,6 +29,7 @@ core.directive('navbarAddon', function($rootScope) {
                     scope.bubble(this.name)
                 }
                 if(this.type === "border"){
+                    console.log("THIS", this)
                     scope.border(this.source)
                 }
                 if(this.type === "filter"){

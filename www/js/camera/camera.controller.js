@@ -8,6 +8,7 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
     $scope.url = '../../img/ben.png';
     // $scope.url;
 
+
     var urlToCanvas = function(url, canvasId, x, y){
         console.log('parameters', url, canvasId, x, y)
         var x = x || 0;
@@ -104,10 +105,31 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         var context = canvas.getContext('2d');
         var onloadsRunning = [];
         $scope.stickersArray.forEach(function(sticker){
-            var x = sticker.x;
-            var y = sticker.y;
+            var x = Number(sticker.x.slice(0,-2)) || 0;
+            var y = Number(sticker.y.slice(0,-2)) || 0
             var newImage = new Image();
             newImage.src = sticker.source;
+            var onloadPromise = $q(function(resolve, reject){
+                newImage.onload = function(){
+                    context.drawImage(newImage, x, y);
+                    resolve();
+                }
+                newImage.onerror = reject;
+            })
+            onloadsRunning.push(onloadPromise);
+        })
+        return $q.all(onloadsRunning);
+    }     
+
+    var addBorderToCanvas = function(){
+        // if ($scope.chosenBorder) {        
+            var canvas = document.getElementById('imageCanvas');
+            var context = canvas.getContext('2d');
+            var onloadsRunning = [];
+            // $scope.chosenBorder(function(border){
+            var newImage = new Image();
+            newImage.src = $scope.chosenBorder ? $scope.chosenBorder.source  : 'assets/borders/transparent.png'
+            console.log("newImage.srcy", newImage.src, $scope.chosenBorder)
             var onloadPromise = $q(function(resolve, reject){
                 newImage.onload = function(){
                     context.drawImage(newImage, 0, 0);
@@ -116,21 +138,62 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
                 newImage.onerror = reject;
             })
             onloadsRunning.push(onloadPromise);
-        })
-        return $q.all(onloadsRunning);
+            // })
+            return $q.all(onloadsRunning);
+        // }
+    }   
+
+    var addBubblesToCanvas = function(){
+        console.log("addBubblesToCanvas Ran")
+        if($scope.bubblesArray){
+            // console.log(!!$scope.bubblesArray)
+            var canvas = document.getElementById('imageCanvas');
+            var context = canvas.getContext('2d');
+            var onloadsRunning = [];
+            $scope.bubblesArray.forEach(function(bubble){
+                var x = Number(bubble.x.slice(0,-2)) || 0;
+                var y = Number(bubble.y.slice(0,-2)) || 0;
+                var newImage = new Image();
+                newImage.src = bubble.source;
+                var onloadPromise = $q(function(resolve, reject){
+                    newImage.onload = function(){
+                        context.drawImage(newImage, x, y);
+                        resolve();
+                    }
+                    newImage.onerror = reject;
+                })
+                onloadsRunning.push(onloadPromise);
+            })
+            return $q.all(onloadsRunning);
+        }
     }
 
 
+    //Defines the saveImage function which Saves Image to DB and adds to story
     $scope.saveImage = function(){
-        addStickersToCanvas()
+        console.log("saveImageRan")
+        // bubblestoImageData()
+
+
+        addBorderToCanvas()
+        // .then(function(){
+        //     console.log("Thsee bubbles should have source", $scope.bubblesArray)
+        //     addBubblesToCanvas()
+        // })
         .then(function(){
+            return addStickersToCanvas()
+        })
+        .then(function(){
+            console.log("I bet it doesnt get here")
             var canvas = document.getElementById('imageCanvas');
             var finalDataURL = canvas.toDataURL('image/png')
+            console.log("SAVE IMAGE SCOPE STORY ID", $scope.story._id)
             CameraFactory.createSquare(finalDataURL, $scope.story._id, $scope.currentUser)
         })        
         .then(function(square){
             // $scope.currentSquare = square;
             // console.log('saved image, in ctrl', $scope.currentSquare)
+            console.log("PROMISE STORY ID", $scope.story._id)
             $state.go('story', {storyId: $scope.story._id});
         })
         .catch(function(err){
@@ -138,24 +201,29 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         })
     }
 
+    //Listens for the event being emmited from navbar.main.controller that will run our saveImage() function
+    $scope.$on('saveImage', function() {
+        $scope.saveImage()
+    })
+
     // FOR HTML2CANVASS ////////////
     // FOR GRABBING
-    var element1;
-    var element2;
-    var element3;
+    // var element1;
+    // var element2;
+    // var element3;
 
-    function grabElement() {
-        // if we make it so can put on more STICKERS will have to change this
-        if (stickercounter === 1) {
-            element1 = $("#sticker1");
-        } else if (stickercounter === 2) {
-            element2 = $("#sticker2");
-        } else if (stickercounter === 3) {
-            element3 = $("#sticker3");
-        }
+    // function grabElement() {
+    //     // if we make it so can put on more STICKERS will have to change this
+    //     if (stickercounter === 1) {
+    //         element1 = $("#sticker1");
+    //     } else if (stickercounter === 2) {
+    //         element2 = $("#sticker2");
+    //     } else if (stickercounter === 3) {
+    //         element3 = $("#sticker3");
+    //     }
 
-        console.log('element1: ', element1)
-    };
+    //     console.log('element1: ', element1)
+    // };
     //////////////////////
 
         // ORDER OF WORKING THIS:
@@ -170,26 +238,36 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
     var element = $("#new"); // global variable
     var getCanvas; // global variable
  
-    $scope.previewImage = function () {
+    var bubblestoImageData = function () {
          // PASS CORRECT BUBBLE IN WHERE 'element' CURRENTLY IS
-         html2canvas(element, {
-         onrendered: function (canvas) {
-                // RENDERS CANVAS BACK ONTO PAGE
-                canvas.class = 'newID';
-                // PRETTY SURE WE DONT NEED TO APPEND BACK TO DOM TO GET ALL THE DATA FROM IT
-                // $("#previewImage").append(canvas);
-                // getCanvas = canvas;
+         if($scope.bubblesArray){
+             $scope.bubblesArray.forEach( function(currentBubble){
+                 var currElement = $('#textarea' + currentBubble.id)
+                 console.log("Bubble DIv", currElement[0])
+                 html2canvas(currElement[0], {
+                 onrendered: function (canvas) {
+                        // RENDERS CANVAS BACK ONTO PAGE
+                        canvas.class = 'newID';
+                        // PRETTY SURE WE DONT NEED TO APPEND BACK TO DOM TO GET ALL THE DATA FROM IT
+                        // $("#previewImage").append(canvas);
+                        // getCanvas = canvas;
 
-                // NOTES:
-                // 1. MIGHT HAVE TO SET THE TEXT AREA TO BE CERTAIN H/W CUZ IT RERENDERS WRONG IF THE USER PRESSES ENTER (but they prob wont be pressing enter right?) (STARTS A NEW LINE - ALL COMES OUT AS ONE LINE)
-                //      - TO SOLVE THIS MIGHT BE ABLE TO PASS H/W PARAMS WITH THE TEXT BOX
-                // 2. WILL HAVE TO PASS COORDOINATES WITH THE DATA URL
-                var ctx = canvas.getContext("2d");
-                var imgData = ctx.getImageData(0,0, 375, 43);
-                var dataURL = canvas.toDataURL();
-                console.log('data url', dataURL);
+                        // NOTES:
+                        // 1. MIGHT HAVE TO SET THE TEXT AREA TO BE CERTAIN H/W CUZ IT RERENDERS WRONG IF THE USER PRESSES ENTER (but they prob wont be pressing enter right?) (STARTS A NEW LINE - ALL COMES OUT AS ONE LINE)
+                        //      - TO SOLVE THIS MIGHT BE ABLE TO PASS H/W PARAMS WITH THE TEXT BOX
+                        // 2. WILL HAVE TO PASS COORDOINATES WITH THE DATA URL
+                        var ctx = canvas.getContext("2d");
+                        var imgData = ctx.getImageData(0,0, 375, 43);
+                        var dataURL = canvas.toDataURL();
+                        currentBubble.source = dataURL
+                        console.log('data url', $scope.story);
+                     }
+                 })
+
              }
-         });
+             );
+            
+         }
     };
 
 
@@ -216,7 +294,7 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         //Create image element with unique ID
         if(stickercounter < 4){
             //Push element data into the stickersArray;
-            $scope.stickersArray.push({source: img, id: stickercounter, x: 0, y: 0})
+            $scope.stickersArray.push({source: img, id: stickercounter, x: '0px', y: '0px'})
             console.log($scope.stickersArray)
             //Grab that element and set it to a variable;
             // w.appendChild(sticker)
@@ -240,11 +318,12 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         if(!$scope.bubblesArray) $scope.bubblesArray = []
 
         // Creates an array of Pointer and PointerBorder Styling based on bubble name
+        // CreateBubbleStyle function is in the bubbles.js file
         var currentBubbleStyle = createBubbleStyle(bubbleName)
         console.log(currentBubbleStyle)
 
         if(bubblecounter < 4){
-            $scope.bubblesArray.push({id: bubbleIdcounter, pointerStyle:currentBubbleStyle[0], pointerBorderStyle: currentBubbleStyle[1] })
+            $scope.bubblesArray.push({id: bubbleIdcounter, pointerStyle:currentBubbleStyle[0], pointerBorderStyle: currentBubbleStyle[1], x: '0px', y: '0px' })
             bubblecounter++;
             bubbleIdcounter++;
         } else {
@@ -255,6 +334,7 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
     //Border  
     $scope.border = function (img){
         console.log('BORDER')
+        $scope.chosenBorder = {source: img}
     } 
 
     //Filter   
@@ -510,120 +590,7 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         setTimeout("$('#puff').hide()", frames * frameRate);
     }
 
-    function createBubbleStyle(bubbleName) {
-        var bubbletype = bubbleName.split('_')
-        var pointer = {
-            content: '',
-            position: 'absolute',
-            'border-style': 'solid',
-            'border-color': '#FFFFFF transparent',
-            display: 'block',
-            width: '0',
-            'z-index': '1',
-            'margin-left': '-6px'
-        }
-        var pointerBorder = {
-              content: " ",
-              position: 'absolute',
-              'border-style': 'solid',
-              'border-color': 'rgb(0, 0, 0) transparent',
-              'display': 'block',
-              'width': '0px',
-              'z-index': '0',
-              'margin-left': '-8px'
-        }
-
-        var thoughtBubbleBig = {
-            'position': 'absolute',
-            'border-style': 'solid',
-            'border-radius': '2px',
-            'border-width': '2px',
-            'border-color': 'black',
-            'background': 'white',
-            'height': '25px',
-            'width': '25px',
-            'z-index': '4',
-            // 'margin-left': '-6px',
-            'border-radius': '50%'
-
-        }        
-        
-        var thoughtBubbleSmall = {
-            'position': 'absolute',
-            'border-style': 'solid',
-            'border-radius': '2px',
-            'border-width': '2px',
-            'border-color': 'black',
-            'background': 'white',
-            'height': '15px',
-            'width': '15px',
-            'z-index': '4',
-            'margin-left': '-6px',
-            'border-radius': '50%'
-        } 
-        console.log(bubbletype)
-        //['left', 'top']
-
-
-        if (bubbletype[2] === 'speech'){
-
-            //Left vs Right
-            if (bubbletype[0] === 'left') {
-                pointer['left'] = '30%';
-                pointerBorder['left'] = '30%';
-            } else if (bubbletype[0] === 'right') {
-                pointer['right'] = '30%';
-                pointerBorder['right'] = '28%';
-            }
-
-            //Top vs Bottom
-            if (bubbletype[1] === 'top'){
-                pointer['top'] = '-31px';
-                pointerBorder['top'] = "-37px"
-                pointer['border-width'] = '0px 4px 35px';
-                pointerBorder['border-width'] = '0px 6px 39px';
-            } else if (bubbletype[1] === 'bottom') {
-                pointer['bottom'] = '-32px';
-                pointerBorder['bottom'] = '-39px';
-                pointer['border-width'] = '35px 4px 0';
-                pointerBorder['border-width'] = '40px 6px 0px';
-            }
-
-            return [pointer, pointerBorder]
-        }
-
-        if (bubbletype[2] === 'thought'){
-            
-            //Left vs Right
-            if (bubbletype[0] === 'left') {
-                thoughtBubbleBig['left'] = '15%';
-                thoughtBubbleSmall['left'] = '30%';
-            } else if (bubbletype[0] === 'right') {
-                thoughtBubbleBig['right'] = '15%';
-                thoughtBubbleSmall['right'] = '25%';
-            }
-
-            //Top vs Bottom
-            if (bubbletype[1] === 'top'){
-                thoughtBubbleBig['top'] = '-18px';
-                thoughtBubbleSmall['top'] = "-30px";
-            } else if (bubbletype[1] === 'bottom') {
-                thoughtBubbleBig['bottom'] = '-18px';
-                thoughtBubbleSmall['bottom'] = '-30px';
-
-            }
-
-            return [thoughtBubbleBig, thoughtBubbleSmall]
-            // //Small Left
-            // 'left': '22%',
-            // 'bottom': '-32px',
-
-            // //Big Left
-            // 'left': '10%',
-            // 'bottom': '-15px',
-        }
-
-    }
+    
 
 });
 

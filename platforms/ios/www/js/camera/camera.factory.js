@@ -44,11 +44,14 @@ core.factory('CameraFactory', function($http){
     })
   };
 
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 
 
 =======
 >>>>>>> master
+=======
+>>>>>>> Stashed changes
   return CameraFactory;
 })
 

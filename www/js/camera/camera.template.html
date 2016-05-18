@@ -4,6 +4,7 @@
 	<ion-content scroll="false" id="addonWrapper" class="canvasAndAddonContainer">
  
  		<canvas id='imageCanvas' width='375' height='375' data-caman-hidpi-disabled="true"></canvas>
+ 		<img ng-src={{chosenBorder.source}} style="position: absolute; top: 0; left: 0 "></img>
 
 		<p id="addonError" style="display: none;">Too Many Stickers!</p>
 		<p id="addonSuccessfulDelete" style="display: none;">Successfully Deleted</p>
@@ -28,29 +29,29 @@
 			left:0px">
 		</img>	
  
-	    <div
-		    id="bubble{{bubble.id}}"
-	    	class="inputBubble"
-		    placeholder="Text"
-		    hm-panmove="onHammer"
-		    hm-press="onPress"
-		    hm-pressup="onHammerEnd"
-		    hm-panend="onHammerEnd"
-		    ng-repeat="bubble in bubblesArray"
-		    >
+		    <div
+			    id="bubble{{bubble.id}}"
+		    	class="inputBubble"
+			    placeholder="Text"
+			    hm-panmove="onHammer"
+			    hm-press="onPress"
+			    hm-pressup="onHammerEnd"
+			    hm-panend="onHammerEnd"
+			    ng-repeat="bubble in bubblesArray"
+			    >
 
-		    <textarea
-		    id="textarea"
-		    placeholder="Text"
-		    scroll="false"
-		    elastic>
-		    </textarea>
-		    <div ng-style="{{bubble.pointerStyle}}"></div>
-		    <div ng-style="{{bubble.pointerBorderStyle}}"></div>
-	    </div>
+			    <textarea
+			    id="textarea"
+			    placeholder="Text"
+			    scroll="false"
+			    elastic>
+			    </textarea>
 
-		
-		<button class="button" ng-click="saveImage()">Save Image</button>
+		    	<div ng-style="{{bubble.pointerStyle}}"></div>
+		    	<div ng-style="{{bubble.pointerBorderStyle}}"></div>
+		    </div>
+			   
+		<!-- <button class="button" ng-click="saveImage()">Save Image</button> -->
 
 	</ion-content>
   	<div 

@@ -26,18 +26,15 @@ core.directive('navbarAddon', function($rootScope) {
                     scope.sticker(this.source)
                 }
                 if(this.type === "bubble"){
-                    scope.bubble(this.source)
+                    scope.bubble(this.name)
                 }
                 if(this.type === "border"){
                     scope.border(this.source)
                 }
-
                 if(this.type === "filter"){
                     scope.filter(this.source)
                 }
             }
-
-            // console.log(scope.addons[i])
         }
 
         //Functions from Camera Controller

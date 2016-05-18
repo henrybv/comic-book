@@ -26,7 +26,6 @@ core.run(function($ionicPlatform, $rootScope, $state) {
   // event listener listening for state changes + put on rootScope
   $rootScope.$on('$stateChangeSuccess', function(event, toState) {
    $rootScope.$state = toState;
-   console.log($rootScope.$state.name);
   });
 
   $ionicPlatform.ready(function() {
@@ -125,6 +124,34 @@ core.config(function($stateProvider, $urlRouterProvider) {
     resolve: {
       story: function(StoryFactory, $stateParams) {
         return StoryFactory.getStoryById($stateParams.storyId);
+      },
+      loggedInUser: function (AuthService){
+        return AuthService.getLoggedInUser();
+      },
+      allUsers: function(UserFactory, story, loggedInUser) {
+        return UserFactory.getAllUsers()
+        .then(function(users) {
+              var usersForCollabList = [];
+
+              console.log('loggedInUser: ', loggedInUser._id)
+
+              users.forEach(function(user) {
+                // console.log('userId: ', user._id)
+                  var present = false;
+
+                  if(story.friends){
+                    for (var i = 0; i < story.friends.length; i++) {
+                      if (story.friends[i]._id === user._id) present = true;
+                      // CURRENTLY NOT FILTERING OUT CURRENTLY LOGGED IN USER
+                      if (loggedInUser._id === user._id) present = true;
+                    };  
+                  }
+
+                  if (!present) usersForCollabList.push(user);
+              });
+
+              return usersForCollabList;
+        })
       }
     }
   })
