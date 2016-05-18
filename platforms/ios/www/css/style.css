@@ -95,11 +95,11 @@
     width: auto;
     position: relative;*/
     background-color: red;
-    padding: 10px;
+    /*padding: 2px;*/
     border-radius: 100px;
-    width: 50px;
+    /*width: 50px;*/
     z-index: 6;
-/*    border: 10px solid #000;*/
+    border: 2px solid #000;
 }
 .addonDivs {
     -ms-transform: scale(1) translate(0px, 0px);
@@ -142,6 +142,7 @@
   resize: none;
   padding: 15px;
   border: 2px solid #000;
+  overflow: hidden;
 }
 
 .inputBubble 
@@ -187,31 +188,11 @@
 }
 
 .pointer {
-  content: '';
-  position: absolute;
-  border-style: solid;
-  border-width: 35px 4px 0;
-  border-color: #FFFFFF transparent;
-  display: block;
-  width: 0;
-  z-index: 1;
-  margin-left: -6px;
-  bottom: -32px;
-  left: 70%;
+  top: 43px;
 }
 
 .pointerBorder {
-  content: " ";
-  position: absolute;
-  border-style: solid;
-  border-width: 40px 6px 0px;
-  border-color: rgb(0, 0, 0) transparent;
-  display: block;
-  width: 0px;
-  z-index: 0;
-  margin-left: -8px;
-  bottom: -39px;
-  left: 70%;
+
 }
 
 /*.pointerBorder {

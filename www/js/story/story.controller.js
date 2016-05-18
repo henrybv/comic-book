@@ -7,7 +7,7 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
     $scope.collabAdded = false;
 	$scope.story = story;
     // $scope.urlbaby;
-	console.log('story in storyCTRL', $scope.story)
+	// console.log('story in storyCTRL', $scope.story)
 
     // $scope.allUsers.forEach(function(user) {
     //     for (var i = 0; i < $scope.story.friends.length; i++) {
@@ -45,9 +45,9 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
     var ref = new Firebase('https://torrid-inferno-1552.firebaseio.com/' + $scope.story._id);
     ref.on('value', function(snapshot){
         var here = document.getElementById('here');
-            console.log('HERE I AM', here)
+            console.log('Firebase Div:', here)
         while (here.firstChild){
-            console.log('HERE FIRST CHILD', here.firstChild)
+            // console.log('HERE FIRST CHILD', here.firstChild)
             here.removeChild(here.firstChild);
         }
         var obj = snapshot.val();

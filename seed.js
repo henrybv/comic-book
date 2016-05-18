@@ -285,57 +285,57 @@ var addonSeed = [
         type: 'sticker'
     },
     {
-        name: 'Border A',
-        source: 'assets/borders/thumbnails/blackcircle_tn.png',
-        thumbnail: 'https://placehold.it/125x125/934636/025462/?text=Bubble+A+125+x+125',
+        name: 'Blue Border',
+        source: 'assets/borders/blue-border.png',
+        thumbnail: 'assets/borders/thumbnails/blue-border.png',
         type: 'border'
     },
     {
-        name: 'Border B',
-        source: 'assets/borders/thumbnails/blackfunky_tn.png',
-        thumbnail: 'https://placehold.it/125x125/934636/025462/?text=Bubble+A+125+x+125',
+        name: 'Green Border',
+        source: 'assets/borders/green-border.png',
+        thumbnail: 'assets/borders/thumbnails/green-border.png',
         type: 'border'
     },    
     {
-        name: 'Border C',
-        source: 'assets/borders/thumbnails/blacksquare_tn.png',
-        thumbnail: 'https://placehold.it/125x125/934636/025462/?text=Bubble+A+125+x+125',
+        name: 'Orange Border',
+        source: 'assets/borders/orange-border.png',
+        thumbnail: 'assets/borders/thumbnails/orange-border.png',
         type: 'border'
     },    
     {
         name: 'Border D',
-        source: 'assets/borders/thumbnails/purpleframe_tn.png',
-        thumbnail: 'https://placehold.it/125x125/934636/025462/?text=Bubble+A+125+x+125',
+        source: 'assets/borders/purpleframe.png',
+        thumbnail: 'assets/borders/thumbnails/purpleframe.png',
         type: 'border'
     },
     {
         name: 'Border E',
-        source: 'assets/borders/thumbnails/redframe_tn.png',
-        thumbnail: 'https://placehold.it/125x125/934636/025462/?text=Bubble+A+125+x+125',
+        source: 'assets/borders/redframe.png',
+        thumbnail: 'assets/borders/thumbnails/redframe.png',
         type: 'border'
     },
     {
         name: 'Border F',
-        source: 'assets/borders/thumbnails/redheart_tn.png',
-        thumbnail: 'https://placehold.it/125x125/934636/025462/?text=Bubble+A+125+x+125',
+        source: 'assets/borders/redheart.png',
+        thumbnail: 'assets/borders/thumbnails/redheart.png',
         type: 'border'
     },    
     {
         name: 'Border G',
-        source: 'assets/borders/thumbnails/whitecircle_tn.png',
-        thumbnail: 'https://placehold.it/125x125/934636/025462/?text=Bubble+A+125+x+125',
+        source: 'assets/borders/whitecircle.png',
+        thumbnail: 'assets/borders/thumbnails/whitecircle.png',
         type: 'border'
     },    
     {
         name: 'Border H',
-        source: 'assets/borders/thumbnails/whitefunky_tn.png',
-        thumbnail: 'https://placehold.it/125x125/934636/025462/?text=Bubble+A+125+x+125',
+        source: 'assets/borders/whitefunky.png',
+        thumbnail: 'assets/borders/thumbnails/whitefunky.png',
         type: 'border'
     },
     {
         name: 'Border I',
-        source: 'assets/borders/thumbnails/whitesquare_tn.png',
-        thumbnail: 'https://placehold.it/125x125/934636/025462/?text=Bubble+A+125+x+125',
+        source: 'assets/borders/whitesquare.png',
+        thumbnail: 'assets/borders/thumbnails/whitesquare.png',
         type: 'border'
     },
     {

@@ -1,4 +1,5 @@
 //FULLSTACK BASE - Debanshi
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 var base = 'http://192.168.1.183:1337'
 =======
@@ -7,23 +8,21 @@ var base = 'http://192.168.1.184:1337'
 =======
 >>>>>>> master
 >>>>>>> master
-// var base = 'http://192.168.0.20:1337'
-//FULLSTACK BASE - Eric
-// var base = 'http://192.168.1.133:1337'
-//FULLSTACK BASE - Jeff
-
-//HOME BASE
+=======
+// var base = 'http://192.168.1.184:1337'
 // var base = 'http://192.168.1.183:1337'
-// var base = 'http://192.168.1.7:1337'
-// 127.0.0.1 dynamically routes to your local IP.
-// var base = 'http://127.0.0.1:27017:1337'
-// var base = 'http://localhost:1337'
-// var base = 'http://127.0.0.1:27017:1337'
-// var base = 'http://192.168.1.204:1337'
+>>>>>>> Stashed changes
+// var base = 'http://192.168.0.20:1337'
+// var base = 'http://192.168.1.184:1337'
+//FULLSTACK BASE - Eric
+var base = 'http://192.168.1.7:1337'
+// var base = 'http://192.168.0.20:1337'
+//FULLSTACK BASE - Jeff
 // var base = 'http://192.168.1.133:1337'
+//FULLSTACK BASE - Henry
+// var base = 'http://192.168.1.204:1337'
+
 // var base = 'http://localhost:1337';
-
-
 
 // Ionic Starter App
 
@@ -77,13 +76,26 @@ core.config(function($stateProvider, $urlRouterProvider) {
       }
     }
   })
-  .state('home.myStories', {
-    url: '/home/myStories',
-    templateUrl: 'js/home/home.myStories.template.html'
-  })
-  .state('home.myCollabs', {
-    url: '/home/myCollabs',
-    templateUrl: 'js/home/home.myCollabs.template.html'
+  // .state('home.myStories', {
+  //   url: '/home/myStories',
+  //   templateUrl: 'js/home/home.myStories.template.html'
+  // })
+  // .state('home.myCollabs', {
+  //   url: '/home/myCollabs',
+  //   templateUrl: 'js/home/home.myCollabs.template.html'
+  // })
+  // .state('home.myStories', {
+  //   url: '/home/myStories',
+  //   templateUrl: 'js/home/home.myStories.template.html'
+  // })
+  // .state('home.myCollabs', {
+  //   url: '/home/myCollabs',
+  //   templateUrl: 'js/home/home.myCollabs.template.html'
+  // })
+  .state('settings', {
+    url: '/settings',
+    templateUrl: 'js/settings/settings.template.html',
+    controller: 'SettingsCtrl'
   })
   .state('camera', {
     url: '/camera/:storyId',
@@ -94,7 +106,7 @@ core.config(function($stateProvider, $urlRouterProvider) {
         return StoryFactory.getStoryById($stateParams.storyId);
       },
       getAddons: function(CameraFactory, $stateParams) {
-        console.log('in get addons')
+        // console.log('in get addons')
         return CameraFactory.getFilters()
       }
     }
@@ -127,8 +139,36 @@ core.config(function($stateProvider, $urlRouterProvider) {
     templateUrl: 'js/story/story.template.html',
     controller: 'StoryCtrl',
     resolve: {
-      story: function(StoryFactory, $stateParams) {
+      story: function(StoryFactory, $stateParams, AuthService, UserFactory) {
         return StoryFactory.getStoryById($stateParams.storyId);
+      },
+      loggedInUser: function (AuthService){
+        return AuthService.getLoggedInUser();
+      },
+      allUsers: function(UserFactory, story, loggedInUser) {
+        return UserFactory.getAllUsers()
+        .then(function(users) {
+              var usersForCollabList = [];
+
+              console.log('loggedInUser: ', loggedInUser._id)
+
+              users.forEach(function(user) {
+                console.log('userId: ', user._id)
+                  var present = false;
+
+                  if(story.friends){
+                    for (var i = 0; i < story.friends.length; i++) {
+                      if (story.friends[i]._id === user._id) present = true;
+                      // CURRENTLY NOT FILTERING OUT CURRENTLY LOGGED IN USER
+                      if (loggedInUser._id === user._id) present = true;
+                    };  
+                  }
+
+                  if (!present) usersForCollabList.push(user);
+              });
+
+              return usersForCollabList;
+        })
       }
     }
   })
