@@ -19,8 +19,6 @@ var base = 'http://192.168.1.204:1337'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 
-
-
 var core = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'fsaPreBuilt', 'ngCordova', 'ngStorage', 'hmTouchEvents' ])
 
 core.run(function($ionicPlatform, $rootScope, $state) {

@@ -362,6 +362,14 @@ module.exports = [
         "clobbers": [
             "navigator.contactsPhoneNumbers"
         ]
+    },
+    {
+        "file": "plugins/com.jcjee.plugins.emailcomposer/www/EmailComposer.js",
+        "id": "com.jcjee.plugins.emailcomposer.EmailComposer",
+        "pluginId": "com.jcjee.plugins.emailcomposer",
+        "clobbers": [
+            "EmailComposer"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -378,7 +386,8 @@ module.exports.metadata =
     "cordova-plugin-file": "4.2.0",
     "cordova-plugin-zip": "3.1.0",
     "cordova-plugin-contacts": "2.1.0",
-    "com.dbaq.cordova.contactsPhoneNumbers": "0.0.8"
+    "com.dbaq.cordova.contactsPhoneNumbers": "0.0.8",
+    "com.jcjee.plugins.emailcomposer": "1.4.6"
 }
 // BOTTOM OF METADATA
 });

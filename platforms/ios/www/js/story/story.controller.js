@@ -25,7 +25,6 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
         $state.go('home')
     }
 
-
     var urlToNewCanvas = function(url, canvasId){
     	var canvas = document.createElement('canvas');
         canvas.id = canvasId;

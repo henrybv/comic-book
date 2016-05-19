@@ -75,6 +75,9 @@
 		F6B42C082C8C4383BC1D580F /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF452EF9CA2A4BDDA565E2A9 /* AddressBook.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		59440CEDB24A414C974A0DC4 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C20CFCE77B4BA9ABA4AE02 /* AddressBookUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		AC146F021651412DAA5BC269 /* CDVContactsPhoneNumbers.m in Sources */ = {isa = PBXBuildFile; fileRef = FF132DF73B9547E3AAA2EEB4 /* CDVContactsPhoneNumbers.m */; };
+		501851B3C2FA4A6AB39601C9 /* EmailComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = BE79F8EE6964415FB74C3D69 /* EmailComposer.m */; };
+		7F55383B2F7E429D99D39320 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D84E42F144F42E5A06D8F8B /* NSData+Base64.m */; };
+		0C635AB91DB9429DA8F5E4DD /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE39BAA7D76E40D2AC624428 /* MessageUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -212,6 +215,11 @@
 		E4C20CFCE77B4BA9ABA4AE02 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "AddressBookUI.framework"; path = "System/Library/Frameworks/AddressBookUI.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
 		FF132DF73B9547E3AAA2EEB4 /* CDVContactsPhoneNumbers.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVContactsPhoneNumbers.m"; path = "com.dbaq.cordova.contactsPhoneNumbers/CDVContactsPhoneNumbers.m"; sourceTree = "<group>"; fileEncoding = 4; };
 		92E934C44CCB49649C9C7761 /* CDVContactsPhoneNumbers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVContactsPhoneNumbers.h"; path = "com.dbaq.cordova.contactsPhoneNumbers/CDVContactsPhoneNumbers.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		BE79F8EE6964415FB74C3D69 /* EmailComposer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "EmailComposer.m"; path = "com.jcjee.plugins.emailcomposer/EmailComposer.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		0D84E42F144F42E5A06D8F8B /* NSData+Base64.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSData+Base64.m"; path = "com.jcjee.plugins.emailcomposer/NSData+Base64.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		29EA0D5CF8944106877AFF62 /* EmailComposer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "EmailComposer.h"; path = "com.jcjee.plugins.emailcomposer/EmailComposer.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		9069E2CB00DD465B92E762E5 /* NSData+Base64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSData+Base64.h"; path = "com.jcjee.plugins.emailcomposer/NSData+Base64.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		FE39BAA7D76E40D2AC624428 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "MessageUI.framework"; path = "System/Library/Frameworks/MessageUI.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +237,7 @@
 				5D38F433C7A44C2E8AB1F7DE /* libz.dylib in Frameworks */,
 				F6B42C082C8C4383BC1D580F /* AddressBook.framework in Frameworks */,
 				59440CEDB24A414C974A0DC4 /* AddressBookUI.framework in Frameworks */,
+				0C635AB91DB9429DA8F5E4DD /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,6 +316,7 @@
 				1E4EF36157D744FCA04AEA2C /* libz.dylib */,
 				AF452EF9CA2A4BDDA565E2A9 /* AddressBook.framework */,
 				E4C20CFCE77B4BA9ABA4AE02 /* AddressBookUI.framework */,
+				FE39BAA7D76E40D2AC624428 /* MessageUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -388,6 +398,10 @@
 				D851C195F18A4ECB8736A83F /* CDVContact.h */,
 				FF132DF73B9547E3AAA2EEB4 /* CDVContactsPhoneNumbers.m */,
 				92E934C44CCB49649C9C7761 /* CDVContactsPhoneNumbers.h */,
+				BE79F8EE6964415FB74C3D69 /* EmailComposer.m */,
+				0D84E42F144F42E5A06D8F8B /* NSData+Base64.m */,
+				29EA0D5CF8944106877AFF62 /* EmailComposer.h */,
+				9069E2CB00DD465B92E762E5 /* NSData+Base64.h */,
 			);
 			name = Plugins;
 			path = "HelloCordova/Plugins";
@@ -602,6 +616,8 @@
 				9CFC2F5DB8814CDE8942148B /* CDVContacts.m in Sources */,
 				57BBF1B36CE3438BA7FE1568 /* CDVContact.m in Sources */,
 				AC146F021651412DAA5BC269 /* CDVContactsPhoneNumbers.m in Sources */,
+				501851B3C2FA4A6AB39601C9 /* EmailComposer.m in Sources */,
+				7F55383B2F7E429D99D39320 /* NSData+Base64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

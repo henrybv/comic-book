@@ -1,7 +1,7 @@
 {
-  "name": "ionic-project",
+  "name": "comic-pow-wow",
   "version": "1.1.1",
-  "description": "An Ionic project",
+  "description": "Comic Pow-Wow is a collaborative mobile application that allows you to create comic strips with your friends in real-time.",
   "main": "server/start.js",
   "scripts": {
     "start": "nodemon --watch server -e js,html server/start.js",

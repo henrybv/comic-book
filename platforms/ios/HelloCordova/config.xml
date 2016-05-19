@@ -33,6 +33,9 @@
     <feature name="ContactsPhoneNumbers">
         <param name="ios-package" value="CDVContactsPhoneNumbers" />
     </feature>
+    <feature name="EmailComposer">
+        <param name="ios-package" value="EmailComposer" />
+    </feature>
     <feature name="Zip">
         <param name="ios-package" value="ZipPlugin" />
     </feature>

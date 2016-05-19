@@ -4,5 +4,6 @@
     "AVFoundation.framework": 1,
     "libz.dylib": 1,
     "AddressBook.framework": 2,
-    "AddressBookUI.framework": 2
+    "AddressBookUI.framework": 2,
+    "MessageUI.framework": 1
 }

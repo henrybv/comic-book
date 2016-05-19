@@ -1,7 +1,5 @@
-core.controller('SettingsCtrl', function($scope, $localStorage, AuthService, $state, $cordovaCamera, SettingsFactory, StoryFactory, $cordovaContacts) {
+core.controller('SettingsCtrl', function($scope, $localStorage, AuthService, $state, $cordovaCamera, SettingsFactory, $cordovaContacts) {
 	$scope.user = $localStorage.user;
-	// $scope.myStories = myStories;
-	// console.log(myStories, 'THIS IS MY STORIES')
 
 	$scope.logout = function () {
         AuthService.logout();
@@ -11,7 +9,7 @@ core.controller('SettingsCtrl', function($scope, $localStorage, AuthService, $st
     $scope.url = '../img/default_avatar.jpg';
 
     $scope.takePicture = function() {
-    console.log("THE CAMERA RAN ON THE ISOLATE SCOPE")
+    // console.log("THE CAMERA RAN ON THE ISOLATE SCOPE")
     var options = { 
         quality : 75, 
         destinationType : Camera.DestinationType.DATA_URL, 
@@ -29,6 +27,7 @@ core.controller('SettingsCtrl', function($scope, $localStorage, AuthService, $st
     });
 	}
 
+	// sync phone contacts to app
 	$scope.getContacts = function() {
 		$scope.phoneContacts = [];
 	      function onSuccess(contacts) {
@@ -44,5 +43,23 @@ core.controller('SettingsCtrl', function($scope, $localStorage, AuthService, $st
 	      options.multiple = true;
 	      $cordovaContacts.find(options).then(onSuccess, onError);
 	};
+
+	// send an email to invite friends to try app
+	$scope.inviteViaEmail = function() {
+        if(window.plugins && window.plugins.emailComposer) {
+            window.plugins.emailComposer.showEmailComposerWithCallback(function(result) {
+                console.log("Response -> " + result);
+            }, 
+            "Join my comic strip, or craft your own with ComicPowWow", // Subject
+            "Comic Pow-Wow is a collaborative mobile application that allows you to create comic strips with friends. I really love it. You should give it a try!",                      // Body
+            ["test@example.com"],    // To
+            null,                    // CC
+            null,                    // BCC
+            false,                   // isHTML
+            null,                    // Attachments
+            null);                   // Attachment Data
+        }
+    }
+
 
 });

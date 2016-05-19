@@ -55,6 +55,10 @@
                         {
                             "xml": "<feature name=\"ContactsPhoneNumbers\"><param name=\"ios-package\" value=\"CDVContactsPhoneNumbers\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"EmailComposer\"><param name=\"ios-package\" value=\"EmailComposer\" /></feature>",
+                            "count": 1
                         }
                     ],
                     "/widget": [
@@ -112,6 +116,9 @@
             "PACKAGE_NAME": "com.ionicframework.starter"
         },
         "com.dbaq.cordova.contactsPhoneNumbers": {
+            "PACKAGE_NAME": "com.ionicframework.starter"
+        },
+        "com.jcjee.plugins.emailcomposer": {
             "PACKAGE_NAME": "com.ionicframework.starter"
         }
     },
@@ -479,6 +486,14 @@
             "clobbers": [
                 "navigator.contactsPhoneNumbers"
             ]
+        },
+        {
+            "file": "plugins/com.jcjee.plugins.emailcomposer/www/EmailComposer.js",
+            "id": "com.jcjee.plugins.emailcomposer.EmailComposer",
+            "pluginId": "com.jcjee.plugins.emailcomposer",
+            "clobbers": [
+                "EmailComposer"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -493,6 +508,7 @@
         "cordova-plugin-file": "4.2.0",
         "cordova-plugin-zip": "3.1.0",
         "cordova-plugin-contacts": "2.1.0",
-        "com.dbaq.cordova.contactsPhoneNumbers": "0.0.8"
+        "com.dbaq.cordova.contactsPhoneNumbers": "0.0.8",
+        "com.jcjee.plugins.emailcomposer": "1.4.6"
     }
 }

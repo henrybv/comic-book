@@ -5,8 +5,6 @@ core.controller('SignupCtrl', function ($scope, AuthService, $state, UserFactory
 
     if($localStorage.user) $state.go('home')
 
-
-
     $scope.sendSignup = function (signupInfo) {
         $scope.error = null;
 

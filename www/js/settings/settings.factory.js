@@ -13,10 +13,10 @@ core.factory('SettingsFactory', function($http) {
 	    }
     }
 
-    SettingsFactory.updateAvatar = function() {
+    // SettingsFactory.updateAvatar = function() {
     	
-    }
+    // }
 
     return SettingsFactory;
-	// At point of saving image, update user database with 
+	
 });
