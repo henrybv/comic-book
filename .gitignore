@@ -2,4 +2,4 @@ node_modules
 server/env
 platforms
 bower_components
-.DS_Store
+www/.DS_Store
