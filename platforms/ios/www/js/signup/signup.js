@@ -16,7 +16,7 @@ core.controller('SignupCtrl', function ($scope, AuthService, $state, UserFactory
         })
         .then(function(data){
             console.log("CreateUser: Final User in $localStorage", $localStorage)
-            $state.go('home');
+            $state.go('settings');
         })
         .catch(function () {
             $scope.error = 'Invalid signup credentials provided.';

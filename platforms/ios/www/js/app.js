@@ -1,26 +1,13 @@
 //FULLSTACK BASE - Debanshi
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-var base = 'http://192.168.1.183:1337'
-=======
-var base = 'http://192.168.1.184:1337'
-<<<<<<< HEAD
-=======
->>>>>>> master
->>>>>>> master
-=======
 // var base = 'http://192.168.1.184:1337'
 // var base = 'http://192.168.1.183:1337'
->>>>>>> Stashed changes
 // var base = 'http://192.168.0.20:1337'
-// var base = 'http://192.168.1.184:1337'
 //FULLSTACK BASE - Eric
-var base = 'http://192.168.1.7:1337'
 // var base = 'http://192.168.0.20:1337'
 //FULLSTACK BASE - Jeff
 // var base = 'http://192.168.1.133:1337'
 //FULLSTACK BASE - Henry
-// var base = 'http://192.168.1.204:1337'
+var base = 'http://192.168.1.204:1337'
 
 // var base = 'http://localhost:1337';
 
@@ -31,15 +18,16 @@ var base = 'http://192.168.1.7:1337'
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-var core = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'fsaPreBuilt', 'ngCordova', 'ngStorage', 'hmTouchEvents' ])
 
+
+
+var core = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'fsaPreBuilt', 'ngCordova', 'ngStorage', 'hmTouchEvents' ])
 
 core.run(function($ionicPlatform, $rootScope, $state) {
 
   // event listener listening for state changes + put on rootScope
   $rootScope.$on('$stateChangeSuccess', function(event, toState) {
    $rootScope.$state = toState;
-   console.log($rootScope.$state.name);
   });
 
   $ionicPlatform.ready(function() {
@@ -95,7 +83,18 @@ core.config(function($stateProvider, $urlRouterProvider) {
   .state('settings', {
     url: '/settings',
     templateUrl: 'js/settings/settings.template.html',
-    controller: 'SettingsCtrl'
+    controller: 'SettingsCtrl',
+    resolve: {
+        myStories: function (StoryFactory, $localStorage){
+          return StoryFactory.getMyStories($localStorage.user._id);
+        },
+        myCollabs: function(StoryFactory, $localStorage) {
+          return  StoryFactory.getMyCollabs($localStorage.user._id);
+        },
+        myFriends: function() {
+
+        }
+    }
   })
   .state('camera', {
     url: '/camera/:storyId',
@@ -137,7 +136,7 @@ core.config(function($stateProvider, $urlRouterProvider) {
   .state('story', {
     url: '/story/:storyId',
     templateUrl: 'js/story/story.template.html',
-    controller: 'StoryCtrl',
+    // controller: 'StoryCtrl',
     resolve: {
       story: function(StoryFactory, $stateParams, AuthService, UserFactory) {
         return StoryFactory.getStoryById($stateParams.storyId);
@@ -153,20 +152,19 @@ core.config(function($stateProvider, $urlRouterProvider) {
               console.log('loggedInUser: ', loggedInUser._id)
 
               users.forEach(function(user) {
-                console.log('userId: ', user._id)
+                  console.log('userId: ', user._id)
                   var present = false;
-
-                  if(story.friends){
+                  if(story.friends) {
                     for (var i = 0; i < story.friends.length; i++) {
                       if (story.friends[i]._id === user._id) present = true;
                       // CURRENTLY NOT FILTERING OUT CURRENTLY LOGGED IN USER
                       if (loggedInUser._id === user._id) present = true;
-                    };  
+                    };
+
+                    if (!present) usersForCollabList.push(user);
                   }
 
-                  if (!present) usersForCollabList.push(user);
               });
-
               return usersForCollabList;
         })
       }

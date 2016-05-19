@@ -1,7 +1,7 @@
-<ion-view title="{{story.title}}">
-  <ion-content>
+<ion-view scroll="true" title="{{story.title}}">
+  <ion-content style="background-image: url('assets/yelloworangedots.jpg') !important">
     <ion-scroll has-bouncing='false'>
-        <button ui-sref="camera({storyId: story._id})" class="button button-block button-positive">
+        <button style="background-color:black" ui-sref="camera({storyId: story._id})" class="button button-block button-positive">
           <span>Add Square</span>
           <i ng-show="loading" class="ion-loading-b"></i>
         </button>
@@ -30,7 +30,7 @@
 
       <!-- ADD FRIENDS (COLLLABORATORS) TO STORY -->
       <div style="text-align:center;" ng-show="collaborators.length">
-        <button class="button button-default button-secondary" style="background-color:#32db64;" ng-click="addCollaborators()">
+        <button class="button button-default button-secondary" style="background-color:red;" ng-click="addCollaborators()">
           <strong><span class="button-inner" style="color:white;">Add These Friends !</span></strong>
           <ion-button-effect></ion-button-effect>
         </button> 
@@ -40,7 +40,7 @@
 
 <!-- ADD FRIENDS BUTTON -->
       <div style="text-align:center;" ng-hide="clicked">
-        <button class="button button-default button-secondary" style="background-color:#32db64;" ng-click="showAllUsers()">
+        <button class="button button-default button-secondary" style="background-color:red;" ng-click="showAllUsers()">
           <strong><span class="button-inner" style="color:white;">Add Friends To Story</span></strong>
           <ion-button-effect></ion-button-effect>
         </button>

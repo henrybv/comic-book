@@ -93,6 +93,7 @@
     "cordova-plugin-whitelist",
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
+    "cordova-plugin-contacts",
     "ionic-plugin-keyboard"
   ],
   "cordovaPlatforms": []

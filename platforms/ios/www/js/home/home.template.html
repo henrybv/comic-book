@@ -1,19 +1,19 @@
 <ion-view view-title="Home">
-  <ion-content>
+  <ion-content style="background-image: url('assets/bwbg.jpg') !important">
 
 <!-- create story button -->
     <div class="padding">
-      <button ng-click="" class="button button-block button-positive" ui-sref="storyCreate" style="background-color:#387ef5;margin-top:70px;">
+      <button ng-click="" class="button button-block button-positive" ui-sref="storyCreate" style="background-color:black;margin-top:70px;">
         <span><strong>Create New Story</strong></span>
       </button>
     </div>
 
     <div style="text-align:center;">
-      <button class="button button-default button-secondary" style="background-color:#32db64;margin-bottom:20px;margin-right:10px;" ng-click="getMyStories()">
+      <button class="button button-default button-secondary" style="background-color:red;margin-bottom:20px;margin-right:10px;" ng-click="getMyStories()">
         <strong><span class="button-inner" style="color:white;">My Stories</span></strong>
         <ion-button-effect></ion-button-effect>
       </button>
-      <button class="button button-default button-secondary" style="background-color:#32db64;margin-bottom:20px;margin-left:10px;" ng-click="getMyCollabs()">
+      <button class="button button-default button-secondary" style="background-color:red;margin-bottom:20px;margin-left:10px;" ng-click="getMyCollabs()">
         <strong><span class="button-inner" style="color:white;">My Collabs</span></strong>
         <ion-button-effect></ion-button-effect>
       </button>
@@ -48,7 +48,7 @@
 
 
     <div style="text-align:center;" ng-hide="showMyCollabs || showMyStories">
-      <img src="assets/comic-pow-wow.png" style="width:350px;height:250px;margin-top:25px">
+      <img src="assets/logo1.png" style="width:350px;height:250px;margin-top:25px">
     </div>
 
   </ion-content>

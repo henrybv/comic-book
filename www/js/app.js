@@ -18,6 +18,9 @@ var base = 'http://192.168.1.204:1337'
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
+
+
+
 var core = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'fsaPreBuilt', 'ngCordova', 'ngStorage', 'hmTouchEvents' ])
 
 core.run(function($ionicPlatform, $rootScope, $state) {
@@ -80,7 +83,18 @@ core.config(function($stateProvider, $urlRouterProvider) {
   .state('settings', {
     url: '/settings',
     templateUrl: 'js/settings/settings.template.html',
-    controller: 'SettingsCtrl'
+    controller: 'SettingsCtrl',
+    resolve: {
+        myStories: function (StoryFactory, $localStorage){
+          return StoryFactory.getMyStories($localStorage.user._id);
+        },
+        myCollabs: function(StoryFactory, $localStorage) {
+          return  StoryFactory.getMyCollabs($localStorage.user._id);
+        },
+        myFriends: function() {
+
+        }
+    }
   })
   .state('camera', {
     url: '/camera/:storyId',

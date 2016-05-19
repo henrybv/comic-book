@@ -1,21 +1,56 @@
 <ion-view view-title="My Profile">
-  	<ion-content style="background-image: url('assets/blackgrid.png'); background-size: contain !important">
+  	<ion-content style="background-image: url('assets/blackgrid.png'); background-size: contain !important" ng-controller="SettingsCtrl">
   		
 		<ion-item style="background:transparent"><h2 style="color:white">Welcome to Comic Pow Wow!</h2></ion-item>
 		<!-- <canvas id="avatar"></canvas> -->
 		<ion-item style="background:transparent">
-			<img src="../img/default_avatar.jpg" height="120" width="120">
-			<div><button class="button button-dark">Set comic avatar</button></div>
+			<!-- <img src="{{url}}" height="120" width="120"> -->
+			<img src="http://www.talkshoe.com/resources/talkshoe/images/user-icons/default.jpg" height="120" width="120">
+			<div><button class="button button-positive">Set comic avatar</button></div>
 		</ion-item>
 					<!-- <button class="btn btn-primary" ui-sref="movieQueue({userId: user._id})">My Stories</button> -->
-		<ion-item><button class="btn btn-primary"><b>My Stories</b></button></ion-item>
-		
+		<ion-item><button class="button" ui-sref="home"><b>> Go to My Stories</b></button>
+		</ion-item>
 
-		
-			<!-- <button class="btn btn-primary" ui-sref="reviewsByUser({userId: user._id})">My Friends</button> -->
-		<ion-item><button class="btn btn-primary"><b>My Friends</b></button></ion-item>
+<!-- 		<ion-item><button class="btn btn-primary" ng-click="getContacts()"><b>> Invite Friends</b></button></ion-item>
+		<div class="list" ng-show="phoneContacts">
+            <div class="card" ng-repeat="contact in phoneContacts">
+              <div class="item item-divider">
+                {{ contact.name.formatted }}
+              </div>
+              <div class="item item-text-wrap">
+                <p><strong>Phone(s)</strong></p>
+                <div ng-repeat="number in contact.phoneNumbers">
+                  <p>{{ number.value }}</p>
+                </div>
+                <p><strong>Email(s)</strong></p>
+                <div ng-repeat="email in contact.emails">
+                  <p>{{ email.value }}</p>
+                </div>
+              </div>
+            </div>
+          </div> -->
 
-	
+        <div class="padding">
+          <button class="button" ng-click="getContacts()">Get My Contacts</button>
+          <div class="list" ng-show="phoneContacts">
+            <div class="card" ng-repeat="contact in phoneContacts">
+              <div class="item item-divider">
+                {{ contact.name.formatted }}
+              </div>
+              <div class="item item-text-wrap">
+                <p><strong>Phone(s)</strong></p>
+                <div ng-repeat="number in contact.phoneNumbers">
+                  <p>{{ number.value }}</p>
+                </div>
+                <p><strong>Email(s)</strong></p>
+                <div ng-repeat="email in contact.emails">
+                  <p>{{ email.value }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
 		<ion-list >
 				<ion-item style="background:transparent; color:white"><b>Username</b>: {{ user.username }}</ion-item>
