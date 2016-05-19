@@ -30,6 +30,13 @@ $dark:                            #444 !default;
   used under CC BY http://creativecommons.org/licenses/by/4.0/
   Modified icons to fit ionicon’s grid from original.
 */
+
+@font-face {
+    font-family: 'comicFont';
+    src: url('../lib/fonts-laffayette-comic-pro/comic.ttf')
+}
+
+
 @font-face {
   font-family: "Ionicons";
   src: url("../lib/ionic/fonts/ionicons.eot?v=2.0.1");
