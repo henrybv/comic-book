@@ -39,6 +39,13 @@ core.factory('StoryFactory', function($http, $localStorage) {
 		});
 	};
 
+	StoryFactory.addCollaborators = function(storyId, collabsArray) {
+		return $http.put(base + '/api/stories/' + storyId +'/collaborators', {collaborators: collabsArray})
+		.then(function(story) {
+			return story.data;
+		})
+	};
+
 
 	return StoryFactory;
 

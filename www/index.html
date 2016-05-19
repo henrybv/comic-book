@@ -16,9 +16,10 @@
     -->
     <!-- Jquery Scripts -->
     <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
-<!--     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
- -->
+
+    <!-- Scripts -->
+    <script src="js/camera/bubbles.js"></script>
+
     <!-- ionic/angularjs js -->
     <script src="lib/hammerjs/hammer.js"></script>
     <script src="lib/ionic/js/ionic.bundle.js"></script>
@@ -52,11 +53,11 @@
     <script src="js/settings/settings.factory.js"></script>
 
     <!-- Directives -->
-    <script src="js/navbar/navbar.main/navbar.main.directive.js"></script>
     <script src="js/navbar/navbar.addons/navbar.addons.directive.js"></script>
     <script src="js/navbar/navbar.addons/navbar.elastic.directive.js"></script>
     
     <!-- Controllers -->
+    <script src="js/navbar/navbar.main/navbar.main.controller.js"></script>
     <script src="js/controllers.js"></script>
     <script src="js/home/home.controller.js"></script>
     <script src="js/signup/signup.js"></script>
@@ -77,7 +78,9 @@
     <body ng-app="starter">
 
   <!-- Top navbar that changes based on states -->
+<!--   Camera Navbar -->
     <ion-nav-bar class="bar-stable" ng-controller="Topnavbar">
+<<<<<<< HEAD
         <ion-nav-buttons side="left">
             <button ng-hide="'home' | isState" ui-sref="home" class="button icon-left ion-home"></button>
           <!--   <button ng-if=" 'home' | isState" menu-toggle="left" class="button button-icon icon ion-navicon"></button> -->
@@ -93,5 +96,24 @@
 
     <ion-nav-view></ion-nav-view>
     
+=======
+        <!-- <div ng-hide="getState()"> -->
+       
+        <!-- <ion-nav-back-button hide-back-button="getState()"></ion-nav-back-button> -->
+        <ion-nav-buttons side="left">
+            <button ng-hide="&apos;home&apos; | isState" ui-sref="home" class="button icon-left ion-home"></button>
+          <!--   <button ng-if=" 'home' | isState" menu-toggle="left" class="button button-icon icon ion-navicon"></button> -->
+            <!-- <button ng-if=" 'camera' | isState" class="button button-icon ion-grid"></button> -->
+        </ion-nav-buttons>
+        <ion-nav-buttons side="right">
+            <!-- <button class="button button-icon ion-ios-email"></button> -->
+            <button ng-if=" &apos;home&apos; | isState" class="button button-icon ion-person-add"></button>
+            <button ui-sref="settings" ng-if=" &apos;home&apos; | isState" class="button button-icon ion-gear-a"></button>            
+            <button ng-if=" &apos;camera&apos; | isState" class="button button-icon ion-checkmark-circled" ng-click="save()"></button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view>
+    </ion-nav-view>
+>>>>>>> master
   </body>
 </html>

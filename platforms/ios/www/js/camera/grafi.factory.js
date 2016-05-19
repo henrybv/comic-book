@@ -1,4 +1,32 @@
-// Grafi.controller.js
+//CONTROLLER FUNCTION
+//OLD SKETCH FILTER
+    // $scope.filterImage = function(filterType, canvasId){
+    //     // var canvas = $scope.canvas;
+    //     var canvas = document.getElementById(canvasId);
+    //     var filterType = filterType || 'sketch';
+    //     var context = canvas.getContext('2d');
+    //     var imageData = context.getImageData(0,0, canvas.width, canvas.height);
+    //     var finalImageData;
+    //     if (filterType === 'sketch'){
+    //         var a = Grafi.edge(imageData, {level: 20});
+    //         var b = Grafi.invert(a)
+    //             // for (var i=0; i < a.length; i+=4){
+    //             //   a[i]     = 255 - a[i];     // red
+    //             //   a[i + 1] = 255 - a[i + 1]; // green
+    //             //   a[i + 2] = 255 - a[i + 2]; // blue
+    //             // }
+    //         var c = Grafi.contrast(a)
+    //         // var c = Grafi.brightness(a);
+    //         finalImageData = c;
+    //     }
+    //     if (filterType === 'posterize'){
+    //         finalImageData = Grafi.posterize(imageData)
+    //     }
+    //     context.putImageData(finalImageData, 0, 0);
+    //     $scope.url = canvas.toDataURL('image/png');
+    // }
+
+
 
 core.factory('Grafi', function(){
   var Grafi = {};

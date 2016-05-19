@@ -24,7 +24,8 @@
       <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" ng-repeat="story in myStories" ng-click="changeState(story._id)">
         <img ng-src="assets/sample_comic.jpg">
         <h2>{{story.title}}</h2>
-        <p>Placeholder: collaborators' names</p>
+        <p ng-show="!story.friends.length">no collaborators</p>
+        <p ng-show="story.friends.length" >Collaborators: <span ng-repeat="friend in story.friends">{{ friend.email }}{{ $last ? '' : ', ' }}</span></p>
         <i class="icon ion-chevron-right icon-accessory"></i>
       </ion-item>
       <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" ui-sref="testState">
@@ -36,17 +37,18 @@
 
 <!-- collabs -->
     <ion-list ng-show="showMyCollabs">
+    <h2 ng-show="!myCollabs.length" style="text-align:center;">You don't have any collaborations yet!</h2>
       <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" ng-repeat="story in myCollabs" ng-click="changeState(story._id)">
         <img ng-src="assets/sample_comic.jpg">
         <h2>{{story.title}}</h2>
-        <p>Placeholder: collaborators' names</p>
+        <p>Creator: {{ story.owner.email }}</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
       </ion-item>
     </ion-list>
 
 
     <div style="text-align:center;" ng-hide="showMyCollabs || showMyStories">
-      <img src="http://pbs.twimg.com/profile_images/1900718264/POW.PNG" style="width:350px;height:250px;margin-top:25px">
+      <img src="assets/comic-pow-wow.png" style="width:350px;height:250px;margin-top:25px">
     </div>
 
   </ion-content>

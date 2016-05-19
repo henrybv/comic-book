@@ -16,9 +16,9 @@
 
 <!-- FOR WHEN FRIENDS ARE ADDED -->
     <div ng-show="collabAdded">
+      <h4 style="text-align:center;margin-top:-4px" ng-show="collaborators.length">Collaborators:</h4>
       <ion-scroll direction="x" id="addonsBottom" style="background-color:white;">
         <div>
-          <h4 style="text-align:center;margin-top:-4px">Collaborators:</h4>
           <div class="item item-avatar" style="display:inline-block;border:none" ng-repeat="collabr in collaborators">
             <img ng-src="http://loremflickr.com/420/240" style="max-height:55px;max-width:55px">
             <!-- change this to collabr.username once we put usernames on seed -->

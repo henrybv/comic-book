@@ -5,6 +5,7 @@
 // var base = 'http://192.168.1.184:1337'
 //FULLSTACK BASE - Eric
 // var base = 'http://192.168.1.133:1337'
+// var base = 'http://192.168.1.183:1337'
 // var base = 'http://192.168.0.20:1337'
 //FULLSTACK BASE - Jeff
 // var base = 'http://192.168.1.133:1337'
@@ -28,7 +29,6 @@ core.run(function($ionicPlatform, $rootScope, $state) {
   // event listener listening for state changes + put on rootScope
   $rootScope.$on('$stateChangeSuccess', function(event, toState) {
    $rootScope.$state = toState;
-   console.log($rootScope.$state.name);
   });
 
   $ionicPlatform.ready(function() {
@@ -142,19 +142,32 @@ core.config(function($stateProvider, $urlRouterProvider) {
               console.log('loggedInUser: ', loggedInUser._id)
 
               users.forEach(function(user) {
+<<<<<<< HEAD
                 console.log('userId: ', user._id)
                   var present = false;
 
                   if(story.friends) {
                     
+=======
+                // console.log('userId: ', user._id)
+                  var present = false;
+
+                  if(story.friends){
+>>>>>>> master
                     for (var i = 0; i < story.friends.length; i++) {
                       if (story.friends[i]._id === user._id) present = true;
                       // CURRENTLY NOT FILTERING OUT CURRENTLY LOGGED IN USER
                       if (loggedInUser._id === user._id) present = true;
+<<<<<<< HEAD
                     };
 
                     if (!present) usersForCollabList.push(user);
                   }
+=======
+                    };  
+                  }
+                  if (!present) usersForCollabList.push(user);
+>>>>>>> master
               });
 
               return usersForCollabList;
