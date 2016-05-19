@@ -1,26 +1,25 @@
 <ion-view view-title="My Profile">
-  	<ion-content style="background-image: url('assets/yelloworangedots.jpg') !important">
+  	<ion-content style="background-image: url('assets/blackgrid.png'); background-size: contain !important">
   		
-		<ion-item><h2>Welcome to Comic Pow Wow!</h2></ion-item>
+		<ion-item style="background:transparent"><h2 style="color:white">Welcome to Comic Pow Wow!</h2></ion-item>
 		<!-- <canvas id="avatar"></canvas> -->
-		<ion-item>
+		<ion-item style="background:transparent">
 			<img src="../img/default_avatar.jpg" height="120" width="120">
-			<button class="button button-dark">Set comic avatar</button>
+			<div><button class="button button-dark">Set comic avatar</button></div>
 		</ion-item>
-		<ion-item>
-			<!-- <button class="btn btn-primary" ui-sref="movieQueue({userId: user._id})">My Stories</button> -->
-				<ion-item><button class="btn btn-primary" >My Stories</button></ion-item>
-		</ion-item>
+					<!-- <button class="btn btn-primary" ui-sref="movieQueue({userId: user._id})">My Stories</button> -->
+		<ion-item><button class="btn btn-primary"><b>My Stories</b></button></ion-item>
+		
 
-		<ion-item>
+		
 			<!-- <button class="btn btn-primary" ui-sref="reviewsByUser({userId: user._id})">My Friends</button> -->
-				<ion-item><button class="btn btn-primary" >My Friends</button></ion-item>
+		<ion-item><button class="btn btn-primary"><b>My Friends</b></button></ion-item>
 
-		</ion-item>
+	
 
-		<ion-list>
-				<ion-item><b>Username</b>: {{ user.username }}</ion-item>
-				<ion-item><b>Email</b>: {{ user.email }}</ion-item>
+		<ion-list >
+				<ion-item style="background:transparent; color:white"><b>Username</b>: {{ user.username }}</ion-item>
+				<ion-item style="background:transparent; color:white"><b>Email</b>: {{ user.email }}</ion-item>
 		</ion-list>
 		
         <div class="padding">
@@ -30,4 +29,5 @@
 	        </button>
       	</div>
 	</ion-content>
+
 </ion-view>
