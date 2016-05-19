@@ -5,7 +5,8 @@ var _ = require('lodash');
 
 var schema = new mongoose.Schema({
     username: {
-        type: String
+        type: String,
+        required: true
     },
     avatar: {
         type: String,
@@ -16,7 +17,8 @@ var schema = new mongoose.Schema({
         unique: true
     },
     password: {
-        type: String
+        type: String,
+        required: true
     },
     salt: {
         type: String

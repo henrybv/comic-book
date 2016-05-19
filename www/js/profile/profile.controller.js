@@ -1,3 +1,3 @@
-core.controller('ProfileCtrl', function($scope) {
+// core.controller('ProfileCtrl', function($scope) {
 	
-});
+// });

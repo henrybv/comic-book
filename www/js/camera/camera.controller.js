@@ -102,14 +102,8 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $rootScope,
         var context = canvas.getContext('2d');
         var onloadsRunning = [];
         $scope.stickersArray.forEach(function(sticker){
-<<<<<<< HEAD
-            console.log("STICKER", sticker)
-            var x = sticker.x
-            var y = sticker.y
-=======
             var x = Number(sticker.x.slice(0,-2)) || 0;
-            var y = Number(sticker.y.slice(0,-2)) || 0
->>>>>>> master
+            var y = Number(sticker.y.slice(0,-2)) || 0;
             var newImage = new Image();
             newImage.src = sticker.source;
             var onloadPromise = $q(function(resolve, reject){
@@ -171,12 +165,6 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $rootScope,
         }
     }
 
-<<<<<<< HEAD
-    $scope.saveImage = function(){
-        console.log('save image is ran')
-        addStickersToCanvas()
-=======
-
     //Defines the saveImage function which Saves Image to DB and adds to story
     $scope.saveImage = function(){
         console.log("saveImageRan")
@@ -188,7 +176,6 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $rootScope,
         //     console.log("Thsee bubbles should have source", $scope.bubblesArray)
         //     addBubblesToCanvas()
         // })
->>>>>>> master
         .then(function(){
             return addStickersToCanvas()
         })
@@ -210,15 +197,10 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $rootScope,
         })
     }
 
-<<<<<<< HEAD
-    $scope.$on('saveImage', function(){
-        $scope.saveImage()
-        console.log("SaveImage .on")
-=======
     //Listens for the event being emmited from navbar.main.controller that will run our saveImage() function
     $scope.$on('saveImage', function() {
         $scope.saveImage()
->>>>>>> master
+        console.log("SaveImage .on")
     })
 
     // FOR HTML2CANVASS ////////////

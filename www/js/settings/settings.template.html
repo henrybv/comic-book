@@ -1,27 +1,33 @@
 <ion-view view-title="My Profile">
-  <ion-content>
-
+  	<ion-content style="background-image: url('assets/yelloworangedots.jpg') !important">
+  		
 		<ion-item><h2>Welcome to Comic Pow Wow!</h2></ion-item>
-		<canvas id="avatar"></canvas>
+		<!-- <canvas id="avatar"></canvas> -->
+		<ion-item>
+			<img src="../img/default_avatar.jpg" height="120" width="120">
+			<button class="button button-dark">Set comic avatar</button>
+		</ion-item>
 		<ion-item>
 			<!-- <button class="btn btn-primary" ui-sref="movieQueue({userId: user._id})">My Stories</button> -->
-			<button class="btn btn-primary" >My Stories</button>
+				<ion-item><button class="btn btn-primary" >My Stories</button></ion-item>
 		</ion-item>
 
 		<ion-item>
 			<!-- <button class="btn btn-primary" ui-sref="reviewsByUser({userId: user._id})">My Friends</button> -->
-			<button class="btn btn-primary" >My Friends</button>
+				<ion-item><button class="btn btn-primary" >My Friends</button></ion-item>
+
 		</ion-item>
 
 		<ion-list>
-				<ion-item><b>Email</b>: {{ user.email }}</ion-item>
 				<ion-item><b>Username</b>: {{ user.username }}</ion-item>
+				<ion-item><b>Email</b>: {{ user.email }}</ion-item>
 		</ion-list>
-
-        <button ng-click="logout()" class="button button-block button-positive">
-          <span ng-show="!loading">Sign Out</span>
-          <i ng-show="loading" class="ion-loading-b"></i>
-        </button>
-
-</ion-content>
+		
+        <div class="padding">
+	        <button ng-click="logout()" class="button button-assertive" style='float: right'>
+	          <span ng-show="!loading">Logout</span>
+	          <i ng-show="loading" class="ion-loading-b"></i>
+	        </button>
+      	</div>
+	</ion-content>
 </ion-view>

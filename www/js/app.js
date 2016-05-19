@@ -2,7 +2,6 @@
 // var base = 'http://192.168.1.184:1337'
 // var base = 'http://192.168.1.183:1337'
 // var base = 'http://192.168.0.20:1337'
-// var base = 'http://192.168.1.184:1337'
 //FULLSTACK BASE - Eric
 // var base = 'http://192.168.0.20:1337'
 //FULLSTACK BASE - Jeff
@@ -20,7 +19,6 @@ var base = 'http://192.168.1.204:1337'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 var core = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'fsaPreBuilt', 'ngCordova', 'ngStorage', 'hmTouchEvents' ])
-
 
 core.run(function($ionicPlatform, $rootScope, $state) {
 
@@ -140,34 +138,19 @@ core.config(function($stateProvider, $urlRouterProvider) {
               console.log('loggedInUser: ', loggedInUser._id)
 
               users.forEach(function(user) {
-<<<<<<< HEAD
-                console.log('userId: ', user._id)
+                  console.log('userId: ', user._id)
                   var present = false;
-
                   if(story.friends) {
-                    
-=======
-                // console.log('userId: ', user._id)
-                  var present = false;
-
-                  if(story.friends){
->>>>>>> master
                     for (var i = 0; i < story.friends.length; i++) {
                       if (story.friends[i]._id === user._id) present = true;
                       // CURRENTLY NOT FILTERING OUT CURRENTLY LOGGED IN USER
                       if (loggedInUser._id === user._id) present = true;
-<<<<<<< HEAD
                     };
 
                     if (!present) usersForCollabList.push(user);
                   }
-=======
-                    };  
-                  }
-                  if (!present) usersForCollabList.push(user);
->>>>>>> master
-              });
 
+              });
               return usersForCollabList;
         })
       }
