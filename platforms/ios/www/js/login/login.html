@@ -1,6 +1,6 @@
 <form ua-login>
   <ion-view title="Login">
-    <ion-content>
+    <ion-content style="background-image: url('assets/yelloworangedots.jpg') !important">
       <div class="list list-inset">
         <label class="item item-input">
           <span class="input-label">Email</span>
@@ -12,7 +12,7 @@
         </label>
       </div>
       <div class="padding">
-        <button ng-click="sendLogin(login)" class="button button-block button-positive">
+        <button ng-click="sendLogin(login)" style='background-color:black' class="button button-block button-positive">
           <span ng-show="!loading">Login</span>
           <i ng-show="loading" class="ion-loading-b"></i>
         </button>

@@ -17,10 +17,10 @@ var schema = new mongoose.Schema({
     salt: {
         type: String
     },
-    myStories: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Story'
-    }],
+    // myStories: [{
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'Story'
+    // }],
     google: {
         id: String,
         username: String,

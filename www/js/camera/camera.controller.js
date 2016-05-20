@@ -5,7 +5,7 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
     $scope.stickersArray = [];
 
     //REMOVE LINK WHEN USING URL FROM PHOTO / ALBUM LIBRARY
-    $scope.url = '../../img/ben.png';
+    // $scope.url = '../../img/ben.png';
     // $scope.url;
 
 
@@ -27,7 +27,7 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         }
     }
     //REMOVE WHEN USING URL FROM PHOTO / ALBUM LIBRARY
-    urlToCanvas($scope.url, 'imageCanvas');
+    // urlToCanvas($scope.url, 'imageCanvas');
 
     
     
@@ -64,8 +64,8 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         };
         $cordovaCamera.getPicture(options).then(function(imageURL) {
             // $scope.imgURI = "data:image/jpeg;base64," + imageData;
-            $scope.url = imageURL;
-            urlToCanvas(imageURL, 'imageCanvas');
+            $scope.url = "data:image/jpeg;base64,"+ imageURL;
+            urlToCanvas($scope.url, 'imageCanvas');
         });
     }
 
@@ -83,21 +83,9 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         };
         $cordovaCamera.getPicture(options).then(function(imageURL) {
             $scope.url = imageURL;
-            urlToCanvas(imageURL, 'imageCanvas');
+            urlToCanvas($scope.url, 'imageCanvas');
         });
     }
-
-
-
-    // var combineLayers = function(imageCanvasId, addonCanvasId, x, y){
-    //     var imageCanvas = document.getElementById(imageCanvasId);
-    //     canvas.setAttribute('style', 'z-index=1')
-    //     var addonCanvas = document.getElementById(addonCanvasId);
-    //     canvas.setAttribute('style', 'z-index=2')
-    //     var imageContext = imageCanvas.getContext('2d');
-    //     var addonsContext = addonCanvas.getContext('2d');
-    //     imageContext.drawImage(addonsContext, x, y);
-    // }
 
 
    var addStickersToCanvas = function(){
@@ -143,30 +131,30 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         // }
     }   
 
-    var addBubblesToCanvas = function(){
-        console.log("addBubblesToCanvas Ran")
-        if($scope.bubblesArray){
-            // console.log(!!$scope.bubblesArray)
-            var canvas = document.getElementById('imageCanvas');
-            var context = canvas.getContext('2d');
-            var onloadsRunning = [];
-            $scope.bubblesArray.forEach(function(bubble){
-                var x = Number(bubble.x.slice(0,-2)) || 0;
-                var y = Number(bubble.y.slice(0,-2)) || 0;
-                var newImage = new Image();
-                newImage.src = bubble.source;
-                var onloadPromise = $q(function(resolve, reject){
-                    newImage.onload = function(){
-                        context.drawImage(newImage, x, y);
-                        resolve();
-                    }
-                    newImage.onerror = reject;
-                })
-                onloadsRunning.push(onloadPromise);
-            })
-            return $q.all(onloadsRunning);
-        }
-    }
+    // var addBubblesToCanvas = function(){
+    //     console.log("addBubblesToCanvas Ran")
+    //     if($scope.bubblesArray){
+    //         // console.log(!!$scope.bubblesArray)
+    //         var canvas = document.getElementById('imageCanvas');
+    //         var context = canvas.getContext('2d');
+    //         var onloadsRunning = [];
+    //         $scope.bubblesArray.forEach(function(bubble){
+    //             var x = Number(bubble.x.slice(0,-2)) || 0;
+    //             var y = Number(bubble.y.slice(0,-2)) || 0;
+    //             var newImage = new Image();
+    //             newImage.src = bubble.source;
+    //             var onloadPromise = $q(function(resolve, reject){
+    //                 newImage.onload = function(){
+    //                     context.drawImage(newImage, x, y);
+    //                     resolve();
+    //                 }
+    //                 newImage.onerror = reject;
+    //             })
+    //             onloadsRunning.push(onloadPromise);
+    //         })
+    //         return $q.all(onloadsRunning);
+    //     }
+    // }
 
 
     //Defines the saveImage function which Saves Image to DB and adds to story

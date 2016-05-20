@@ -9,7 +9,7 @@ module.exports = router;
 router.get('/', function(req, res, next) {
     Addon.find({}).exec()
     .then(function(addons) {
-        console.log(addons)
+        console.log('in addons route')
         res.status(200).send(addons);
     })
     .catch(next);

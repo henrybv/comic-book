@@ -1,5 +1,24 @@
 /* Empty. Add your own CSS if you like */
-
+.animate-enter, 
+.animate-leave
+{ 
+    -webkit-transition: 650ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -moz-transition: 650ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -ms-transition: 650ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -o-transition: 650ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    transition: 650ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+} 
+ 
+.animate-enter {
+    left: 100%;
+}
+.animate-enter.animate-enter-active {
+    left: 0;
+}
+ 
+.animate-leave {
+    left: 0;
+}
 
 /*------Addon/Delete Navbars-----*/
 #addons {
@@ -159,7 +178,7 @@
   /*border: #000000 solid 3px;*/
 }
 
-.inputBubble:after 
+/*.inputBubbleInner 
 {
   position: absolute;
   border-style: solid;
@@ -173,7 +192,7 @@
   left: 69%;
 }
 
-.inputBubble:before 
+.inputBubbleOuter
 {
   position: absolute;
   border-style: solid;
@@ -185,7 +204,7 @@
   margin-left: -8px;
   bottom: -40px;
   left: 69%;
-}
+}*/
 
 .pointer {
   top: 43px;
