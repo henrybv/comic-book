@@ -1,5 +1,6 @@
 var base = 'http://192.168.1.183:1337'
 
+
 // Ionic Starter App
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
