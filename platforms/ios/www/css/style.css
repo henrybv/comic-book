@@ -22,7 +22,7 @@
 
 /*------Addon/Delete Navbars-----*/
 #addons {
-	height: 200px;
+	height: 220px;
 }
 
 #myCanvas {
@@ -31,7 +31,7 @@
 }
 
 #navbarAddon {
-  height: 200px;
+  height: 190px;
   position: absolute;
     bottom: 0px;
   overflow: scroll;
@@ -66,9 +66,12 @@
 #addonsStates {
 	position: relative;
 	height:24%;
+  /*margin: 0px 0px 0px 10px;*/
 }
 
 #stateButtons {
+  padding: 0px 10px 0px 0px;
+  height: 1px;
 }
 
 #addonsBottom {
@@ -150,34 +153,29 @@
 */
 
 
-#textarea {
-  vertical-align: center;
-  text-align: center;
-  background: transparent;
-  /*border: 0px;*/
-  border-radius: 37px;
-  width: 145px;
-  height: 40px;
-  resize: none;
-  padding: 15px;
-  border: 2px solid #000;
-  overflow: hidden;
-}
 
 .inputBubble 
 {
   position: absolute;
-  /*background: transparent;*/
   top: 0px;
   left: 0px;
-  width: 145px;
-  background: #FFFFFF;
-  -webkit-border-radius: 37px;
-  -moz-border-radius: 37px;
-  border-radius: 37px;
-  /*border: #000000 solid 3px;*/
+  background: transparent;
 }
 
+<<<<<<< HEAD
+=======
+#textarea {
+  text-align: center;
+  background: white;
+  resize: none;
+  width: 140px;
+  height: 40px;
+  padding: 20px 20px 10px 20px;
+  border: 2px solid #000;
+  -webkit-border-radius: 25px; 
+  display: inline-block;
+}
+>>>>>>> master
 /*.inputBubbleInner 
 {
   position: absolute;
@@ -214,7 +212,7 @@
 
 }
 
-/*.pointerBorder {
+.pointerBorder {
   content: "";
   position: absolute;
   border-style: solid;
@@ -226,7 +224,7 @@
   margin-left: -8px;
   bottom: -67px;
   left: 69%;
-}*/
+}
 
 /*-------DELETE DIV--------*/
 

@@ -11,7 +11,7 @@ var base = 'http://192.168.1.184:1337'
 //FULLSTACK BASE - Henry
 // var base = 'http://192.168.1.204:1337'
 
-// var base = 'http://localhost:1337';
+
 
 // Ionic Starter App
 

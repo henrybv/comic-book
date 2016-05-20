@@ -26,31 +26,33 @@ var createBubbleStyle = function(bubbleName) {
 
     var thoughtBubbleBig = {
         'position': 'absolute',
-        'border-style': 'solid',
-        'border-radius': '2px',
-        'border-width': '2px',
-        'border-color': 'black',
-        'background': 'white',
+        // 'border-style': 'solid',
+        // 'border-radius': '50%',
+        // 'border-width': '2px',
+        // 'border-color': 'black',
+        // 'background': 'white',
         'height': '25px',
         'width': '25px',
         'z-index': '4',
-        // 'margin-left': '-6px',
-        'border-radius': '50%'
+        // 'border-radius': '50%',
+        'background-image': "url('assets/bubbles/bubble_large.png')"
 
     }        
     
     var thoughtBubbleSmall = {
         'position': 'absolute',
-        'border-style': 'solid',
-        'border-radius': '2px',
-        'border-width': '2px',
-        'border-color': 'black',
-        'background': 'white',
+        // 'border-style': 'solid',
+        // 'border-radius': '2px',
+        // 'border-width': '2px',
+        // 'border-color': 'black',
+        // 'background': 'white',
         'height': '15px',
         'width': '15px',
         'z-index': '4',
-        'margin-left': '-6px',
-        'border-radius': '50%'
+        // 'margin-left': '-6px',
+        // 'border-radius': '50%',
+        'background-image': "url('assets/bubbles/bubble_small.png')"
+
     } 
     console.log(bubbletype)
     //['left', 'top']
@@ -60,11 +62,11 @@ var createBubbleStyle = function(bubbleName) {
 
         //Left vs Right
         if (bubbletype[0] === 'left') {
-            pointer['left'] = '30%';
-            pointerBorder['left'] = '30%';
+            pointer['left'] = '44px';
+            pointerBorder['left'] = '44px';
         } else if (bubbletype[0] === 'right') {
-            pointer['right'] = '30%';
-            pointerBorder['right'] = '28%';
+            pointer['right'] = '43px';
+            pointerBorder['right'] = '41px';
         }
 
         //Top vs Bottom
@@ -99,7 +101,7 @@ var createBubbleStyle = function(bubbleName) {
             thoughtBubbleBig['top'] = '-18px';
             thoughtBubbleSmall['top'] = "-30px";
         } else if (bubbletype[1] === 'bottom') {
-            thoughtBubbleBig['bottom'] = '-18px';
+            thoughtBubbleBig['bottom'] = '-17px';
             thoughtBubbleSmall['bottom'] = '-30px';
 
         }

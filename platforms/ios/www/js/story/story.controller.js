@@ -6,7 +6,11 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
     $scope.collaborators = [];
     $scope.collabAdded = false;
 	$scope.story = story;
+<<<<<<< HEAD
     $scope.dataURLArray = [];
+=======
+    // $scope.urlbaby;
+>>>>>>> master
 	// console.log('story in storyCTRL', $scope.story)
 
     // $scope.allUsers.forEach(function(user) {
@@ -30,8 +34,12 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
     var urlToNewCanvas = function(url, canvasId){
     	var canvas = document.createElement('canvas');
         canvas.id = canvasId;
+<<<<<<< HEAD
         canvas.width = canvas.height = 115;
         canvas.style.padding = '1px 3px 1px 3px';
+=======
+        canvas.width = canvas.height = 300;
+>>>>>>> master
         var context = canvas.getContext('2d');
         var newImage = new Image();
         var elem = document.getElementById('here');
@@ -52,7 +60,11 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
     ref.on('value', function(snapshot){
         var here = document.getElementById('here');
             console.log('Firebase Div:', here)
+<<<<<<< HEAD
         while (here && here.firstChild){
+=======
+        while (here.firstChild){
+>>>>>>> master
             // console.log('HERE FIRST CHILD', here.firstChild)
             here.removeChild(here.firstChild);
         }

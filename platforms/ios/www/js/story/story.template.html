@@ -1,4 +1,5 @@
 <ion-view scroll="true" title="{{story.title}}">
+<<<<<<< HEAD
 <div>
       <ion-tabs class="tabs-top tabs-icon-top " style="top:10px">
 
@@ -62,6 +63,13 @@
          <!--  <span>Add Square</span> -->
            <img src='assets/addSquareButton.png' width='200'>
             <!-- <i ng-show="loading" class="ion-loading-b"></i> -->
+=======
+  <ion-content style="background-image: url('assets/yelloworangedots.jpg') !important">
+    <ion-scroll has-bouncing='false'>
+        <button style="background-color:black" ui-sref="camera({storyId: story._id})" class="button button-block button-positive">
+          <span>Add Square</span>
+          <i ng-show="loading" class="ion-loading-b"></i>
+>>>>>>> master
         </button>
   </div>
 
@@ -94,7 +102,11 @@
 
 <!-- ADD FRIENDS BUTTON -->
       <div style="text-align:center;" ng-hide="clicked">
+<<<<<<< HEAD
         <button class="button button-default button-secondary" style="background-color:black;" ng-click="showAllUsers()">
+=======
+        <button class="button button-default button-secondary" style="background-color:red;" ng-click="showAllUsers()">
+>>>>>>> master
           <strong><span class="button-inner" style="color:white;">Add Friends To Story</span></strong>
           <ion-button-effect></ion-button-effect>
         </button>

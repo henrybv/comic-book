@@ -33,6 +33,7 @@
 			left:0px">
 		</img>	
  
+<<<<<<< HEAD
 		    <div
 			    id="bubble{{bubble.id}}"
 		    	class="inputBubble"
@@ -54,6 +55,29 @@
 		    	<div ng-style="{{bubble.pointerStyle}}"></div>
 		    	<div ng-style="{{bubble.pointerBorderStyle}}"></div>
 		    </div>
+=======
+
+		
+	    	<div
+		    id="bubble{{bubble.id}}"
+	    	class="inputBubble"
+		    hm-panmove="onHammer"
+		    hm-press="onPress"
+		    hm-pressup="onHammerEnd"
+		    hm-panend="onHammerEnd"
+		    ng-repeat="bubble in bubblesArray"
+		    >
+			    <textarea
+			    id="textarea"
+			    scroll="false"
+			    elastic></textarea>
+
+		    	<div id="pointer{{bubble.id}}" ng-style="{{bubble.pointerStyle}}"></div>
+		    	<div id="pointerBorder{{bubble.id}}" ng-style="{{bubble.pointerBorderStyle}}"></div>
+	    	</div>
+	   
+
+>>>>>>> master
 			   
 		<!-- <button class="button" ng-click="saveImage()">Save Image</button> -->
 

@@ -44,6 +44,8 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
     //     }
     // }
 
+
+    
 // GETTING IMAGES FROM FIREBASE EVERY TIME ONE IS ADDED
     var ref = new Firebase('https://torrid-inferno-1552.firebaseio.com/' + $scope.story._id);
     ref.on('value', function(snapshot){
