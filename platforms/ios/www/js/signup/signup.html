@@ -4,10 +4,6 @@
 
       <div class="list list-inset">
         <label class="item item-input">
-          <span class="input-label">Username</span>
-          <input type="text" name="userame" ng-model="signup.username" class="form-control" id="username">
-        </label>
-        <label class="item item-input">
           <span class="input-label">Email</span>
           <input type="email" name="email" ng-model="signup.email" class="form-control" id="email">
         </label>
@@ -17,14 +13,14 @@
         </label>
       </div>
       <div class="padding">
-        <button type="submit" class="button button-block button-positive">
+        <button type="submit" style='background-color:red' class="button button-block button-positive">
           <span ng-show="!loading">Create Account</span>
           <i ng-show="loading" class="ion-loading-b"></i>
         </button>
       </div>
       <h3 style="text-align: center; font-size: 18px;">Already have an account?</h3>
       <div class="padding">
-        <button ui-sref="login" class="button button-block button-positive">
+        <button ui-sref="login" style='background-color:black' class="button button-block button-positive">
           <span ng-show="!loading">Login</span>
           <i ng-show="loading" class="ion-loading-b"></i>
         </button>

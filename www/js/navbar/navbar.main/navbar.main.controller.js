@@ -6,4 +6,8 @@ core.controller('Topnavbar', function($scope, $state, $rootScope) {
 		$rootScope.$broadcast('saveImage')
 	}
 
+	$scope.goHome = function(){
+		$state.go('home')
+	}
+
 });

@@ -5,7 +5,7 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
     $scope.stickersArray = [];
 
     //REMOVE LINK WHEN USING URL FROM PHOTO / ALBUM LIBRARY
-    $scope.url = '../../img/ben.png';
+    // $scope.url = '../../img/ben.png';
     // $scope.url;
 
 
@@ -27,7 +27,7 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         }
     }
     //REMOVE WHEN USING URL FROM PHOTO / ALBUM LIBRARY
-    urlToCanvas($scope.url, 'imageCanvas');
+    // urlToCanvas($scope.url, 'imageCanvas');
 
     
     
@@ -63,8 +63,8 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         };
         $cordovaCamera.getPicture(options).then(function(imageURL) {
             // $scope.imgURI = "data:image/jpeg;base64," + imageData;
-            $scope.url = imageURL;
-            urlToCanvas(imageURL, 'imageCanvas');
+            $scope.url = "data:image/jpeg;base64,"+ imageURL;
+            urlToCanvas($scope.url, 'imageCanvas');
         });
     }
 
@@ -82,21 +82,9 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         };
         $cordovaCamera.getPicture(options).then(function(imageURL) {
             $scope.url = imageURL;
-            urlToCanvas(imageURL, 'imageCanvas');
+            urlToCanvas($scope.url, 'imageCanvas');
         });
     }
-
-
-
-    // var combineLayers = function(imageCanvasId, addonCanvasId, x, y){
-    //     var imageCanvas = document.getElementById(imageCanvasId);
-    //     canvas.setAttribute('style', 'z-index=1')
-    //     var addonCanvas = document.getElementById(addonCanvasId);
-    //     canvas.setAttribute('style', 'z-index=2')
-    //     var imageContext = imageCanvas.getContext('2d');
-    //     var addonsContext = addonCanvas.getContext('2d');
-    //     imageContext.drawImage(addonsContext, x, y);
-    // }
 
 
    var addStickersToCanvas = function(){
@@ -151,6 +139,7 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         return $q.all(onloadsRunning);
 
     }   
+
 
     var addBubblesToCanvas = function(){
 

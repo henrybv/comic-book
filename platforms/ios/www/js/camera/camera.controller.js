@@ -5,7 +5,7 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
     $scope.stickersArray = [];
 
     //REMOVE LINK WHEN USING URL FROM PHOTO / ALBUM LIBRARY
-    $scope.url = '../../img/ben.png';
+    // $scope.url = '../../img/ben.png';
     // $scope.url;
 
 
@@ -27,7 +27,11 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         }
     }
     //REMOVE WHEN USING URL FROM PHOTO / ALBUM LIBRARY
+<<<<<<< HEAD
+    // urlToCanvas($scope.url, 'imageCanvas');
+=======
     urlToCanvas($scope.url, 'imageCanvas');
+>>>>>>> master
 
     
     
@@ -63,8 +67,8 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         };
         $cordovaCamera.getPicture(options).then(function(imageURL) {
             // $scope.imgURI = "data:image/jpeg;base64," + imageData;
-            $scope.url = imageURL;
-            urlToCanvas(imageURL, 'imageCanvas');
+            $scope.url = "data:image/jpeg;base64,"+ imageURL;
+            urlToCanvas($scope.url, 'imageCanvas');
         });
     }
 
@@ -82,10 +86,12 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         };
         $cordovaCamera.getPicture(options).then(function(imageURL) {
             $scope.url = imageURL;
-            urlToCanvas(imageURL, 'imageCanvas');
+            urlToCanvas($scope.url, 'imageCanvas');
         });
     }
 
+<<<<<<< HEAD
+=======
 
 
     // var combineLayers = function(imageCanvasId, addonCanvasId, x, y){
@@ -98,10 +104,16 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
     //     imageContext.drawImage(addonsContext, x, y);
     // }
 
+>>>>>>> master
 
    var addStickersToCanvas = function(){
 
         var onloadsRunning = [];
+<<<<<<< HEAD
+        $scope.stickersArray.forEach(function(sticker){
+            var x = Number(sticker.x.slice(0,-2)) || 0;
+            var y = Number(sticker.y.slice(0,-2)) || 0
+=======
         
         if ($scope.stickersArray){        
             var canvas = document.getElementById('imageCanvas');
@@ -134,6 +146,7 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         if ($scope.chosenBorder) {        
             var canvas = document.getElementById('imageCanvas');
             var context = canvas.getContext('2d');
+>>>>>>> master
             var newImage = new Image();
             newImage.src = $scope.chosenBorder ? $scope.chosenBorder.source  : 'assets/borders/transparent.png'
             console.log("newImage.srcy", newImage.src, $scope.chosenBorder)
@@ -149,6 +162,56 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         }
 
         return $q.all(onloadsRunning);
+<<<<<<< HEAD
+    }     
+
+    var addBorderToCanvas = function(){
+        // if ($scope.chosenBorder) {        
+            var canvas = document.getElementById('imageCanvas');
+            var context = canvas.getContext('2d');
+            var onloadsRunning = [];
+            // $scope.chosenBorder(function(border){
+            var newImage = new Image();
+            newImage.src = $scope.chosenBorder ? $scope.chosenBorder.source  : 'assets/borders/transparent.png'
+            console.log("newImage.srcy", newImage.src, $scope.chosenBorder)
+            var onloadPromise = $q(function(resolve, reject){
+                newImage.onload = function(){
+                    context.drawImage(newImage, 0, 0);
+                    resolve();
+                }
+                newImage.onerror = reject;
+            })
+            onloadsRunning.push(onloadPromise);
+            // })
+            return $q.all(onloadsRunning);
+        // }
+    }   
+
+    // var addBubblesToCanvas = function(){
+    //     console.log("addBubblesToCanvas Ran")
+    //     if($scope.bubblesArray){
+    //         // console.log(!!$scope.bubblesArray)
+    //         var canvas = document.getElementById('imageCanvas');
+    //         var context = canvas.getContext('2d');
+    //         var onloadsRunning = [];
+    //         $scope.bubblesArray.forEach(function(bubble){
+    //             var x = Number(bubble.x.slice(0,-2)) || 0;
+    //             var y = Number(bubble.y.slice(0,-2)) || 0;
+    //             var newImage = new Image();
+    //             newImage.src = bubble.source;
+    //             var onloadPromise = $q(function(resolve, reject){
+    //                 newImage.onload = function(){
+    //                     context.drawImage(newImage, x, y);
+    //                     resolve();
+    //                 }
+    //                 newImage.onerror = reject;
+    //             })
+    //             onloadsRunning.push(onloadPromise);
+    //         })
+    //         return $q.all(onloadsRunning);
+    //     }
+    // }
+=======
 
     }   
 
@@ -210,6 +273,7 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         return $q.all(onloadsRunning);
 
     }
+>>>>>>> master
 
     var bubblestoImageData = function() {
 
@@ -256,6 +320,21 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
 
     //Defines the saveImage function which Saves Image to DB and adds to story
     $scope.saveImage = function(){
+<<<<<<< HEAD
+        console.log("saveImageRan")
+        // bubblestoImageData()
+
+
+        addBorderToCanvas()
+        // .then(function(){
+        //     console.log("Thsee bubbles should have source", $scope.bubblesArray)
+        //     addBubblesToCanvas()
+        // })
+        .then(function(){
+            return addStickersToCanvas()
+        })
+        .then(function(){
+=======
 
         bubblestoImageData()
         .then(function(data){
@@ -270,6 +349,7 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
             return addStickersToCanvas()
         })
         .then(function(){
+>>>>>>> master
             console.log("I bet it doesnt get here")
             var canvas = document.getElementById('imageCanvas');
             var finalDataURL = canvas.toDataURL('image/png')
@@ -292,8 +372,75 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
     $scope.$on('saveImage', function() {
         $scope.saveImage()
     })
+<<<<<<< HEAD
+
+    // FOR HTML2CANVASS ////////////
+    // FOR GRABBING
+    // var element1;
+    // var element2;
+    // var element3;
+
+    // function grabElement() {
+    //     // if we make it so can put on more STICKERS will have to change this
+    //     if (stickercounter === 1) {
+    //         element1 = $("#sticker1");
+    //     } else if (stickercounter === 2) {
+    //         element2 = $("#sticker2");
+    //     } else if (stickercounter === 3) {
+    //         element3 = $("#sticker3");
+    //     }
+
+    //     console.log('element1: ', element1)
+    // };
+    //////////////////////
+
+        // ORDER OF WORKING THIS:
+    //  1. WHEN BUBBLE IS ADDED TO DOM, GRAB IT AND ASSIGN IT TO A VAR 
+    //      (this is being done with grabElemnt function above - tested with stickers.  Put this func into $scope.sticker function)
+    //  2. THAT VAR NEEDS TO BE PASSED INTO THE html2canvas FUNCTION BELOW 
+    //      (currently putting in 'element' which is just a random element to turn from html to canvas obj)
+    //  3. FOLLOW COMMENTS IN $scope.previewImage FUNCTION BELOW
+
+    // PRACTICE TURNING DIV INTO CANVAS
+    // USE GRABELEMNT FUNCTIONABOVE WITH THIS
+    var element = $("#new"); // global variable
+    var getCanvas; // global variable
+ 
+    var bubblestoImageData = function () {
+         // PASS CORRECT BUBBLE IN WHERE 'element' CURRENTLY IS
+         if($scope.bubblesArray){
+             $scope.bubblesArray.forEach( function(currentBubble){
+                 var currElement = $('#textarea' + currentBubble.id)
+                 console.log("Bubble DIv", currElement[0])
+                 html2canvas(currElement[0], {
+                 onrendered: function (canvas) {
+                        // RENDERS CANVAS BACK ONTO PAGE
+                        canvas.class = 'newID';
+                        // PRETTY SURE WE DONT NEED TO APPEND BACK TO DOM TO GET ALL THE DATA FROM IT
+                        // $("#previewImage").append(canvas);
+                        // getCanvas = canvas;
+
+                        // NOTES:
+                        // 1. MIGHT HAVE TO SET THE TEXT AREA TO BE CERTAIN H/W CUZ IT RERENDERS WRONG IF THE USER PRESSES ENTER (but they prob wont be pressing enter right?) (STARTS A NEW LINE - ALL COMES OUT AS ONE LINE)
+                        //      - TO SOLVE THIS MIGHT BE ABLE TO PASS H/W PARAMS WITH THE TEXT BOX
+                        // 2. WILL HAVE TO PASS COORDOINATES WITH THE DATA URL
+                        var ctx = canvas.getContext("2d");
+                        var imgData = ctx.getImageData(0,0, 375, 43);
+                        var dataURL = canvas.toDataURL();
+                        currentBubble.source = dataURL
+                        console.log('data url', $scope.story);
+                     }
+                 })
+
+             }
+             );
+            
+         }
+    };
+=======
 
  
+>>>>>>> master
 
 
 
@@ -348,7 +495,11 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         // console.log(currentBubbleStyle)
 
         if(bubblecounter < 4){
+<<<<<<< HEAD
+            $scope.bubblesArray.push({id: bubbleIdcounter, pointerStyle:currentBubbleStyle[0], pointerBorderStyle: currentBubbleStyle[1], x: '0px', y: '0px' })
+=======
             $scope.bubblesArray.push({id: bubbleIdcounter, type: bubbleName, pointerStyle: currentBubbleStyle[0], pointerBorderStyle: currentBubbleStyle[1], x: '0px', y: '0px' })
+>>>>>>> master
             bubblecounter++;
             bubbleIdcounter++;
         } else {
@@ -447,6 +598,11 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
             currentElem.style.left = x - diffX + 'px';
         }
 
+<<<<<<< HEAD
+        // console.log("Coords", x, y);
+
+=======
+>>>>>>> master
     };
 
 
