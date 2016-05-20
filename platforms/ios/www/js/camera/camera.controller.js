@@ -1,30 +1,8 @@
 core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $cordovaCamera, $cordovaFileTransfer, Grafi, $localStorage, CameraFactory, FilterFactory) {
 	$scope.story = story;
     $scope.currentUser = $localStorage.user._id;
-<<<<<<< Updated upstream
-    $scope.currentSquare;
-=======
-<<<<<<< HEAD
-core.controller('CameraCtrl', function(story, getAddons, $scope, $cordovaCamera, $cordovaFileTransfer, Grafi, $localStorage, CameraFactory, FilterFactory) {
-	$scope.story = story;
-    $scope.currentUser = $localStorage.user._id;
-    $scope.currentSquare;
-=======
-core.controller('CameraCtrl', function($state, story, getAddons, $scope, $cordovaCamera, $cordovaFileTransfer, Grafi, $localStorage, CameraFactory, FilterFactory) {
-	$scope.story = story;
-    $scope.currentUser = $localStorage.user._id;
-    $scope.currentSquare;
-    $scope.stickersArray = [];
-    $scope.test;
->>>>>>> master
-<<<<<<< HEAD
-=======
     // $scope.currentSquare;
     $scope.stickersArray = [];
->>>>>>> Stashed changes
-=======
->>>>>>> master
->>>>>>> master
 
     //REMOVE LINK WHEN USING URL FROM PHOTO / ALBUM LIBRARY
     $scope.url = '../../img/ben.png';
@@ -32,18 +10,6 @@ core.controller('CameraCtrl', function($state, story, getAddons, $scope, $cordov
 
 
     var urlToCanvas = function(url, canvasId, x, y){
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> master
-        console.log('in urlToCanvas with parameters:', url, canvasId, x, y);
-        var x = x || 0;
-        var y = y || 0;
-        var canvas = document.getElementById(canvasId);
-=======
-=======
->>>>>>> Stashed changes
         console.log('parameters', url, canvasId, x, y)
         var x = x || 0;
         var y = y || 0;
@@ -53,17 +19,6 @@ core.controller('CameraCtrl', function($state, story, getAddons, $scope, $cordov
         newImage.src = url;
         // newImage.crossOrigin = '';
         newImage.onload = function(){
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> master
-            context.drawImage(newImage, x, y);
-        }
-        var dataURL = canvas.toDataURL('image/png');
-=======
-=======
->>>>>>> Stashed changes
             context.drawImage(newImage, x, y, canvas.width, canvas.height);
             var dataURL = canvas.toDataURL('image/png');
             // console.log(dataURL);
@@ -74,24 +29,9 @@ core.controller('CameraCtrl', function($state, story, getAddons, $scope, $cordov
     //REMOVE WHEN USING URL FROM PHOTO / ALBUM LIBRARY
     urlToCanvas($scope.url, 'imageCanvas');
 
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
     
     
 
->>>>>>> master
-<<<<<<< HEAD
-=======
-    
-    
-
->>>>>>> Stashed changes
-=======
->>>>>>> master
->>>>>>> master
     $scope.applyfilter = function(filter, canvasId){
         console.log('in apply filter in camera ctrl')
         applyfilter(filter, canvasId);
@@ -147,51 +87,6 @@ core.controller('CameraCtrl', function($state, story, getAddons, $scope, $cordov
         });
     }
 
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> master
-    // $scope.saveImage = function(){
-       //  var canvas = document.getElementById('imageCanvas');
-       //  var finalDataURL = canvas.toDataURL('image/png')
-       //  CameraFactory.createSquare(finalDataURL, $scope.story._id, $scope.currentUser)
-       //  .then(function(square){
-       //      $scope.currentSquare = square;
-       //  })
-    // }
-
-    var combineLayers = function(imageCanvasId, addonCanvasId, x, y){
-        var imageCanvas = document.getElementById(imageCanvasId);
-        canvas.setAttribute('style', 'z-index=1')
-        var addonCanvas = document.getElementById(addonCanvasId);
-        canvas.setAttribute('style', 'z-index=2')
-        var imageContext = imageCanvas.getContext('2d');
-        var addonsContext = addonCanvas.getContext('2d');
-        imageContext.drawImage(addonsContext, x, y);
-    }
-
-    $scope.addStickersToCanvas = function(){
-        $scope.stickersArray.forEach(function(sticker){
-            urlToCanvas(sticker.source, 'imageCanvas', sticker.x, sticker.y)
-<<<<<<< HEAD
-        })
-    }
-
-=======
-        })
-    }
-
-    // $scope.canvas = document.getElementById('imageCanvas');
-    // $scope.addons = document.getElementById('addonCanvas');
-
-    // FOR HTML2CANVASS ////////////
-    // FOR GRABBING
-    var element1;
-    var element2;
-    var element3;
-=======
->>>>>>> Stashed changes
 
 
     // var combineLayers = function(imageCanvasId, addonCanvasId, x, y){
@@ -210,8 +105,8 @@ core.controller('CameraCtrl', function($state, story, getAddons, $scope, $cordov
         var context = canvas.getContext('2d');
         var onloadsRunning = [];
         $scope.stickersArray.forEach(function(sticker){
-            var x = Number(sticker.x.slice(0,-2));
-            var y = Number(sticker.y.slice(0,-2));
+            var x = Number(sticker.x.slice(0,-2)) || 0;
+            var y = Number(sticker.y.slice(0,-2)) || 0
             var newImage = new Image();
             newImage.src = sticker.source;
             var onloadPromise = $q(function(resolve, reject){
@@ -224,21 +119,81 @@ core.controller('CameraCtrl', function($state, story, getAddons, $scope, $cordov
             onloadsRunning.push(onloadPromise);
         })
         return $q.all(onloadsRunning);
+    }     
+
+    var addBorderToCanvas = function(){
+        // if ($scope.chosenBorder) {        
+            var canvas = document.getElementById('imageCanvas');
+            var context = canvas.getContext('2d');
+            var onloadsRunning = [];
+            // $scope.chosenBorder(function(border){
+            var newImage = new Image();
+            newImage.src = $scope.chosenBorder ? $scope.chosenBorder.source  : 'assets/borders/transparent.png'
+            console.log("newImage.srcy", newImage.src, $scope.chosenBorder)
+            var onloadPromise = $q(function(resolve, reject){
+                newImage.onload = function(){
+                    context.drawImage(newImage, 0, 0);
+                    resolve();
+                }
+                newImage.onerror = reject;
+            })
+            onloadsRunning.push(onloadPromise);
+            // })
+            return $q.all(onloadsRunning);
+        // }
+    }   
+
+    var addBubblesToCanvas = function(){
+        console.log("addBubblesToCanvas Ran")
+        if($scope.bubblesArray){
+            // console.log(!!$scope.bubblesArray)
+            var canvas = document.getElementById('imageCanvas');
+            var context = canvas.getContext('2d');
+            var onloadsRunning = [];
+            $scope.bubblesArray.forEach(function(bubble){
+                var x = Number(bubble.x.slice(0,-2)) || 0;
+                var y = Number(bubble.y.slice(0,-2)) || 0;
+                var newImage = new Image();
+                newImage.src = bubble.source;
+                var onloadPromise = $q(function(resolve, reject){
+                    newImage.onload = function(){
+                        context.drawImage(newImage, x, y);
+                        resolve();
+                    }
+                    newImage.onerror = reject;
+                })
+                onloadsRunning.push(onloadPromise);
+            })
+            return $q.all(onloadsRunning);
+        }
     }
 
 
     //Defines the saveImage function which Saves Image to DB and adds to story
     $scope.saveImage = function(){
         console.log("saveImageRan")
-        addStickersToCanvas()
+        // bubblestoImageData()
+
+
+        addBorderToCanvas()
+        // .then(function(){
+        //     console.log("Thsee bubbles should have source", $scope.bubblesArray)
+        //     addBubblesToCanvas()
+        // })
         .then(function(){
+            return addStickersToCanvas()
+        })
+        .then(function(){
+            console.log("I bet it doesnt get here")
             var canvas = document.getElementById('imageCanvas');
             var finalDataURL = canvas.toDataURL('image/png')
+            console.log("SAVE IMAGE SCOPE STORY ID", $scope.story._id)
             CameraFactory.createSquare(finalDataURL, $scope.story._id, $scope.currentUser)
         })        
         .then(function(square){
             // $scope.currentSquare = square;
             // console.log('saved image, in ctrl', $scope.currentSquare)
+            console.log("PROMISE STORY ID", $scope.story._id)
             $state.go('story', {storyId: $scope.story._id});
         })
         .catch(function(err){
@@ -246,38 +201,29 @@ core.controller('CameraCtrl', function($state, story, getAddons, $scope, $cordov
         })
     }
 
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
->>>>>>> master
->>>>>>> master
-    // $scope.canvas = document.getElementById('imageCanvas');
-    // $scope.addons = document.getElementById('addonCanvas');
-=======
     //Listens for the event being emmited from navbar.main.controller that will run our saveImage() function
     $scope.$on('saveImage', function() {
         $scope.saveImage()
     })
->>>>>>> Stashed changes
 
     // FOR HTML2CANVASS ////////////
     // FOR GRABBING
-    var element1;
-    var element2;
-    var element3;
+    // var element1;
+    // var element2;
+    // var element3;
 
-    function grabElement() {
-        // if we make it so can put on more STICKERS will have to change this
-        if (stickercounter === 1) {
-            element1 = $("#sticker1");
-        } else if (stickercounter === 2) {
-            element2 = $("#sticker2");
-        } else if (stickercounter === 3) {
-            element3 = $("#sticker3");
-        }
+    // function grabElement() {
+    //     // if we make it so can put on more STICKERS will have to change this
+    //     if (stickercounter === 1) {
+    //         element1 = $("#sticker1");
+    //     } else if (stickercounter === 2) {
+    //         element2 = $("#sticker2");
+    //     } else if (stickercounter === 3) {
+    //         element3 = $("#sticker3");
+    //     }
 
-        console.log('element1: ', element1)
-    };
+    //     console.log('element1: ', element1)
+    // };
     //////////////////////
 
         // ORDER OF WORKING THIS:
@@ -292,52 +238,42 @@ core.controller('CameraCtrl', function($state, story, getAddons, $scope, $cordov
     var element = $("#new"); // global variable
     var getCanvas; // global variable
  
-    $scope.previewImage = function () {
+    var bubblestoImageData = function () {
          // PASS CORRECT BUBBLE IN WHERE 'element' CURRENTLY IS
-         html2canvas(element, {
-         onrendered: function (canvas) {
-                // RENDERS CANVAS BACK ONTO PAGE
-                canvas.class = 'newID';
-                // PRETTY SURE WE DONT NEED TO APPEND BACK TO DOM TO GET ALL THE DATA FROM IT
-                // $("#previewImage").append(canvas);
-                // getCanvas = canvas;
+         if($scope.bubblesArray){
+             $scope.bubblesArray.forEach( function(currentBubble){
+                 var currElement = $('#textarea' + currentBubble.id)
+                 console.log("Bubble DIv", currElement[0])
+                 html2canvas(currElement[0], {
+                 onrendered: function (canvas) {
+                        // RENDERS CANVAS BACK ONTO PAGE
+                        canvas.class = 'newID';
+                        // PRETTY SURE WE DONT NEED TO APPEND BACK TO DOM TO GET ALL THE DATA FROM IT
+                        // $("#previewImage").append(canvas);
+                        // getCanvas = canvas;
 
-                // NOTES:
-                // 1. MIGHT HAVE TO SET THE TEXT AREA TO BE CERTAIN H/W CUZ IT RERENDERS WRONG IF THE USER PRESSES ENTER (but they prob wont be pressing enter right?) (STARTS A NEW LINE - ALL COMES OUT AS ONE LINE)
-                //      - TO SOLVE THIS MIGHT BE ABLE TO PASS H/W PARAMS WITH THE TEXT BOX
-                // 2. WILL HAVE TO PASS COORDOINATES WITH THE DATA URL
-                var ctx = canvas.getContext("2d");
-                var imgData = ctx.getImageData(0,0, 375, 43);
-                var dataURL = canvas.toDataURL();
-                console.log('data url', dataURL);
+                        // NOTES:
+                        // 1. MIGHT HAVE TO SET THE TEXT AREA TO BE CERTAIN H/W CUZ IT RERENDERS WRONG IF THE USER PRESSES ENTER (but they prob wont be pressing enter right?) (STARTS A NEW LINE - ALL COMES OUT AS ONE LINE)
+                        //      - TO SOLVE THIS MIGHT BE ABLE TO PASS H/W PARAMS WITH THE TEXT BOX
+                        // 2. WILL HAVE TO PASS COORDOINATES WITH THE DATA URL
+                        var ctx = canvas.getContext("2d");
+                        var imgData = ctx.getImageData(0,0, 375, 43);
+                        var dataURL = canvas.toDataURL();
+                        currentBubble.source = dataURL
+                        console.log('data url', $scope.story);
+                     }
+                 })
+
              }
-         });
+             );
+            
+         }
     };
 
 
-<<<<<<< Updated upstream
-<<<<<<< HEAD
 
   //--------DIRECTIVE--------//
 
-=======
-<<<<<<< HEAD
-  //--------DIRECTIVE--------//
-
-=======
-
-  //--------DIRECTIVE--------//
-
->>>>>>> master
-<<<<<<< HEAD
-=======
-
-  //--------DIRECTIVE--------//
-
->>>>>>> Stashed changes
-=======
->>>>>>> master
->>>>>>> master
 
     //-----ADDON FUNCTIONS-----//
 
@@ -358,22 +294,7 @@ core.controller('CameraCtrl', function($state, story, getAddons, $scope, $cordov
         //Create image element with unique ID
         if(stickercounter < 4){
             //Push element data into the stickersArray;
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-            $scope.stickersArray.push({source: img, id: stickercounter, x: 2, y: 28})
-=======
-<<<<<<< HEAD
-            $scope.stickersArray.push({source: img, id: stickercounter, x: 0, y: 0})
-=======
-            $scope.stickersArray.push({source: img, id: stickercounter, x: 2, y: 28})
->>>>>>> master
-<<<<<<< HEAD
-=======
-            $scope.stickersArray.push({source: img, id: stickercounter, x: 0, y: 0})
->>>>>>> Stashed changes
-=======
->>>>>>> master
->>>>>>> master
+            $scope.stickersArray.push({source: img, id: stickercounter, x: '0px', y: '0px'})
             console.log($scope.stickersArray)
             //Grab that element and set it to a variable;
             // w.appendChild(sticker)
@@ -402,7 +323,7 @@ core.controller('CameraCtrl', function($state, story, getAddons, $scope, $cordov
         console.log(currentBubbleStyle)
 
         if(bubblecounter < 4){
-            $scope.bubblesArray.push({id: bubbleIdcounter, pointerStyle:currentBubbleStyle[0], pointerBorderStyle: currentBubbleStyle[1] })
+            $scope.bubblesArray.push({id: bubbleIdcounter, pointerStyle:currentBubbleStyle[0], pointerBorderStyle: currentBubbleStyle[1], x: '0px', y: '0px' })
             bubblecounter++;
             bubbleIdcounter++;
         } else {
@@ -412,7 +333,8 @@ core.controller('CameraCtrl', function($state, story, getAddons, $scope, $cordov
 
     //Border  
     $scope.border = function (img){
-        console.log('BORDER')
+        console.log('BORDER', img)
+        $scope.chosenBorder = {source: img}
     } 
 
     //Filter   
@@ -500,77 +422,17 @@ core.controller('CameraCtrl', function($state, story, getAddons, $scope, $cordov
             currentElem.style.left = x - diffX + 'px';
         }
 
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-        console.log("Coords", x, y);
-<<<<<<< HEAD
-
-    };
-
-
-    $scope.onPress = function onPress (event) {
-=======
-=======
-=======
->>>>>>> Stashed changes
         // console.log("Coords", x, y);
 
     };
 
 
     $scope.onPress = function onPress (event) {
-<<<<<<< Updated upstream
-<<<<<<< HEAD
 
         var currentElem = document.getElementById(event.element[0].id);
         var currentx = event.center.x - 80,
             currenty = event.center.y - 130;
 
-=======
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> master
->>>>>>> master
-
-        var currentElem = document.getElementById(event.element[0].id);
-        var currentx = event.center.x - 80,
-            currenty = event.center.y - 130;
-
-<<<<<<< Updated upstream
-
-<<<<<<< HEAD
-        //DEBANSHI'S UPDATES
-        var index;
-        $scope.stickersArray.forEach(function(sticker, idx){
-            if ('sticker'+sticker.id === event.element[0].id) {
-                index = idx;
-            }
-        })
-        $scope.stickersArray[index].x = currentx
-        $scope.stickersArray[index].y = currenty
-        //END OF DEBANSHI'S UPDATES
-
-=======
-        // //DEBANSHI'S UPDATES
-        // var index;
-        // $scope.stickersArray.forEach(function(sticker, idx){
-        //     if ('sticker'+sticker.id === event.element[0].id) {
-        //         index = idx;
-        //     }
-        // })
-        // $scope.stickersArray[index].x = currentx
-        // $scope.stickersArray[index].y = currenty
-        //END OF DEBANSHI'S UPDATES
-
->>>>>>> master
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> master
->>>>>>> master
         // currentElem.style.left = currentx + 'px';
         // currentElem.style.top = currenty + 'px';
 
@@ -728,55 +590,7 @@ core.controller('CameraCtrl', function($state, story, getAddons, $scope, $cordov
         setTimeout("$('#puff').hide()", frames * frameRate);
     }
 
-<<<<<<< Updated upstream
-});
-
-
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> master
-
-//OLD SKETCH FILTER
-    // $scope.filterImage = function(filterType, canvasId){
-    //     // var canvas = $scope.canvas;
-    //     var canvas = document.getElementById(canvasId);
-    //     var filterType = filterType || 'sketch';
-    //     var context = canvas.getContext('2d');
-    //     var imageData = context.getImageData(0,0, canvas.width, canvas.height);
-    //     var finalImageData;
-    //     if (filterType === 'sketch'){
-    //         var a = Grafi.edge(imageData, {level: 20});
-    //         var b = Grafi.invert(a)
-    //             // for (var i=0; i < a.length; i+=4){
-    //             //   a[i]     = 255 - a[i];     // red
-    //             //   a[i + 1] = 255 - a[i + 1]; // green
-    //             //   a[i + 2] = 255 - a[i + 2]; // blue
-    //             // }
-    //         var c = Grafi.contrast(a)
-    //         // var c = Grafi.brightness(a);
-    //         finalImageData = c;
-    //     }
-    //     if (filterType === 'posterize'){
-    //         finalImageData = Grafi.posterize(imageData)
-    //     }
-    //     context.putImageData(finalImageData, 0, 0);
-    //     $scope.url = canvas.toDataURL('image/png');
-    // }
-
-//FUNCTION TO UPDATE CANVAS
-    // var updateCanvas = function(canvasId, changeFunct){
-    //     var canvas = document.getElementById(canvasId);
-    //     var context = canvas.getContext('2d');
-    //     var imageData = context.getImageData(0,0, canvas.width, canvas.height);
-    //     var dataURL = canvas.toDataURL('image/png');
-    //     var newImageData = changeFunct(dataURL);
-    //     context.putImageData(finalImageData, 0, 0);
-    // }
-=======
     
->>>>>>> Stashed changes
 
 });
 

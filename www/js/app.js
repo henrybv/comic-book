@@ -4,7 +4,7 @@
 // var base = 'http://192.168.0.20:1337'
 // var base = 'http://192.168.1.184:1337'
 //FULLSTACK BASE - Eric
-var base = 'http://192.168.0.105:1337'
+var base = 'http://192.168.1.133:1337'
 // var base = 'http://192.168.0.20:1337'
 //FULLSTACK BASE - Jeff
 // var base = 'http://192.168.1.133:1337'
@@ -20,7 +20,9 @@ var base = 'http://192.168.0.105:1337'
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-var core = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'fsaPreBuilt', 'ngCordova', 'ngStorage', 'hmTouchEvents' ])
+
+// put in these for angular ('ngAnimate', 'ngMaterial' , 'ngAria') - makes event delagation wierd tho
+var core = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'fsaPreBuilt', 'ngCordova', 'ngStorage', 'hmTouchEvents'])
 
 
 core.run(function($ionicPlatform, $rootScope, $state) {
@@ -52,6 +54,7 @@ core.config(function($stateProvider, $urlRouterProvider) {
   // Each state's controller can be found in controllers.js
   $stateProvider
   .state('home', {
+    cache: false,
     url: '/home',
     templateUrl: 'js/home/home.template.html',
     controller: 'homeCtrl',
@@ -86,6 +89,7 @@ core.config(function($stateProvider, $urlRouterProvider) {
     controller: 'SettingsCtrl'
   })
   .state('camera', {
+    cache: false,
     url: '/camera/:storyId',
     templateUrl: 'js/camera/camera.template.html',
     controller: 'CameraCtrl',
@@ -123,6 +127,7 @@ core.config(function($stateProvider, $urlRouterProvider) {
     controller: 'LoginCtrl'
   })
   .state('story', {
+    cache: false,
     url: '/story/:storyId',
     templateUrl: 'js/story/story.template.html',
     controller: 'StoryCtrl',

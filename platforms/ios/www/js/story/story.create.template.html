@@ -1,6 +1,6 @@
 <form ua-storyCreate> -->
   <ion-view title="New Story">
-    <ion-content>
+    <ion-content style="background-image: url('assets/yelloworangedots.jpg') !important">
       <div class="list list-inset">
         <label class="item item-input">
           <span class="input-label">Story Title</span>
@@ -8,7 +8,7 @@
         </label>
       </div>
       <div class="padding">
-        <button ng-click="createNewStory()" class="button button-block button-positive">
+        <button ng-click="createNewStory()" class="button button-block button-positive" style="background: black">
           <span>Create Story</span>
           <i ng-show="loading" class="ion-loading-b"></i>
         </button>
@@ -35,7 +35,7 @@
 
 <!-- ADD FRIENDS BUTTON -->
       <div style="text-align:center;" ng-hide="clicked">
-        <button class="button button-default button-secondary" style="background-color:#32db64;" ng-click="showAllUsers()">
+        <button class="button button-default button-secondary" style="background-color:red;" ng-click="showAllUsers()">
           <strong><span class="button-inner" style="color:white;">Add Friends</span></strong>
           <ion-button-effect></ion-button-effect>
         </button>
@@ -43,9 +43,8 @@
 
 <!-- SEARCH BY EMAIL INPUT -->
       <div class="list list-inset" ng-show="clicked" style="margin-top:0px;">
-        <h4 style="text-align:center;">Search for friends...</h4>
         <label class="item item-input">
-          <span class="input-label">by email</span>
+          <span class="input-label">Search friends by email</span>
           <input type="text" ng-model="searchedEmail" class="form-control">
         </label>
       </div>

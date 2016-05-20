@@ -7,6 +7,7 @@
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
 
     <!-- FIREBASE -->
     <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
@@ -53,11 +54,11 @@
 
 
     <!-- Directives -->
-    <script src="js/navbar/navbar.main/navbar.main.directive.js"></script>
     <script src="js/navbar/navbar.addons/navbar.addons.directive.js"></script>
     <script src="js/navbar/navbar.addons/navbar.elastic.directive.js"></script>
     
     <!-- Controllers -->
+    <script src="js/navbar/navbar.main/navbar.main.controller.js"></script>
     <script src="js/controllers.js"></script>
     <script src="js/home/home.controller.js"></script>
     <script src="js/signup/signup.js"></script>
@@ -71,51 +72,17 @@
     <!-- Filters -->
     <script src="js/filters/filters.js"></script>
 
+    <!-- Popup -->
+    <script src="js/components/extends.js" ></script>
+    <script src="js/components/popup.js" ></script>
+
+
+
+
     <script src="js/services.js"></script>
 
   </head>
 
-<<<<<<< Updated upstream
-  <body ng-app="starter" class="platform-ios platform-cordova platform-webview">
-    <ion-nav-bar class="bar-stable">
-      <ion-nav-buttons side="left"><button class="button button-icon ion-navicon"></button></ion-nav-buttons>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-      <ion-nav-back-button ng-if=" !&apos;home&apos; | isState"></ion-nav-back-button>
-      <ion-nav-buttons side="left">
-        <button ng-if=" &apos;home&apos; | isState" menu-toggle="left" class="button button-icon icon ion-navicon"></button>
-        <!-- <button class="button button-icon ion-search"></button> -->
-        <button ng-if=" !&apos;home&apos; | isState" class="button icon-left ion-home"></button>
-=======
->>>>>>> master
-      <ion-nav-back-button ng-if=" !'home' | isState"></ion-nav-back-button>
-      <ion-nav-buttons side="left">
-        <button ng-if=" 'home' | isState" menu-toggle="left" class="button button-icon icon ion-navicon"></button>
-        <!-- <button class="button button-icon ion-search"></button> -->
-        <button ng-if=" !'home' | isState" class="button icon-left ion-home"></button>
-<<<<<<< HEAD
-=======
->>>>>>> master
->>>>>>> master
-      </ion-nav-buttons>
-      <ion-nav-buttons side="right">
-        <!-- <button class="button button-icon ion-ios-email"></button> -->
-        <button class="button button-icon ion-ios-people"></button>
-<<<<<<< HEAD
-        <button ng-if=" 'home' | isState" class="button button-icon ion-gear-a"></button>
-        <button ng-if=" 'camera' | isState" class="button button-icon ion-grid"></button>
-=======
-<<<<<<< HEAD
-        <button ng-if=" &apos;home&apos; | isState" class="button button-icon ion-gear-a"></button>
-        <button ng-if=" &apos;camera&apos; | isState" class="button button-icon ion-grid"></button>
-=======
-        <button ng-if=" 'home' | isState" class="button button-icon ion-gear-a"></button>
-        <button ng-if=" 'camera' | isState" class="button button-icon ion-grid"></button>
->>>>>>> master
->>>>>>> master
-      </ion-nav-buttons>
-=======
     <body ng-app="starter" class="platform-ios platform-cordova platform-webview">
 
   <!-- Top navbar that changes based on states -->
@@ -125,20 +92,18 @@
        
         <!-- <ion-nav-back-button hide-back-button="getState()"></ion-nav-back-button> -->
         <ion-nav-buttons side="left">
-            <button ng-hide="&apos;home&apos; | isState" ui-sref="home" class="button icon-left ion-home"></button>
+            <button ng-hide="&apos;home&apos; | isState" class="button icon-left ion-home" ui-sref="home"></button>
           <!--   <button ng-if=" 'home' | isState" menu-toggle="left" class="button button-icon icon ion-navicon"></button> -->
             <!-- <button ng-if=" 'camera' | isState" class="button button-icon ion-grid"></button> -->
         </ion-nav-buttons>
         <ion-nav-buttons side="right">
             <!-- <button class="button button-icon ion-ios-email"></button> -->
             <button ng-if=" &apos;home&apos; | isState" class="button button-icon ion-person-add"></button>
-            <button ui-sref="settings" ng-if=" &apos;home&apos; | isState" class="button button-icon ion-gear-a"></button>            
-            <button ui-sref="story" ng-if=" &apos;camera&apos; | isState" class="button button-icon ion-gear-a" ng-click="save()"></button>
+            <button ui-sref="settings" ng-if=" &apos;home&apos; | isState" class="button button-icon ion-gear-a"></button>       
+            <button ng-if=" &apos;camera&apos; | isState" class="button button-icon ion-checkmark-circled" ng-click="save()"></button>
         </ion-nav-buttons>
     </ion-nav-bar>
->>>>>>> Stashed changes
     <ion-nav-view>
     </ion-nav-view>
-    
   </body>
 </html>

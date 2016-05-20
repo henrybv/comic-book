@@ -46,6 +46,15 @@ core.factory('StoryFactory', function($http, $localStorage) {
 		})
 	};
 
+	StoryFactory.deleteSquare = function (storyId, squareId) {
+		console.log('DELETE SQ IN STORY FACT RAN')
+		return $http.put(base + '/api/stories/' + storyId + '/squares/' + squareId)
+		.then(function(story) {
+			console.log('STORY RECIEVED IN STORY FACT')
+			return story.data;
+		});
+	};
+
 
 	return StoryFactory;
 

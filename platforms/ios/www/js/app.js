@@ -1,21 +1,10 @@
 //FULLSTACK BASE - Debanshi
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-var base = 'http://192.168.1.183:1337'
-=======
-var base = 'http://192.168.1.184:1337'
-<<<<<<< HEAD
-=======
->>>>>>> master
->>>>>>> master
-=======
 // var base = 'http://192.168.1.184:1337'
 // var base = 'http://192.168.1.183:1337'
->>>>>>> Stashed changes
 // var base = 'http://192.168.0.20:1337'
 // var base = 'http://192.168.1.184:1337'
 //FULLSTACK BASE - Eric
-var base = 'http://192.168.1.7:1337'
+var base = 'http://192.168.1.133:1337'
 // var base = 'http://192.168.0.20:1337'
 //FULLSTACK BASE - Jeff
 // var base = 'http://192.168.1.133:1337'
@@ -31,7 +20,9 @@ var base = 'http://192.168.1.7:1337'
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-var core = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'fsaPreBuilt', 'ngCordova', 'ngStorage', 'hmTouchEvents' ])
+
+// put in these for angular ('ngAnimate', 'ngMaterial' , 'ngAria') - makes event delagation wierd tho
+var core = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'fsaPreBuilt', 'ngCordova', 'ngStorage', 'hmTouchEvents'])
 
 
 core.run(function($ionicPlatform, $rootScope, $state) {
@@ -39,7 +30,6 @@ core.run(function($ionicPlatform, $rootScope, $state) {
   // event listener listening for state changes + put on rootScope
   $rootScope.$on('$stateChangeSuccess', function(event, toState) {
    $rootScope.$state = toState;
-   console.log($rootScope.$state.name);
   });
 
   $ionicPlatform.ready(function() {
@@ -64,6 +54,7 @@ core.config(function($stateProvider, $urlRouterProvider) {
   // Each state's controller can be found in controllers.js
   $stateProvider
   .state('home', {
+    cache: false,
     url: '/home',
     templateUrl: 'js/home/home.template.html',
     controller: 'homeCtrl',
@@ -98,6 +89,7 @@ core.config(function($stateProvider, $urlRouterProvider) {
     controller: 'SettingsCtrl'
   })
   .state('camera', {
+    cache: false,
     url: '/camera/:storyId',
     templateUrl: 'js/camera/camera.template.html',
     controller: 'CameraCtrl',
@@ -135,6 +127,7 @@ core.config(function($stateProvider, $urlRouterProvider) {
     controller: 'LoginCtrl'
   })
   .state('story', {
+    cache: false,
     url: '/story/:storyId',
     templateUrl: 'js/story/story.template.html',
     controller: 'StoryCtrl',
@@ -153,7 +146,7 @@ core.config(function($stateProvider, $urlRouterProvider) {
               console.log('loggedInUser: ', loggedInUser._id)
 
               users.forEach(function(user) {
-                console.log('userId: ', user._id)
+                // console.log('userId: ', user._id)
                   var present = false;
 
                   if(story.friends){
@@ -163,7 +156,6 @@ core.config(function($stateProvider, $urlRouterProvider) {
                       if (loggedInUser._id === user._id) present = true;
                     };  
                   }
-
                   if (!present) usersForCollabList.push(user);
               });
 

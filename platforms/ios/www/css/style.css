@@ -159,7 +159,7 @@
   /*border: #000000 solid 3px;*/
 }
 
-.inputBubble:after 
+/*.inputBubbleInner 
 {
   position: absolute;
   border-style: solid;
@@ -173,7 +173,7 @@
   left: 69%;
 }
 
-.inputBubble:before 
+.inputBubbleOuter
 {
   position: absolute;
   border-style: solid;
@@ -185,7 +185,7 @@
   margin-left: -8px;
   bottom: -40px;
   left: 69%;
-}
+}*/
 
 .pointer {
   top: 43px;
