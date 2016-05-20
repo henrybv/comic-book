@@ -1,4 +1,5 @@
-core.controller('StoryCtrl', function($scope, story, $state, $localStorage, CameraFactory, loggedInUser, allUsers, StoryFactory, $rootScope, $ionicTabsDelegate) {
+core.controller('StoryCtrl', function($scope, story, $state, $localStorage, CameraFactory, loggedInUser, allUsers, StoryFactory, $rootScope, $ionicPopup, $ionicTabsDelegate) {
+
     $scope.allUsers = allUsers;
     $scope.currentUser = loggedInUser;
     $scope.allUsers = allUsers;
@@ -6,6 +7,8 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
     $scope.collaborators = [];
     $scope.collabAdded = false;
 	$scope.story = story;
+    $scope.deleteClicked = false;
+    // $scope.urlbaby;
     $scope.dataURLArray = [];
     $ionicTabsDelegate.select('Squares');
 	// console.log('story in storyCTRL', $scope.story)
@@ -19,7 +22,10 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
     // });
 
     $scope.goToCamera = function(){
-        $state.go('camera', {storyId: $scope.story._id})
+        // $scope.clicked = false;
+        // $scope.collaborators = [];
+        // $scope.collabAdded = false;
+        $state.go('camera', {storyId: $scope.story._id});
     }
 
     $scope.changeState = function() {
@@ -45,7 +51,7 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
     // }
 
 
-    
+
 // GETTING IMAGES FROM FIREBASE EVERY TIME ONE IS ADDED
     var ref = new Firebase('https://torrid-inferno-1552.firebaseio.com/' + $scope.story._id);
     ref.on('value', function(snapshot){
@@ -56,6 +62,7 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
             arr.push(dataURL);
         }
         $scope.dataURLArray = arr;
+
 
     });
 
@@ -104,7 +111,6 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
 
 
     // ADD FRIENDS FUNCTIONALITY
-
     $scope.showAllUsers = function() {
         $scope.clicked = true;
     };
@@ -143,6 +149,56 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
         });
     };
 
+    // DELETE SQUARE - EVENT DELEGATION
+    // $(document).ready(function() {
+    //     $('#here').delegate('canvas', 'click', function() {
+    //         var item = $(this);
+    //         console.log(item[0].id);
+    //     });
+    // });
+
+    function deleteSquare () {
+        var item = $(this);
+        var squareId = item[0].id;
+
+         // Confirm dialog pop-up
+         $scope.showConfirm = function() {
+           var confirmPopup = $ionicPopup.confirm({
+             title: 'Delete',
+             template: 'Are you sure you want to delete this square?'
+           });
+
+           confirmPopup.then(function(res) {
+             if(res) {
+               console.log('Yes', squareId);
+               StoryFactory.deleteSquare($scope.story._id, squareId)
+               .then(function(story) {
+                var ref = new Firebase('https://torrid-inferno-1552.firebaseio.com/' + $scope.story._id +'/' + squareId);
+                ref.remove();
+                console.log('UPDATED STORY: ', story);
+                $('#here').undelegate( "canvas", "click", deleteSquare);
+                $scope.deleteClicked = false;
+               });
+             } else {
+               console.log('Cancel');
+               $('#here').undelegate( "canvas", "click", deleteSquare);
+               $scope.deleteClicked = false;
+             }
+           });
+         };
+
+         $scope.showConfirm();
+    }
+
+    $scope.exposeDeletes = function() {
+        $scope.deleteClicked = true;
+        $('#here').delegate('canvas', 'click', deleteSquare);
+    };
+
+    $scope.cancelDelete = function() {
+        $scope.deleteClicked = false;
+        $('#here').undelegate( "canvas", "click", deleteSquare);
+    };
     // $scope.shareEmail = function(){
         
     //     window.plugins.socialsharing.shareViaEmail(

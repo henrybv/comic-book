@@ -2,6 +2,7 @@
 var router = require('express').Router();
 var mongoose = require('mongoose');
 var Story = mongoose.model('Story');
+var Square = mongoose.model('Square');
 var Promise = require('bluebird');
 var fs = require('fs');
 var path = require('path');
@@ -95,6 +96,20 @@ router.put('/:storyId/collaborators', function(req, res, next) {
     .then(function(story) {
         console.log('UPDATED STORY: ', story);
         res.send(story);
+    })
+    .catch(next);
+});
+
+router.put('/:storyId/squares/:squareId', function(req, res, next) {
+    var updatedStory;
+    console.log('STORY ID:', req.params.storyId, 'SQUARE ID:', req.params.squareId);
+    Story.update( {_id: req.params.storyId}, { $pull: {'squares': req.params.squareId} }, { upsert: true, new: true } )
+    .then(function(story) {
+        updatedStory = story;
+        return Square.find({ _id: req.params.squareId }).remove().exec();
+    })
+    .then(function() {
+        res.send(updatedStory);
     })
     .catch(next);
 });

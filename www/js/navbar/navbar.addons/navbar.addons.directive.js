@@ -79,7 +79,7 @@ core.directive('navbarAddon', function($rootScope) {
         //These will call the proper scope functions that then add the proper sticker/bubble/border images to the canvas for editing
         for (var i = 0; i < scope.addons.length; i++) {
             
-            // console.log(scope.addons[i])
+
             scope.addons[i].addonFunction = function(){
 
                 if(this.type === "sticker"){

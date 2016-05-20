@@ -1,11 +1,20 @@
 <<<<<<< HEAD
 //FULLSTACK BASE - Debanshi
+// var base = 'http://192.168.1.184:1337'
+=======
+<<<<<<< HEAD
+//FULLSTACK BASE - Debanshi
 var base = 'http://192.168.1.184:1337'
+>>>>>>> master
 // var base = 'http://192.168.1.183:1337'
 // var base = 'http://192.168.0.20:1337'
 // var base = 'http://192.168.1.184:1337'
 //FULLSTACK BASE - Eric
+<<<<<<< HEAD
+var base = 'http://192.168.1.133:1337'
+=======
 // var base = 'http://192.168.0.105:1337'
+>>>>>>> master
 // var base = 'http://192.168.0.20:1337'
 //FULLSTACK BASE - Jeff
 // var base = 'http://192.168.1.133:1337'
@@ -23,6 +32,11 @@ var base = 'http://192.168.1.183:1337'
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
+<<<<<<< HEAD
+
+// put in these for angular ('ngAnimate', 'ngMaterial' , 'ngAria') - makes event delagation wierd tho
+=======
+>>>>>>> master
 var core = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'fsaPreBuilt', 'ngCordova', 'ngStorage', 'hmTouchEvents'])
 
 
@@ -128,6 +142,7 @@ core.config(function($stateProvider, $urlRouterProvider) {
     controller: 'LoginCtrl'
   })
   .state('story', {
+    cache: false,
     url: '/story/:storyId',
     templateUrl: 'js/story/story.template.html',
     controller: 'StoryCtrl',

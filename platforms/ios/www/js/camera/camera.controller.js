@@ -28,9 +28,13 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
     }
     //REMOVE WHEN USING URL FROM PHOTO / ALBUM LIBRARY
 <<<<<<< HEAD
+    urlToCanvas($scope.url, 'imageCanvas');
+=======
+<<<<<<< HEAD
     // urlToCanvas($scope.url, 'imageCanvas');
 =======
     urlToCanvas($scope.url, 'imageCanvas');
+>>>>>>> master
 >>>>>>> master
 
     
@@ -92,6 +96,9 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
 
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+=======
+>>>>>>> master
 
 
     // var combineLayers = function(imageCanvasId, addonCanvasId, x, y){
@@ -113,6 +120,8 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         $scope.stickersArray.forEach(function(sticker){
             var x = Number(sticker.x.slice(0,-2)) || 0;
             var y = Number(sticker.y.slice(0,-2)) || 0
+<<<<<<< HEAD
+=======
 =======
         
         if ($scope.stickersArray){        
@@ -147,6 +156,7 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
             var canvas = document.getElementById('imageCanvas');
             var context = canvas.getContext('2d');
 >>>>>>> master
+>>>>>>> master
             var newImage = new Image();
             newImage.src = $scope.chosenBorder ? $scope.chosenBorder.source  : 'assets/borders/transparent.png'
             console.log("newImage.srcy", newImage.src, $scope.chosenBorder)
@@ -163,6 +173,9 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
 
         return $q.all(onloadsRunning);
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> master
     }     
 
     var addBorderToCanvas = function(){
@@ -187,6 +200,10 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         // }
     }   
 
+<<<<<<< HEAD
+    var addBubblesToCanvas = function(){
+        console.log("addBubblesToCanvas Ran")
+=======
     // var addBubblesToCanvas = function(){
     //     console.log("addBubblesToCanvas Ran")
     //     if($scope.bubblesArray){
@@ -219,10 +236,30 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
 
         var onloadsRunning = [];
 
+>>>>>>> master
         if($scope.bubblesArray){
             // console.log(!!$scope.bubblesArray)
             var canvas = document.getElementById('imageCanvas');
             var context = canvas.getContext('2d');
+<<<<<<< HEAD
+            var onloadsRunning = [];
+            $scope.bubblesArray.forEach(function(bubble){
+                var x = Number(bubble.x.slice(0,-2)) || 0;
+                var y = Number(bubble.y.slice(0,-2)) || 0;
+                var newImage = new Image();
+                newImage.src = bubble.source;
+                var onloadPromise = $q(function(resolve, reject){
+                    newImage.onload = function(){
+                        context.drawImage(newImage, x, y);
+                        resolve();
+                    }
+                    newImage.onerror = reject;
+                })
+                onloadsRunning.push(onloadPromise);
+            })
+            return $q.all(onloadsRunning);
+        }
+=======
             var context = canvas.getContext('2d');
             var context = canvas.getContext('2d');
             $scope.bubblesArray.forEach(function(bubble){
@@ -272,6 +309,7 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
 
         return $q.all(onloadsRunning);
 
+>>>>>>> master
     }
 >>>>>>> master
 
@@ -333,6 +371,9 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         .then(function(){
             return addStickersToCanvas()
         })
+<<<<<<< HEAD
+        .then(function(){
+=======
         .then(function(){
 =======
 
@@ -349,6 +390,7 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
             return addStickersToCanvas()
         })
         .then(function(){
+>>>>>>> master
 >>>>>>> master
             console.log("I bet it doesnt get here")
             var canvas = document.getElementById('imageCanvas');
@@ -373,6 +415,9 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         $scope.saveImage()
     })
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> master
 
     // FOR HTML2CANVASS ////////////
     // FOR GRABBING
@@ -437,9 +482,12 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
             
          }
     };
+<<<<<<< HEAD
+=======
 =======
 
  
+>>>>>>> master
 >>>>>>> master
 
 
@@ -498,7 +546,11 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
 <<<<<<< HEAD
             $scope.bubblesArray.push({id: bubbleIdcounter, pointerStyle:currentBubbleStyle[0], pointerBorderStyle: currentBubbleStyle[1], x: '0px', y: '0px' })
 =======
+<<<<<<< HEAD
+            $scope.bubblesArray.push({id: bubbleIdcounter, pointerStyle:currentBubbleStyle[0], pointerBorderStyle: currentBubbleStyle[1], x: '0px', y: '0px' })
+=======
             $scope.bubblesArray.push({id: bubbleIdcounter, type: bubbleName, pointerStyle: currentBubbleStyle[0], pointerBorderStyle: currentBubbleStyle[1], x: '0px', y: '0px' })
+>>>>>>> master
 >>>>>>> master
             bubblecounter++;
             bubbleIdcounter++;
@@ -599,6 +651,9 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         }
 
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> master
         // console.log("Coords", x, y);
 
 =======

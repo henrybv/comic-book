@@ -1,5 +1,10 @@
 <ion-view scroll="true" title="{{story.title}}">
 <<<<<<< HEAD
+  <ion-content style="background-image: url('assets/yelloworangedots.jpg') !important">
+    <ion-scroll has-bouncing='false'>
+        <button style="background-color:black;margin-top:30px;" class="button button-block button-positive" ng-click="goToCamera()" ng-hide="deleteClicked">
+=======
+<<<<<<< HEAD
 <div>
       <ion-tabs class="tabs-top tabs-icon-top " style="top:10px">
 
@@ -67,11 +72,27 @@
   <ion-content style="background-image: url('assets/yelloworangedots.jpg') !important">
     <ion-scroll has-bouncing='false'>
         <button style="background-color:black" ui-sref="camera({storyId: story._id})" class="button button-block button-positive">
+>>>>>>> master
           <span>Add Square</span>
           <i ng-show="loading" class="ion-loading-b"></i>
 >>>>>>> master
         </button>
+<<<<<<< HEAD
+
+        <div style="text-align:center;margin-top:40px;" ng-show="deleteClicked">
+          <h1><strong>DELETE MODE</strong></h1>
+          <h4>Click a square to delete it</h4>
+        </div>
+
+
+  <!--   <img src='{{urlbaby}}'> -->
+      <div class="padding">
+      <div id='here'>
+      </div>
+      </div>
+=======
   </div>
+>>>>>>> master
 
       <!-- FOR WHEN FRIENDS ARE ADDED -->
     <div ng-show="collabAdded">
@@ -91,7 +112,11 @@
       </ion-scroll>
 
       <!-- ADD FRIENDS (COLLLABORATORS) TO STORY -->
+<<<<<<< HEAD
+      <div style="text-align:center;margin-top:10px;margin-bottom:10px;" ng-show="collaborators.length">
+=======
       <div style="text-align:center;" ng-show="collaborators.length">
+>>>>>>> master
         <button class="button button-default button-secondary" style="background-color:red;" ng-click="addCollaborators()">
           <strong><span class="button-inner" style="color:white;">Add These Friends !</span></strong>
           <ion-button-effect></ion-button-effect>
@@ -100,12 +125,26 @@
     </div>
 
 
-<!-- ADD FRIENDS BUTTON -->
+<!-- DELETE SQUARE BUTTON -->
+<!-- IF HAVE TIME MAKE IT SO DOENST SHOW UP WHEN NO SQUARES - FIREBASE THROWS IT OFF CUZ LOADS LATE -->
       <div style="text-align:center;" ng-hide="clicked">
+<<<<<<< HEAD
+        <button class="button button-default button-secondary" style="background-color:red;" ng-click="cancelDelete()" ng-show="deleteClicked">
+          <strong><span class="button-inner" style="color:white;">Cancel Delete</span></strong>
+          <ion-button-effect></ion-button-effect>
+        </button>
+        <button class="button button-default button-secondary" style="background-color:red;" ng-click="exposeDeletes()" ng-hide="deleteClicked">
+          <strong><span class="button-inner" style="color:white;">Delete Square</span></strong>
+          <ion-button-effect></ion-button-effect>
+        </button>
+<!-- ADD FRIENDS BUTTON -->
+        <button class="button button-default button-secondary" style="background-color:red;" ng-click="showAllUsers()" ng-hide="deleteClicked">
+=======
 <<<<<<< HEAD
         <button class="button button-default button-secondary" style="background-color:black;" ng-click="showAllUsers()">
 =======
         <button class="button button-default button-secondary" style="background-color:red;" ng-click="showAllUsers()">
+>>>>>>> master
 >>>>>>> master
           <strong><span class="button-inner" style="color:white;">Add Friends To Story</span></strong>
           <ion-button-effect></ion-button-effect>
@@ -114,9 +153,8 @@
 
 <!-- SEARCH BY EMAIL INPUT -->
       <div class="list list-inset" ng-show="clicked && allUsers.length" style="margin-top:0px;">
-        <h4 style="text-align:center;">Search for friends...</h4>
         <label class="item item-input">
-          <span class="input-label">by email</span>
+          <span class="input-label">Search friends by email</span>
           <input type="text" ng-model="searchedEmail" class="form-control">
         </label>
       </div>

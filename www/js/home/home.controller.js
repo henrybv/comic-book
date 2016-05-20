@@ -5,7 +5,7 @@ core.controller('homeCtrl', function(myStories, myCollabs, $scope, $state) {
 	$scope.myCollabs = myCollabs;
 	$scope.showMyStories = false;
 	$scope.showMyCollabs = false;
-	console.log('stories: ', $scope.myStories)
+	console.log('collabs: ', $scope.myCollabs)
 
 	$scope.changeState = function(id){
 		$state.go('story', {storyId: id})
@@ -41,5 +41,13 @@ core.controller('homeCtrl', function(myStories, myCollabs, $scope, $state) {
 	// }
 
 
+	$scope.clickPic = '/assets/logo1.PNG';
+
+	$scope.changeSource = function() {
+		$scope.clickPic = '/assets/stickers/pow.png'
+		setTimeout(function() {
+			$state.go('login');
+		}, 300);
+	};
 
 });

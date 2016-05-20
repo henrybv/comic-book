@@ -1,4 +1,4 @@
-core.controller('StoryCtrl', function($scope, story, $state, $localStorage, CameraFactory, loggedInUser, allUsers, StoryFactory, $rootScope) {
+core.controller('StoryCtrl', function($scope, story, $state, $localStorage, CameraFactory, loggedInUser, allUsers, StoryFactory, $rootScope, $ionicPopup) {
     $scope.allUsers = allUsers;
     $scope.currentUser = loggedInUser;
     $scope.allUsers = allUsers;
@@ -7,9 +7,14 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
     $scope.collabAdded = false;
 	$scope.story = story;
 <<<<<<< HEAD
+    $scope.deleteClicked = false;
+    // $scope.urlbaby;
+=======
+<<<<<<< HEAD
     $scope.dataURLArray = [];
 =======
     // $scope.urlbaby;
+>>>>>>> master
 >>>>>>> master
 	// console.log('story in storyCTRL', $scope.story)
 
@@ -22,7 +27,10 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
     // });
 
     $scope.goToCamera = function(){
-        $state.go('camera', {storyId: $scope.story._id})
+        // $scope.clicked = false;
+        // $scope.collaborators = [];
+        // $scope.collabAdded = false;
+        $state.go('camera', {storyId: $scope.story._id});
     }
 
     $scope.changeState = function() {
@@ -52,18 +60,25 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
     }
 
 
+<<<<<<< HEAD
+=======
 
 
     
+>>>>>>> master
 // GETTING IMAGES FROM FIREBASE EVERY TIME ONE IS ADDED
     var ref = new Firebase('https://torrid-inferno-1552.firebaseio.com/' + $scope.story._id);
     ref.on('value', function(snapshot){
         var here = document.getElementById('here');
             console.log('Firebase Div:', here)
 <<<<<<< HEAD
+        while (here.firstChild){
+=======
+<<<<<<< HEAD
         while (here && here.firstChild){
 =======
         while (here.firstChild){
+>>>>>>> master
 >>>>>>> master
             // console.log('HERE FIRST CHILD', here.firstChild)
             here.removeChild(here.firstChild);
@@ -74,6 +89,7 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
             $scope.dataURLArray.push(dataURL);
             urlToNewCanvas(dataURL, squareId);
         }
+
 
     });
 
@@ -101,7 +117,6 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
 
 
     // ADD FRIENDS FUNCTIONALITY
-
     $scope.showAllUsers = function() {
         $scope.clicked = true;
     };
@@ -140,6 +155,58 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
         });
     };
 
+<<<<<<< HEAD
+    // DELETE SQUARE - EVENT DELEGATION
+    // $(document).ready(function() {
+    //     $('#here').delegate('canvas', 'click', function() {
+    //         var item = $(this);
+    //         console.log(item[0].id);
+    //     });
+    // });
+
+    function deleteSquare () {
+        var item = $(this);
+        var squareId = item[0].id;
+
+         // Confirm dialog pop-up
+         $scope.showConfirm = function() {
+           var confirmPopup = $ionicPopup.confirm({
+             title: 'Delete',
+             template: 'Are you sure you want to delete this square?'
+           });
+
+           confirmPopup.then(function(res) {
+             if(res) {
+               console.log('Yes', squareId);
+               StoryFactory.deleteSquare($scope.story._id, squareId)
+               .then(function(story) {
+                var ref = new Firebase('https://torrid-inferno-1552.firebaseio.com/' + $scope.story._id +'/' + squareId);
+                ref.remove();
+                console.log('UPDATED STORY: ', story);
+                $('#here').undelegate( "canvas", "click", deleteSquare);
+                $scope.deleteClicked = false;
+               });
+             } else {
+               console.log('Cancel');
+               $('#here').undelegate( "canvas", "click", deleteSquare);
+               $scope.deleteClicked = false;
+             }
+           });
+         };
+
+         $scope.showConfirm();
+    }
+
+    $scope.exposeDeletes = function() {
+        $scope.deleteClicked = true;
+        $('#here').delegate('canvas', 'click', deleteSquare);
+    };
+
+    $scope.cancelDelete = function() {
+        $scope.deleteClicked = false;
+        $('#here').undelegate( "canvas", "click", deleteSquare);
+    };
+=======
     // $scope.shareEmail = function(){
         
     //     window.plugins.socialsharing.shareViaEmail(
@@ -154,6 +221,7 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
     //     );
     // }
 
+>>>>>>> master
 
 
 });

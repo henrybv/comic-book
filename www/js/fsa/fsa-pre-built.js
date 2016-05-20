@@ -88,7 +88,6 @@
             // Jeff: Instead of returning a promise with the Session.user, 
             // we want to return the user stored in localStorage
             if (this.isAuthenticated() && fromServer !== true) {
-                console.log("got into that wierd section of getLoggedInUser", $localStorage.user)
                 // return $q.when(Session.user);
                 return $q.when($localStorage.user);
             }
