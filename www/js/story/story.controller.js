@@ -29,7 +29,7 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
     var urlToNewCanvas = function(url, canvasId){
     	var canvas = document.createElement('canvas');
         canvas.id = canvasId;
-        canvas.width = canvas.height = 115;
+        canvas.width = canvas.height = 300;
         var context = canvas.getContext('2d');
         var newImage = new Image();
         var elem = document.getElementById('here')

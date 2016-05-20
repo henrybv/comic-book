@@ -3,7 +3,7 @@
 
 /*------Addon/Delete Navbars-----*/
 #addons {
-	height: 200px;
+	height: auto;
 }
 
 #myCanvas {
@@ -12,7 +12,7 @@
 }
 
 #navbarAddon {
-  height: 200px;
+  height: 190px;
   position: absolute;
     bottom: 0px;
   overflow: scroll;
@@ -47,9 +47,12 @@
 #addonsStates {
 	position: relative;
 	height:24%;
+  /*margin: 0px 0px 0px 10px;*/
 }
 
 #stateButtons {
+  padding: 0px 10px 0px 0px;
+  height: 1px;
 }
 
 #addonsBottom {
@@ -131,61 +134,26 @@
 */
 
 
-#textarea {
-  vertical-align: center;
-  text-align: center;
-  background: transparent;
-  /*border: 0px;*/
-  border-radius: 37px;
-  width: 145px;
-  height: 40px;
-  resize: none;
-  padding: 15px;
-  border: 2px solid #000;
-  overflow: hidden;
-}
 
 .inputBubble 
 {
   position: absolute;
-  /*background: transparent;*/
   top: 0px;
   left: 0px;
-  width: 145px;
-  background: #FFFFFF;
-  -webkit-border-radius: 37px;
-  -moz-border-radius: 37px;
-  border-radius: 37px;
-  /*border: #000000 solid 3px;*/
+  background: transparent;
 }
 
-/*.inputBubbleInner 
-{
-  position: absolute;
-  border-style: solid;
-  border-width: 67px 6px 0;
-  border-color: #FFFFFF transparent;
-  display: block;
-  width: 0;
-  z-index: 1;
-  margin-left: -6px;
-  bottom: -67px;
-  left: 69%;
+#textarea {
+  text-align: center;
+  background: white;
+  resize: none;
+  width: 140px;
+  height: 40px;
+  padding: 20px 20px 10px 20px;
+  border: 2px solid #000;
+  -webkit-border-radius: 25px; 
+  display: inline-block;
 }
-
-.inputBubbleOuter
-{
-  position: absolute;
-  border-style: solid;
-  border-width: 69px 8px 0;
-  border-color: #000000 transparent;
-  display: block;
-  width: 0;
-  z-index: 0;
-  margin-left: -8px;
-  bottom: -40px;
-  left: 69%;
-}*/
 
 .pointer {
   top: 43px;
@@ -195,7 +163,7 @@
 
 }
 
-/*.pointerBorder {
+.pointerBorder {
   content: "";
   position: absolute;
   border-style: solid;
@@ -207,7 +175,7 @@
   margin-left: -8px;
   bottom: -67px;
   left: 69%;
-}*/
+}
 
 /*-------DELETE DIV--------*/
 
@@ -249,7 +217,8 @@
 }*/
 
 #addonError {
-    background-image: linear-gradient(bottom, rgb(240,128,128) 25%, rgb(220,20,60) 100%);
+  background-color: red;
+/*    background-image: linear-gradient(bottom, rgb(240,128,128) 25%, rgb(220,20,60) 100%);
     background-image: -o-linear-gradient(bottom, rgb(240,128,128) 25%, rgb(220,20,60) 100%);
     background-image: -moz-linear-gradient(bottom, rgb(240,128,128) 25%, rgb(220,20,60) 100%);
     background-image: -webkit-linear-gradient(bottom, rgb(240,128,128) 25%, rgb(220,20,60) 100%);
@@ -260,13 +229,13 @@
       left top,
       color-stop(0.25, rgb(240,128,128)),
       color-stop(1, rgb(220,20,60))
-    );
+    );*/
   /*border: solid 1px rgba(0, 0, 0, 0.5);*/
   border-radius: 5px;
   box-shadow: inset 0 5px 5px rgba(255, 255, 255, 0.4), 0 1px 3px rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
   clear: both;
-  padding: 5px 30px;
+  padding: 15px 30px 15px;
   position: relative;
   color: white;
   font-family: Arial, Helvetica, sans-serif;
@@ -275,24 +244,19 @@
 }
 
 #addonSuccessfulDelete {
-    background-image: linear-gradient(bottom, rgb(166, 218, 149) 25%, rgb(26, 148, 49) 100%);
-    background-image: -o-linear-gradient(bottom, rgb(166, 218, 149) 25%, rgb(26, 148, 49) 100%);
+  background-color: green;
+    /*background-image: linear-gradient(bottom, rgb(166, 218, 149) 25%, rgb(26, 148, 49) 100%);*/
+/*    background-image: -o-linear-gradient(bottom, rgb(166, 218, 149) 25%, rgb(26, 148, 49) 100%);
     background-image: -moz-linear-gradient(bottom, rgb(166, 218, 149) 25%, rgb(26, 148, 49) 100%);
     background-image: -webkit-linear-gradient(bottom, rgb(166, 218, 149) 25%, rgb(26, 148, 49) 100%);
     background-image: -ms-linear-gradient(bottom, rgb(166, 218, 149) 25%, rgb(26, 148, 49) 100%);
-    background-image: -webkit-gradient(
-      linear,
-      left bottom,
-      left top,
-      color-stop(0.25, rgb(166, 218, 149)),
-      color-stop(1, rgb(26, 148, 49))
-    );
+/**/
   /*border: solid 1px rgba(0, 0, 0, 0.5);*/
   border-radius: 5px;
   box-shadow: inset 0 5px 5px rgba(255, 255, 255, 0.4), 0 1px 3px rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
   clear: both;
-  padding: 5px 30px;
+  padding: 15px 30px 15px;
   position: relative;
   color: white;
   font-family: Arial, Helvetica, sans-serif;
