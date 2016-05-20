@@ -32,10 +32,12 @@ router.get('/:storyId', function(req, res, next) {
 
 //get all stories created by a user
 router.get('/user/:userId', function(req, res, next) {
+    console.log('in route to get stories created by a user')
     Story.find({owner: req.params.userId})
     .populate('friends')
     .exec()
     .then(function(stories) {
+        console.log('in route to get stories created by a user. returns: ', stories)
         res.status(200).send(stories);
     })
     .catch(next)
@@ -53,6 +55,7 @@ router.get('/collaborator/:userId', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
+    console.log('ROUTE in post new story with req.body: ', req.body)
     Story.create(req.body)
     .then(function(story) {
         return  Story.findById(story._id).populate('friends');

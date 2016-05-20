@@ -5,13 +5,14 @@
 // var base = 'http://192.168.1.184:1337'
 //FULLSTACK BASE - Eric
 var base = 'http://192.168.1.133:1337'
+// var base = 'http://192.168.0.105:1337'
 // var base = 'http://192.168.0.20:1337'
 //FULLSTACK BASE - Jeff
 // var base = 'http://192.168.1.133:1337'
 //FULLSTACK BASE - Henry
 // var base = 'http://192.168.1.204:1337'
 
-// var base = 'http://localhost:1337';
+
 
 // Ionic Starter App
 
@@ -21,7 +22,6 @@ var base = 'http://192.168.1.133:1337'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 
-// put in these for angular ('ngAnimate', 'ngMaterial' , 'ngAria') - makes event delagation wierd tho
 var core = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'fsaPreBuilt', 'ngCordova', 'ngStorage', 'hmTouchEvents'])
 
 

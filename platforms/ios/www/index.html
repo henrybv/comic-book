@@ -34,6 +34,9 @@
     <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/camanjs/4.1.2/caman.full.min.js"></script>
     <script type="text/javascript" src="lib/caman/dist/caman.full.min.js"></script>
+
+    <!-- Social sharing -->
+ <!--    <script type="text/javascript" src="js/SocialSharing.js"></script> -->
     
     <!-- html2canvas scripts -->
     <script src="js/components/jquery.min.js"></script>
@@ -92,14 +95,22 @@
        
         <!-- <ion-nav-back-button hide-back-button="getState()"></ion-nav-back-button> -->
         <ion-nav-buttons side="left">
+<<<<<<< HEAD
             <button ng-hide="&apos;home&apos; | isState" class="button icon-left ion-home" ui-sref="home"></button>
+=======
+            <button ng-hide="&apos;home&apos; | isState" ng-click="goHome()" class="button icon-left ion-home"></button>
+>>>>>>> master
           <!--   <button ng-if=" 'home' | isState" menu-toggle="left" class="button button-icon icon ion-navicon"></button> -->
             <!-- <button ng-if=" 'camera' | isState" class="button button-icon ion-grid"></button> -->
         </ion-nav-buttons>
         <ion-nav-buttons side="right">
             <!-- <button class="button button-icon ion-ios-email"></button> -->
             <button ng-if=" &apos;home&apos; | isState" class="button button-icon ion-person-add"></button>
+<<<<<<< HEAD
             <button ui-sref="settings" ng-if=" &apos;home&apos; | isState" class="button button-icon ion-gear-a"></button>       
+=======
+            <button ui-sref="settings" ng-if=" &apos;home&apos; | isState" class="button button-icon ion-gear-a"></button>            
+>>>>>>> master
             <button ng-if=" &apos;camera&apos; | isState" class="button button-icon ion-checkmark-circled" ng-click="save()"></button>
         </ion-nav-buttons>
     </ion-nav-bar>

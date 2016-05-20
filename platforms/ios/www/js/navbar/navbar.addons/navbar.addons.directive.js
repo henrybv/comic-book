@@ -16,10 +16,39 @@ core.directive('navbarAddon', function($rootScope) {
         url: "="
     },
     link: function (scope, element, attrs) {
-
+        //scope.addons is set above from the state resolve
+                //Sets Filters
+        var setFilterThumbnails = function(){
+            var filtersarr = ['grey', 'poster', 'brown', 'black'];
+            filtersarr.forEach(function(filter){
+                var canvas = document.getElementById(filter);
+                var context = canvas.getContext('2d');
+                var thumbnail = new Image();
+                thumbnail.src = scope.url;
+                thumbnail.crossOrigin = '';
+                thumbnail.onload = function(){
+                    context.drawImage(thumbnail, 0, 0, thumbnail.width, thumbnail.height, 0, 0, canvas.width, canvas.height)
+                    scope.applyfilter(filter,filter);
+                }
+            })
+        }
+        
+        setFilterThumbnails();
+        //This Sets Width of Directive Buttons
+        scope.myWidth = function(){
+            newWidth = Math.floor((100/scope.activeButtons.length))
+            return newWidth.toString() + '%'
+        }
+        
         //Adds proper functions to addons:
+        //These will call the proper scope functions that then add the proper sticker/bubble/border images to the canvas for editing
         for (var i = 0; i < scope.addons.length; i++) {
             
+<<<<<<< HEAD
+            console.log(scope.addons[i])
+=======
+            // console.log(scope.addons[i])
+>>>>>>> master
             scope.addons[i].addonFunction = function(){
 
                 if(this.type === "sticker"){
@@ -38,37 +67,9 @@ core.directive('navbarAddon', function($rootScope) {
             }
         }
 
-        //Functions from Camera Controller
-        scope.changeNav = function(addon){
-            scope.addonType = addon;
-            //Changes addonType to the current addon Tab
-            if (scope.addonType === 'filter') {
-                setFilterThumbnails();
-            }
-        };
-
-        var setFilterThumbnails = function(){
-        var filtersarr = ['grey', 'poster', 'brown', 'black'];
-        filtersarr.forEach(function(filter){
-            var canvas = document.getElementById(filter);
-            var context = canvas.getContext('2d');
-            var thumbnail = new Image();
-            thumbnail.src = scope.url;
-            thumbnail.crossOrigin = '';
-            thumbnail.onload = function(){
-                context.drawImage(thumbnail, 0, 0, thumbnail.width, thumbnail.height, 0, 0, canvas.width, canvas.height)
-                scope.applyfilter(filter,filter);
-            }
-        })
-    }
 
 
-        //This Sets Width of Directive Buttons
-        scope.myWidth = function(){
-            newWidth = Math.floor((100/scope.activeButtons.length))
-            return newWidth.toString() + '%'
-        }
-
+        //Switches between Picture buttons and AddonButtons
         scope.setButtons = function(buttonType){
             // var divElem = document.getElementsByClassName("button buttonsToGrab")
             if (buttonType === 'addonStates') {
@@ -81,6 +82,7 @@ core.directive('navbarAddon', function($rootScope) {
 
 
         //Take Picture Directive
+        //These Tabs are an ng-repeat that will show when
         scope.pictureFunctions = [
         {
             state: "CAMERA",
@@ -102,18 +104,22 @@ core.directive('navbarAddon', function($rootScope) {
                 scope.setButtons('addonStates')
             }
         }
-        // {
-        //     state: 'TEST',
-        //     function: function(){
-        //         setButtons('addonStates')
-        //     }
-        // }
         ]
+
+        //Functions from Camera Controller
+        //Changes the addonStates below to the addonType clicked
+        scope.changeNav = function(addon){
+            scope.addonType = addon;
+            // //Changes addonType to the current addon Tab
+            // if (scope.addonType === 'filter') {
+            //     setFilterThumbnails();
+            // }
+        };
 
         //Addons Directive
         scope.addonStates = [
         {
-            state: '<---',
+            state: 'Back',
             function: function(){
                 scope.setButtons('pictureFunctions')
             }

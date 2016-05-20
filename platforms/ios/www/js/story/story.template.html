@@ -1,10 +1,83 @@
 <ion-view scroll="true" title="{{story.title}}">
+<<<<<<< HEAD
   <ion-content style="background-image: url('assets/yelloworangedots.jpg') !important">
     <ion-scroll has-bouncing='false'>
         <button style="background-color:black;margin-top:30px;" class="button button-block button-positive" ng-click="goToCamera()" ng-hide="deleteClicked">
+=======
+<<<<<<< HEAD
+<div>
+      <ion-tabs class="tabs-top tabs-icon-top " style="top:10px">
+
+
+          <ion-tab title="Squares" icon-on="ion-grid" icon-off="ion-ios-filing-outline">
+              <ion-content zooming='true' style="background-image: url('assets/yelloworangedots.jpg') !important;position:absolute; padding:100px 5px 0px 5px">
+                  <div id='here'>
+                  </div>
+                  <div>
+                    <button style="background-color: transparent;" ui-sref="camera({storyId: story._id})" class="button button-block button-positive">
+                       <img src='assets/addSquareButton.png' width='200'>
+                    </button>
+                </div>
+              </ion-content>
+          </ion-tab>
+
+         
+
+          <ion-tab title="Strip" icon-on="ion-ios-barcode" icon-off="ion-ios-barcode">
+              <ion-scroll direction="x" id="addonsBottom" style="background-image: url('assets/sample_comic.jpg')!important;position:absolute; padding:100px 5px 0px 5px; width: 1000px">
+                  
+                  <div id="squareAndAddonFrames" style='margin:10px -4px -4px -4px !important;border:10px -4px -4px -4px !important;padding:2px -4px -4px -4px !important'>
+                    <button id="transparent" class="button" ng-repeat="url in dataURLArray" style="background-color:black;margin:10px -4px -4px -4px !important ;border:10px -4px -4px -4px !important;border:10px -4px -4px -4px !important  box-sizing: content-box !important;">
+                      <div>
+                        <img src="{{ url }}" width='300' style='margin:-4px -4px -4px -4px !important;border:-4px -4px -4px -4px !important;padding:-4px -4px -4px -4px !important'>
+                      </div>
+                    </button>
+                  </div>
+              </ion-scroll>
+
+          </ion-tab>
+
+<!--           <ion-tab title="Play Story" icon-on="ion-play" icon-off="ion-play">
+
+               <ion-scroll direction="x" id="addonsBottom" style="position:absolute; padding:300px 5px 0px 5px">
+                  
+                  <div id="squareAndAddonFrames" style='margin:10px -4px -4px -4px !important;border:10px -4px -4px -4px !important;padding:2px -4px -4px -4px !important'>
+                    <button id="transparent" class="button" ng-repeat="url in dataURLArray" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}" style="background-color:black;margin:10px -4px -4px -4px !important ;border:10px -4px -4px -4px !important;border:10px -4px -4px -4px !important  box-sizing: content-box !important;">
+                      <div>
+                        <img src="{{ url }}" width='300' style='margin:-4px -4px -4px -4px !important;border:-4px -4px -4px -4px !important;padding:-4px -4px -4px -4px !important'>
+                      </div>
+                    </button>
+                  </div>
+              </ion-scroll>
+          </ion-tab> -->
+
+          <ion-tab title="Add Square" ng-click='goToCamera()' icon-on="ion-plus" icon-off="ion-plus">
+          </ion-tab>
+
+          <!--  <ion-tab title="Share" icon-on="ion-email" icon-off="ion-email">
+            <ion-scroll direction="x" id="addonsBottom" style="position:absolute; padding:100px 5px 0px 5px">
+              < <button ng-click="shareEmail()">Share via Email</button> -->
+              <!-- <button onclick="window.plugins.socialsharing.shareVia('facebook', 'Message via FB', null, null, null, function(){console.log('share ok')}, function(msg) {alert('error: ' + msg)})">message via Facebook</button>
+            </ion-scroll>
+          </ion-tab> -->
+
+      </ion-tabs>
+  </div>
+  <div>
+        <button style="background-color:transparent;" ui-sref="camera({storyId: story._id})" class="button button-block button-positive">
+         <!--  <span>Add Square</span> -->
+           <img src='assets/addSquareButton.png' width='200'>
+            <!-- <i ng-show="loading" class="ion-loading-b"></i> -->
+=======
+  <ion-content style="background-image: url('assets/yelloworangedots.jpg') !important">
+    <ion-scroll has-bouncing='false'>
+        <button style="background-color:black" ui-sref="camera({storyId: story._id})" class="button button-block button-positive">
+>>>>>>> master
           <span>Add Square</span>
           <i ng-show="loading" class="ion-loading-b"></i>
+>>>>>>> master
         </button>
+<<<<<<< HEAD
 
         <div style="text-align:center;margin-top:40px;" ng-show="deleteClicked">
           <h1><strong>DELETE MODE</strong></h1>
@@ -17,6 +90,9 @@
       <div id='here'>
       </div>
       </div>
+=======
+  </div>
+>>>>>>> master
 
       <!-- FOR WHEN FRIENDS ARE ADDED -->
     <div ng-show="collabAdded">
@@ -36,7 +112,11 @@
       </ion-scroll>
 
       <!-- ADD FRIENDS (COLLLABORATORS) TO STORY -->
+<<<<<<< HEAD
       <div style="text-align:center;margin-top:10px;margin-bottom:10px;" ng-show="collaborators.length">
+=======
+      <div style="text-align:center;" ng-show="collaborators.length">
+>>>>>>> master
         <button class="button button-default button-secondary" style="background-color:red;" ng-click="addCollaborators()">
           <strong><span class="button-inner" style="color:white;">Add These Friends !</span></strong>
           <ion-button-effect></ion-button-effect>
@@ -48,6 +128,7 @@
 <!-- DELETE SQUARE BUTTON -->
 <!-- IF HAVE TIME MAKE IT SO DOENST SHOW UP WHEN NO SQUARES - FIREBASE THROWS IT OFF CUZ LOADS LATE -->
       <div style="text-align:center;" ng-hide="clicked">
+<<<<<<< HEAD
         <button class="button button-default button-secondary" style="background-color:red;" ng-click="cancelDelete()" ng-show="deleteClicked">
           <strong><span class="button-inner" style="color:white;">Cancel Delete</span></strong>
           <ion-button-effect></ion-button-effect>
@@ -58,6 +139,13 @@
         </button>
 <!-- ADD FRIENDS BUTTON -->
         <button class="button button-default button-secondary" style="background-color:red;" ng-click="showAllUsers()" ng-hide="deleteClicked">
+=======
+<<<<<<< HEAD
+        <button class="button button-default button-secondary" style="background-color:black;" ng-click="showAllUsers()">
+=======
+        <button class="button button-default button-secondary" style="background-color:red;" ng-click="showAllUsers()">
+>>>>>>> master
+>>>>>>> master
           <strong><span class="button-inner" style="color:white;">Add Friends To Story</span></strong>
           <ion-button-effect></ion-button-effect>
         </button>
@@ -85,6 +173,6 @@
           </ion-list>
       </div>
 
-    </ion-scroll>
-  </ion-content>
+<!--     </ion-scroll> -->
+ <!--  </ion-content> -->
 </ion-view>

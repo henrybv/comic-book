@@ -1,4 +1,7 @@
-core.controller('SettingsCtrl', function($scope, $localStorage) {
+core.controller('SettingsCtrl', function($scope, $localStorage, AuthService, $state) {
 	$scope.user = $localStorage.user;
-	// $scope.logout = 
+	$scope.logout = function () {
+       AuthService.logout();
+        $state.go('login');
+   	};
 });

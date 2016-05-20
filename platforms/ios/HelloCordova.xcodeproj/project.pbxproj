@@ -51,6 +51,10 @@
 		9F5C2AB6987045ADAB63F3CF /* CDVViewController+SplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = D6371A09E1DC4A1BB7F80AD8 /* CDVViewController+SplashScreen.m */; };
 		168215B11C0B496783EFF6A4 /* CDVStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = DF669412398C4F2A993C5E7F /* CDVStatusBar.m */; };
 		6AB7BA4F750D4B8CBCA24AB7 /* IonicKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E971EAA31D4AACB87AC323 /* IonicKeyboard.m */; };
+		08130274CA6B40B49BFCAA39 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = E455F2114B314037A21B5301 /* NSString+URLEncoding.m */; };
+		B162B63E0F87413AAA86F4CB /* SocialSharing.m in Sources */ = {isa = PBXBuildFile; fileRef = A8FFCCAB528A4F0197BC593A /* SocialSharing.m */; };
+		797CD5BA43814EB183138C02 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DBD713CD61F4F339C438957 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		D9C0C3A491DA49F596A00816 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 380FEFBFE664461781F34567 /* MessageUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +142,12 @@
 		59799B45B1C240D2A2C5724A /* CDVStatusBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVStatusBar.h"; path = "cordova-plugin-statusbar/CDVStatusBar.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		36E971EAA31D4AACB87AC323 /* IonicKeyboard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "IonicKeyboard.m"; path = "ionic-plugin-keyboard/IonicKeyboard.m"; sourceTree = "<group>"; fileEncoding = 4; };
 		F0C164A61E344DDCBF7BFE06 /* IonicKeyboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "IonicKeyboard.h"; path = "ionic-plugin-keyboard/IonicKeyboard.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		E455F2114B314037A21B5301 /* NSString+URLEncoding.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSString+URLEncoding.m"; path = "cordova-plugin-x-socialsharing/NSString+URLEncoding.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		A8FFCCAB528A4F0197BC593A /* SocialSharing.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "SocialSharing.m"; path = "cordova-plugin-x-socialsharing/SocialSharing.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		F1B362833F364BFD95B37BA2 /* NSString+URLEncoding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSString+URLEncoding.h"; path = "cordova-plugin-x-socialsharing/NSString+URLEncoding.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		EB4D99F9C90B4B8E9C226DAE /* SocialSharing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SocialSharing.h"; path = "cordova-plugin-x-socialsharing/SocialSharing.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		5DBD713CD61F4F339C438957 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Social.framework"; path = "System/Library/Frameworks/Social.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
+		380FEFBFE664461781F34567 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "MessageUI.framework"; path = "System/Library/Frameworks/MessageUI.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +162,8 @@
 				BD9797025F404D05A8792B71 /* ImageIO.framework in Frameworks */,
 				8AE39F9776EA473693255885 /* CoreLocation.framework in Frameworks */,
 				4F9BD1F0A40546CFABA1A936 /* AVFoundation.framework in Frameworks */,
+				797CD5BA43814EB183138C02 /* Social.framework in Frameworks */,
+				D9C0C3A491DA49F596A00816 /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,6 +239,8 @@
 				CA4D35C5C443408687F58E72 /* ImageIO.framework */,
 				4398CB08588B4E87B4BE86F6 /* CoreLocation.framework */,
 				7DC9323DC877425F9FCF71C1 /* AVFoundation.framework */,
+				5DBD713CD61F4F339C438957 /* Social.framework */,
+				380FEFBFE664461781F34567 /* MessageUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -261,6 +275,10 @@
 				59799B45B1C240D2A2C5724A /* CDVStatusBar.h */,
 				36E971EAA31D4AACB87AC323 /* IonicKeyboard.m */,
 				F0C164A61E344DDCBF7BFE06 /* IonicKeyboard.h */,
+				E455F2114B314037A21B5301 /* NSString+URLEncoding.m */,
+				A8FFCCAB528A4F0197BC593A /* SocialSharing.m */,
+				F1B362833F364BFD95B37BA2 /* NSString+URLEncoding.h */,
+				EB4D99F9C90B4B8E9C226DAE /* SocialSharing.h */,
 			);
 			name = Plugins;
 			path = "HelloCordova/Plugins";
@@ -454,6 +472,8 @@
 				9F5C2AB6987045ADAB63F3CF /* CDVViewController+SplashScreen.m in Sources */,
 				168215B11C0B496783EFF6A4 /* CDVStatusBar.m in Sources */,
 				6AB7BA4F750D4B8CBCA24AB7 /* IonicKeyboard.m in Sources */,
+				08130274CA6B40B49BFCAA39 /* NSString+URLEncoding.m in Sources */,
+				B162B63E0F87413AAA86F4CB /* SocialSharing.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
