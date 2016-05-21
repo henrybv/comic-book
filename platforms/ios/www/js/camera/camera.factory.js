@@ -36,10 +36,10 @@ core.factory('CameraFactory', function($http){
 
   //--------DIRECTIVE FUNCTIONS------//
   CameraFactory.getFilters = function(){
-    console.log("Got into the factory")
+    console.log("Got into the get addons factory")
     return $http.get(base + '/api/addons')
     .then(function(res) {
-      console.log("addons", res.data);
+      // console.log("addons", res.data);
       return res.data;
     })
   };

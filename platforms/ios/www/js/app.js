@@ -3,13 +3,19 @@
 // var base = 'http://192.168.1.183:1337'
 // var base = 'http://192.168.0.20:1337'
 //FULLSTACK BASE - Eric
+<<<<<<< HEAD
+=======
+var base = 'http://192.168.1.133:1337'
+// var base = 'http://192.168.0.113:1337'
+// var base = 'http://192.168.0.105:1337'
+>>>>>>> master
 // var base = 'http://192.168.0.20:1337'
 //FULLSTACK BASE - Jeff
 // var base = 'http://192.168.1.133:1337'
 //FULLSTACK BASE - Henry
 var base = 'http://192.168.1.204:1337'
 
-// var base = 'http://localhost:1337';
+
 
 // Ionic Starter App
 
@@ -18,6 +24,11 @@ var base = 'http://192.168.1.204:1337'
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
+<<<<<<< HEAD
+=======
+
+var core = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'fsaPreBuilt', 'ngCordova', 'ngStorage', 'hmTouchEvents'])
+>>>>>>> master
 
 var core = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'fsaPreBuilt', 'ngCordova', 'ngStorage', 'hmTouchEvents' ])
 
@@ -50,6 +61,7 @@ core.config(function($stateProvider, $urlRouterProvider) {
   // Each state's controller can be found in controllers.js
   $stateProvider
   .state('home', {
+    cache: false,
     url: '/home',
     templateUrl: 'js/home/home.template.html',
     controller: 'homeCtrl',
@@ -95,6 +107,7 @@ core.config(function($stateProvider, $urlRouterProvider) {
     }
   })
   .state('camera', {
+    cache: false,
     url: '/camera/:storyId',
     templateUrl: 'js/camera/camera.template.html',
     controller: 'CameraCtrl',
@@ -132,6 +145,7 @@ core.config(function($stateProvider, $urlRouterProvider) {
     controller: 'LoginCtrl'
   })
   .state('story', {
+    cache: false,
     url: '/story/:storyId',
     templateUrl: 'js/story/story.template.html',
     // controller: 'StoryCtrl',
@@ -150,7 +164,11 @@ core.config(function($stateProvider, $urlRouterProvider) {
               console.log('loggedInUser: ', loggedInUser._id)
 
               users.forEach(function(user) {
+<<<<<<< HEAD
                   console.log('userId: ', user._id)
+=======
+                // console.log('userId: ', user._id)
+>>>>>>> master
                   var present = false;
                   if(story.friends) {
                     for (var i = 0; i < story.friends.length; i++) {
@@ -161,7 +179,11 @@ core.config(function($stateProvider, $urlRouterProvider) {
 
                     if (!present) usersForCollabList.push(user);
                   }
+<<<<<<< HEAD
 
+=======
+                  if (!present) usersForCollabList.push(user);
+>>>>>>> master
               });
               return usersForCollabList;
         })

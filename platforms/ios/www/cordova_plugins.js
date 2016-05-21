@@ -82,6 +82,7 @@ module.exports = [
         "runs": true
     },
     {
+<<<<<<< HEAD
         "file": "plugins/cordova-plugin-file/www/DirectoryEntry.js",
         "id": "cordova-plugin-file.DirectoryEntry",
         "pluginId": "cordova-plugin-file",
@@ -378,6 +379,13 @@ module.exports = [
         "clobbers": [
             "cordova.plugins.email",
             "plugin.email"
+=======
+        "file": "plugins/cordova-plugin-x-socialsharing/www/SocialSharing.js",
+        "id": "cordova-plugin-x-socialsharing.SocialSharing",
+        "pluginId": "cordova-plugin-x-socialsharing",
+        "clobbers": [
+            "window.plugins.socialsharing"
+>>>>>>> master
         ]
     }
 ];
@@ -392,12 +400,16 @@ module.exports.metadata =
     "cordova-plugin-splashscreen": "3.2.2",
     "cordova-plugin-statusbar": "2.1.3",
     "ionic-plugin-keyboard": "2.1.0",
+<<<<<<< HEAD
     "cordova-plugin-file": "4.2.0",
     "cordova-plugin-zip": "3.1.0",
     "cordova-plugin-contacts": "2.1.0",
     "com.dbaq.cordova.contactsPhoneNumbers": "0.0.8",
     "com.jcjee.plugins.emailcomposer": "1.4.6",
     "cordova-plugin-email-composer": "0.8.3"
+=======
+    "cordova-plugin-x-socialsharing": "5.0.12"
+>>>>>>> master
 }
 // BOTTOM OF METADATA
 });

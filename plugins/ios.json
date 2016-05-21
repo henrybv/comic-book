@@ -28,6 +28,7 @@
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.ionicframework.starter"
         },
+<<<<<<< HEAD
         "cordova-plugin-file": {
             "PACKAGE_NAME": "com.ionicframework.starter"
         },
@@ -44,6 +45,9 @@
             "PACKAGE_NAME": "com.ionicframework.starter"
         },
         "cordova-plugin-email-composer": {
+=======
+        "cordova-plugin-x-socialsharing": {
+>>>>>>> master
             "PACKAGE_NAME": "com.ionicframework.starter"
         }
     },

@@ -63,6 +63,7 @@
         "is_top_level": false,
         "variables": {}
     },
+<<<<<<< HEAD
     "cordova-plugin-file": {
         "source": {
             "type": "git",
@@ -110,6 +111,12 @@
             "type": "git",
             "url": "https://github.com/katzer/cordova-plugin-email-composer.git",
             "subdir": "."
+=======
+    "cordova-plugin-x-socialsharing": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-x-socialsharing"
+>>>>>>> master
         },
         "is_top_level": true,
         "variables": {}

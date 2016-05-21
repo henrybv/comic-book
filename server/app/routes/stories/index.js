@@ -2,6 +2,7 @@
 var router = require('express').Router();
 var mongoose = require('mongoose');
 var Story = mongoose.model('Story');
+var Square = mongoose.model('Square');
 var Promise = require('bluebird');
 var fs = require('fs');
 var path = require('path');
@@ -23,7 +24,6 @@ router.get('/:storyId', function(req, res, next) {
     .populate('squares friends')
     .exec()
     .then(function(story) {
-        console.log('get story from route', story)
         res.status(200).send(story);
     })
     .catch(next)
@@ -67,21 +67,14 @@ router.put('/:storyId/squares', function(req, res, next){
     var SQUARETOSEND;
     return mongoose.model('Square').create({creator: req.body.creator})
     .then(function(newSquare){
-        // console.log('NEW SQUARE: ', newSquare);
-        // var writeToPath = path.join(__dirname, '../../assets/' + newSquare._id);
-        // fs.writeFile(writeToPath, req.body.dataUrl, function(err) {
-            // console.log('hit callback');
-        // })
         return mongoose.model('Square')
         .findByIdAndUpdate(newSquare._id, {upsert: true, new: true})
     })
     .then(function(square) {
         SQUARETOSEND = square;
-        console.log('SQUARE WITH SRC PATH AS FINAL IMAGE: ', square)
         return Story.findByIdAndUpdate(req.params.storyId, {$push: {'squares': square._id}}, { upsert: true, new: true });
     })
     .then(function(){
-        console.log('still access to SQUARE', SQUARETOSEND)
         res.status(200).send(SQUARETOSEND);
     })
     .catch(next)
@@ -90,36 +83,20 @@ router.put('/:storyId/squares', function(req, res, next){
 router.put('/:storyId/collaborators', function(req, res, next) {
     Story.update({ _id: req.params.storyId },{ $pushAll: { friends: req.body.collaborators }},{ upsert: true, new: true })
     .then(function(story) {
-        console.log('UPDATED STORY: ', story);
         res.send(story);
     })
     .catch(next);
 });
 
-
-
-
-
-
-
-    // function decodeBase64Image(dataString) {
-    //   var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
-    //   var response = {};
-    //   if (matches.length !== 3) {
-    //     return new Error('Invalid input string');
-    //   }
-    //   response.type = matches[1];
-    //   response.data = new Buffer(matches[2], 'base64');
-    //   return response;
-    // }
-    // var imageBuffer = decodeBase64Image(req.body.dataUrl);
-    // console.log('IMAGE BUFFER: ', imageBuffer);
-
-
-
-
-
-
-
-
-
+router.put('/:storyId/squares/:squareId', function(req, res, next) {
+    var updatedStory;
+    Story.update( {_id: req.params.storyId}, { $pull: {'squares': req.params.squareId} }, { upsert: true, new: true } )
+    .then(function(story) {
+        updatedStory = story;
+        return Square.find({ _id: req.params.squareId }).remove().exec();
+    })
+    .then(function() {
+        res.send(updatedStory);
+    })
+    .catch(next);
+});
