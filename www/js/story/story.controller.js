@@ -53,18 +53,34 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
 
 
 // GETTING IMAGES FROM FIREBASE EVERY TIME ONE IS ADDED
+// GIVE EACH BTN AN ID WITH THEIR ID FROM THE PIC OBJ AND DO EVENT DELEGATION WITH THAT ID
     var ref = new Firebase('https://torrid-inferno-1552.firebaseio.com/' + $scope.story._id);
     ref.on('value', function(snapshot){
-        var obj = snapshot.val();
+        var FBobj = snapshot.val();
+        console.log('OBJ: ', FBobj);
         var arr = [];
-        for (var squareId in obj){
-            var dataURL = obj[squareId].url
-            arr.push(dataURL);
-        }
-        $scope.dataURLArray = arr;
+        $scope.finalPicsArray = [];
+
+        for (var key in FBobj) {
+            var picObj = {};
+            picObj.id = key;
+            picObj.dataURL = FBobj[key].url;
+            $scope.finalPicsArray.push(picObj);
+        };
+        console.log('finalPicsArray', $scope.finalPicsArray)
+
+
+        // for (var squareId in FBobj){
+        //     var dataURL = FBobj[squareId].url
+        //     arr.push(dataURL);
+        // }
+        // $scope.dataURLArray = arr;
+        // console.log('SCOPE dataURLArray:', $scope.dataURLArray)
 
 
     });
+
+
 
 
 
@@ -122,6 +138,12 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
         // $scope.searchedEmail = '';
     };
 
+    $scope.cancelAddFriends = function() {
+        $scope.clicked = false;
+        $scope.collabAdded = false;
+        $scope.collaborators = [];
+    };
+
     $scope.removeCollabr = function(user) {
         var userId = user._id;
         var collabArr = [];
@@ -149,13 +171,6 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
         });
     };
 
-    // DELETE SQUARE - EVENT DELEGATION
-    // $(document).ready(function() {
-    //     $('#here').delegate('canvas', 'click', function() {
-    //         var item = $(this);
-    //         console.log(item[0].id);
-    //     });
-    // });
 
     function deleteSquare () {
         var item = $(this);
@@ -176,12 +191,12 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
                 var ref = new Firebase('https://torrid-inferno-1552.firebaseio.com/' + $scope.story._id +'/' + squareId);
                 ref.remove();
                 console.log('UPDATED STORY: ', story);
-                $('#here').undelegate( "canvas", "click", deleteSquare);
+                $('#parent').undelegate( "button", "click", deleteSquare);
                 $scope.deleteClicked = false;
                });
              } else {
                console.log('Cancel');
-               $('#here').undelegate( "canvas", "click", deleteSquare);
+               $('#parent').undelegate( "button", "click", deleteSquare);
                $scope.deleteClicked = false;
              }
            });
@@ -192,12 +207,12 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
 
     $scope.exposeDeletes = function() {
         $scope.deleteClicked = true;
-        $('#here').delegate('canvas', 'click', deleteSquare);
+        $('#parent').delegate('button', 'click', deleteSquare);
     };
 
     $scope.cancelDelete = function() {
         $scope.deleteClicked = false;
-        $('#here').undelegate( "canvas", "click", deleteSquare);
+        $('#parent').undelegate( "button", "click", deleteSquare);
     };
     // $scope.shareEmail = function(){
         
