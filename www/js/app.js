@@ -79,18 +79,19 @@ core.config(function($stateProvider, $urlRouterProvider) {
   //   templateUrl: 'js/home/home.myCollabs.template.html'
   // })
   .state('settings', {
+    cache: false,
     url: '/settings',
     templateUrl: 'js/settings/settings.template.html',
     controller: 'SettingsCtrl',
     resolve: {
-        myStories: function (StoryFactory, $localStorage){
-          return StoryFactory.getMyStories($localStorage.user._id);
-        },
-        myCollabs: function(StoryFactory, $localStorage) {
-          return  StoryFactory.getMyCollabs($localStorage.user._id);
-        },
-        myFriends: function() {
-
+        // myStories: function (StoryFactory, $localStorage){
+        //   return StoryFactory.getMyStories($localStorage.user._id);
+        // },
+        // myCollabs: function(StoryFactory, $localStorage) {
+        //   return  StoryFactory.getMyCollabs($localStorage.user._id);
+        // },
+        loggedInUser: function(AuthService){
+          return AuthService.getLoggedInUser()
         }
     }
   })

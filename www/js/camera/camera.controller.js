@@ -7,7 +7,7 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $rootScope,
     //REMOVE LINK WHEN USING URL FROM PHOTO / ALBUM LIBRARY
     $scope.url = '../../img/ben.png';
     // $scope.url;
-
+    
 
     var urlToCanvas = function(url, canvasId, x, y){
         console.log('parameters', url, canvasId, x, y)

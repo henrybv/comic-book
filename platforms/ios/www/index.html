@@ -75,7 +75,7 @@
 
   </head>
 
-    <body ng-app="starter">
+    <body ng-app="starter" class="platform-ios platform-cordova platform-webview">
 
     <ion-nav-bar class="bar-stable" ng-controller="Topnavbar">
         <ion-nav-buttons side="left">
@@ -83,7 +83,7 @@
             <button ng-hide="&apos;home&apos; | isState" ui-sref="home" class="button icon-left ion-home"></button>
         </ion-nav-buttons>
         <ion-nav-buttons side="right">
-            <button ng-if=" &apos;settings&apos; | isState" class="button button-icon ion-ios-personadd"></button>
+           <!--  <button ng-if=" &apos;settings&apos; | isState" class="button button-icon ion-ios-personadd"></button> -->
             <button ui-sref="story" ng-if=" &apos;camera&apos; | isState" class="button button-icon ion-ios-close-outline"></button>
             <button ui-sref="settings({userId: user._id})" ng-if=" &apos;home&apos; | isState" class="button button-icon ion-ios-person"></button>
             <button ng-if=" &apos;camera&apos; | isState" class="button button-icon ion-checkmark-circled" ng-click="save()"></button>

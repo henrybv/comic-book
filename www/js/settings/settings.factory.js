@@ -8,14 +8,20 @@ core.factory('SettingsFactory', function($http) {
 	    newImage.src = url;
 	    // newImage.crossOrigin = '';
 	    newImage.onload = function(){
-	        context.drawImage(newImage, x, y, canvas.width, canvas.height);
+	        context.drawImage(newImage, 0, 0);
 	        var dataURL = canvas.toDataURL('image/png');
 	    }
     }
 
-    // SettingsFactory.updateAvatar = function() {
+    SettingsFactory.updateAvatar = function(avatarURL, userId) {
+    	console.log('THIS IS NEW AVATARR FACTORY GOT HERE', userId)
     	
-    // }
+    	return $http.put(base + '/api/members/' + userId + '/avatar', {'avatar': avatarURL})
+    	.then(function(updatedAvatar){
+    		console.log(updatedAvatar, 'THIS IS NEW AVATARR')
+    		return updatedAvatar.data;
+    	});
+    }
 
     return SettingsFactory;
 	

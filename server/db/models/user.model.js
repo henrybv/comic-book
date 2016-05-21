@@ -6,11 +6,11 @@ var _ = require('lodash');
 var schema = new mongoose.Schema({
     username: {
         type: String,
-        required: true
+        // required: true
     },
     avatar: {
         type: String,
-        default: '/img/default_avatar.jpg'
+        default: 'img/default_avatar.jpg'
     },
     email: {
         type: String,

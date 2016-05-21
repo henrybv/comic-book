@@ -22,4 +22,5 @@
     <plugin name="cordova-plugin-contacts" spec="~2.1.0" />
     <plugin name="com.dbaq.cordova.contactsPhoneNumbers" spec="~0.0.8" />
     <plugin name="com.jcjee.plugins.emailcomposer" spec="https://github.com/jcjee/email-composer.git" />
+    <gap:plugin name="cordova-plugin-email-composer" version="0.8.3" source="npm" />
 </widget>

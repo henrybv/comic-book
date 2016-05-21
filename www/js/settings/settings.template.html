@@ -1,16 +1,24 @@
 <ion-view view-title="My Profile">
-  	<ion-content scroll="false" style="background-image: url('assets/blackgrid.png'); background-size: contain !important" ng-controller="SettingsCtrl">
+  	<ion-content scroll="false" style="background-image: url('assets/blackgrid.png'); background-size: contain !important">
   		
 		<ion-item style="background:transparent"><h2 style="color:white" align="center">Welcome to Comic Pow Wow!</h2></ion-item>
-		<!-- <canvas id="avatar"></canvas> -->
 		<ion-item style="background:transparent">
-			<!-- <img src="{{url}}" height="120" width="120"> -->
-			<img src="http://www.talkshoe.com/resources/talkshoe/images/user-icons/default.jpg" height="120" width="120">
-			<button class="button button-positive">Set comic avatar</button>
+		<img src="{{user.avatar}}" height="120" width="120">
+	<!-- 	 <canvas id='newAvatar' width='120' height='120' data-caman-hidpi-disabled="true"></canvas> -->
+		<!-- <img ng-hide="ran" src="url" height="120" width="120"> -->
+
+		<!-- <img id="avatar" ng-src="{{dataURL}}" height="120" width="120"> -->
+		
+
+
+		<button ng-click="takePicture()" class="button button-positive">Set comic avatar</button>
 		</ion-item>
+
+		<!-- <img src="{{dataURL}}" height="120" width="120"> -->
+		<ion-item style="background:transparent; color:white"><b>My username</b>: {{ user.username }}</ion-item>
 					<!-- <button class="btn btn-primary" ui-sref="movieQueue({userId: user._id})">My Stories</button> -->
 		<div class="padding">
-		<button class="button" ng-click="inviteViaEmail()"><b>Invite friends</b></button>
+		<button class="button" ng-click="open(email)"><b>Invite My Friends</b></button>
 		</div>
 
 		<div class="padding">
@@ -40,7 +48,6 @@
         </div> -->
 
 		<ion-list >
-				<ion-item style="background:transparent; color:white"><b>Username</b>: {{ user.username }}</ion-item>
 				<ion-item style="background:transparent; color:white"><b>Email</b>: {{ user.email }}</ion-item>
 		</ion-list>
 		
@@ -51,5 +58,7 @@
 	        </button>
       	</div>
 	</ion-content>
+	<div style='height: 100px'></div>
+
 
 </ion-view>

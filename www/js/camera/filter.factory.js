@@ -16,6 +16,15 @@ core.factory('FilterFactory', function($http){
             this.greyscale();
             this.render()
         });
+    }  
+
+    FilterFactory.greyPosterFilter2 = function(canvasId, img){
+        console.log('calling grey filter')
+        return Caman("#"+canvasId, img, function() {
+            this.posterize(3);
+            this.greyscale();
+            this.render()
+        });
     }
 
   FilterFactory.colorPosterFilter = function(canvasId, img){

@@ -5,5 +5,5 @@
     "libz.dylib": 1,
     "AddressBook.framework": 2,
     "AddressBookUI.framework": 2,
-    "MessageUI.framework": 1
+    "MessageUI.framework": 2
 }

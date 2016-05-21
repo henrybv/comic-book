@@ -78,6 +78,8 @@
 		501851B3C2FA4A6AB39601C9 /* EmailComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = BE79F8EE6964415FB74C3D69 /* EmailComposer.m */; };
 		7F55383B2F7E429D99D39320 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D84E42F144F42E5A06D8F8B /* NSData+Base64.m */; };
 		0C635AB91DB9429DA8F5E4DD /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE39BAA7D76E40D2AC624428 /* MessageUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		3FFAEECF9721416A9F161CCC /* APPEmailComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 65EC8DC5AFE84F309CC4F20E /* APPEmailComposer.m */; };
+		2FBDD0C41F7C4073BD12BE06 /* APPEmailComposerImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 983E3DCC37E94C51AC995CD9 /* APPEmailComposerImpl.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -220,6 +222,10 @@
 		29EA0D5CF8944106877AFF62 /* EmailComposer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "EmailComposer.h"; path = "com.jcjee.plugins.emailcomposer/EmailComposer.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		9069E2CB00DD465B92E762E5 /* NSData+Base64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSData+Base64.h"; path = "com.jcjee.plugins.emailcomposer/NSData+Base64.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		FE39BAA7D76E40D2AC624428 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "MessageUI.framework"; path = "System/Library/Frameworks/MessageUI.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
+		65EC8DC5AFE84F309CC4F20E /* APPEmailComposer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "APPEmailComposer.m"; path = "cordova-plugin-email-composer/APPEmailComposer.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		983E3DCC37E94C51AC995CD9 /* APPEmailComposerImpl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "APPEmailComposerImpl.m"; path = "cordova-plugin-email-composer/APPEmailComposerImpl.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		A7075EE4148243C5B50B2298 /* APPEmailComposer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "APPEmailComposer.h"; path = "cordova-plugin-email-composer/APPEmailComposer.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		E315803B88A0471CA8D9E919 /* APPEmailComposerImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "APPEmailComposerImpl.h"; path = "cordova-plugin-email-composer/APPEmailComposerImpl.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -402,6 +408,10 @@
 				0D84E42F144F42E5A06D8F8B /* NSData+Base64.m */,
 				29EA0D5CF8944106877AFF62 /* EmailComposer.h */,
 				9069E2CB00DD465B92E762E5 /* NSData+Base64.h */,
+				65EC8DC5AFE84F309CC4F20E /* APPEmailComposer.m */,
+				983E3DCC37E94C51AC995CD9 /* APPEmailComposerImpl.m */,
+				A7075EE4148243C5B50B2298 /* APPEmailComposer.h */,
+				E315803B88A0471CA8D9E919 /* APPEmailComposerImpl.h */,
 			);
 			name = Plugins;
 			path = "HelloCordova/Plugins";
@@ -618,6 +628,8 @@
 				AC146F021651412DAA5BC269 /* CDVContactsPhoneNumbers.m in Sources */,
 				501851B3C2FA4A6AB39601C9 /* EmailComposer.m in Sources */,
 				7F55383B2F7E429D99D39320 /* NSData+Base64.m in Sources */,
+				3FFAEECF9721416A9F161CCC /* APPEmailComposer.m in Sources */,
+				2FBDD0C41F7C4073BD12BE06 /* APPEmailComposerImpl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

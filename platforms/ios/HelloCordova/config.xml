@@ -48,6 +48,7 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
+    <gap:plugin name="cordova-plugin-email-composer" source="npm" version="0.8.3" />
     <preference name="AllowInlineMediaPlayback" value="false" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="DisallowOverscroll" value="true" />
