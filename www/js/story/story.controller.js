@@ -8,7 +8,6 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
     $scope.collabAdded = false;
 	$scope.story = story;
     $scope.deleteClicked = false;
-    // $scope.urlbaby;
     $scope.dataURLArray = [];
     $ionicTabsDelegate.select('Squares');
 	// console.log('story in storyCTRL', $scope.story)
@@ -53,18 +52,44 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
 
 
 // GETTING IMAGES FROM FIREBASE EVERY TIME ONE IS ADDED
+// GIVE EACH BTN AN ID WITH THEIR ID FROM THE PIC OBJ AND DO EVENT DELEGATION WITH THAT ID
     var ref = new Firebase('https://torrid-inferno-1552.firebaseio.com/' + $scope.story._id);
     ref.on('value', function(snapshot){
-        var obj = snapshot.val();
+        console.log('IMAGE CREATED !!')
+        $scope.FBobj = snapshot.val();
+        console.log('OBJ: ', $scope.FBobj);
         var arr = [];
-        for (var squareId in obj){
-            var dataURL = obj[squareId].url
-            arr.push(dataURL);
-        }
-        $scope.dataURLArray = arr;
+        $scope.finalPicsArray = [];
+
+        for (var key in $scope.FBobj) {
+            var picObj = {};
+            picObj.id = key;
+            picObj.dataURL = $scope.FBobj[key].url;
+            $scope.finalPicsArray.push(picObj);
+        };
+        console.log('finalPicsArray', $scope.finalPicsArray)
+
+        // DIGEST RUNS BEFORE FINALPICARRY COMPLETE PLUS DIGEST DOESNT RUN FOR PIC ADDED FROM COLLABR CUZ NO USER INTERACTION SO HAVE TO RUN THIS
+        setTimeout(function(){
+            $scope.$apply(function(){
+                $scope.finalPicsArray = $scope.finalPicsArray;
+            })
+        }, 20);
+
+
+
+
+        // for (var squareId in $scope.FBobj){
+        //     var dataURL = $scope.FBobj[squareId].url
+        //     arr.push(dataURL);
+        // }
+        // $scope.dataURLArray = arr;
+        // console.log('SCOPE dataURLArray:', $scope.dataURLArray)
 
 
     });
+
+
 
 
 
@@ -122,6 +147,12 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
         // $scope.searchedEmail = '';
     };
 
+    $scope.cancelAddFriends = function() {
+        $scope.clicked = false;
+        $scope.collabAdded = false;
+        $scope.collaborators = [];
+    };
+
     $scope.removeCollabr = function(user) {
         var userId = user._id;
         var collabArr = [];
@@ -149,13 +180,6 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
         });
     };
 
-    // DELETE SQUARE - EVENT DELEGATION
-    // $(document).ready(function() {
-    //     $('#here').delegate('canvas', 'click', function() {
-    //         var item = $(this);
-    //         console.log(item[0].id);
-    //     });
-    // });
 
     function deleteSquare () {
         var item = $(this);
@@ -176,12 +200,12 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
                 var ref = new Firebase('https://torrid-inferno-1552.firebaseio.com/' + $scope.story._id +'/' + squareId);
                 ref.remove();
                 console.log('UPDATED STORY: ', story);
-                $('#here').undelegate( "canvas", "click", deleteSquare);
+                $('#parent').undelegate( "button", "click", deleteSquare);
                 $scope.deleteClicked = false;
                });
              } else {
                console.log('Cancel');
-               $('#here').undelegate( "canvas", "click", deleteSquare);
+               $('#parent').undelegate( "button", "click", deleteSquare);
                $scope.deleteClicked = false;
              }
            });
@@ -192,12 +216,12 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
 
     $scope.exposeDeletes = function() {
         $scope.deleteClicked = true;
-        $('#here').delegate('canvas', 'click', deleteSquare);
+        $('#parent').delegate('button', 'click', deleteSquare);
     };
 
     $scope.cancelDelete = function() {
         $scope.deleteClicked = false;
-        $('#here').undelegate( "canvas", "click", deleteSquare);
+        $('#parent').undelegate( "button", "click", deleteSquare);
     };
     // $scope.shareEmail = function(){
         
