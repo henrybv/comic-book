@@ -18,7 +18,6 @@ router.get('/:squareId', function(req, res, next){
 router.put('/:squareId', function(req, res, next){
 	Square.findByIdAndUpdate(req.params.squareId, {$set: {'finalImage': req.body.finalImage}}, {new: true})
 	.then(function(updatedSquare){
-		console.log('updated square in square route', updatedSquare)
 		res.status(200).send(updatedSquare);
 	})
 	.catch(next);

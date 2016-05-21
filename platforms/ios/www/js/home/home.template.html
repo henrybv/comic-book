@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 <ion-view scroll="true" view-title="Home">
-=======
-<ion-view view-title="Home">
->>>>>>> master
-  <ion-content style="background-image: url('assets/bwbg.jpg') !important">
+  <ion-content style="background-image: url('assets/bwbg.jpg') !important" has-bouncing='true'>
 
 <!-- create story button -->
     <div class="padding">
@@ -25,6 +21,7 @@
 
 <!-- my stories -->
     <ion-list ng-show="showMyStories" style="margin-bottom:200px">
+    <h2 ng-show="!myStories.length" style="text-align:center;"><strong>You haven't created any storis yet!</strong></h2>
       <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" ng-repeat="story in myStories" ng-click="changeState(story._id)">
         <img ng-src="assets/sample_comic.jpg">
         <h2>{{story.title}}</h2>
@@ -32,16 +29,11 @@
         <p ng-show="story.friends.length" >Collaborators: <span ng-repeat="friend in story.friends">{{ friend.email }}{{ $last ? '' : ', ' }}</span></p>
         <i class="icon ion-chevron-right icon-accessory"></i>
       </ion-item>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" ui-sref="testState">
-        <img src="http://www.clipartbest.com/cliparts/jTx/odj/jTxodjb8c.gif">
-        <h2>TEST STATE (DELETE)</h2>
-        <i class="icon ion-chevron-right icon-accessory"></i>
-      </ion-item>
     </ion-list>
 
 <!-- collabs -->
     <ion-list ng-show="showMyCollabs">
-    <h2 ng-show="!myCollabs.length" style="text-align:center;">You don't have any collaborations yet!</h2>
+    <h2 ng-show="!myCollabs.length" style="text-align:center;"><strong>You don't have any collaborations yet!</strong></h2>
       <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" ng-repeat="story in myCollabs" ng-click="changeState(story._id)">
         <img ng-src="assets/sample_comic.jpg">
         <h2>{{story.title}}</h2>
