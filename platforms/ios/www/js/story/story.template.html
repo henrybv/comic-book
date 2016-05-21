@@ -3,7 +3,7 @@
       <ion-tabs class="tabs-top tabs-icon-top " style="top:10px">
 
             <ion-tab title="Squares" icon-on="ion-grid" icon-off="ion-grid" on-select=tabSelected('Squares')>
-              <ion-content zooming='true' style="background-image: url('assets/yelloworangedots.jpg') !important;position:absolute; padding:100px 5px 0px 5px">
+              <ion-content zooming='true' style="background-image: url('assets/yelloworangedots.jpg') !important;position:absolute; padding:100px 5px 0px 5px" has-bouncing='true'>
                     <button id="transparent" class="button" ng-repeat="picObj in finalPicsArray" style="background-color:transparent;margin:10px -4px -4px -4px !important ;border:2px -4px -4px -4px !important;border:5px -4px -4px -4px !important  box-sizing: content-box !important;">
                         <div>
                           <img ng-src="{{ picObj.dataURL }}" width='111' style='margin:-4px -4px -4px -4px !important;border:-4px -4px -4px -4px !important;padding:-4px -4px -4px -4px !important'>
@@ -18,11 +18,11 @@
           </ion-tab>
 
           <ion-tab title="Strip" icon-on="ion-ios-barcode" icon-off="ion-ios-barcode">
-              <ion-scroll direction="x" has-bouncing='true' overflow='scroll' id="addonsBottom" style="background-image: url('assets/sample_comic.jpg')!important;position:absolute; padding:100px 5px 0px 5px; width: auto; overflow:scroll">
+              <ion-scroll direction="x" has-bouncing='true' overflow='scroll' id="addonsBottom" style="background-image: url('assets/sample_comic.jpg')!important;position:absolute;padding:100px 5px 0px 5px;width: auto; overflow:scroll; height: auto !important;background-position: 0% 100%;">
                   
-                  <div id="squareAndAddonFrames" style='margin:10px -4px -4px -4px !important;border:10px -4px -4px -4px !important;padding:2px -4px -4px -4px !important'>
+                  <div id="squareAndAddonFrames" style='margin:50px -4px -4px -4px !important;border:10px -4px -4px -4px !important;padding:2px -4px -4px -4px !important'>
                   <!-- SAUARES REPEAT HERE - MAYBE WRAP PARENT DIV AROUND HERE FOR DELETE MODE-->
-                    <button id="transparent" class="button" ng-repeat="picObj in finalPicsArray" style="background-color:black;margin:10px -4px -4px -4px !important ;border:10px -4px -4px -4px !important;border:10px -4px -4px -4px !important  box-sizing: content-box !important;">
+                    <button id="transparent" class="button" ng-repeat="picObj in finalPicsArray" style="background-color:black;margin:10px -4px -4px -4px !important ;border:10px -4px -4px -4px !important;border:10px -4px -4px -4px !important  box-sizing: content-box !important;padding-top:12px;">
                       <div>
                         <img ng-src="{{ picObj.dataURL }}" width='300' style='margin:-4px -4px -4px -4px !important;border:-4px -4px -4px -4px !important;padding:-4px -4px -4px -4px !important'>
                       </div>
@@ -32,7 +32,7 @@
           </ion-tab>
 
           <ion-tab title="Edit" icon-on="ion-settings" icon-off="ion-settings" on-select=tabSelected('Squares')>
-              <ion-content zooming='true' style="background-image: url('assets/yelloworangedots.jpg') !important;position:absolute; padding:100px 5px 0px 5px">
+              <ion-content zooming='true' has-bouncing='true' style="background-image: url('assets/yelloworangedots.jpg') !important;position:absolute; padding:100px 5px 0px 5px;">
 
                   <!-- DELETE MODE HEADING -->
                   <div style="text-align:center;margin-top:40px;" ng-show="deleteClicked">
@@ -50,7 +50,7 @@
                   </div>
 
                   <!-- BUTTONS -->
-                  <div style="text-align:center;">
+                  <div style="text-align:center;margin-bottom:50px;">
                     <button class="button button-default button-secondary" style="background-color:black;" ng-click="exposeDeletes()" ng-hide="deleteClicked || clicked || !finalPicsArray.length">
                       <strong><span class="button-inner" style="color:white;">Delete Square</span></strong>
                       <ion-button-effect></ion-button-effect>

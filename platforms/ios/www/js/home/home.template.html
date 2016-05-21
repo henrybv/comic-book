@@ -1,5 +1,5 @@
 <ion-view scroll="true" view-title="Home">
-  <ion-content style="background-image: url('assets/bwbg.jpg') !important">
+  <ion-content style="background-image: url('assets/bwbg.jpg') !important" has-bouncing='true'>
 
 <!-- create story button -->
     <div class="padding">
@@ -21,6 +21,7 @@
 
 <!-- my stories -->
     <ion-list ng-show="showMyStories" style="margin-bottom:200px">
+    <h2 ng-show="!myStories.length" style="text-align:center;"><strong>You haven't created any storis yet!</strong></h2>
       <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" ng-repeat="story in myStories" ng-click="changeState(story._id)">
         <img ng-src="assets/sample_comic.jpg">
         <h2>{{story.title}}</h2>

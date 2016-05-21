@@ -17,7 +17,6 @@ var ensureAuthenticated = function (req, res, next) {
 
 
 router.post('/', function(req, res, next) {
-    console.log('in members post route', req.body)
     User.create(req.body)
     .then(function(newUser) {
         
@@ -27,12 +26,10 @@ router.post('/', function(req, res, next) {
 });
 
 router.get('/', function(req, res, next) {
-        console.log('in members get route')
 
     User.find()
     .then(function(users){
         res.send(users);
-        console.log('in members get route with users', users)
 
     })
     .catch(next);
