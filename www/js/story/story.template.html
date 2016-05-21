@@ -1,35 +1,14 @@
 <ion-view scroll="true" title="{{story.title}}">
-<!-- <<<<<<< HEAD
-  <ion-content style="background-image: url('assets/yelloworangedots.jpg') !important">
-    <ion-scroll has-bouncing='false'>
-        <button style="background-color:black;margin-top:30px;" class="button button-block button-positive" ng-click="goToCamera()" ng-hide="deleteClicked">
-          <span>Add Square</span>
-          <i ng-show="loading" class="ion-loading-b"></i>
-        </button>
-
-        <div style="text-align:center;margin-top:40px;" ng-show="deleteClicked">
-          <h1><strong>DELETE MODE</strong></h1>
-          <h4>Click a square to delete it</h4>
-        </div>
-
-
-      <div class="padding">
-      <div id='here'>
-      </div>
-      </div>
-======= -->
 <div>
       <ion-tabs class="tabs-top tabs-icon-top " style="top:10px">
 
-          <ion-tab title="Squares" icon-on="ion-grid" icon-off="ion-ios-filing-outline" on-select=tabSelected('Squares')>
+            <ion-tab title="Squares" icon-on="ion-grid" icon-off="ion-grid" on-select=tabSelected('Squares')>
               <ion-content zooming='true' style="background-image: url('assets/yelloworangedots.jpg') !important;position:absolute; padding:100px 5px 0px 5px">
-                  <!-- <div id='here'>
-                  </div> -->
-                  <button id="transparent" class="button" ng-repeat="url in dataURLArray" style="background-color:transparent;margin:10px -4px -4px -4px !important ;border:2px -4px -4px -4px !important;border:5px -4px -4px -4px !important  box-sizing: content-box !important;">
-                      <div>
-                        <img src="{{ url }}" width='111' style='margin:-4px -4px -4px -4px !important;border:-4px -4px -4px -4px !important;padding:-4px -4px -4px -4px !important'>
-                      </div>
-                    </button>
+                    <button id="transparent" class="button" ng-repeat="picObj in finalPicsArray" style="background-color:transparent;margin:10px -4px -4px -4px !important ;border:2px -4px -4px -4px !important;border:5px -4px -4px -4px !important  box-sizing: content-box !important;">
+                        <div>
+                          <img ng-src="{{ picObj.dataURL }}" width='111' style='margin:-4px -4px -4px -4px !important;border:-4px -4px -4px -4px !important;padding:-4px -4px -4px -4px !important'>
+                        </div>
+                      </button>
                   <div>
                     <button style="background-color: transparent;" ui-sref="camera({storyId: story._id})" class="button button-block button-positive">
                        <img src='assets/addSquareButton.png' width='105'>
@@ -38,106 +17,114 @@
               </ion-content>
           </ion-tab>
 
-         
-
           <ion-tab title="Strip" icon-on="ion-ios-barcode" icon-off="ion-ios-barcode">
-              <ion-scroll direction="x" has-bouncing='false' overflow='scroll' id="addonsBottom" style="background-image: url('assets/sample_comic.jpg')!important;position:absolute; padding:100px 5px 0px 5px; width: auto; overflow:scroll">
+              <ion-scroll direction="x" has-bouncing='true' overflow='scroll' id="addonsBottom" style="background-image: url('assets/sample_comic.jpg')!important;position:absolute; padding:100px 5px 0px 5px; width: auto; overflow:scroll">
                   
                   <div id="squareAndAddonFrames" style='margin:10px -4px -4px -4px !important;border:10px -4px -4px -4px !important;padding:2px -4px -4px -4px !important'>
                   <!-- SAUARES REPEAT HERE - MAYBE WRAP PARENT DIV AROUND HERE FOR DELETE MODE-->
-                    <button id="transparent" class="button" ng-repeat="url in dataURLArray" style="background-color:black;margin:10px -4px -4px -4px !important ;border:10px -4px -4px -4px !important;border:10px -4px -4px -4px !important  box-sizing: content-box !important;">
+                    <button id="transparent" class="button" ng-repeat="picObj in finalPicsArray" style="background-color:black;margin:10px -4px -4px -4px !important ;border:10px -4px -4px -4px !important;border:10px -4px -4px -4px !important  box-sizing: content-box !important;">
                       <div>
-                        <img src="{{ url }}" width='300' style='margin:-4px -4px -4px -4px !important;border:-4px -4px -4px -4px !important;padding:-4px -4px -4px -4px !important'>
+                        <img ng-src="{{ picObj.dataURL }}" width='300' style='margin:-4px -4px -4px -4px !important;border:-4px -4px -4px -4px !important;padding:-4px -4px -4px -4px !important'>
                       </div>
                     </button>
                   </div>
               </ion-scroll>
           </ion-tab>
 
+          <ion-tab title="Edit" icon-on="ion-settings" icon-off="ion-settings" on-select=tabSelected('Squares')>
+              <ion-content zooming='true' style="background-image: url('assets/yelloworangedots.jpg') !important;position:absolute; padding:100px 5px 0px 5px">
+
+                  <!-- DELETE MODE HEADING -->
+                  <div style="text-align:center;margin-top:40px;" ng-show="deleteClicked">
+                    <h1><strong>DELETE MODE</strong></h1>
+                    <h4>Click a square to delete it</h4>
+                  </div>
+
+                  <!-- SQUARES -->
+                  <div id="parent">
+                    <button id="{{ picObj.id }}" class="button" ng-repeat="picObj in finalPicsArray" style="background-color:transparent;margin:10px -4px -4px -4px !important ;border:2px -4px -4px -4px !important;border:5px -4px -4px -4px !important  box-sizing: content-box !important;">
+                        <div>
+                          <img ng-src="{{ picObj.dataURL }}" width='111' style='margin:-4px -4px -4px -4px !important;border:-4px -4px -4px -4px !important;padding:-4px -4px -4px -4px !important'>
+                        </div>
+                      </button>
+                  </div>
+
+                  <!-- BUTTONS -->
+                  <div style="text-align:center;">
+                    <button class="button button-default button-secondary" style="background-color:black;" ng-click="exposeDeletes()" ng-hide="deleteClicked || clicked || !finalPicsArray.length">
+                      <strong><span class="button-inner" style="color:white;">Delete Square</span></strong>
+                      <ion-button-effect></ion-button-effect>
+                    </button>
+                    <button class="button button-default button-secondary" style="background-color:black;" ng-click="showAllUsers()" ng-hide="deleteClicked || clicked">
+                      <strong><span class="button-inner" style="color:white;">Add Friends To Story</span></strong>
+                      <ion-button-effect></ion-button-effect>
+                    </button>
+                    <button class="button button-default button-secondary" style="background-color:black;" ng-click="cancelDelete()" ng-show="deleteClicked">
+                     <strong><span class="button-inner" style="color:white;">Cancel Delete</span></strong>
+                     <ion-button-effect></ion-button-effect>
+                    </button>
+                  </div>
+
+                  <div ng-show="collabAdded && clicked">
+                    <h4 style="text-align:center;margin-top:-4px" ng-show="collaborators.length">Friends to add: </h4>
+                    <ion-scroll direction="x" id="addonsBottom" style="background-color:white;">
+                      <div>
+                        <div class="item item-avatar" style="display:inline-block;border:none" ng-repeat="collabr in collaborators">
+                          <img ng-src="http://loremflickr.com/420/240" style="max-height:55px;max-width:55px">
+                          <!-- change this to collabr.username once we put usernames on seed -->
+                          <p>{{collabr.email | cut:true:6:'..'}}</p>
+                          <br>
+                          <div style="text-align:center; background-color:#F08080;border-radius:5px;max-width:35px;" ng-click="removeCollabr(collabr)">
+                            <p style="color:black;">X</p>
+                          </div>
+                        </div>
+                      </div>
+                    </ion-scroll>
+                  </div>
+
+                  <!-- ADD FRIENDS (COLLLABORATORS) TO STORY -->
+                  <div style="text-align:center;margin-top:10px;margin-bottom:10px;">
+                    <button class="button button-default button-secondary" style="background-color:red;" ng-click="addCollaborators()" ng-show="collaborators.length && clicked">
+                      <strong><span class="button-inner" style="color:white;">Add These Friends !</span></strong>
+                      <ion-button-effect></ion-button-effect>
+                    </button>
+                    <button class="button button-default button-secondary" style="background-color:black;" ng-click="cancelAddFriends()" ng-show="clicked">
+                      <strong><span class="button-inner" style="color:white;">Cancel</span></strong>
+                      <ion-button-effect></ion-button-effect>
+                    </button> 
+                  </div>
+
+                  <!-- SEACH FRIENDS INPUT -->
+                  <div class="list list-inset" ng-show="clicked && allUsers.length" style="margin-top:0px;">
+                    <label class="item item-input">
+                      <span class="input-label">Search by email</span>
+                      <input type="text" ng-model="searchedEmail" class="form-control">
+                    </label>
+                  </div>
+                  <h4 style="text-align:center;" ng-show="clicked && !allUsers.length">No friends available to collaborate!</h4>
+
+                  <!-- LIST OF ALL USERS -->
+                  <div style="display:block;">
+                      <ion-list ng-show="clicked">
+                        <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" ng-repeat="user in allUsers | filter: {email: searchedEmail}" ng-click=addFriend(user) ng-hide="user.collabr">
+                          <img ng-src="http://loremflickr.com/420/240">
+                          <!-- maybe search by username -->
+                          <h2>{{ user.email }}</h2>
+                          <p>placeholder</p>
+                        </ion-item>
+                      </ion-list>
+                  </div>
+              </ion-content>
+          </ion-tab>
 
           <ion-tab title="Add Square" ng-click='goToCamera()' icon-on="ion-plus" icon-off="ion-plus">
           </ion-tab>
 
-
       </ion-tabs>
   </div>
-  <div>
+<!--   <div>
         <button style="background-color:transparent;" ui-sref="camera({storyId: story._id})" class="button button-block button-positive">
-         <!--  <span>Add Square</span> -->
            <img src='assets/addSquareButton.png' width='200'>
-            <!-- <i ng-show="loading" class="ion-loading-b"></i> -->
         </button>
-  </div>
-<!-- >>>>>>> master -->
-
-      <!-- FOR WHEN FRIENDS ARE ADDED -->
-    <div ng-show="collabAdded">
-      <h4 style="text-align:center;margin-top:-4px" ng-show="collaborators.length">Friends to add: </h4>
-      <ion-scroll direction="x" id="addonsBottom" style="background-color:white;">
-        <div>
-          <div class="item item-avatar" style="display:inline-block;border:none" ng-repeat="collabr in collaborators">
-            <img ng-src="http://loremflickr.com/420/240" style="max-height:55px;max-width:55px">
-            <!-- change this to collabr.username once we put usernames on seed -->
-            <p>{{collabr.email | cut:true:6:'..'}}</p>
-            <br>
-            <div style="text-align:center; background-color:#F08080;border-radius:5px;max-width:35px;" ng-click="removeCollabr(collabr)">
-              <p style="color:black;">X</p>
-            </div>
-          </div>
-        </div>
-      </ion-scroll>
-
-      <!-- ADD FRIENDS (COLLLABORATORS) TO STORY -->
-      <div style="text-align:center;margin-top:10px;margin-bottom:10px;" ng-show="collaborators.length">
-        <button class="button button-default button-secondary" style="background-color:red;" ng-click="addCollaborators()">
-          <strong><span class="button-inner" style="color:white;">Add These Friends !</span></strong>
-          <ion-button-effect></ion-button-effect>
-        </button> 
-      </div>
-    </div>
-
-
-<!-- DELETE SQUARE BUTTON -->
-<!-- IF HAVE TIME MAKE IT SO DOENST SHOW UP WHEN NO SQUARES - FIREBASE THROWS IT OFF CUZ LOADS LATE -->
-      <div style="text-align:center;" ng-hide="clicked">
-        <button class="button button-default button-secondary" style="background-color:red;" ng-click="cancelDelete()" ng-show="deleteClicked">
-          <strong><span class="button-inner" style="color:white;">Cancel Delete</span></strong>
-          <ion-button-effect></ion-button-effect>
-        </button>
-        <button class="button button-default button-secondary" style="background-color:red;" ng-click="exposeDeletes()" ng-hide="deleteClicked">
-          <strong><span class="button-inner" style="color:white;">Delete Square</span></strong>
-          <ion-button-effect></ion-button-effect>
-        </button>
-<!-- ADD FRIENDS BUTTON -->
-        <button class="button button-default button-secondary" style="background-color:red;" ng-click="showAllUsers()" ng-hide="deleteClicked">
-
-          <strong><span class="button-inner" style="color:white;">Add Friends To Story</span></strong>
-          <ion-button-effect></ion-button-effect>
-        </button>
-      </div>
-
-<!-- SEARCH BY EMAIL INPUT -->
-      <div class="list list-inset" ng-show="clicked && allUsers.length" style="margin-top:0px;">
-        <label class="item item-input">
-          <span class="input-label">Search friends by email</span>
-          <input type="text" ng-model="searchedEmail" class="form-control">
-        </label>
-      </div>
-      <h4 style="text-align:center;" ng-show="clicked && !allUsers.length">No friends available to collaborate!</h4>
-
-
-    <!-- LIST OF ALL USERS TO SEARCH FROM -->
-      <div style="display:block;">
-          <ion-list ng-show="clicked">
-            <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" ng-repeat="user in allUsers | filter: {email: searchedEmail}" ng-click=addFriend(user) ng-hide="user.collabr">
-              <img ng-src="http://loremflickr.com/420/240">
-              <!-- maybe search by username -->
-              <h2>{{ user.email }}</h2>
-              <p>placeholder</p>
-            </ion-item>
-          </ion-list>
-      </div>
-
-<!--     </ion-scroll> -->
- <!--  </ion-content> -->
+  </div> -->
 </ion-view>
