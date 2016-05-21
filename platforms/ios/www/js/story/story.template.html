@@ -44,7 +44,7 @@
                   <div id="parent">
                     <button id="{{ picObj.id }}" class="button" ng-repeat="picObj in finalPicsArray" style="background-color:transparent;margin:10px -4px -4px -4px !important ;border:2px -4px -4px -4px !important;border:5px -4px -4px -4px !important  box-sizing: content-box !important;">
                         <div>
-                          <img ng-src="{{ picObj.dataURL }}" width='111' style='margin:-4px -4px -4px -4px !important;border:-4px -4px -4px -4px !important;padding:-4px -4px -4px -4px !important'>
+                          <img ng-src="{{ picObj.dataURL }}" width='111' style='margin:-4px -4px -4px -4px !important;border:-4px -4px -4px -4px !important;padding:-4px -4px -4px -4px !important' ng-show="!clicked">
                         </div>
                       </button>
                   </div>
