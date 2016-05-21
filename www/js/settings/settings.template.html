@@ -1,22 +1,59 @@
-<ion-view view-title="User Profile">
-  <ion-content>
+<ion-view view-title="My Profile">
+  	<ion-content scroll="false" style="background-image: url('assets/blackgrid.png'); background-size: contain !important">
+  		
+		<ion-item style="background:transparent"><h2 style="color:white" align="center">Welcome to Comic Pow Wow!</h2></ion-item>
+		<ion-item style="background:transparent">
+		<img src="{{user.avatar}}" height="120" width="120">
+	<!-- 	 <canvas id='newAvatar' width='120' height='120' data-caman-hidpi-disabled="true"></canvas> -->
+		<!-- <img ng-hide="ran" src="url" height="120" width="120"> -->
 
-		<ion-item><h3>Welcome! </h3></ion-item>
-		<!-- Welcome, {{user.first}} -->
+		<!-- <img id="avatar" ng-src="{{dataURL}}" height="120" width="120"> -->
 
-		<ion-list>
-			<!-- <ol> -->
-				<ion-item>{{ user.email }}</ion-item>
-				<ion-item>{{ user.username }}</ion-item>
-				<!-- <ul><a ui-sref="billing">Billing Details</a></ul> -->
-			<!-- </ol> -->
-		</ion-list>
+		<button ng-click="takePicture()" class="button button-positive">Set comic avatar</button>
+		</ion-item>
+
+		<!-- <img src="{{dataURL}}" height="120" width="120"> -->
+		<ion-item style="background:transparent; color:white"><b>My username</b>: {{ user.username }}</ion-item>
+					<!-- <button class="btn btn-primary" ui-sref="movieQueue({userId: user._id})">My Stories</button> -->
+		<div class="padding">
+		<button class="button" ng-click="open(email)"><b>Invite My Friends</b></button>
 		</div>
-      <div class="padding">
-        <button ng-click="logout()" ui-sref="login" class="button button-block button-positive">
-          <span ng-show="!loading">Log Out</span>
-          <i ng-show="loading" class="ion-loading-b"></i>
-        </button>
-      </div>
-</ion-content>
+
+		<div class="padding">
+		<button class="button" ui-sref="home"><b>Go to My Stories</b></button>
+		</div>	
+
+
+<!--         <div class="padding">
+          <button class="button" ng-click="getContacts()"><b>Get My Contacts</b></button>
+          <div class="list" ng-show="phoneContacts">
+            <div class="card" ng-repeat="contact in phoneContacts">
+              <div class="item item-divider">
+                {{ contact.name.formatted }}
+              </div>
+              <div class="item item-text-wrap">
+                <p><strong>Phone(s)</strong></p>
+                <div ng-repeat="number in contact.phoneNumbers">
+                  <p>{{ number.value }}</p>
+                </div>
+                <p><strong>Email(s)</strong></p>
+                <div ng-repeat="email in contact.emails">
+                  <p>{{ email.value }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+		<ion-list >
+				<ion-item style="background:transparent; color:white"><b>Email</b>: {{ user.email }}</ion-item>
+		</ion-list>
+		
+        <div class="padding">
+	        <button ng-click="logout()" class="button button-assertive" style='float: right'>
+	          <span ng-show="!loading">Logout</span>
+	          <i ng-show="loading" class="ion-loading-b"></i>
+	        </button>
+      	</div>
+	</ion-content>
 </ion-view>

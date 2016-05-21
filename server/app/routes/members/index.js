@@ -15,22 +15,18 @@ var ensureAuthenticated = function (req, res, next) {
     }
 };
 
-
 router.post('/', function(req, res, next) {
     User.create(req.body)
     .then(function(newUser) {
-        
         res.status(201).send(newUser);
     })
     .catch(next);
 });
 
 router.get('/', function(req, res, next) {
-
     User.find()
     .then(function(users){
         res.send(users);
-
     })
     .catch(next);
 });
@@ -94,3 +90,12 @@ router.put('/:userId', function(req, res, next){
     }
 });
 
+router.put('/:userId/avatar', function(req, res, next) {
+    console.log('GOT INTO ROUTE AVATAR', req.body, req.params.userId)
+    User.findByIdAndUpdate(req.params.userId, req.body, {new: true})
+    .then(function(updatedAvatar) {
+        console.log('new avatar in user/avatar route', updatedAvatar)
+        res.status(200).send(updatedAvatar);
+    })
+    .then(null, next)
+});

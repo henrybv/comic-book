@@ -5,14 +5,20 @@ var _ = require('lodash');
 
 var schema = new mongoose.Schema({
     username: {
-        type: String
+        type: String,
+        // required: true
+    },
+    avatar: {
+        type: String,
+        default: 'img/default_avatar.jpg'
     },
     email: {
         type: String,
         unique: true
     },
     password: {
-        type: String
+        type: String,
+        required: true
     },
     salt: {
         type: String

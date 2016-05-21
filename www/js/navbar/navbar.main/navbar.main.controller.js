@@ -1,4 +1,3 @@
-
 core.controller('Topnavbar', function($scope, $state, $rootScope) {
 
 	$scope.save = function(){
