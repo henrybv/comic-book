@@ -22,11 +22,11 @@
 <!-- my stories -->
     <ion-list ng-show="showMyStories" style="margin-bottom:200px">
     <h2 ng-show="!myStories.length" style="text-align:center;"><strong>You haven't created any storis yet!</strong></h2>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" ng-repeat="story in myStories" ng-click="changeState(story._id)">
+      <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" ng-repeat="story in myStories" ng-click="changeState(story._id)" style="background-image: url('img/comic-dots-1.jpg') !important">
         <img ng-src="assets/sample_comic.jpg">
-        <h2>{{story.title}}</h2>
-        <p ng-show="!story.friends.length">no collaborators</p>
-        <p ng-show="story.friends.length" >Collaborators: <span ng-repeat="friend in story.friends">{{ friend.email }}{{ $last ? '' : ', ' }}</span></p>
+        <h2 style="color:red;">{{story.title}}</h2>
+        <p ng-show="!story.friends.length" style="color:black;">no collaborators</p>
+        <p ng-show="story.friends.length" style="color:black;">Collaborators: <span ng-repeat="friend in story.friends">{{ friend.email }}{{ $last ? '' : ', ' }}</span></p>
         <i class="icon ion-chevron-right icon-accessory"></i>
       </ion-item>
     </ion-list>
@@ -34,10 +34,10 @@
 <!-- collabs -->
     <ion-list ng-show="showMyCollabs">
     <h2 ng-show="!myCollabs.length" style="text-align:center;"><strong>You don't have any collaborations yet!</strong></h2>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" ng-repeat="story in myCollabs" ng-click="changeState(story._id)">
+      <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" ng-repeat="story in myCollabs" ng-click="changeState(story._id)" style="background-image: url('img/comic-dots-1.jpg') !important">
         <img ng-src="assets/sample_comic.jpg">
-        <h2>{{story.title}}</h2>
-        <p>Creator: {{ story.owner.email }}</p>
+        <h2 style="color:red;">{{story.title}}</h2>
+        <p style="color:black;">Creator: {{ story.owner.email }}</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
       </ion-item>
     </ion-list>
