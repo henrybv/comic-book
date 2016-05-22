@@ -17,6 +17,10 @@ var schema = new mongoose.Schema({
     salt: {
         type: String
     },
+    avatar: {
+        type: String,
+        default: 'img/default_avatar.jpg'
+    },
     // myStories: [{
     //     type: mongoose.Schema.Types.ObjectId,
     //     ref: 'Story'
