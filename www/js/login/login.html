@@ -24,16 +24,10 @@
           <i ng-show="loading" class="ion-loading-b"></i>
         </button>
       </div>
-      <div class="padding">
-        <button ng-click="logout()" class="button button-block button-positive">
-          <span ng-show="!loading">Log Out!</span>
-          <i ng-show="loading" class="ion-loading-b"></i>
-        </button>
-      </div>
     </ion-content>
   </ion-view>
   <div class="bar bar-footer bar-assertive" ng-show="error">
-    <div class="title">{{ error.message }}</div>
+    <div class="title">Invalid Credentials</div>
   </div>
 </form>
 

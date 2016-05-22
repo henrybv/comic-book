@@ -141,10 +141,10 @@ core.directive('navbarAddon', function($rootScope) {
         //Changes the addonStates below to the addonType clicked
         scope.changeNav = function(addon){
             scope.addonType = addon;
-            // //Changes addonType to the current addon Tab
-            // if (scope.addonType === 'filter') {
-            //     setFilterThumbnails();
-            // }
+            // Changes addonType to the current addon Tab
+            if (scope.addonType === 'filter') {
+                setFilterThumbnails();
+            }
         };
 
         //Addons Directive

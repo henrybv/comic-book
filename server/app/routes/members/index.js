@@ -94,3 +94,13 @@ router.put('/:userId', function(req, res, next){
     }
 });
 
+router.put('/:userId/avatar', function(req, res, next) {
+    console.log('GOT INTO ROUTE AVATAR', req.body, req.params.userId)
+    User.findByIdAndUpdate(req.params.userId, req.body, {new: true})
+    .then(function(updatedAvatar) {
+        console.log('new avatar in user/avatar route', updatedAvatar)
+        res.status(200).send(updatedAvatar);
+    })
+    .then(null, next)
+});
+
