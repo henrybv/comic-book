@@ -14,9 +14,16 @@ core.directive('navbarAddon', function($rootScope) {
         border: "=",
         filter: "=",
         url: "=",
+<<<<<<< HEAD
+        story: "=",
+        picuretakenfalse: "="
+    },
+    link: function (scope, $scope, element, attrs) {
+=======
         story: "="
     },
     link: function (scope, element, attrs) {
+>>>>>>> master
     
     //------LIVE FEED BEGIN-----//
     //// LIVE FEED - GETTING IMAGES FROM FIREBASE EVERY TIME ONE IS ADDED
@@ -34,6 +41,26 @@ core.directive('navbarAddon', function($rootScope) {
     //     }
     // }
     
+<<<<<<< HEAD
+    // var ref = new Firebase('https://torrid-inferno-1552.firebaseio.com/' + $scope.story._id);
+    // ref.on('value', function(snapshot){
+    //     var obj = snapshot.val();
+    //     var arr = [];
+    //     for (var squareId in obj){
+    //         var dataURL = obj[squareId].url
+    //         arr.push(dataURL);
+    //     }
+
+    //     //Array of DATAURLS
+    //     $scope.squaresArray = arr;
+
+
+    // });
+
+    //------LIVE FEED END-----//
+
+
+=======
     // var ref = new Firebase('https://torrid-inferno-1552.firebaseio.com/' + scope.story._id);
     // ref.on('value', function(snapshot){
     //     var here = document.getElementById('here');
@@ -50,6 +77,7 @@ core.directive('navbarAddon', function($rootScope) {
     // });
 
     //------LIVE FEED END-----//
+>>>>>>> master
         // scope.showBottomNav = true;
         //scope.addons is set above from the state resolve
                 //Sets Filters
@@ -69,6 +97,7 @@ core.directive('navbarAddon', function($rootScope) {
         }
         
         setFilterThumbnails();
+
         //This Sets Width of Directive Buttons
         scope.myWidth = function(){
             newWidth = Math.floor((100/scope.activeButtons.length))
@@ -120,6 +149,11 @@ core.directive('navbarAddon', function($rootScope) {
             function: function(){
                 scope.takepicture()
                 scope.setButtons('addonStates')
+            },
+            style: {
+                'color': 'green',
+                'font-weight': 'bold',
+                border: 'solid 1px black'
             }
         },
         {
@@ -127,12 +161,20 @@ core.directive('navbarAddon', function($rootScope) {
             function: function() {
                 scope.openphotolibrary()
                 scope.setButtons('addonStates')
+            },
+            style: {
+                'color': 'green',
             }
         },
         {
             state: "COMIFY",
             function: function() {
                 scope.setButtons('addonStates')
+                scope.picuretakenfalse()
+            },
+            style: {
+                'font-weight': 'bold',
+                'color': 'orange'
             }
         }
         ]
@@ -141,7 +183,11 @@ core.directive('navbarAddon', function($rootScope) {
         //Changes the addonStates below to the addonType clicked
         scope.changeNav = function(addon){
             scope.addonType = addon;
+<<<<<<< HEAD
+            // //Changes addonType to the current addon Tab
+=======
             // Changes addonType to the current addon Tab
+>>>>>>> master
             if (scope.addonType === 'filter') {
                 setFilterThumbnails();
             }
@@ -153,24 +199,37 @@ core.directive('navbarAddon', function($rootScope) {
             state: 'Back',
             function: function(){
                 scope.setButtons('pictureFunctions')
+            },
+            style: {
+                'font-weight': 'bold',
+                'color': 'blue',
             }
         },
         {
             state: 'Filter',
             function: function(){
                 scope.changeNav('filter')
+            },
+            style: {
+                'color': 'purple',
             }
         }, 
         {
             state: 'Border',
             function: function(){
                 scope.changeNav('border')
+            },
+            style: {
+                'color': 'orange',
             }
         },
         {
             state: 'Bubble',
             function: function(){
                 scope.changeNav('bubble')
+            },
+            style: {
+                'color': 'yellow',
             }
         },
         {
@@ -178,14 +237,17 @@ core.directive('navbarAddon', function($rootScope) {
             function: function(){
                 console.log('in here')
                 scope.changeNav('sticker')
+            },
+            style: {
+                'color': 'pink',
             }
         },
         ]
 
-        
 
         //Starting Set of Buttons and Filters
         scope.addonType = 'filter';
+        // scope.activeButtons = scope.pictureFunctions
         window.onload = scope.setButtons('pictureFunctions');
 
     }

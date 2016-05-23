@@ -26,7 +26,14 @@
         <img ng-src="assets/sample_comic.jpg">
         <h2 style="color:red;">{{story.title}}</h2>
         <p ng-show="!story.friends.length" style="color:black;">no collaborators</p>
-        <p ng-show="story.friends.length" style="color:black;">Collaborators: <span ng-repeat="friend in story.friends">{{ friend.email }}{{ $last ? '' : ', ' }}</span></p>
+        <p ng-show="story.friends.length" style="color:black;">
+        <!-- Collaborators:  -->
+          <span ng-repeat="friend in story.friends">
+          <!-- {{ friend.email }}{{ $last ? '' : ', ' }} -->
+            <img id="avatarSmall" ng-src="{{friend.avatar}}">
+            <div class="avatarSmallText">{{ friend.email }}</div>
+          </span>
+        </p>
         <i class="icon ion-chevron-right icon-accessory"></i>
         <ion-option-button class="button-assertive" ng-click="deleteStory(story._id)">
           Delete

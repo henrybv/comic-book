@@ -20,7 +20,7 @@
       <ion-scroll direction="x" id="addonsBottom" style="margin-bottom:10px;border-radius: 10px;background-image: url('img/comic-dots-1.jpg') !important;margin-right: 10px;margin-left: 10px;">
         <div style="background-image: url('img/comic-dots-1.jpg') !important;border-radius: 10px;">
           <div class="item item-avatar" style="display:inline-block;border:none;background-image: url('img/comic-dots-1.jpg') !important;border-radius: 10px;" ng-repeat="collabr in collaborators">
-            <img ng-src="http://loremflickr.com/420/240" style="max-height:55px;max-width:55px">
+            <img ng-src="{{collabr.avatar}}" style="max-height:55px;max-width:55px">
             <!-- change this to collabr.username once we put usernames on seed -->
             <p>{{collabr.username | cut:true:6:'..'}}</p>
             <br>
@@ -53,7 +53,7 @@
   <div style="display: block;">
       <ion-list ng-show="clicked">
         <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" ng-repeat="user in allUsers | filter: {email: searchedEmail}" ng-click=addFriend(user) ng-hide="user.collabr" style="background-image: url('img/comic-dots-1.jpg') !important">
-          <img ng-src="http://loremflickr.com/420/240">
+          <img ng-src="{{user.avatar}}">
           <!-- maybe search by username -->
           <h2 style="color:black;">{{ user.email }}</h2>
           <p style="color:red;">{{ user.username }}</p>

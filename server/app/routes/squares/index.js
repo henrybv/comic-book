@@ -8,6 +8,7 @@ module.exports = router;
 
 router.get('/:squareId', function(req, res, next){
 	Square.findById(req.params.squareId)
+    .populate('creator')
 	.then(function(square){
 		res.status(200).send(square);
 	})

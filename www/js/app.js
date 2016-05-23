@@ -14,6 +14,9 @@ var base = 'http://192.168.1.184:1337'
 //FULLSTACK BASE - Henry
 // var base = 'http://192.168.1.204:1337'
 
+// var base = 'http://192.168.1.183:1337'
+
+
 
 
 // Ionic Starter App
@@ -69,34 +72,12 @@ core.config(function($stateProvider, $urlRouterProvider) {
       }
     }
   })
-  // .state('home.myStories', {
-  //   url: '/home/myStories',
-  //   templateUrl: 'js/home/home.myStories.template.html'
-  // })
-  // .state('home.myCollabs', {
-  //   url: '/home/myCollabs',
-  //   templateUrl: 'js/home/home.myCollabs.template.html'
-  // })
-  // .state('home.myStories', {
-  //   url: '/home/myStories',
-  //   templateUrl: 'js/home/home.myStories.template.html'
-  // })
-  // .state('home.myCollabs', {
-  //   url: '/home/myCollabs',
-  //   templateUrl: 'js/home/home.myCollabs.template.html'
-  // })
   .state('settings', {
     cache: false,
     url: '/settings',
     templateUrl: 'js/settings/settings.template.html',
     controller: 'SettingsCtrl',
     resolve: {
-        // myStories: function (StoryFactory, $localStorage){
-        //   return StoryFactory.getMyStories($localStorage.user._id);
-        // },
-        // myCollabs: function(StoryFactory, $localStorage) {
-        //   return  StoryFactory.getMyCollabs($localStorage.user._id);
-        // },
         loggedInUser: function(AuthService){
           return AuthService.getLoggedInUser()
         }
@@ -152,6 +133,9 @@ core.config(function($stateProvider, $urlRouterProvider) {
       loggedInUser: function (AuthService){
         return AuthService.getLoggedInUser();
       },
+      // storySquares: function(){
+      //   return 
+      // },
       allUsers: function(UserFactory, story, loggedInUser) {
         return UserFactory.getAllUsers()
         .then(function(users) {

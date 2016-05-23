@@ -3,17 +3,12 @@
       <ion-tabs class="tabs-top tabs-icon-top " style="top:10px; background-color:#808080 !important">
 
             <ion-tab title="Squares" icon-on="ion-grid" icon-off="ion-grid" on-select=tabSelected('Squares')>
-              <ion-content zooming='true' style="background-image: url('assets/yelloworangedots.jpg') !important;position:absolute; padding:100px 5px 0px 5px" has-bouncing='true'>
-                    <button id="transparent" class="button" ng-repeat="picObj in finalPicsArray" style="background-color:transparent;margin:10px -4px -4px -4px !important ;border:2px -4px -4px -4px !important;border:5px -4px -4px -4px !important  box-sizing: content-box !important;">
-                        <div>
-                          <img ng-src="{{ picObj.dataURL }}" width='111' style='margin:-4px -4px -4px -4px !important;border:-4px -4px -4px -4px !important;padding:-4px -4px -4px -4px !important'>
-                        </div>
-                      </button>
-                  <div>
-              <!--       <button style="background-color: transparent;" ui-sref="camera({storyId: story._id})" class="button button-block button-positive">
-                       <img src='assets/addSquareButton.png' width='105'>
-                    </button> -->
-                </div>
+              <ion-content zooming='true' style="background-image: url('assets/yelloworangedots.jpg') !important;position:absolute; padding:100px 5px 0px 5px;" has-bouncing='true'>
+                    <div  ng-repeat="picObj in finalPicsArray track by $index" style="display: inline-block;  ">
+                      
+                          <img ng-src="{{ picObj.dataURL }}" width='121'>
+                  
+                      </div>
               </ion-content>
           </ion-tab>
 
@@ -22,9 +17,13 @@
                  4
                   <div id="squareAndAddonFrames" style='margin:50px -4px -4px -4px !important;border:10px -4px -4px -4px !important;padding:2px -4px -4px -4px !important'>
                   <!-- SAUARES REPEAT HERE - MAYBE WRAP PARENT DIV AROUND HERE FOR DELETE MODE-->
-                    <button id="transparent" class="button" ng-repeat="picObj in finalPicsArray" style="background-color:black;margin:10px -4px -4px -4px !important ;border:10px -4px -4px -4px !important;border:10px -4px -4px -4px !important  box-sizing: content-box !important;padding-top:12px;">
+                    <button id="transparent" class="button" ng-repeat="picObj in finalPicsArray track by $index" style="background-color:black;box-sizing: content-box !important;padding-top:20px;">
                       <div>
                         <img ng-src="{{ picObj.dataURL }}" width='300' style='margin:-4px -4px -4px -4px !important;border:-4px -4px -4px -4px !important;padding:-4px -4px -4px -4px !important'>
+                        <div class="squareCreator">
+                          <img class="storyAvatar" src="{{picObj.creator.avatar}}">
+                          <div id="creatorInfo"> {{picObj.creator.username}} </div>
+                        </div>
                       </div>
                     </button>
                   </div>
@@ -42,7 +41,7 @@
 
                   <!-- SQUARES -->
                   <div id="parent">
-                    <button id="{{ picObj.id }}" class="button" ng-repeat="picObj in finalPicsArray" style="background-color:transparent;margin:10px -4px -4px -4px !important ;border:2px -4px -4px -4px !important;border:5px -4px -4px -4px !important  box-sizing: content-box !important;">
+                    <button id="{{ picObj.id }}" class="button" ng-repeat="picObj in finalPicsArray track by $index" style="background-color:transparent;margin:10px -4px -4px -4px !important ;border:2px -4px -4px -4px !important;border:5px -4px -4px -4px !important  box-sizing: content-box !important;">
                         <div>
                           <img ng-src="{{ picObj.dataURL }}" width='111' style='margin:-4px -4px -4px -4px !important;border:-4px -4px -4px -4px !important;padding:-4px -4px -4px -4px !important' ng-show="!clicked">
                         </div>
@@ -70,7 +69,7 @@
                     <ion-scroll direction="x" id="addonsBottom" style="background-image: url('img/comic-dots-1.jpg') !important; border-radius: 10px;">
                       <div style="border-radius: 10px;">
                         <div class="item item-avatar" style="display:inline-block;border:none;background-image: url('img/comic-dots-1.jpg') !important;border-radius: 10px;" ng-repeat="collabr in collaborators">
-                          <img ng-src="http://loremflickr.com/420/240" style="max-height:55px;max-width:55px">
+                          <img ng-src="{{collabr.avatar}}" style="max-height:55px;max-width:55px">
                           <!-- change this to collabr.username once we put usernames on seed -->
                           <p>{{collabr.username | cut:true:6:'..'}}</p>
                           <br>
@@ -94,7 +93,7 @@
                     </button> 
                   </div>
 
-                  <!-- SEACH FRIENDS INPUT -->
+                  <!-- SEARCH FRIENDS INPUT -->
                   <div class="list list-inset" ng-show="clicked && allUsers.length" style="margin-top:0px;">
                     <label class="item item-input">
                       <span class="input-label">Search by email</span>
@@ -107,7 +106,7 @@
                   <div style="display:block;">
                       <ion-list ng-show="clicked">
                         <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" ng-repeat="user in allUsers | filter: {email: searchedEmail}" ng-click=addFriend(user) ng-hide="user.collabr" style="background-image: url('img/comic-dots-1.jpg') !important">
-                          <img ng-src="http://loremflickr.com/420/240">
+                          <img ng-src="{{user.avatar}}">
                           <!-- maybe search by username -->
                           <h2 style="color:black;">{{ user.email }}</h2>
                           <p style="color:red;">{{ user.username }}</p>

@@ -21,7 +21,14 @@ router.get('/', function(req, res, next) {
 //get a specific story and all its squares
 router.get('/:storyId', function(req, res, next) {
     Story.findById(req.params.storyId)
-    .populate('squares friends')
+    // .populate('squares squares friends')
+    .populate({
+        path: 'squares',
+        populate: { path: 'creator' }
+    })
+    .populate({
+        path: 'friends'
+    })
     .exec()
     .then(function(story) {
         res.status(200).send(story);
@@ -68,7 +75,7 @@ router.put('/:storyId/squares', function(req, res, next){
     return mongoose.model('Square').create({creator: req.body.creator})
     .then(function(newSquare){
         return mongoose.model('Square')
-        .findByIdAndUpdate(newSquare._id, {upsert: true, new: true})
+        .findByIdAndUpdate(newSquare._id, {upsert: true, new: true}).populate('creator')
     })
     .then(function(square) {
         SQUARETOSEND = square;
