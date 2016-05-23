@@ -93,6 +93,12 @@ var userSeed = [
 
 var addonSeed = [
     {
+        name: 'none_none_narration',
+        source: 'assets/bubbles/thought_rightTop.png',
+        thumbnail: 'assets/bubbles/narration_white_black.png',
+        type: 'bubble'
+    },    
+    {
         name: 'left_bottom_speech',
         source: 'assets/bubbles/speech_leftBottom.png',
         thumbnail: 'assets/bubbles/speech_leftBottom.png',
@@ -139,7 +145,7 @@ var addonSeed = [
         source: 'assets/bubbles/thought_rightTop.png',
         thumbnail: 'assets/bubbles/thought_rightTop.png',
         type: 'bubble'
-    },    
+    },      
     {
         name: 'Sticker A',
         source: 'assets/stickers/baaam.png',

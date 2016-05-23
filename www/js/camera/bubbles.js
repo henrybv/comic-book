@@ -40,6 +40,7 @@ var createBubbleStyle = function(bubbleName) {
     }        
     
     var thoughtBubbleSmall = {
+        
         'position': 'absolute',
         // 'border-style': 'solid',
         // 'border-radius': '2px',
@@ -53,8 +54,17 @@ var createBubbleStyle = function(bubbleName) {
         // 'border-radius': '50%',
         'background-image': "url('assets/bubbles/bubble_small.png')"
 
+    }     
+
+    var narrationA = {
+        height: '10px',
+        width: '10px'
+    }        
+    
+    var narrationB = {
+        height: '10px',
+        width: '10px'
     } 
-    console.log(bubbletype)
     //['left', 'top']
 
 
@@ -72,12 +82,12 @@ var createBubbleStyle = function(bubbleName) {
         //Top vs Bottom
         if (bubbletype[1] === 'top'){
             pointer['top'] = '-31px';
-            pointerBorder['top'] = "-37px"
+            pointerBorder['top'] = "-39px"
             pointer['border-width'] = '0px 4px 35px';
             pointerBorder['border-width'] = '0px 6px 39px';
         } else if (bubbletype[1] === 'bottom') {
             pointer['bottom'] = '-32px';
-            pointerBorder['bottom'] = '-39px';
+            pointerBorder['bottom'] = '-41px';
             pointer['border-width'] = '35px 4px 0';
             pointerBorder['border-width'] = '40px 6px 0px';
         }
@@ -98,7 +108,7 @@ var createBubbleStyle = function(bubbleName) {
 
         //Top vs Bottom
         if (bubbletype[1] === 'top'){
-            thoughtBubbleBig['top'] = '-18px';
+            thoughtBubbleBig['top'] = '-19px';
             thoughtBubbleSmall['top'] = "-30px";
         } else if (bubbletype[1] === 'bottom') {
             thoughtBubbleBig['bottom'] = '-17px';
@@ -107,6 +117,12 @@ var createBubbleStyle = function(bubbleName) {
         }
 
         return [thoughtBubbleBig, thoughtBubbleSmall]
+
+    }    
+
+    if (bubbletype[2] === 'narration'){
+        console.log("Bubbles.js Narration", narrationA, narrationB)
+        return [narrationA, narrationB]
 
     }
 

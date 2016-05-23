@@ -1,4 +1,5 @@
-core.controller('StoryCtrl', function($scope, story, $state, $localStorage, CameraFactory, loggedInUser, allUsers, StoryFactory, $rootScope, $ionicPopup) {
+core.controller('StoryCtrl', function($scope, story, $state, $localStorage, CameraFactory, loggedInUser, allUsers, StoryFactory, $rootScope, $ionicPopup, $ionicTabsDelegate) {
+
     $scope.allUsers = allUsers;
     $scope.currentUser = loggedInUser;
     $scope.allUsers = allUsers;
@@ -6,16 +7,10 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
     $scope.collaborators = [];
     $scope.collabAdded = false;
 	$scope.story = story;
-<<<<<<< HEAD
     $scope.deleteClicked = false;
     // $scope.urlbaby;
-=======
-<<<<<<< HEAD
     $scope.dataURLArray = [];
-=======
-    // $scope.urlbaby;
->>>>>>> master
->>>>>>> master
+    $ionicTabsDelegate.select('Squares');
 	// console.log('story in storyCTRL', $scope.story)
 
     // $scope.allUsers.forEach(function(user) {
@@ -39,59 +34,58 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
 
    
 
-    var urlToNewCanvas = function(url, canvasId){
-    	var canvas = document.createElement('canvas');
-        canvas.id = canvasId;
-<<<<<<< HEAD
-        canvas.width = canvas.height = 115;
-        canvas.style.padding = '1px 3px 1px 3px';
-=======
-        canvas.width = canvas.height = 300;
->>>>>>> master
-        var context = canvas.getContext('2d');
-        var newImage = new Image();
-        var elem = document.getElementById('here');
-        console.log('elem', elem)
-        elem.appendChild(canvas);
-        newImage.src = url;
-        newImage.onload = function(){
-            context.drawImage(newImage, 0, 0, newImage.width, newImage.height, 0, 0, canvas.width, canvas.height);
-        }
-    }
+    // var urlToNewCanvas = function(url, canvasId){
+    // 	var canvas = document.createElement('canvas');
+    //     canvas.id = canvasId;
+    //     canvas.width = canvas.height = 115;
+    //     canvas.style.padding = '1px 3px 1px 3px';
+    //     var context = canvas.getContext('2d');
+    //     var newImage = new Image();
+    //     var elem = document.getElementById('here');
+    //     console.log('elem', elem)
+    //     elem.appendChild(canvas);
+    //     newImage.src = url;
+    //     newImage.onload = function(){
+    //         context.drawImage(newImage, 0, 0, newImage.width, newImage.height, 0, 0, canvas.width, canvas.height);
+    //     }
+    // }
 
 
-<<<<<<< HEAD
-=======
 
-
-    
->>>>>>> master
 // GETTING IMAGES FROM FIREBASE EVERY TIME ONE IS ADDED
     var ref = new Firebase('https://torrid-inferno-1552.firebaseio.com/' + $scope.story._id);
     ref.on('value', function(snapshot){
-        var here = document.getElementById('here');
-            console.log('Firebase Div:', here)
-<<<<<<< HEAD
-        while (here.firstChild){
-=======
-<<<<<<< HEAD
-        while (here && here.firstChild){
-=======
-        while (here.firstChild){
->>>>>>> master
->>>>>>> master
-            // console.log('HERE FIRST CHILD', here.firstChild)
-            here.removeChild(here.firstChild);
-        }
         var obj = snapshot.val();
+        var arr = [];
         for (var squareId in obj){
             var dataURL = obj[squareId].url
-            $scope.dataURLArray.push(dataURL);
-            urlToNewCanvas(dataURL, squareId);
+            arr.push(dataURL);
         }
+        $scope.dataURLArray = arr;
 
 
     });
+
+
+
+    
+// // GETTING IMAGES FROM FIREBASE EVERY TIME ONE IS ADDED
+//     var ref = new Firebase('https://torrid-inferno-1552.firebaseio.com/' + $scope.story._id);
+//     ref.on('value', function(snapshot){
+//         var here = document.getElementById('here');
+//             console.log('Firebase Div:', here)
+//         while (here && here.firstChild){
+//             // console.log('HERE FIRST CHILD', here.firstChild)
+//             here.removeChild(here.firstChild);
+//         }
+//         var obj = snapshot.val();
+//         for (var squareId in obj){
+//             var dataURL = obj[squareId].url
+//             $scope.dataURLArray.push(dataURL);
+//             urlToNewCanvas(dataURL, squareId);
+//         }
+
+//     });
 
     // function slideTo(el, left) {
     //     var steps = 25;
@@ -155,7 +149,6 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
         });
     };
 
-<<<<<<< HEAD
     // DELETE SQUARE - EVENT DELEGATION
     // $(document).ready(function() {
     //     $('#here').delegate('canvas', 'click', function() {
@@ -206,7 +199,6 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
         $scope.deleteClicked = false;
         $('#here').undelegate( "canvas", "click", deleteSquare);
     };
-=======
     // $scope.shareEmail = function(){
         
     //     window.plugins.socialsharing.shareViaEmail(
@@ -221,7 +213,6 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
     //     );
     // }
 
->>>>>>> master
 
 
 });
