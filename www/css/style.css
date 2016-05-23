@@ -522,7 +522,9 @@
 
 .animation-slinky {
   -webkit-animation: slinky 3500ms linear 1;
-  animation: slinky 3500ms linear 1;
+  /*animation: slinky 3500ms linear 1;*/
+  -webkit-animation-fill-mode: forwards;
+
 }
 
 /* Generated with Bounce.js. Edit at http://goo.gl/wwr4qL */

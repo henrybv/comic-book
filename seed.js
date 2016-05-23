@@ -326,63 +326,63 @@ var addonSeed = [
     {
         name: 'Maroon Border',
         source: 'assets/borders/maroon-border1.png',
-        thumbnail: 'assets/borders/maroon-border1.png',
+        thumbnail: 'assets/borders/thumbnails/maroon-border1.png',
         type: 'border'
     },
     {
         name: 'Dark Blue Border',
         source: 'assets/borders/dar-blue-border1.png',
-        thumbnail: 'assets/borders/dar-blue-border1.png',
+        thumbnail: 'assets/borders/thumbnails/dar-blue-border1.png',
         type: 'border'
     },    
     {
         name: 'Yellow Border',
         source: 'assets/borders/yellow-border1.png',
-        thumbnail: 'assets/borders/yellow-border1.png',
+        thumbnail: 'assets/borders/thumbnails/yellow-border1.png',
         type: 'border'
     }, 
     {
         name: 'Dark Red Border',
         source: 'assets/borders/red-border1.png',
-        thumbnail: 'assets/borders/red-border1.png',
+        thumbnail: 'assets/borders/thumbnails/red-border1.png',
         type: 'border'
     },    
     {
         name: 'Black Border',
         source: 'assets/borders/black-border1.png',
-        thumbnail: 'assets/borders/black-border1.png',
+        thumbnail: 'assets/borders/thumbnails/black-border1.png',
         type: 'border'
     },   
-    {
-        name: 'Border D',
-        source: 'assets/borders/purpleframe.png',
-        thumbnail: 'assets/borders/thumbnails/purpleframe.png',
-        type: 'border'
-    },
-    {
-        name: 'Border E',
-        source: 'assets/borders/redframe.png',
-        thumbnail: 'assets/borders/thumbnails/redframe.png',
-        type: 'border'
-    },
-    {
-        name: 'Border F',
-        source: 'assets/borders/redheart.png',
-        thumbnail: 'assets/borders/thumbnails/redheart.png',
-        type: 'border'
-    },    
-    {
-        name: 'Border G',
-        source: 'assets/borders/whitecircle.png',
-        thumbnail: 'assets/borders/thumbnails/whitecircle.png',
-        type: 'border'
-    },    
-    {
-        name: 'Border H',
-        source: 'assets/borders/whitefunky.png',
-        thumbnail: 'assets/borders/thumbnails/whitefunky.png',
-        type: 'border'
-    },
+    // {
+    //     name: 'Border D',
+    //     source: 'assets/borders/purpleframe.png',
+    //     thumbnail: 'assets/borders/thumbnails/purpleframe.png',
+    //     type: 'border'
+    // },
+    // {
+    //     name: 'Border E',
+    //     source: 'assets/borders/redframe.png',
+    //     thumbnail: 'assets/borders/thumbnails/redframe.png',
+    //     type: 'border'
+    // },
+    // {
+    //     name: 'Border F',
+    //     source: 'assets/borders/redheart.png',
+    //     thumbnail: 'assets/borders/thumbnails/redheart.png',
+    //     type: 'border'
+    // },    
+    // {
+    //     name: 'Border G',
+    //     source: 'assets/borders/whitecircle.png',
+    //     thumbnail: 'assets/borders/thumbnails/whitecircle.png',
+    //     type: 'border'
+    // },    
+    // {
+    //     name: 'Border H',
+    //     source: 'assets/borders/whitefunky.png',
+    //     thumbnail: 'assets/borders/thumbnails/whitefunky.png',
+    //     type: 'border'
+    // },
     {
         name: 'Border I',
         source: 'assets/borders/whitesquare.png',

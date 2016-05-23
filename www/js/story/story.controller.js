@@ -97,11 +97,8 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
             var picObj = {};
             picObj.id = firebaseIdCounter;
             picObj.dataURL = snapshot.val().url;
-            picObj.creator = "UNKNOWN!!!"
-
-            console.log("FIREBASE CHILD ADDED", snapshot.val())
+            picObj.creator = 'img/default_avatar.jpg'
             $scope.finalPicsArray.push(picObj)
-            console.log($scope.finalPicsArray)
             $scope.$digest();
             firebaseIdCounter++
         }
