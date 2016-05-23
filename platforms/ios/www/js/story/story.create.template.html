@@ -17,12 +17,12 @@
 <!-- FOR WHEN FRIENDS ARE ADDED -->
     <div ng-show="collabAdded">
       <h4 style="text-align:center;margin-top:-4px" ng-show="collaborators.length">Collaborators:</h4>
-      <ion-scroll direction="x" id="addonsBottom" style="background-color:white;">
-        <div>
-          <div class="item item-avatar" style="display:inline-block;border:none" ng-repeat="collabr in collaborators">
-            <img ng-src="http://loremflickr.com/420/240" style="max-height:55px;max-width:55px">
+      <ion-scroll direction="x" id="addonsBottom" style="margin-bottom:10px;border-radius: 10px;background-image: url('img/comic-dots-1.jpg') !important;margin-right: 10px;margin-left: 10px;">
+        <div style="background-image: url('img/comic-dots-1.jpg') !important;border-radius: 10px;">
+          <div class="item item-avatar" style="display:inline-block;border:none;background-image: url('img/comic-dots-1.jpg') !important;border-radius: 10px;" ng-repeat="collabr in collaborators">
+            <img ng-src="{{collabr.avatar}}" style="max-height:55px;max-width:55px">
             <!-- change this to collabr.username once we put usernames on seed -->
-            <p>{{collabr.email | cut:true:6:'..'}}</p>
+            <p>{{collabr.username | cut:true:6:'..'}}</p>
             <br>
             <div style="text-align:center; background-color:#F08080;border-radius:5px;max-width:35px;" ng-click="removeCollabr(collabr)">
               <p style="color:black;">X</p>
@@ -52,11 +52,11 @@
 <!-- LIST OF ALL USERS TO SEARCH FROM -->
   <div style="display: block;">
       <ion-list ng-show="clicked">
-        <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" ng-repeat="user in allUsers | filter: {email: searchedEmail}" ng-click=addFriend(user) ng-hide="user.collabr">
-          <img ng-src="http://loremflickr.com/420/240">
+        <ion-item class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" ng-repeat="user in allUsers | filter: {email: searchedEmail}" ng-click=addFriend(user) ng-hide="user.collabr" style="background-image: url('img/comic-dots-1.jpg') !important">
+          <img ng-src="{{user.avatar}}">
           <!-- maybe search by username -->
-          <h2>{{ user.email }}</h2>
-          <p>placeholder</p>
+          <h2 style="color:black;">{{ user.email }}</h2>
+          <p style="color:red;">{{ user.username }}</p>
         </ion-item>
       </ion-list>
   </div>
