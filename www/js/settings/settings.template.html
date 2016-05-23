@@ -16,11 +16,11 @@
 		<ion-item style="background:transparent; color:white"><b>My username</b>: {{ user.username }}</ion-item>
 					<!-- <button class="btn btn-primary" ui-sref="movieQueue({userId: user._id})">My Stories</button> -->
 		<div class="padding">
-		<button class="button" ng-click="inviteViaEmail()"><b>Invite My Friends</b></button>
+		<button class="button" ng-click="inviteViaEmail()" style="background-color: red; color: white"><b>Invite My Friends</b></button>
 		</div>
 
 		<div class="padding">
-		<button class="button" ui-sref="home"><b>Go to My Stories</b></button>
+		<button class="button" ui-sref="home" style="background-color: red; color: white"><b>Go to My Stories</b></button>
 		</div>	
 
 
@@ -50,7 +50,7 @@
 		</ion-list>
 		
         <div class="padding">
-	        <button ng-click="logout()" class="button button-assertive" style='float: right'>
+	        <button ng-click="logout()" class="button" style='float: right'>
 	          <span ng-show="!loading">Logout</span>
 	          <i ng-show="loading" class="ion-loading-b"></i>
 	        </button>

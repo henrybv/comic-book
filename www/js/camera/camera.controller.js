@@ -1,4 +1,4 @@
-core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $cordovaCamera, $cordovaFileTransfer, Grafi, $localStorage, CameraFactory, FilterFactory) {
+core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $cordovaCamera, $cordovaFile, $cordovaFileTransfer, Grafi, $localStorage, CameraFactory, FilterFactory, $ionicLoading) {
 	$scope.story = story;
     $scope.currentUser = $localStorage.user._id;
     // $scope.currentSquare;
@@ -8,7 +8,6 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
     //REMOVE LINK WHEN USING URL FROM PHOTO / ALBUM LIBRARY
     // $scope.url = '../../img/ben.png';
     $scope.url;
-
 
 
     var urlToCanvas = function(url, canvasId, x, y){
@@ -325,6 +324,7 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
 
     //Defines the saveImage function which Saves Image to DB and adds to story
     $scope.saveImage = function(){
+        console.log('in save image ctrl')
 
         return bubblestoImageData()
         .then(function(){
@@ -349,6 +349,7 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
             return CameraFactory.createSquare(finalDataURL, $scope.story._id, $scope.currentUser)
         })        
         .then(function(square){
+            console.log('square from camera factory in ctrl', square)
             $state.go('story', {storyId: $scope.story._id}, {reload: true});
         })
         .catch(function(err){
@@ -361,8 +362,6 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
     $scope.$on('saveImage', function() {
         $scope.saveImage()
     })
-
- 
 
 
 

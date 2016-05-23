@@ -1,5 +1,21 @@
+//FULLSTACK BASE - Debanshi
+var base = 'http://192.168.1.184:1337'
+// var base = 'http://192.168.1.183:1337'
+// var base = 'http://192.168.0.20:1337'
+// var base = 'http://10.1.12.26:1337'
+// var base = 'http://192.168.1.184:1337'
+//FULLSTACK BASE - Eric
+// var base = 'http://192.168.1.133:1337'
+// var base = 'http://192.168.0.102:1337'
+// var base = 'http://192.168.0.105:1337'
+// var base = 'http://192.168.0.20:1337'
+//FULLSTACK BASE - Jeff
+// var base = 'http://192.168.1.133:1337'
+//FULLSTACK BASE - Henry
+// var base = 'http://192.168.1.204:1337'
 
-var base = 'http://192.168.1.183:1337'
+// var base = 'http://192.168.1.183:1337'
+
 
 
 

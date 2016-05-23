@@ -126,9 +126,10 @@ core.directive('navbarAddon', function($rootScope) {
                 scope.setButtons('addonStates')
             },
             style: {
-                'color': 'green',
+                'color': '#E54F48',
                 'font-weight': 'bold',
-                border: 'solid 1px black'
+                border: 'solid 1px black',
+                'background-color': 'black'
             }
         },
         {
@@ -138,7 +139,9 @@ core.directive('navbarAddon', function($rootScope) {
                 scope.setButtons('addonStates')
             },
             style: {
-                'color': 'green',
+                'color': '#56ef7b',
+                'font-weight': 'bold',
+                'background-color': 'black'
             }
         },
         {
@@ -149,7 +152,8 @@ core.directive('navbarAddon', function($rootScope) {
             },
             style: {
                 'font-weight': 'bold',
-                'color': 'orange'
+                'color': 'orange',
+                'background-color': 'black'
             }
         }
         ]
@@ -173,7 +177,8 @@ core.directive('navbarAddon', function($rootScope) {
             },
             style: {
                 'font-weight': 'bold',
-                'color': 'blue',
+                'color': '#7b9bf2',
+                'background-color': 'black'
             }
         },
         {
@@ -182,7 +187,8 @@ core.directive('navbarAddon', function($rootScope) {
                 scope.changeNav('filter')
             },
             style: {
-                'color': 'purple',
+                'color': '#E54F48',
+                'background-color': 'black'
             }
         }, 
         {
@@ -192,6 +198,7 @@ core.directive('navbarAddon', function($rootScope) {
             },
             style: {
                 'color': 'orange',
+                'background-color': 'black'
             }
         },
         {
@@ -201,6 +208,7 @@ core.directive('navbarAddon', function($rootScope) {
             },
             style: {
                 'color': 'yellow',
+                'background-color': 'black'
             }
         },
         {
@@ -211,6 +219,7 @@ core.directive('navbarAddon', function($rootScope) {
             },
             style: {
                 'color': 'pink',
+                'background-color': 'black'
             }
         },
         ]
