@@ -56,6 +56,23 @@ core.factory('StoryFactory', function($http, $localStorage) {
 		})
 	};
 
+	StoryFactory.deleteStory = function (storyId) {
+		console.log('DELETE STORY IN STORY FACT RAN')
+		return $http.delete(base + '/api/stories/' + storyId)
+		.then(function(story) {
+			console.log('STORY deleted IN STORY FACT', story.data)
+			return story.data;
+		});
+	};
+
+	StoryFactory.leaveCollab = function(storyId, userId){
+		console.log('IN LEAVE COLLAB IN FACT');
+		return $http.put(base + '/api/stories/' + storyId + '/leaveCollab/' + userId)
+		.then(function(){
+			console.log('left collab, updated story:');
+		})
+	}
+
 	StoryFactory.deleteSquare = function (storyId, squareId) {
 		console.log('DELETE SQ IN STORY FACT RAN')
 		return $http.put(base + '/api/stories/' + storyId + '/squares/' + squareId)

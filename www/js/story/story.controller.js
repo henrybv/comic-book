@@ -21,20 +21,23 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
     // });
 
 
+
     //Load Story Initially From MongoDB:
     $scope.finalPicsArray = []
-    for (var i = 0; i < $scope.story.squares.length; i++) {
-        console.log("GETTING POPULATE SQUARES!", $scope.story.squares)
-        
-        // var currSquare = new Firebase($scope.story.squares[i].finalImage)
-        console.log("THAT ONE", $scope.story.squares[i])
-        var picObj = {};
-        picObj.id = $scope.story.squares[i]._id;
-        picObj.dataURL = $scope.story.squares[i].finalImage;
-        picObj.creator = $scope.story.squares[i].creator
-        console.log("THE CREATOR", $scope.story.squares[i].creator)
-        console.log('finalPicsArray', $scope.finalPicsArray)
-        $scope.finalPicsArray.push(picObj)
+    if ($scope.story.squares){
+        for (var i = 0; i < $scope.story.squares.length; i++) {
+            console.log("GETTING POPULATE SQUARES!", $scope.story.squares)
+            
+            // var currSquare = new Firebase($scope.story.squares[i].finalImage)
+            console.log("THAT ONE", $scope.story.squares[i])
+            var picObj = {};
+            picObj.id = $scope.story.squares[i]._id;
+            picObj.dataURL = $scope.story.squares[i].finalImage;
+            picObj.creator = $scope.story.squares[i].creator
+            console.log("THE CREATOR", $scope.story.squares[i].creator)
+            console.log('finalPicsArray', $scope.finalPicsArray)
+            $scope.finalPicsArray.push(picObj)
+        }
     }
 
 

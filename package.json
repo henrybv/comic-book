@@ -23,6 +23,7 @@
     "hammerjs": "^2.0.8",
     "jasmine": "^2.4.1",
     "jsonwebtoken": "^6.2.0",
+    "lodash": "^3.10.1",
     "mocha": "^2.4.5",
     "path": "^0.12.7",
     "supertest": "^0.15.0"
@@ -95,7 +96,7 @@
     "stripe": "^4.5.0",
     "supertest": "^0.15.0"
   },
-"cordovaPlugins": [
+  "cordovaPlugins": [
     "cordova-plugin-device",
     "cordova-plugin-console",
     "cordova-plugin-whitelist",
@@ -103,6 +104,6 @@
     "cordova-plugin-statusbar",
     "cordova-plugin-contacts",
     "ionic-plugin-keyboard"
-],
+  ],
   "cordovaPlatforms": []
 }

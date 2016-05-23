@@ -81,12 +81,12 @@ var /*istanbul ignore next*/_babelTypes = require("babel-types");
 /*istanbul ignore next*/
 var t = _interopRequireWildcard(_babelTypes);
 
-var /*istanbul ignore next*/_values = require("lodash/object/values");
+var /*istanbul ignore next*/_values = require("lodash/values");
 
 /*istanbul ignore next*/
 var _values2 = _interopRequireDefault(_values);
 
-var /*istanbul ignore next*/_extend = require("lodash/object/extend");
+var /*istanbul ignore next*/_extend = require("lodash/extend");
 
 /*istanbul ignore next*/
 var _extend2 = _interopRequireDefault(_extend);
