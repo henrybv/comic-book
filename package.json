@@ -2,10 +2,13 @@
   "name": "ionic-project",
   "version": "1.1.1",
   "description": "An Ionic project",
+  "engines": {
+    "npm": '5.6.0'
+  }
   "main": "server/start.js",
   "scripts": {
     "start": "nodemon --watch server -e js,html server/start.js",
-    "postinstall": "node seed.js"
+    "postinstall": "bower install && node seed.js"
   },
   "dependencies": {
     "angular-hammer": "^2.1.10",
