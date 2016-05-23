@@ -16,6 +16,13 @@ core.factory('StoryFactory', function($http, $localStorage) {
 		.then(function(story) {
 			return story.data;
 		});
+	};	
+
+	StoryFactory.getSquareById = function(squareId) {
+		return $http.get(base + '/api/squares/' + squareId)
+		.then(function(square) {
+			return square.data;
+		});
 	};
 
 

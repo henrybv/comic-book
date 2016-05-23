@@ -8,10 +8,6 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
     $scope.collabAdded = false;
 	$scope.story = story;
     $scope.deleteClicked = false;
-<<<<<<< HEAD
-    // $scope.urlbaby;
-=======
->>>>>>> master
     $scope.dataURLArray = [];
     $ionicTabsDelegate.select('Squares');
 	// console.log('story in storyCTRL', $scope.story)
@@ -23,6 +19,27 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
     //         }
     //     }
     // });
+
+
+    //Load Story Initially From MongoDB:
+    $scope.finalPicsArray = []
+    for (var i = 0; i < $scope.story.squares.length; i++) {
+        console.log("GETTING POPULATE SQUARES!", $scope.story.squares)
+        
+        // var currSquare = new Firebase($scope.story.squares[i].finalImage)
+        console.log("THAT ONE", $scope.story.squares[i])
+        var picObj = {};
+        picObj.id = $scope.story.squares[i]._id;
+        picObj.dataURL = $scope.story.squares[i].finalImage;
+        picObj.creator = $scope.story.squares[i].creator
+        console.log("THE CREATOR", $scope.story.squares[i].creator)
+        console.log('finalPicsArray', $scope.finalPicsArray)
+        $scope.finalPicsArray.push(picObj)
+    }
+
+
+
+    console.log("THE STORY", $scope.story)
 
     $scope.goToCamera = function(){
         // $scope.clicked = false;
@@ -53,63 +70,92 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
     //     }
     // }
 
+// var initialDataLoaded = false;
+// var ref = new Firebase('https://<your-Firebase>.firebaseio.com');
+
+// ref.on('child_added', function(snapshot) {
+//   if (initialDataLoaded) {
+//     var msg = snapshot.val().msg;
+//     // do something here
+//   } else {
+//     // we are ignoring this child since it is pre-existing data
+//   }
+// });
+
+// ref.once('value', function(snapshot) {
+//   initialDataLoaded = true;
+// });
 
 
 // GETTING IMAGES FROM FIREBASE EVERY TIME ONE IS ADDED
 // GIVE EACH BTN AN ID WITH THEIR ID FROM THE PIC OBJ AND DO EVENT DELEGATION WITH THAT ID
+    var firebaseIdCounter = 0
+    var initialDataLoaded = false;
     var ref = new Firebase('https://torrid-inferno-1552.firebaseio.com/' + $scope.story._id);
-    ref.on('value', function(snapshot){
-<<<<<<< HEAD
-        var obj = snapshot.val();
-        var arr = [];
-        for (var squareId in obj){
-            var dataURL = obj[squareId].url
-            arr.push(dataURL);
-        }
-        $scope.dataURLArray = arr;
-=======
-        console.log('IMAGE CREATED !!')
-        $scope.FBobj = snapshot.val();
-        console.log('OBJ: ', $scope.FBobj);
-        var arr = [];
-        $scope.finalPicsArray = [];
-
-        for (var key in $scope.FBobj) {
+    ref.on('child_added', function(snapshot, prevChildKey) {
+        if(initialDataLoaded) {
             var picObj = {};
-            picObj.id = key;
-            picObj.dataURL = $scope.FBobj[key].url;
-            $scope.finalPicsArray.push(picObj);
-        };
-        console.log('finalPicsArray', $scope.finalPicsArray)
+            picObj.id = firebaseIdCounter;
+            picObj.dataURL = snapshot.val().url;
+            picObj.creator = snapshot.val().creator
+            $scope.finalPicsArray.push(picObj)
+            $scope.$digest();
+            firebaseIdCounter++
+        }
+      // code to handle new child.
+    });    
 
-        // DIGEST RUNS BEFORE FINALPICARRY COMPLETE PLUS DIGEST DOESNT RUN FOR PIC ADDED FROM COLLABR CUZ NO USER INTERACTION SO HAVE TO RUN THIS
-        setTimeout(function(){
-            $scope.$apply(function(){
-                $scope.finalPicsArray = $scope.finalPicsArray;
-            })
-        }, 20);
-
-
-
-
-        // for (var squareId in $scope.FBobj){
-        //     var dataURL = $scope.FBobj[squareId].url
-        //     arr.push(dataURL);
-        // }
-        // $scope.dataURLArray = arr;
-        // console.log('SCOPE dataURLArray:', $scope.dataURLArray)
->>>>>>> master
-
-
+    ref.once('value', function(snapshot) {
+      initialDataLoaded = true;
+      console.log('initialDataLoaded', initialDataLoaded)
     });
+    // ref.on('value', function(snapshot){
+    //     $scope.FBobj = snapshot.val();
+    //     console.log('OBJ: ', $scope.FBobj);
+    //     var arr = [];
+    //     $scope.finalPicsArray = [];
+
+    //     for (var key in $scope.FBobj) {
+    //         StoryFactory.getSquareById(key)
+    //         .then(function(square){
+    //             var picObj = {};
+    //             picObj.id = key;
+    //             picObj.dataURL = $scope.FBobj[key].url;
+    //             picObj.creator = square.creator
+    //             console.log("THE CREATOR", square.creator)
+    //             $scope.finalPicsArray.push(picObj);
+    //             console.log('finalPicsArray', $scope.finalPicsArray)
+    //         })
+    //     };
+
+    //     for (var i = 0; i < finalPicsArray.length; i++) {
+    //         finalPicsArray[i]
+    //     }
+
+    //     // DIGEST RUNS BEFORE FINALPICARRY COMPLETE PLUS DIGEST DOESNT RUN FOR PIC ADDED FROM COLLABR CUZ NO USER INTERACTION SO HAVE TO RUN THIS
+    //     setTimeout(function(){
+    //         $scope.$apply(function(){
+    //             $scope.finalPicsArray = $scope.finalPicsArray;
+    //         })
+    //     }, 20);
 
 
 
-<<<<<<< HEAD
-=======
+
+    //     // for (var squareId in $scope.FBobj){
+    //     //     var dataURL = $scope.FBobj[squareId].url
+    //     //     arr.push(dataURL);
+    //     // }
+    //     // $scope.dataURLArray = arr;
+    //     // console.log('SCOPE dataURLArray:', $scope.dataURLArray)
 
 
->>>>>>> master
+    // });
+
+
+
+
+
     
 // // GETTING IMAGES FROM FIREBASE EVERY TIME ONE IS ADDED
 //     var ref = new Firebase('https://torrid-inferno-1552.firebaseio.com/' + $scope.story._id);
@@ -197,16 +243,6 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
         });
     };
 
-<<<<<<< HEAD
-    // DELETE SQUARE - EVENT DELEGATION
-    // $(document).ready(function() {
-    //     $('#here').delegate('canvas', 'click', function() {
-    //         var item = $(this);
-    //         console.log(item[0].id);
-    //     });
-    // });
-=======
->>>>>>> master
 
     function deleteSquare () {
         var item = $(this);

@@ -1,4 +1,45 @@
-/* Empty. Add your own CSS if you like */
+/* ------  AVATARS  ------*/
+#avatarSmall {
+  width:30px;
+  border-radius: 20px
+}
+.avatarSmallText {
+  width:30px;
+  font-size: 1em;
+}
+
+/*------- Story State Avatar Classes/Ids -------*/
+.squareCreator {
+  float: left;
+  /*background:   #9CF;*/
+  border-radius: 10px;
+  /*border: 5px solid #33F;*/
+  margin: 10px;
+  width: 300px;
+}
+
+.storyAvatar {
+  float:left;
+  width: 25%;
+  height: auto;
+  border-radius: 50px;
+  border: 5px solid orange;
+  margin: -10px 10px 10px;
+  -webkit-box-shadow: 0px 0px 10px #000;
+  left: 0px;
+}
+
+#creatorInfo {
+  width: 66%;
+  color: white;
+  display: inline-block;
+  /*margin: 0px 0px 0px -25px;*/
+  /*padding: 0px 0px 0px -25px;*/
+  text-align: left;
+}
+
+
+/*----- OTHER ----*/
 .animate-enter, 
 .animate-leave
 { 
@@ -91,9 +132,11 @@
 	width: 125px;
 }
 
-/*#transparent {
-	background: white;
-}*/
+#transparent {
+	margin:10px -5px 0px 0px !important;
+  padding: 0px -5px -5px 0px;
+
+}
 
 .canvasAndAddonContainer {
     overflow: hidden;
@@ -454,7 +497,6 @@
 
 
 
-<<<<<<< HEAD
 /*---------- ADDON SELECTION STATE ----------*/
 
 #slinky{
@@ -471,12 +513,12 @@
 
 #slinkyText{
   float: left;
-  margin: -25px 0px 0px 0px;
+  margin: -30px 0px 0px 0px;
   width: 375px;
-  height: 25px;
+  height: 30px;
   font-size: 1em;
   text-align: center;
-  padding: 3px 0px;
+  padding: 5px 0px;
   background-color: red;
   border-radius: 5px;
   border: 2px solid orange;
@@ -486,8 +528,10 @@
 
 
 .animation-slinky {
-  -webkit-animation: slinky 3500ms linear infinite;
-  animation: slinky 3500ms linear infinite;
+  -webkit-animation: slinky 3500ms linear 1;
+  /*animation: slinky 3500ms linear 1;*/
+  -webkit-animation-fill-mode: forwards;
+
 }
 
 /* Generated with Bounce.js. Edit at http://goo.gl/wwr4qL */
@@ -761,7 +805,6 @@
   95.42% { -webkit-transform: matrix3d(0, 1, 0, 0, -1, 0, 0, 0, 0, 0, 1, 0, 239.997, -99.997, 0, 1); transform: matrix3d(0, 1, 0, 0, -1, 0, 0, 0, 0, 0, 1, 0, 239.997, -99.997, 0, 1); }
   100% { -webkit-transform: matrix3d(0, 1, 0, 0, -1, 0, 0, 0, 0, 0, 1, 0, 240, -100, 0, 1); transform: matrix3d(0, 1, 0, 0, -1, 0, 0, 0, 0, 0, 1, 0, 240, -100, 0, 1); } 
 }
-=======
 
->>>>>>> master
+
 

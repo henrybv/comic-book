@@ -14,16 +14,10 @@ core.directive('navbarAddon', function($rootScope) {
         border: "=",
         filter: "=",
         url: "=",
-<<<<<<< HEAD
         story: "=",
         picuretakenfalse: "="
     },
     link: function (scope, $scope, element, attrs) {
-=======
-        story: "="
-    },
-    link: function (scope, element, attrs) {
->>>>>>> master
     
     //------LIVE FEED BEGIN-----//
     //// LIVE FEED - GETTING IMAGES FROM FIREBASE EVERY TIME ONE IS ADDED
@@ -41,7 +35,6 @@ core.directive('navbarAddon', function($rootScope) {
     //     }
     // }
     
-<<<<<<< HEAD
     // var ref = new Firebase('https://torrid-inferno-1552.firebaseio.com/' + $scope.story._id);
     // ref.on('value', function(snapshot){
     //     var obj = snapshot.val();
@@ -60,24 +53,6 @@ core.directive('navbarAddon', function($rootScope) {
     //------LIVE FEED END-----//
 
 
-=======
-    // var ref = new Firebase('https://torrid-inferno-1552.firebaseio.com/' + scope.story._id);
-    // ref.on('value', function(snapshot){
-    //     var here = document.getElementById('here');
-    //         console.log('Firebase Div:', here)
-    //     while (here.firstChild){
-    //         // console.log('HERE FIRST CHILD', here.firstChild)
-    //         here.removeChild(here.firstChild);
-    //     }
-    //     var obj = snapshot.val();
-    //     for (var squareId in obj){
-    //         urlToNewCanvas(obj[squareId].url, squareId);
-    //     }
-
-    // });
-
-    //------LIVE FEED END-----//
->>>>>>> master
         // scope.showBottomNav = true;
         //scope.addons is set above from the state resolve
                 //Sets Filters
@@ -183,11 +158,7 @@ core.directive('navbarAddon', function($rootScope) {
         //Changes the addonStates below to the addonType clicked
         scope.changeNav = function(addon){
             scope.addonType = addon;
-<<<<<<< HEAD
             // //Changes addonType to the current addon Tab
-=======
-            // Changes addonType to the current addon Tab
->>>>>>> master
             if (scope.addonType === 'filter') {
                 setFilterThumbnails();
             }

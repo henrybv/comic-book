@@ -29,11 +29,7 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         }
     }
     //REMOVE WHEN USING URL FROM PHOTO / ALBUM LIBRARY
-<<<<<<< HEAD
     urlToCanvas($scope.url, 'imageCanvas');
-=======
-    // urlToCanvas($scope.url, 'imageCanvas');
->>>>>>> master
 
     
     $scope.pictureTakenTrue = function(){
@@ -95,11 +91,8 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
             $scope.url = imageURL;
             urlToCanvas($scope.url, 'imageCanvas');
         });
-<<<<<<< HEAD
 
         $scope.pictureTakenTrue()
-=======
->>>>>>> master
     }
 
 
@@ -171,11 +164,6 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
             // console.log(!!$scope.bubblesArray)
             var canvas = document.getElementById('imageCanvas');
             var context = canvas.getContext('2d');
-<<<<<<< HEAD
-=======
-            var context = canvas.getContext('2d');
-            var context = canvas.getContext('2d');
->>>>>>> master
             $scope.bubblesArray.forEach(function(bubble){
 
                 //Bubble Coords
@@ -266,11 +254,8 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         return $q.all(onloadsRunning);
 
     }
-<<<<<<< HEAD
 
 
-=======
->>>>>>> master
 
     var bubblestoImageData = function() {
 
@@ -341,15 +326,9 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
     //Defines the saveImage function which Saves Image to DB and adds to story
     $scope.saveImage = function(){
 
-<<<<<<< HEAD
         return bubblestoImageData()
         .then(function(){
             console.log("Got into 2nd promise chain")
-=======
-        bubblestoImageData()
-        .then(function(data){
-            console.log("Promise, Post Bubble", $scope.bubblesArray)
->>>>>>> master
             return addBorderToCanvas()
         })
         .then(function(){
@@ -365,16 +344,12 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
             return addStickersToCanvas()
         })
         .then(function(){
-<<<<<<< HEAD
-=======
-            console.log("I bet it doesnt get here")
->>>>>>> master
             var canvas = document.getElementById('imageCanvas');
             var finalDataURL = canvas.toDataURL('image/png')
-            CameraFactory.createSquare(finalDataURL, $scope.story._id, $scope.currentUser)
+            return CameraFactory.createSquare(finalDataURL, $scope.story._id, $scope.currentUser)
         })        
         .then(function(square){
-            $state.go('story', {storyId: $scope.story._id});
+            $state.go('story', {storyId: $scope.story._id}, {reload: true});
         })
         .catch(function(err){
             console.error(err);
@@ -447,16 +422,12 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
 
         //While there are less then 4 bubbles, allow addition of bubbles
         if(bubblecounter < 4){
-<<<<<<< HEAD
             //Push bubbles into correct arrays, which are ng-repeated in HTML
             if (currentBubbleType[2] === 'narration'){
                 $scope.narrationArray.push({id: bubbleIdcounter, type: bubbleName, pointerStyle: currentBubbleStyle[0], pointerBorderStyle: currentBubbleStyle[1], x: '0px', y: '0px' })
             } else {
                 $scope.bubblesArray.push({id: bubbleIdcounter, type: bubbleName, pointerStyle: currentBubbleStyle[0], pointerBorderStyle: currentBubbleStyle[1], x: '0px', y: '0px' })
             }
-=======
-            $scope.bubblesArray.push({id: bubbleIdcounter, type: bubbleName, pointerStyle: currentBubbleStyle[0], pointerBorderStyle: currentBubbleStyle[1], x: '0px', y: '0px' })
->>>>>>> master
             bubblecounter++;
             bubbleIdcounter++;
             console.log($scope.bubblesArray, $scope.narrationArray)

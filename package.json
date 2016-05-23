@@ -5,7 +5,7 @@
   "main": "server/start.js",
   "scripts": {
     "start": "nodemon --watch server -e js,html server/start.js",
-    "postinstall": "gulp build"
+    "postinstall": "node seed.js"
   },
   "dependencies": {
     "angular-hammer": "^2.1.10",
