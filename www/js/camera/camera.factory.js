@@ -9,7 +9,8 @@ core.factory('CameraFactory', function($http){
       console.log('created a new square', newSquare)
       var firebaseImagesOfStory = new Firebase("https://torrid-inferno-1552.firebaseio.com/" + storyId);
       firebaseImagesOfStory.child(String(newSquare.data._id)).set({'url': dataUrl})
-      return $http.put(base + '/api/squares/' + newSquare.data._id, {finalImage: firebaseImagesOfStory + '/' + storyId + '/' + newSquare.data._id})
+      // console.log("CameraFactory DATAURL", dataUrl)
+      return $http.put(base + '/api/squares/' + newSquare.data._id, {finalImage: dataUrl})
     })
     .then(function(updatedSquare){
       console.log('updated square with final image url', updatedSquare)

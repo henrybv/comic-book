@@ -4,6 +4,10 @@
 
       <div class="list list-inset">
         <label class="item item-input">
+          <span class="input-label">Username</span>
+          <input type="text" name="username" ng-model="signup.username" class="form-control" id="username">
+        </label>
+        <label class="item item-input">
           <span class="input-label">Email</span>
           <input type="email" name="email" ng-model="signup.email" class="form-control" id="email">
         </label>
@@ -28,7 +32,7 @@
     </ion-content>
   </ion-view>
   <div class="bar bar-footer bar-assertive" ng-show="error">
-    <div class="title">{{ error.message }}</div>
+    <div class="title">Invalid Signup Info</div>
   </div>
 </form>
 

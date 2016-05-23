@@ -346,10 +346,10 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         .then(function(){
             var canvas = document.getElementById('imageCanvas');
             var finalDataURL = canvas.toDataURL('image/png')
-            CameraFactory.createSquare(finalDataURL, $scope.story._id, $scope.currentUser)
+            return CameraFactory.createSquare(finalDataURL, $scope.story._id, $scope.currentUser)
         })        
         .then(function(square){
-            $state.go('story', {storyId: $scope.story._id});
+            $state.go('story', {storyId: $scope.story._id}, {reload: true});
         })
         .catch(function(err){
             console.error(err);

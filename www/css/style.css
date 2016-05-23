@@ -1,4 +1,40 @@
-/* Empty. Add your own CSS if you like */
+/* ------  AVATARS  ------*/
+#avatarSmall {
+  width:30px;
+  border-radius: 20px
+}
+.avatarSmallText {
+  width:30px;
+  font-size: 1em;
+}
+
+/*------- Story State Avatar Classes/Ids -------*/
+.squareCreator {
+  float: left;
+  background:   #9CF;
+  border-radius: 10px;
+  border: 5px solid #33F;
+  margin: 10px;
+  width: 300px;
+}
+
+.storyAvatar {
+  float:left;
+  width: 33%;
+  height: auto;
+  border-radius: 50px;
+  margin: 5px;
+  border: 10px solid orange;
+  -webkit-box-shadow: 0px 0px 10px #000;
+  left: 0px;
+}
+
+#creatorInfo {
+  width: 66%;
+}
+
+
+/*----- OTHER ----*/
 .animate-enter, 
 .animate-leave
 { 
@@ -485,8 +521,8 @@
 
 
 .animation-slinky {
-  -webkit-animation: slinky 3500ms linear 5;
-  animation: slinky 3500ms linear 5;
+  -webkit-animation: slinky 3500ms linear 1;
+  animation: slinky 3500ms linear 1;
 }
 
 /* Generated with Bounce.js. Edit at http://goo.gl/wwr4qL */
@@ -760,4 +796,6 @@
   95.42% { -webkit-transform: matrix3d(0, 1, 0, 0, -1, 0, 0, 0, 0, 0, 1, 0, 239.997, -99.997, 0, 1); transform: matrix3d(0, 1, 0, 0, -1, 0, 0, 0, 0, 0, 1, 0, 239.997, -99.997, 0, 1); }
   100% { -webkit-transform: matrix3d(0, 1, 0, 0, -1, 0, 0, 0, 0, 0, 1, 0, 240, -100, 0, 1); transform: matrix3d(0, 1, 0, 0, -1, 0, 0, 0, 0, 0, 1, 0, 240, -100, 0, 1); } 
 }
+
+
 

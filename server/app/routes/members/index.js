@@ -17,7 +17,6 @@ var ensureAuthenticated = function (req, res, next) {
 
 
 router.post('/', function(req, res, next) {
-    console.log('in members post route', req.body)
     User.create(req.body)
     .then(function(newUser) {
         
@@ -27,12 +26,11 @@ router.post('/', function(req, res, next) {
 });
 
 router.get('/', function(req, res, next) {
-        console.log('in members get route')
 
     User.find()
+    // .populate('friends')
     .then(function(users){
         res.send(users);
-        console.log('in members get route with users', users)
 
     })
     .catch(next);
@@ -95,5 +93,15 @@ router.put('/:userId', function(req, res, next){
         })
         .then(null, next)
     }
+});
+
+router.put('/:userId/avatar', function(req, res, next) {
+    console.log('GOT INTO ROUTE AVATAR', req.body, req.params.userId)
+    User.findByIdAndUpdate(req.params.userId, req.body, {new: true})
+    .then(function(updatedAvatar) {
+        console.log('new avatar in user/avatar route', updatedAvatar)
+        res.status(200).send(updatedAvatar);
+    })
+    .then(null, next)
 });
 

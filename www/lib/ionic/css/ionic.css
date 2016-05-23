@@ -3195,7 +3195,7 @@ textarea {
   /* 3 */
   font-size: 100%;
   /* 2 */
-  font-family: 'comic1';
+  font-family: 'comic1' !important;
   /* 1 */
   outline-offset: 0;
   /* 4 */

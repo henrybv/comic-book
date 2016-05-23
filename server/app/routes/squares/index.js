@@ -8,6 +8,7 @@ module.exports = router;
 
 router.get('/:squareId', function(req, res, next){
 	Square.findById(req.params.squareId)
+    .populate('creator')
 	.then(function(square){
 		res.status(200).send(square);
 	})
@@ -18,7 +19,6 @@ router.get('/:squareId', function(req, res, next){
 router.put('/:squareId', function(req, res, next){
 	Square.findByIdAndUpdate(req.params.squareId, {$set: {'finalImage': req.body.finalImage}}, {new: true})
 	.then(function(updatedSquare){
-		console.log('updated square in square route', updatedSquare)
 		res.status(200).send(updatedSquare);
 	})
 	.catch(next);

@@ -1,5 +1,22 @@
+<<<<<<< HEAD
 //FULLSTACK BASE - Jeff
 var base = 'http://192.168.1.7:1337'
+=======
+//FULLSTACK BASE - Debanshi
+// var base = 'http://192.168.1.184:1337'
+// var base = 'http://192.168.1.183:1337'
+// var base = 'http://192.168.0.20:1337'
+// var base = 'http://192.168.1.184:1337'
+//FULLSTACK BASE - Eric
+var base = 'http://192.168.1.133:1337'
+// var base = 'http://192.168.0.113:1337'
+// var base = 'http://192.168.0.105:1337'
+// var base = 'http://192.168.0.20:1337'
+//FULLSTACK BASE - Jeff
+// var base = 'http://192.168.1.133:1337'
+//FULLSTACK BASE - Henry
+// var base = 'http://192.168.1.204:1337'
+>>>>>>> master
 
 
 
@@ -73,9 +90,21 @@ core.config(function($stateProvider, $urlRouterProvider) {
   //   templateUrl: 'js/home/home.myCollabs.template.html'
   // })
   .state('settings', {
+    cache: false,
     url: '/settings',
     templateUrl: 'js/settings/settings.template.html',
-    controller: 'SettingsCtrl'
+    controller: 'SettingsCtrl',
+    resolve: {
+        // myStories: function (StoryFactory, $localStorage){
+        //   return StoryFactory.getMyStories($localStorage.user._id);
+        // },
+        // myCollabs: function(StoryFactory, $localStorage) {
+        //   return  StoryFactory.getMyCollabs($localStorage.user._id);
+        // },
+        loggedInUser: function(AuthService){
+          return AuthService.getLoggedInUser()
+        }
+    }
   })
   .state('camera', {
     cache: false,

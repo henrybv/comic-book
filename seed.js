@@ -29,63 +29,78 @@ var Square = mongoose.model('Square');
 
 
 var userSeed = [
-    {
+    {   
+        username: 'topdogg',
         email: 'admin@me.com',
         password: '123',
     },
-    {
+    {   
+        username: 'itsmeg',
         email: 'me@me.com',
         password: '123',
     },
     {
+        username: 'dbdogg',
         email: 'debanshi@me.com',
         password: '123',
     },
-    {
+    {   
+        username: 'mynamejeff',
         email: 'jeff@me.com',
         password: '123',
     },
     {
+        username: 'henrythehomie',
         email: 'henry@me.com',
         password: '123',
     },
     {
+        username: 'traubitz',
         email: 'eric@me.com',
         password: '123',
     },
     {
+        username: 'katmello',
         email: 'kat@me.com',
         password: '123',
     },
     {
+        username: 'rotatingrafi',
         email: 'rafi@me.com',
         password: '123',
     },
     {
+        username: 'daninthevans',
         email: 'dan@me.com',
         password: '123',
     },
     {
+        username: 'gabetheninja',
         email: 'gabe@me.com',
         password: '123',
     },
     {
+        username: 'omriwankanobi',
         email: 'omri@me.com',
         password: '123',
     },
     {
+        username: 'itsjoeyo',
         email: 'joe@me.com',
         password: '123',
     },
     {
+        username: 'nowayjose',
         email: 'jose@me.com',
         password: '123',
     },
     {
+        username: 'dyang',
         email: 'david@me.com',
         password: '123',
     },
     {
+        username: 'nimitinit',
         email: 'nimit@me.com',
         password: '123',
     }
@@ -307,7 +322,37 @@ var addonSeed = [
         source: 'assets/borders/orange-border.png',
         thumbnail: 'assets/borders/thumbnails/orange-border.png',
         type: 'border'
+    },
+    {
+        name: 'Maroon Border',
+        source: 'assets/borders/maroon-border1.png',
+        thumbnail: 'assets/borders/maroon-border1.png',
+        type: 'border'
+    },
+    {
+        name: 'Dark Blue Border',
+        source: 'assets/borders/dar-blue-border1.png',
+        thumbnail: 'assets/borders/dar-blue-border1.png',
+        type: 'border'
     },    
+    {
+        name: 'Yellow Border',
+        source: 'assets/borders/yellow-border1.png',
+        thumbnail: 'assets/borders/yellow-border1.png',
+        type: 'border'
+    }, 
+    {
+        name: 'Dark Red Border',
+        source: 'assets/borders/red-border1.png',
+        thumbnail: 'assets/borders/red-border1.png',
+        type: 'border'
+    },    
+    {
+        name: 'Black Border',
+        source: 'assets/borders/black-border1.png',
+        thumbnail: 'assets/borders/black-border1.png',
+        type: 'border'
+    },   
     {
         name: 'Border D',
         source: 'assets/borders/purpleframe.png',

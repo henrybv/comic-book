@@ -21,10 +21,16 @@ router.get('/', function(req, res, next) {
 //get a specific story and all its squares
 router.get('/:storyId', function(req, res, next) {
     Story.findById(req.params.storyId)
-    .populate('squares friends')
+    // .populate('squares squares friends')
+    .populate({
+        path: 'squares',
+        populate: { path: 'creator' }
+    })
+    .populate({
+        path: 'friends'
+    })
     .exec()
     .then(function(story) {
-        console.log('get story from route', story)
         res.status(200).send(story);
     })
     .catch(next)
@@ -32,12 +38,10 @@ router.get('/:storyId', function(req, res, next) {
 
 //get all stories created by a user
 router.get('/user/:userId', function(req, res, next) {
-    console.log('in route to get stories created by a user')
     Story.find({owner: req.params.userId})
     .populate('friends')
     .exec()
     .then(function(stories) {
-        console.log('in route to get stories created by a user. returns: ', stories)
         res.status(200).send(stories);
     })
     .catch(next)
@@ -55,7 +59,6 @@ router.get('/collaborator/:userId', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-    console.log('ROUTE in post new story with req.body: ', req.body)
     Story.create(req.body)
     .then(function(story) {
         return  Story.findById(story._id).populate('friends');
@@ -71,21 +74,14 @@ router.put('/:storyId/squares', function(req, res, next){
     var SQUARETOSEND;
     return mongoose.model('Square').create({creator: req.body.creator})
     .then(function(newSquare){
-        // console.log('NEW SQUARE: ', newSquare);
-        // var writeToPath = path.join(__dirname, '../../assets/' + newSquare._id);
-        // fs.writeFile(writeToPath, req.body.dataUrl, function(err) {
-            // console.log('hit callback');
-        // })
         return mongoose.model('Square')
         .findByIdAndUpdate(newSquare._id, {upsert: true, new: true})
     })
     .then(function(square) {
         SQUARETOSEND = square;
-        console.log('SQUARE WITH SRC PATH AS FINAL IMAGE: ', square)
         return Story.findByIdAndUpdate(req.params.storyId, {$push: {'squares': square._id}}, { upsert: true, new: true });
     })
     .then(function(){
-        console.log('still access to SQUARE', SQUARETOSEND)
         res.status(200).send(SQUARETOSEND);
     })
     .catch(next)
@@ -94,7 +90,6 @@ router.put('/:storyId/squares', function(req, res, next){
 router.put('/:storyId/collaborators', function(req, res, next) {
     Story.update({ _id: req.params.storyId },{ $pushAll: { friends: req.body.collaborators }},{ upsert: true, new: true })
     .then(function(story) {
-        console.log('UPDATED STORY: ', story);
         res.send(story);
     })
     .catch(next);
@@ -102,7 +97,6 @@ router.put('/:storyId/collaborators', function(req, res, next) {
 
 router.put('/:storyId/squares/:squareId', function(req, res, next) {
     var updatedStory;
-    console.log('STORY ID:', req.params.storyId, 'SQUARE ID:', req.params.squareId);
     Story.update( {_id: req.params.storyId}, { $pull: {'squares': req.params.squareId} }, { upsert: true, new: true } )
     .then(function(story) {
         updatedStory = story;
@@ -113,31 +107,3 @@ router.put('/:storyId/squares/:squareId', function(req, res, next) {
     })
     .catch(next);
 });
-
-
-
-
-
-
-
-    // function decodeBase64Image(dataString) {
-    //   var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
-    //   var response = {};
-    //   if (matches.length !== 3) {
-    //     return new Error('Invalid input string');
-    //   }
-    //   response.type = matches[1];
-    //   response.data = new Buffer(matches[2], 'base64');
-    //   return response;
-    // }
-    // var imageBuffer = decodeBase64Image(req.body.dataUrl);
-    // console.log('IMAGE BUFFER: ', imageBuffer);
-
-
-
-
-
-
-
-
-

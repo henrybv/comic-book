@@ -32,11 +32,11 @@ var schema = new mongoose.Schema({
         type: String,
         default: '/img/filteredPic.jpg'
     },
-    border: {
-        //may not need this one
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'AddOn',
-    },
+    // border: {
+    //     //may not need this one
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'AddOn',
+    // },
     // addons: [addonChildSchema],
     finalImage: {
         //will get stored in firebase also with _id

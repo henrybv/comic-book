@@ -1,5 +1,5 @@
-//FULLSTACK BASE - Jeff
-var base = 'http://192.168.1.7:1337'
+
+var base = 'http://192.168.1.183:1337'
 
 
 
@@ -56,26 +56,16 @@ core.config(function($stateProvider, $urlRouterProvider) {
       }
     }
   })
-  // .state('home.myStories', {
-  //   url: '/home/myStories',
-  //   templateUrl: 'js/home/home.myStories.template.html'
-  // })
-  // .state('home.myCollabs', {
-  //   url: '/home/myCollabs',
-  //   templateUrl: 'js/home/home.myCollabs.template.html'
-  // })
-  // .state('home.myStories', {
-  //   url: '/home/myStories',
-  //   templateUrl: 'js/home/home.myStories.template.html'
-  // })
-  // .state('home.myCollabs', {
-  //   url: '/home/myCollabs',
-  //   templateUrl: 'js/home/home.myCollabs.template.html'
-  // })
   .state('settings', {
+    cache: false,
     url: '/settings',
     templateUrl: 'js/settings/settings.template.html',
-    controller: 'SettingsCtrl'
+    controller: 'SettingsCtrl',
+    resolve: {
+        loggedInUser: function(AuthService){
+          return AuthService.getLoggedInUser()
+        }
+    }
   })
   .state('camera', {
     cache: false,
@@ -127,6 +117,9 @@ core.config(function($stateProvider, $urlRouterProvider) {
       loggedInUser: function (AuthService){
         return AuthService.getLoggedInUser();
       },
+      // storySquares: function(){
+      //   return 
+      // },
       allUsers: function(UserFactory, story, loggedInUser) {
         return UserFactory.getAllUsers()
         .then(function(users) {
