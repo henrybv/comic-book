@@ -1,4 +1,4 @@
-core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $cordovaCamera, $cordovaFileTransfer, Grafi, $localStorage, CameraFactory, FilterFactory) {
+core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $cordovaCamera, $cordovaFile, $cordovaFileTransfer, Grafi, $localStorage, CameraFactory, FilterFactory, $ionicLoading) {
 	$scope.story = story;
     $scope.currentUser = $localStorage.user._id;
     // $scope.currentSquare;
@@ -6,7 +6,8 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
 
     //REMOVE LINK WHEN USING URL FROM PHOTO / ALBUM LIBRARY
     // $scope.url = '../../img/ben.png';
-    // $scope.url;
+    $scope.url;
+    
 
 
     var urlToCanvas = function(url, canvasId, x, y){
@@ -259,22 +260,78 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
             return addStickersToCanvas()
         })
         .then(function(){
-            console.log("I bet it doesnt get here")
             var canvas = document.getElementById('imageCanvas');
-            var finalDataURL = canvas.toDataURL('image/png')
+            $scope.finalDataURL = canvas.toDataURL('image/png')
             console.log("SAVE IMAGE SCOPE STORY ID", $scope.story._id)
-            CameraFactory.createSquare(finalDataURL, $scope.story._id, $scope.currentUser)
+            CameraFactory.createSquare($scope.finalDataURL, $scope.story._id, $scope.currentUser)
         })        
         .then(function(square){
+            console.log('square after saving', square)
             // $scope.currentSquare = square;
             // console.log('saved image, in ctrl', $scope.currentSquare)
-            console.log("PROMISE STORY ID", $scope.story._id)
+            // $scope.urlToDL = $scope.url;
+            // $scope.urlToDL="http://papers.com.pk/xads/2015/8-10/Express/1103007127-1.jpg";
+            // var filename = $scope.urlToDL.split("/").pop();
+            // saveImageToLibrary();
             $state.go('story', {storyId: $scope.story._id});
         })
         .catch(function(err){
             console.error(err);
         })
 
+    }
+
+
+    var saveImageToLibrary = function(){
+            $scope.urlToDL = 'assets/logo1.png'
+            var filename = "test"
+            // var filename = $scope.urlToDL;
+            alert(filename);
+            $scope.download = function() {
+            window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs) {
+            fs.root.getDirectory(
+            "powwow",
+            {
+                create: true
+            },
+            function(dirEntry) {
+                dirEntry.getFile(
+                filename, 
+                {
+                    create: true, 
+                    exclusive: false
+                }, 
+                function gotFileEntry(fe) {
+                    var p = fe.toURL();
+                    fe.remove();
+                    ft = new FileTransfer();
+                    ft.download(
+                        encodeURI($scope.urlToDL),
+                        p,
+                        function(entry) {
+                           Pace.restart();
+                            $scope.imgFile = entry.toURL();
+                        },
+                        function(error) {
+                            alert("Download Error Source -> " + error.source);
+                        },
+                       false
+                    );
+                }, 
+                function() {
+                    $ionicLoading.hide();
+                    console.log("Get file failed");
+                    alert('error');
+                });
+            });
+        },
+        function() {
+            $ionicLoading.hide();
+            console.log("Request for filesystem failed");
+        });
+        }
+        // });
+        console.log("PROMISE STORY ID", $scope.story._id)
     }
 
     //Listens for the event being emmited from navbar.main.controller that will run our saveImage() function

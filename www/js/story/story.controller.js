@@ -20,6 +20,8 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
     //     }
     // });
 
+
+
     $scope.goToCamera = function(){
         // $scope.clicked = false;
         // $scope.collaborators = [];

@@ -28,6 +28,9 @@
         <p ng-show="!story.friends.length" style="color:black;">no collaborators</p>
         <p ng-show="story.friends.length" style="color:black;">Collaborators: <span ng-repeat="friend in story.friends">{{ friend.email }}{{ $last ? '' : ', ' }}</span></p>
         <i class="icon ion-chevron-right icon-accessory"></i>
+        <ion-option-button class="button-assertive" ng-click="deleteStory(story._id)">
+          Delete
+        </ion-option-button>
       </ion-item>
     </ion-list>
 
@@ -39,6 +42,9 @@
         <h2 style="color:red;">{{story.title}}</h2>
         <p style="color:black;">Creator: {{ story.owner.email }}</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
+      <ion-option-button class="button-assertive" ng-click="leaveCollab(story._id)">
+          Delete
+        </ion-option-button>
       </ion-item>
     </ion-list>
 

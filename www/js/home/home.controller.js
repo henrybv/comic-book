@@ -1,4 +1,4 @@
-core.controller('homeCtrl', function(myStories, myCollabs, $scope, $state) {
+core.controller('homeCtrl', function($localStorage, myStories, myCollabs, $scope, $state, StoryFactory) {
 
 	$scope.name = "Hello";
 	$scope.myStories = myStories;
@@ -10,6 +10,34 @@ core.controller('homeCtrl', function(myStories, myCollabs, $scope, $state) {
 	$scope.changeState = function(id){
 		$state.go('story', {storyId: id})
 	};
+	$scope.userId = $localStorage.user._id;
+
+	$scope.deleteStory = function(storyId){
+		console.log($scope.myStories);
+		var idx;
+		$scope.myStories.forEach(function(story, index){
+			if (story._id === storyId) idx = index;
+		})
+		console.log('index of story in array', idx)
+		$scope.myStories.splice(idx, 1)
+		console.log('clicked delelete storY')
+        StoryFactory.deleteStory(storyId)
+        .then(function(story){
+            console.log('deleted story in controller', story)
+        })
+    }
+
+    $scope.leaveCollab = function(storyId){
+    	var idx;
+		$scope.myStories.forEach(function(story, index){
+			if (story._id === storyId) idx = index;
+		})
+		$scope.myCollabs.splice(idx, 1);
+		StoryFactory.leaveCollab(storyId, $scope.userId)
+		.then(function(){
+			console.log('left collab');
+		})
+    }
 
 	$scope.getMyStories = function() {
 		$scope.showMyCollabs = false;

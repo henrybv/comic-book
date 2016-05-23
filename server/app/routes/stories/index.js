@@ -88,6 +88,15 @@ router.put('/:storyId/collaborators', function(req, res, next) {
     .catch(next);
 });
 
+router.put('/:storyId/leaveCollab/:userId', function(req, res, next){
+    Story.findByIdAndUpdate(req.params.storyId,{$pull: {friends: req.params.userId}}, { upsert: true, new: true })
+    .then(function(story){
+        console.log('updated story after splicing out friends', story);
+        res.send('updated');
+    })
+    .catch(next);
+})
+
 router.put('/:storyId/squares/:squareId', function(req, res, next) {
     var updatedStory;
     Story.update( {_id: req.params.storyId}, { $pull: {'squares': req.params.squareId} }, { upsert: true, new: true } )
@@ -100,3 +109,11 @@ router.put('/:storyId/squares/:squareId', function(req, res, next) {
     })
     .catch(next);
 });
+
+router.delete('/:storyId', function(req, res, next){
+    Story.findByIdAndRemove({_id: req.params.storyId})
+    .then(function(story){
+        res.send(story)
+    })
+    .catch(next);
+})

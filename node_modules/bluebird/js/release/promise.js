@@ -723,6 +723,7 @@ require("./synchronous_inspection")(Promise);
 require("./join")(
     Promise, PromiseArray, tryConvertToPromise, INTERNAL, debug);
 Promise.Promise = Promise;
+Promise.version = "3.4.0";
 require('./map.js')(Promise, PromiseArray, apiRejection, tryConvertToPromise, INTERNAL, debug);
 require('./call_get.js')(Promise);
 require('./using.js')(Promise, apiRejection, tryConvertToPromise, createContext, INTERNAL, debug);

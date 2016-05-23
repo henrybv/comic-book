@@ -39,7 +39,9 @@ var memberExpressionOptimisationVisitor = { /*istanbul ignore next*/
     // don't touch reference in type annotations
     path.skip();
   },
-  /*istanbul ignore next*/Function: function Function(path, state) {
+
+
+  "Function|ClassProperty": function /*istanbul ignore next*/FunctionClassProperty(path, state) {
     // Detect whether any reference to rest is contained in nested functions to
     // determine if deopt is necessary.
     var oldNoOptimise = state.noOptimise;
@@ -51,6 +53,7 @@ var memberExpressionOptimisationVisitor = { /*istanbul ignore next*/
     // of the nested function.
     path.skip();
   },
+
   /*istanbul ignore next*/ReferencedIdentifier: function ReferencedIdentifier(path, state) {
     /*istanbul ignore next*/var node = path.node;
 
