@@ -324,6 +324,7 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
 
     //Defines the saveImage function which Saves Image to DB and adds to story
     $scope.saveImage = function(){
+        console.log('in save image ctrl')
 
         return bubblestoImageData()
         .then(function(){
@@ -348,6 +349,7 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
             return CameraFactory.createSquare(finalDataURL, $scope.story._id, $scope.currentUser)
         })        
         .then(function(square){
+            console.log('square from camera factory in ctrl', square)
             $state.go('story', {storyId: $scope.story._id}, {reload: true});
         })
         .catch(function(err){
@@ -356,6 +358,10 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
 
     }
 
+    //Listens for the event being emmited from navbar.main.controller that will run our saveImage() function
+    $scope.$on('saveImage', function() {
+        $scope.saveImage()
+    })
 
 
 
