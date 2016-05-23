@@ -1,20 +1,23 @@
-<ion-view view-title="Edit Image" id="container">
+<ion-view view-title="Edit Image" id="container" style="background-image: url('assets/yelloworangedots.jpg') !important">
 	<ion-content scroll="false" id="addonWrapper" class="canvasAndAddonContainer">
 
-<!-- PLACEHOLDER BUBBLE -->
-<!-- 	  	<textarea rows="4" cols="50" id='new' style="border:solid black 3px;max-width:120px"></textarea>
-		<h1 ng-click="previewImage()" id="one">PREVIEW IMG</h1>
- --><!-- END OF PLACEHOLDER FOR BUBBLE -->
 
+<<<<<<< HEAD
+		<!-- CANVAS -->
+=======
+>>>>>>> master
  		<div id="here"></div>
  		<canvas id='imageCanvas' width='375' height='375' data-caman-hidpi-disabled="true"></canvas>
  		<img ng-src={{chosenBorder.source}} style="position: absolute; top: 0; left: 0 "></img>
 
+
+ 		<!-- ERROR/SUCCESS DIV -->
 		<p id="addonError" style="display: none;">Too Many Stickers!</p>
 		<p id="addonSuccessfulDelete" style="display: none;">Successfully Deleted</p>
 		<div id="puff"></div>
 		
 
+		<!-- STICKERS -->
 		<img 
 		ng-src={{sticker.source}} 
 		id="sticker{{sticker.id}}" 
@@ -33,30 +36,67 @@
 			left:0px">
 		</img>	
  
+<<<<<<< HEAD
 
-		
-	    	<div
-		    id="bubble{{bubble.id}}"
-	    	class="inputBubble"
-		    hm-panmove="onHammer"
-		    hm-press="onPress"
-		    hm-pressup="onHammerEnd"
-		    hm-panend="onHammerEnd"
-		    ng-repeat="bubble in bubblesArray"
-		    >
-			    <textarea
-			    id="textarea"
-			    scroll="false"
-			    elastic></textarea>
+		<!-- SPEECH/THOUGHT BUBBLES -->	
+    	<div
+	    id="bubble{{bubble.id}}"
+    	class="inputBubble"
+	    hm-panmove="onHammer"
+	    hm-press="onPress"
+	    hm-pressup="onHammerEnd"
+	    hm-panend="onHammerEnd"
+	    ng-repeat="bubble in bubblesArray"
+	    >
+		    <textarea
+		    id="textarea"
+		    scroll="false"
+		    elastic></textarea>
 
-		    	<div id="pointer{{bubble.id}}" ng-style="{{bubble.pointerStyle}}"></div>
-		    	<div id="pointerBorder{{bubble.id}}" ng-style="{{bubble.pointerBorderStyle}}"></div>
-	    	</div>
-	   
+	    	<div id="pointer{{bubble.id}}" ng-style="{{bubble.pointerStyle}}"></div>
+	    	<div id="pointerBorder{{bubble.id}}" ng-style="{{bubble.pointerBorderStyle}}"></div>
+    	</div>
+	    
 
+    	<!-- NARRATION BUBBLES -->
+    	 <div
+	    id="narration{{narration.id}}"
+    	class="narrationBubble"
+	    hm-panmove="onHammer"
+	    hm-press="onPress"
+	    hm-pressup="onHammerEnd"
+	    hm-panend="onHammerEnd"
+	    ng-repeat="narration in narrationArray"
+	    >
+		    <textarea
+		    id="narrationTextArea"
+		    scroll="false"
+		    elastic></textarea>
+    	</div>
+
+=======
+>>>>>>> master
+
+		<!-- INDICATOR DIVS -->	
+		<div ng-if="!pictureTaken">
+			<div id="powText" class="animation-powText">TAKE or CHOOSE A PICTURE TO EDIT!</div>
+			<!-- <img src="assets/icons/pow.png" id="pow" class="animation-pow"></img> -->	   
+			<img src="assets/icons/arrow_down_orange.png" class=" arrows animation-arrow"></img>
+		</div>		
+
+		<div ng-if="pictureTaken">
+			<div id="slinky" class="animation-slinky"></div>
+			<div id="slinkyText">Choose Your Filters</div>
+		</div>
+
+<<<<<<< HEAD
+
+	<!-- BOTTOM NAVBAR DIRECTIVE -->
+=======
 			   
 		<!-- <button class="button" ng-click="saveImage()">Save Image</button> -->
 
+>>>>>>> master
 	</ion-content>
   	<div 
   		id="navbarAddonWrapper"
@@ -76,6 +116,7 @@
 			filter="filter"
 			filtersarr='filtersarr'
 			applyfilter='applyfilter'
+			picuretakenfalse='pictureTakenTrue'
 			></navbar-addon>
 	</div>
 

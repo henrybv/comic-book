@@ -28,6 +28,7 @@ router.post('/', function(req, res, next) {
 router.get('/', function(req, res, next) {
 
     User.find()
+    // .populate('friends')
     .then(function(users){
         res.send(users);
 

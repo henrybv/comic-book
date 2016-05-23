@@ -1,6 +1,14 @@
 <ion-content scroll="false" id="addons">
 	<ion-content scroll="false" id="addonsStates">
-	    <button class="button" id="stateButtons" ng-repeat="button in activeButtons" ng-click="button.function()" ng-style="{'width': myWidth() }">
+	    <button 
+	    class="button" 
+	    id="stateButtons" 
+	    ng-repeat="button in activeButtons" 
+	    ng-click="button.function()" 
+	    ng-style="{ 
+	    'width': myWidth(), 
+	    'background-color': button.style['color'], 
+	    'font-weight': button.style['font-weight'] }">
 	    		<div>{{button.state}}</div>
 	    </button>
 	</ion-content>
@@ -25,6 +33,6 @@
 		    <button  id="transparent" class="button" ng-click="applyfilter('black','imageCanvas')">
 				<canvas id='black' width='125' height='125' data-caman-hidpi-disabled="true"></canvas>
 		    </button>
-		</div>
+		</div>		
 	</ion-scroll>
 </ion-content>

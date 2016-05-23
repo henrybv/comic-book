@@ -8,6 +8,10 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
     $scope.collabAdded = false;
 	$scope.story = story;
     $scope.deleteClicked = false;
+<<<<<<< HEAD
+    // $scope.urlbaby;
+=======
+>>>>>>> master
     $scope.dataURLArray = [];
     $ionicTabsDelegate.select('Squares');
 	// console.log('story in storyCTRL', $scope.story)
@@ -55,6 +59,15 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
 // GIVE EACH BTN AN ID WITH THEIR ID FROM THE PIC OBJ AND DO EVENT DELEGATION WITH THAT ID
     var ref = new Firebase('https://torrid-inferno-1552.firebaseio.com/' + $scope.story._id);
     ref.on('value', function(snapshot){
+<<<<<<< HEAD
+        var obj = snapshot.val();
+        var arr = [];
+        for (var squareId in obj){
+            var dataURL = obj[squareId].url
+            arr.push(dataURL);
+        }
+        $scope.dataURLArray = arr;
+=======
         console.log('IMAGE CREATED !!')
         $scope.FBobj = snapshot.val();
         console.log('OBJ: ', $scope.FBobj);
@@ -85,14 +98,18 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
         // }
         // $scope.dataURLArray = arr;
         // console.log('SCOPE dataURLArray:', $scope.dataURLArray)
+>>>>>>> master
 
 
     });
 
 
 
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> master
     
 // // GETTING IMAGES FROM FIREBASE EVERY TIME ONE IS ADDED
 //     var ref = new Firebase('https://torrid-inferno-1552.firebaseio.com/' + $scope.story._id);
@@ -180,6 +197,16 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
         });
     };
 
+<<<<<<< HEAD
+    // DELETE SQUARE - EVENT DELEGATION
+    // $(document).ready(function() {
+    //     $('#here').delegate('canvas', 'click', function() {
+    //         var item = $(this);
+    //         console.log(item[0].id);
+    //     });
+    // });
+=======
+>>>>>>> master
 
     function deleteSquare () {
         var item = $(this);
