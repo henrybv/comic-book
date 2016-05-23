@@ -97,7 +97,7 @@ core.controller('StoryCtrl', function($scope, story, $state, $localStorage, Came
             var picObj = {};
             picObj.id = firebaseIdCounter;
             picObj.dataURL = snapshot.val().url;
-            picObj.creator = 'img/default_avatar.jpg'
+            picObj.creator = snapshot.val().creator
             $scope.finalPicsArray.push(picObj)
             $scope.$digest();
             firebaseIdCounter++

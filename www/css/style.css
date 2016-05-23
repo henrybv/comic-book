@@ -11,26 +11,31 @@
 /*------- Story State Avatar Classes/Ids -------*/
 .squareCreator {
   float: left;
-  background:   #9CF;
+  /*background:   #9CF;*/
   border-radius: 10px;
-  border: 5px solid #33F;
+  /*border: 5px solid #33F;*/
   margin: 10px;
   width: 300px;
 }
 
 .storyAvatar {
   float:left;
-  width: 33%;
+  width: 25%;
   height: auto;
   border-radius: 50px;
-  margin: 5px;
-  border: 10px solid orange;
+  border: 5px solid orange;
+  margin: -10px 10px 10px;
   -webkit-box-shadow: 0px 0px 10px #000;
   left: 0px;
 }
 
 #creatorInfo {
   width: 66%;
+  color: white;
+  display: inline-block;
+  /*margin: 0px 0px 0px -25px;*/
+  /*padding: 0px 0px 0px -25px;*/
+  text-align: left;
 }
 
 
@@ -127,9 +132,11 @@
 	width: 125px;
 }
 
-/*#transparent {
-	background: white;
-}*/
+#transparent {
+	margin:10px -5px 0px 0px !important;
+  padding: 0px -5px -5px 0px;
+
+}
 
 .canvasAndAddonContainer {
     overflow: hidden;

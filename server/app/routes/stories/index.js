@@ -75,7 +75,7 @@ router.put('/:storyId/squares', function(req, res, next){
     return mongoose.model('Square').create({creator: req.body.creator})
     .then(function(newSquare){
         return mongoose.model('Square')
-        .findByIdAndUpdate(newSquare._id, {upsert: true, new: true})
+        .findByIdAndUpdate(newSquare._id, {upsert: true, new: true}).populate('creator')
     })
     .then(function(square) {
         SQUARETOSEND = square;
