@@ -13,6 +13,7 @@
     "bootbox": "^4.4.0",
     "chai": "^2.3.0",
     "express-session": "^1.13.0",
+    "express-static": "^1.0.3",
     "extend": "^3.0.0",
     "firebase": "^2.4.2",
     "gulp": "^3.5.6",

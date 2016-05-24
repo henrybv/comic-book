@@ -25,6 +25,7 @@ require('./configure')(app);
 // /api so they are isolated from our GET /* wildcard.
 app.use('/api', require('./routes'));
 
+app.use(express.static('www'));
 
 /*
  This middleware will catch any URLs resembling a file extension
@@ -41,6 +42,8 @@ app.use(function (req, res, next) {
     }
 
 });
+
+
 
 app.get('/*', function (req, res) {
     res.sendFile(app.get('indexHTMLPath'));
