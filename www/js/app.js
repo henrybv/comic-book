@@ -1,31 +1,4 @@
-//FULLSTACK BASE - Debanshi
-var base = ''
-// var base = 'http://192.168.1.183:1337'
-// var base = 'http://192.168.0.20:1337'
-// var base = 'http://10.1.12.26:1337'
-// var base = 'http://192.168.1.184:1337'
-//FULLSTACK BASE - Eric
-// var base = 'http://192.168.1.133:1337'
-// var base = 'http://192.168.0.102:1337'
-// var base = 'http://192.168.0.105:1337'
-// var base = 'http://192.168.0.20:1337'
-//FULLSTACK BASE - Jeff
-// var base = 'http://192.168.1.133:1337'
-//FULLSTACK BASE - Henry
-// var base = 'http://192.168.1.204:1337'
-
-// var base = 'http://192.168.1.183:1337'
-
-
-
-
-// Ionic Starter App
-
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-// 'starter.services' is found in services.js
-// 'starter.controllers' is found in controllers.js
+// var base = 'https://frozen-tor-87246.herokuapp.com'
 
 var core = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'fsaPreBuilt', 'ngCordova', 'ngStorage', 'hmTouchEvents'])
 
