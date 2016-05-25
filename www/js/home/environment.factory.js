@@ -6,7 +6,7 @@ core.factory('EnvironmentFactory', function($http){
 			return $http.get('/api/environment')
 			.then(function(res) {
 				return res.data;
-			} 
+			});
 		}
 	};
 })
