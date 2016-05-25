@@ -5,9 +5,9 @@ var core = angular.module('starter', ['ionic', 'starter.controllers', 'starter.s
 
 core.run(function($ionicPlatform, $rootScope, $state, EnvironmentFactory) {
   EnvironmentFactory.getEnvironment()
-  .then(isProduction => {
+  .then(function(isProduction) {
     if(isProduction){
-      // console.log = function(){};
+      console.log = function(){};
     }
   });
   // event listener listening for state changes + put on rootScope

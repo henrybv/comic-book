@@ -4,7 +4,9 @@ core.factory('EnvironmentFactory', function($http){
 	return {
 		getEnvironment: function() {
 			return $http.get('/api/environment')
-			.then( res => res.data);
+			.then(function(res) {
+				return res.data;
+			} 
 		}
 	};
 })
