@@ -3,8 +3,13 @@ var base = '';
 var core = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'fsaPreBuilt', 'ngCordova', 'ngStorage', 'hmTouchEvents'])
 
 
-core.run(function($ionicPlatform, $rootScope, $state) {
-
+core.run(function($ionicPlatform, $rootScope, $state, EnvironmentFactory) {
+  EnvironmentFactory.getEnvironment()
+  .then(isProduction => {
+    if(isProduction){
+      console.log = function(){};
+    }
+  });
   // event listener listening for state changes + put on rootScope
   $rootScope.$on('$stateChangeSuccess', function(event, toState) {
    $rootScope.$state = toState;
