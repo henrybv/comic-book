@@ -1,4 +1,4 @@
-// var base = 'https://frozen-tor-87246.herokuapp.com'
+var base = '';
 
 var core = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'fsaPreBuilt', 'ngCordova', 'ngStorage', 'hmTouchEvents'])
 
