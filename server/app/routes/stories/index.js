@@ -64,7 +64,7 @@ router.post('/', function(req, res, next) {
         return  Story.findById(story._id).populate('friends');
     })
     .then(function(story) {
-        res.send(story);
+        res.status(201).send(story);
     })
     .catch(next)
 });
@@ -82,15 +82,18 @@ router.put('/:storyId/squares', function(req, res, next){
         return Story.findByIdAndUpdate(req.params.storyId, {$push: {'squares': square._id}}, { upsert: true, new: true });
     })
     .then(function(){
-        res.status(200).send(SQUARETOSEND);
+        res.status(201).send(SQUARETOSEND);
     })
     .catch(next)
 });
 
 router.put('/:storyId/collaborators', function(req, res, next) {
     Story.update({ _id: req.params.storyId },{ $pushAll: { friends: req.body.collaborators }},{ upsert: true, new: true })
+    .then(function() {
+        return Story.findById(req.params.storyId);
+    })
     .then(function(story) {
-        res.send(story);
+        res.status(200).send(story);
     })
     .catch(next);
 });
@@ -98,13 +101,14 @@ router.put('/:storyId/collaborators', function(req, res, next) {
 router.put('/:storyId/leaveCollab/:userId', function(req, res, next){
     Story.findByIdAndUpdate(req.params.storyId,{$pull: {friends: req.params.userId}}, { upsert: true, new: true })
     .then(function(story){
-        console.log('updated story after splicing out friends', story);
         res.send('updated');
     })
     .catch(next);
 })
 
+// to delete square from story
 router.put('/:storyId/squares/:squareId', function(req, res, next) {
+    console.log('GOT IN THIS ONE', req.params)
     var updatedStory;
     Story.update( {_id: req.params.storyId}, { $pull: {'squares': req.params.squareId} }, { upsert: true, new: true } )
     .then(function(story) {
@@ -112,7 +116,8 @@ router.put('/:storyId/squares/:squareId', function(req, res, next) {
         return Square.find({ _id: req.params.squareId }).remove().exec();
     })
     .then(function() {
-        res.send(updatedStory);
+        console.log('NEW STORY:', updatedStory)
+        res.status(201).send(updatedStory);
     })
     .catch(next);
 });
@@ -120,7 +125,7 @@ router.put('/:storyId/squares/:squareId', function(req, res, next) {
 router.delete('/:storyId', function(req, res, next){
     Story.findByIdAndRemove({_id: req.params.storyId})
     .then(function(story){
-        res.send(story)
+        res.status(204).send(story)
     })
     .catch(next);
 })

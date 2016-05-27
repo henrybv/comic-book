@@ -6,7 +6,7 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
-var mocha = require('mocha');
+var mocha = require('gulp-mocha');
 
 var paths = {
   sass: ['./scss/**/*.scss']
@@ -52,37 +52,20 @@ gulp.task('git-check', function(done) {
 });
 
 
-// FOR TESTING /////////////////////////////////////////
-// currently not working - figure out why not
-// gulp.task('testServerJS', function () {
-//     require('babel-register');
-//   return gulp.src('./tests/server/**/*.js', {
-//     read: false
-//   }).pipe(mocha({ reporter: 'spec' }));
-// });
+// FOR TESTING 
+gulp.task('testServerJS', function () {
+  require('babel-register');
+  return gulp.src('./tests/server/**/*.js', {
+    read: false
+  }).pipe(mocha({ reporter: 'spec' }));
+});
 
-// gulp.task('testServerJSWithCoverage', function (done) {
-//     gulp.src('./server/**/*.js')
-//         .pipe(istanbul({
-//             includeUntested: true
-//         }))
-//         .pipe(istanbul.hookRequire())
-//         .on('finish', function () {
-//             gulp.src('./tests/server/**/*.js', {read: false})
-//                 .pipe(mocha({reporter: 'spec'}))
-//                 .pipe(istanbul.writeReports({
-//                     dir: './coverage/server/',
-//                     reporters: ['html', 'text']
-//                 }))
-//                 .on('end', done);
-//         });
-// });
 
-// gulp.task('test', function() {
-//   gulp.watch(['tests/server/**/*.js'], ['testServerJS']);
-// });
 
-/////////////////////////////////////////////////////////
+gulp.task('test', function() {
+  gulp.watch(['tests/server/**/*.js']);
+});
+
 
 
 
