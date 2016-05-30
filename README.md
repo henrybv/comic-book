@@ -17,6 +17,7 @@ Run npm start in project root
 
 To run on local:
 In app.js, change base to current IP Address
+// var base = 'http://192.168.1.133:1337'
 
 When Pushing to Heroku:
 Change base to an empty string
