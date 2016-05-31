@@ -10,6 +10,49 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
     $scope.url;
 
 
+
+    // // Check for the various File API support.
+    // if (window.File && window.FileReader && window.FileList && window.Blob) {
+    //   // Great success! All the File APIs are supported.
+    // } else {
+    //   alert('The File APIs are not fully supported in this browser.');
+    // }
+
+
+    // function hasGetUserMedia() {
+    //     console.log(!!(navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia))
+    //     return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
+    //             navigator.mozGetUserMedia || navigator.msGetUserMedia);
+    // }
+
+    // if (hasGetUserMedia()) {
+    //   // Good to go!
+    // } else {
+    //   alert('getUserMedia() is not supported in your browser');
+    // }
+
+    // navigator.getUserMedia  = navigator.getUserMedia ||
+    //                           navigator.webkitGetUserMedia ||
+    //                           navigator.mozGetUserMedia ||
+    //                           navigator.msGetUserMedia;
+
+    // var video = document.querySelector('imageCanvas');
+
+    // if (navigator.getUserMedia) {
+    //   navigator.getUserMedia({video: true}, function(stream) {
+    //     video.src = window.URL.createObjectURL(stream);
+    //   }, errorCallback);
+    // } else {
+    //   video.src = 'somevideo.webm'; // fallback.
+    // }
+
+
+    // window.onload = document.getElementById('stateButtons').addEventListener('change', handleFileSelect, false);
+
+
+
+
+
     var urlToCanvas = function(url, canvasId, x, y){
         // console.log('parameters', url, canvasId, x, y)
         var x = x || 0;
@@ -17,6 +60,8 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         var canvas = document.getElementById('imageCanvas');
         var context = canvas.getContext('2d');
         var newImage = new Image();
+        newImage.width = 375
+        newImage.height = 375
         newImage.src = url;
         // newImage.crossOrigin = '';
         newImage.onload = function(){
@@ -33,7 +78,6 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
     
     $scope.pictureTakenTrue = function(){
         $scope.pictureTaken = true;
-        console.log("Should have run", $scope.pictureTaken)
     }
 
     $scope.applyfilter = function(filter, canvasId){
@@ -53,23 +97,51 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
     }
 
 
-    $scope.takePicture = function() {
-        var options = { 
-            quality : 75, 
-            destinationType : Camera.DestinationType.DATA_URL, 
-            sourceType : Camera.PictureSourceType.CAMERA, 
-            allowEdit : true,
-            encodingType: Camera.EncodingType.JPEG,
-            targetWidth: 375,
-            targetHeight: 375,
-            popoverOptions: CameraPopoverOptions,
-            saveToPhotoAlbum: false
-        };
-        $cordovaCamera.getPicture(options).then(function(imageURL) {
-            // $scope.imgURI = "data:image/jpeg;base64," + imageData;
-            $scope.url = "data:image/jpeg;base64,"+ imageURL;
-            urlToCanvas($scope.url, 'imageCanvas');
-        });
+    $scope.takePicture = function(evt) {
+        var files = evt.target.files; // FileList object
+        console.log("takePicture", files)
+        console.log(ionic.Platform.platform())
+        console.log(ionic.Platform.device())
+        console.log(navigator.appCodeName)
+        //'ios' for Iphone
+        //'macintel' for macbook
+
+        // var options = { 
+        //     quality : 75, 
+        //     destinationType : Camera.DestinationType.DATA_URL, 
+        //     sourceType : Camera.PictureSourceType.CAMERA, 
+        //     allowEdit : true,
+        //     encodingType: Camera.EncodingType.JPEG,
+        //     targetWidth: 375,
+        //     targetHeight: 375,
+        //     popoverOptions: CameraPopoverOptions,
+        //     saveToPhotoAlbum: false
+        // };
+        // $cordovaCamera.getPicture(options).then(function(imageURL) {
+        //     // $scope.imgURI = "data:image/jpeg;base64," + imageData;
+        //     console.log("Got into CordovaCamera", imageURL)
+        //     $scope.url = "data:image/jpeg;base64,"+ imageURL;
+        //     urlToCanvas($scope.url, 'imageCanvas');
+        // });
+            var file    = files[0];
+            console.log("CAMERA FILE", file)
+            var reader  = new FileReader();
+
+            reader.addEventListener("load", function () {
+                $scope.url = reader.result
+                console.log($scope.url)
+                urlToCanvas($scope.url, 'imageCanvas', 0, 0)
+            }, false);
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+
+
+        // console.log("Got into CordovaCamera", userImage.src)
+        // $scope.url = "data:image/jpeg;base64," + userImage.src;
+        // urlToCanvas($scope.url, 'imageCanvas');
+
 
         $scope.pictureTaken = true;
     }
@@ -108,7 +180,6 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
 
             $scope.stickersArray.forEach(function(sticker){
                 var currentStickerPos = $( "#sticker" + sticker.id ).offset();
-                console.log('currentStickerPos', currentStickerPos)
                 // var x = Number(sticker.x.slice(0,-2)) || 0;
                 // var y = Number(sticker.y.slice(0,-2)) || 0
                 var stickerImage = new Image();
@@ -138,7 +209,6 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
             var context = canvas.getContext('2d');
             var newImage = new Image();
             newImage.src = $scope.chosenBorder ? $scope.chosenBorder.source  : 'assets/borders/transparent.png'
-            // console.log("newImage.srcy", newImage.src, $scope.chosenBorder)
             var onloadPromise = $q(function(resolve, reject){
                 newImage.onload = function(){
                     context.drawImage(newImage, 0, 0);
@@ -160,7 +230,6 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         var onloadsRunning = [];
 
         if($scope.bubblesArray){
-            // console.log(!!$scope.bubblesArray)
             var canvas = document.getElementById('imageCanvas');
             var context = canvas.getContext('2d');
             $scope.bubblesArray.forEach(function(bubble){
@@ -205,7 +274,6 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
                     bubbleImage.onerror = reject;
                 }) 
                 onloadsRunning.push(onloadPromise);
-                // console.log("onloadsRunning", onloadsRunning)
             })
         }
 
@@ -218,7 +286,6 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         var onloadsRunning = [];
 
         if($scope.narrationArray){
-            // console.log(!!$scope.bubblesArray)
             var canvas = document.getElementById('imageCanvas');
             var context = canvas.getContext('2d');
 
@@ -231,7 +298,6 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
                 //Image For narration
                 var narrationImage = new Image();
                 narrationImage.src = currNarr.source;
-                console.log(currNarr.source)
 
                 //Grab distance from top of screen for subtracting in .drawImage()
                 var heightDiff = $('#imageCanvas').offset().top;
@@ -246,7 +312,6 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
                     narrationImage.onerror = reject;
                 }) 
                 onloadsRunning.push(onloadPromise);
-                // console.log("onloadsRunning", onloadsRunning)
             })
         }
 
@@ -316,7 +381,6 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
                 onloadsRunning.push(onloadPromise);
             })
         }
-        console.log($scope.narrationArray)
         return $q.all(onloadsRunning);
     };  
 
@@ -324,23 +388,18 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
 
     //Defines the saveImage function which Saves Image to DB and adds to story
     $scope.saveImage = function(){
-        console.log('in save image ctrl')
 
         return bubblestoImageData()
         .then(function(){
-            console.log("Got into 2nd promise chain")
             return addBorderToCanvas()
         })
         .then(function(){
-            console.log("Got into 4nd promise chain")
             return addBubblesToCanvas()
         })
         .then(function(){
-            console.log("Got into 5nd promise chain")
             return addNarrationToCanvas()
         })
         .then(function(){
-            console.log("Got into 6nd promise chain")
             return addStickersToCanvas()
         })
         .then(function(){
@@ -349,7 +408,6 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
             return CameraFactory.createSquare(finalDataURL, $scope.story._id, $scope.currentUser)
         })        
         .then(function(square){
-            console.log('square from camera factory in ctrl', square)
             $state.go('story', {storyId: $scope.story._id}, {reload: true});
         })
         .catch(function(err){
@@ -373,22 +431,18 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
     //Filters from Database Resolve
     $scope.allAddons = getAddons
     $scope.currentNav = 'navbarAddon'
-    console.log($scope.allAddons)
 
 
     //Stickers
     var stickercounter = 0;
     var stickerIdCounter = 1;
     $scope.sticker = function (img){
-        console.log('in sticker function in ctrl!!')
-        console.log('STICKER', img)
 
         if(!$scope.stickersArray) $scope.stickersArray = []
         //Create image element with unique ID
         if(stickercounter < 4){
             //Push element data into the stickersArray;
             $scope.stickersArray.push({source: img, id: stickercounter, x: '0px', y: '0px'})
-            console.log($scope.stickersArray)
             //Grab that element and set it to a variable;
             // w.appendChild(sticker)
             stickercounter++
@@ -396,10 +450,8 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
       
         } else {
             onErrorFunc()
-            console.log("Too Many Stickers!")
         }
 
-    console.log($scope.stickersArray)
     }
 
 
@@ -408,7 +460,6 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
     var bubbleIdcounter = 1;  
     $scope.bubble = function (bubbleName){
         currentBubbleType = bubbleName.split('_')
-        console.log("BBBB", currentBubbleType[2])
 
 
         if(!$scope.bubblesArray && currentBubbleType[2] !== 'narration') $scope.bubblesArray = [];
@@ -429,7 +480,6 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
             }
             bubblecounter++;
             bubbleIdcounter++;
-            console.log($scope.bubblesArray, $scope.narrationArray)
         } else {
             onErrorFunc()
         }
@@ -438,24 +488,17 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
     //Border  
     $scope.chosenBorder;
     $scope.border = function (img){
-        console.log('BORDER', img)
         $scope.chosenBorder = {source: img}
     } 
-
-    //Filter   
-    $scope.filter = function (img){
-        console.log('FILTER')
-    }
 
 
     //REMOVE ADDONs
     $scope.removeAddon = function(eventId) {
-        console.log("removeAddon!", eventId)
         document.getElementById(eventId).remove()
 
+        //Finds the correct STICKER and deletes it
         if (eventId[0] === 's') {
           --stickercounter
-          console.log("stickercounter", stickercounter) 
           for (var i = 0; i < $scope.stickersArray.length; i++) {
                 if($scope.stickersArray[i].id === Number(eventId.slice(-1))) {
                     $scope.stickersArray.splice(i, 1)
@@ -465,11 +508,11 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
            } 
         } 
 
+
+        //Finds the correct SPEECH/THOUGHT bubble and deletes it
         if (eventId[0] === 'b') {
             --bubblecounter
-            console.log("bubblecounter", bubblecounter) 
             for (var i = 0; i < $scope.bubblesArray.length; i++) {
-                console.log("bubble ids", $scope.bubblesArray[i].id, Number(eventId.slice(-1)))
                 if($scope.bubblesArray[i].id === Number(eventId.slice(-1))) {
                     $scope.bubblesArray.splice(i, 1)
                     //Adds success notification to users screen
@@ -478,11 +521,10 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
             } 
         }        
 
+        //Finds the correct NARRATION bubble and deletes it
         if (eventId[0] === 'n') {
             --bubblecounter
-            console.log("bubblecounter", bubblecounter) 
             for (var i = 0; i < $scope.narrationArray.length; i++) {
-                console.log("bubble ids", $scope.narrationArray[i].id, Number(eventId.slice(-1)))
                 if($scope.narrationArray[i].id === Number(eventId.slice(-1))) {
                     $scope.narrationArray.splice(i, 1)
                     //Adds success notification to users screen
@@ -491,7 +533,6 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
             } 
         }
 
-        console.log($scope.bubblesArray, $scope.stickersArray)
     }
 
     // Hammer Counter Variables:
@@ -517,7 +558,6 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         // var currentCenter = [(currentLeft + (currentWidth/2)), (currentTop + (currentHeight/2))]
 
         if(!hammerCounter){ 
-            // console.log("This Ran", currentElem.className)
             diffX = event.center.x - currentLeft;
             diffY = event.center.y - currentTop;
             // Grab the current elements offset from the screen.
@@ -645,7 +685,6 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
                     index = idx;
                 }
             })
-            console.log("StickersArray HERE", $scope.stickersArray )
             $scope.stickersArray[index].x = currentx
             $scope.stickersArray[index].y = currenty
         }
@@ -676,9 +715,6 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
             })
             // console.log("BubblesArray HERE", $scope.bubblesArray )
 
-
-            console.log("UpdatedCoordinates ", $scope.bubblesArray)
-
         }
 
     }   
@@ -704,7 +740,6 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
     } 
 
     function animatePoof() {
-        console.log("animate Poof Ran")
         var bgTop = 0,
             frame = 0,
             frames = 6,

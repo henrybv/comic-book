@@ -5,7 +5,6 @@ core.factory('StoryFactory', function($http, $localStorage) {
 	StoryFactory.createNewStory = function(storyObj){
 		return $http.post(base + '/api/stories', storyObj)
 		.then(function(res) {
-			console.log('FACT returned out of StoryFactory.createNewStory', res.data)
 			return res.data;
 		})
 	};
@@ -27,10 +26,8 @@ core.factory('StoryFactory', function($http, $localStorage) {
 
 
 	StoryFactory.getMyStories = function(userId){
-		console.log('in Story Factory - getMyStories with userId', userId)
 		return $http.get(base + '/api/stories/user/' + userId)
 		.then(function(res) {
-			console.log('in factory to get my stories. returned from route: ', res.data)
 			return res.data;
 		});
 	};
@@ -57,27 +54,21 @@ core.factory('StoryFactory', function($http, $localStorage) {
 	};
 
 	StoryFactory.deleteStory = function (storyId) {
-		console.log('DELETE STORY IN STORY FACT RAN')
 		return $http.delete(base + '/api/stories/' + storyId)
 		.then(function(story) {
-			console.log('STORY deleted IN STORY FACT', story.data)
 			return story.data;
 		});
 	};
 
 	StoryFactory.leaveCollab = function(storyId, userId){
-		console.log('IN LEAVE COLLAB IN FACT');
 		return $http.put(base + '/api/stories/' + storyId + '/leaveCollab/' + userId)
 		.then(function(){
-			console.log('left collab, updated story:');
 		})
 	}
 
 	StoryFactory.deleteSquare = function (storyId, squareId) {
-		console.log('DELETE SQ IN STORY FACT RAN')
 		return $http.put(base + '/api/stories/' + storyId + '/squares/' + squareId)
 		.then(function(story) {
-			console.log('STORY RECIEVED IN STORY FACT')
 			return story.data;
 		});
 	};

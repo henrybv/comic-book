@@ -1,4 +1,4 @@
-<ion-view scroll="true" view-title="Home">
+<ion-view scroll="true">
   <ion-content style="background-image: url('assets/bwbg.jpg') !important" has-bouncing='true'>
 
 <!-- create story button -->
@@ -35,6 +35,9 @@
           </span>
         </p>
         <i class="icon ion-chevron-right icon-accessory"></i>
+        <ion-option-button class="button-assertive" ng-click="deleteStory(story._id)">
+          Delete
+        </ion-option-button>
       </ion-item>
     </ion-list>
 
@@ -46,6 +49,9 @@
         <h2 style="color:red;">{{story.title}}</h2>
         <p style="color:black;">Creator: {{ story.owner.email }}</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
+      <ion-option-button class="button-assertive" ng-click="leaveCollab(story._id)">
+          Delete
+        </ion-option-button>
       </ion-item>
     </ion-list>
 

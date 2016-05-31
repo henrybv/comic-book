@@ -1,4 +1,4 @@
-core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $cordovaCamera, $cordovaFileTransfer, Grafi, $localStorage, CameraFactory, FilterFactory) {
+core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $cordovaCamera, $cordovaFile, $cordovaFileTransfer, Grafi, $localStorage, CameraFactory, FilterFactory, $ionicLoading) {
 	$scope.story = story;
     $scope.currentUser = $localStorage.user._id;
     // $scope.currentSquare;
@@ -10,6 +10,32 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
     $scope.url;
 
 
+    function hasGetUserMedia() {
+        console.log('HEY DUDE')
+        return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
+                navigator.mozGetUserMedia || navigator.msGetUserMedia);
+    }
+
+    if (hasGetUserMedia()) {
+      // Good to go!
+    } else {
+      alert('getUserMedia() is not supported in your browser');
+    }
+
+    navigator.getUserMedia  = navigator.getUserMedia ||
+                              navigator.webkitGetUserMedia ||
+                              navigator.mozGetUserMedia ||
+                              navigator.msGetUserMedia;
+
+    var video = document.querySelector('imageCanvas');
+
+    if (navigator.getUserMedia) {
+      navigator.getUserMedia({video: true}, function(stream) {
+        video.src = window.URL.createObjectURL(stream);
+      }, errorCallback);
+    } else {
+      video.src = 'somevideo.webm'; // fallback.
+    }
 
     var urlToCanvas = function(url, canvasId, x, y){
         // console.log('parameters', url, canvasId, x, y)
@@ -55,6 +81,7 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
 
 
     $scope.takePicture = function() {
+        // console.log(ionic.Platform.platform())
         var options = { 
             quality : 75, 
             destinationType : Camera.DestinationType.DATA_URL, 
@@ -325,6 +352,7 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
 
     //Defines the saveImage function which Saves Image to DB and adds to story
     $scope.saveImage = function(){
+        console.log('in save image ctrl')
 
         return bubblestoImageData()
         .then(function(){
@@ -349,6 +377,7 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
             return CameraFactory.createSquare(finalDataURL, $scope.story._id, $scope.currentUser)
         })        
         .then(function(square){
+            console.log('square from camera factory in ctrl', square)
             $state.go('story', {storyId: $scope.story._id}, {reload: true});
         })
         .catch(function(err){
@@ -361,8 +390,6 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
     $scope.$on('saveImage', function() {
         $scope.saveImage()
     })
-
- 
 
 
 
@@ -454,6 +481,7 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
         console.log("removeAddon!", eventId)
         document.getElementById(eventId).remove()
 
+        //Finds the correct STICKER and deletes it
         if (eventId[0] === 's') {
           --stickercounter
           console.log("stickercounter", stickercounter) 
@@ -466,6 +494,8 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
            } 
         } 
 
+
+        //Finds the correct SPEECH/THOUGHT bubble and deletes it
         if (eventId[0] === 'b') {
             --bubblecounter
             console.log("bubblecounter", bubblecounter) 
@@ -479,6 +509,7 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
             } 
         }        
 
+        //Finds the correct NARRATION bubble and deletes it
         if (eventId[0] === 'n') {
             --bubblecounter
             console.log("bubblecounter", bubblecounter) 
@@ -705,7 +736,6 @@ core.controller('CameraCtrl', function($q, $state, story, getAddons, $scope, $co
     } 
 
     function animatePoof() {
-        console.log("animate Poof Ran")
         var bgTop = 0,
             frame = 0,
             frames = 6,

@@ -1,5 +1,29 @@
 <ion-content scroll="false" id="addons">
-	<ion-content scroll="false" id="addonsStates">
+	<ion-content scroll="false" id="addonsStates" ng-show="activeButtons === pictureFunctions">
+		<input type="file" accept="image/*" capture="camera"
+	    class="button" 
+	    id="getPicture" 
+	    style="width: 50%"
+	    >
+	    <button
+	    class="button"
+	    ng-click="comify()">
+	    	COMIFY
+	    </button>
+<!-- 	    <button 
+	    class="button" 
+	    id="stateButtons" 
+	    ng-repeat="button in activeButtons" 
+	    ng-click="button.function()" 
+	    ng-style="{ 
+	    'width': myWidth(), 
+	    'background-color': button.style['background-color'], 
+	    'color': button.style['color'],
+	    'font-weight': button.style['font-weight'] }">
+	    		<div>{{button.state}}</div>
+	    </button> -->
+	</ion-content>	
+	<ion-content scroll="false" id="addonsStates" ng-show="activeButtons === addonStates">
 	    <button 
 	    class="button" 
 	    id="stateButtons" 

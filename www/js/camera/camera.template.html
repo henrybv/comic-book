@@ -1,8 +1,9 @@
 <ion-view view-title="Edit Image" id="container" style="background-image: url('assets/yelloworangedots.jpg') !important">
-	<ion-content scroll="false" id="addonWrapper" class="canvasAndAddonContainer">
+	<ion-content scroll="false" id="addonWrapper" class="canvasAndAddonContainer" onload="testload()">
 
 
 		<!-- CANVAS -->
+		<!-- <input type="file" accept="image/*" capture="camera"> -->
  		<div id="here"></div>
  		<canvas id='imageCanvas' width='375' height='375' data-caman-hidpi-disabled="true"></canvas>
  		<img ng-src={{chosenBorder.source}} style="position: absolute; top: 0; left: 0 "></img>
@@ -71,7 +72,7 @@
     	</div>
 
 
-		<!-- INDICATOR DIVS -->	
+		<!-- INDICATOR ANIMATIONS -->	
 		<div ng-if="!pictureTaken">
 			<div id="powText" class="animation-powText">TAKE or CHOOSE A PICTURE TO EDIT!</div>
 			<!-- <img src="assets/icons/pow.png" id="pow" class="animation-pow"></img> -->	   
@@ -95,7 +96,7 @@
 			addons="allAddons",
 			url="url",
 			story="story"
-			takepicture="takePicture()"
+			takepicture="takePicture"
 			openphotolibrary="openPhotoLibrary()"
 			onhammer="onHammer()"
 			sticker="sticker"
@@ -104,7 +105,7 @@
 			filter="filter"
 			filtersarr='filtersarr'
 			applyfilter='applyfilter'
-			picuretakenfalse='pictureTakenTrue'
+			picturetakentrue='pictureTakenTrue'
 			></navbar-addon>
 	</div>
 

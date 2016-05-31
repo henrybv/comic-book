@@ -20,10 +20,8 @@ core.controller('StoryCreateCtrl', function($scope, StoryFactory, $state, $local
 			});
 
 			$scope.story.friends = friends;
-			console.log('CTRL story in scope being passed into StoryFactory.createNewStory: ', $scope.story);
 			StoryFactory.createNewStory($scope.story)
 			.then(function(story) {
-				console.log('CTRL story returned after StoryFactory.createNewStory: ', story)
 				$scope.allUsers.forEach(function(user) {
 					user.collabr = false;
 				});

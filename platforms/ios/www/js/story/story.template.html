@@ -1,6 +1,6 @@
 <ion-view scroll="true" title="{{story.title}}">
 <div>
-      <ion-tabs class="tabs-top tabs-icon-top " style="top:10px">
+      <ion-tabs class="tabs-top tabs-icon-top " style="top:10px; background-color:#808080 !important">
 
             <ion-tab title="Squares" icon-on="ion-grid" icon-off="ion-grid" on-select=tabSelected('Squares')>
               <ion-content zooming='true' style="background-image: url('assets/yelloworangedots.jpg') !important;position:absolute; padding:100px 5px 0px 5px;" has-bouncing='true'>
@@ -13,8 +13,7 @@
           </ion-tab>
 
           <ion-tab title="Strip" icon-on="ion-ios-barcode" icon-off="ion-ios-barcode">
-              <ion-scroll direction="x" has-bouncing='true' overflow='scroll' id="addonsBottom" style="background-image: url('assets/sample_comic.jpg')!important;position:absolute;padding:100px 5px 0px 5px;width: auto; overflow:scroll; height: auto !important;background-position: 0% 100%;">
-                  
+              <ion-scroll direction="x" has-bouncing='true' overflow='scroll' id="addonsBottom" style="background-image: url('assets/sample_comic4.png')!important;position:absolute;padding:100px 5px 0px 5px;width: auto; overflow:scroll; height: auto !important;background-position: 0% 100%;">
                   <div id="squareAndAddonFrames" style='margin:50px -4px -4px -4px !important;border:10px -4px -4px -4px !important;padding:2px -4px -4px -4px !important'>
                   <!-- SAUARES REPEAT HERE - MAYBE WRAP PARENT DIV AROUND HERE FOR DELETE MODE-->
                     <button id="transparent" class="button" ng-repeat="picObj in finalPicsArray track by $index" style="background-color:black;box-sizing: content-box !important;padding-top:20px;">

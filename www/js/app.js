@@ -1,15 +1,19 @@
-var base = '';
+// var base = 'https://frozen-tor-87246.herokuapp.com';
+var base = 'http://192.168.1.102:1337'
 
 var core = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'fsaPreBuilt', 'ngCordova', 'ngStorage', 'hmTouchEvents'])
 
 
 core.run(function($ionicPlatform, $rootScope, $state, EnvironmentFactory) {
-  EnvironmentFactory.getEnvironment()
-  .then(function(isProduction) {
-    if(isProduction){
-      console.log = function(){};
-    }
-  });
+  
+  // Changes the console.log function in a production environment
+  // EnvironmentFactory.getEnvironment()
+  // .then(function(isProduction) {
+  //   if(isProduction){
+  //     console.log = function(){};
+  //   }
+  // });
+
   // event listener listening for state changes + put on rootScope
   $rootScope.$on('$stateChangeSuccess', function(event, toState) {
    $rootScope.$state = toState;
@@ -122,7 +126,6 @@ core.config(function($stateProvider, $urlRouterProvider) {
               console.log('loggedInUser: ', loggedInUser._id)
 
               users.forEach(function(user) {
-                // console.log('userId: ', user._id)
                   var present = false;
 
                   if(story.friends){

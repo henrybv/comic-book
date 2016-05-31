@@ -2,7 +2,6 @@ core.factory('FilterFactory', function($http){
   var FilterFactory = {};
 
   FilterFactory.clearFilter = function(canvasId, img){
-        console.log('in clear filter');
         Caman('#'+canvasId, img, function(){
             this.revert(false);
             this.render();
@@ -10,7 +9,6 @@ core.factory('FilterFactory', function($http){
     }
 
   FilterFactory.greyPosterFilter = function(canvasId, img){
-        console.log('calling grey filter')
         Caman("#"+canvasId, img, function() {
             this.posterize(3);
             this.greyscale();

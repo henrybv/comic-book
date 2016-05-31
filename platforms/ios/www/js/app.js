@@ -1,20 +1,18 @@
-
-var base = 'http://192.168.1.183:1337'
-
-
-
-// Ionic Starter App
-
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-// 'starter.services' is found in services.js
-// 'starter.controllers' is found in controllers.js
+// var base = 'https://frozen-tor-87246.herokuapp.com';
+var base = 'http://192.168.1.102:1337'
 
 var core = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'fsaPreBuilt', 'ngCordova', 'ngStorage', 'hmTouchEvents'])
 
 
-core.run(function($ionicPlatform, $rootScope, $state) {
+core.run(function($ionicPlatform, $rootScope, $state, EnvironmentFactory) {
+  
+  // Changes the console.log function in a production environment
+  // EnvironmentFactory.getEnvironment()
+  // .then(function(isProduction) {
+  //   if(isProduction){
+  //     console.log = function(){};
+  //   }
+  // });
 
   // event listener listening for state changes + put on rootScope
   $rootScope.$on('$stateChangeSuccess', function(event, toState) {
@@ -128,7 +126,6 @@ core.config(function($stateProvider, $urlRouterProvider) {
               console.log('loggedInUser: ', loggedInUser._id)
 
               users.forEach(function(user) {
-                // console.log('userId: ', user._id)
                   var present = false;
 
                   if(story.friends){

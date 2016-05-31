@@ -5,7 +5,7 @@ core.directive('navbarAddon', function($rootScope) {
     scope:{
         test: "&",
         onhammer: "&",
-        takepicture: "&",
+        takepicture: "=",
         openphotolibrary: "&",
         applyfilter: "=",
         addons: "=",
@@ -15,7 +15,7 @@ core.directive('navbarAddon', function($rootScope) {
         filter: "=",
         url: "=",
         story: "=",
-        picuretakenfalse: "="
+        picturetakentrue: "="
     },
     link: function (scope, $scope, element, attrs) {
     
@@ -56,6 +56,8 @@ core.directive('navbarAddon', function($rootScope) {
         // scope.showBottomNav = true;
         //scope.addons is set above from the state resolve
                 //Sets Filters
+
+
         var setFilterThumbnails = function(){
             var filtersarr = ['grey', 'poster', 'brown', 'black'];
             filtersarr.forEach(function(filter){
@@ -74,6 +76,8 @@ core.directive('navbarAddon', function($rootScope) {
         setFilterThumbnails();
 
         //This Sets Width of Directive Buttons
+        // var numOfButtons = document.getElementById('stateButtons')
+        // console.log(numOfButtons)
         scope.myWidth = function(){
             newWidth = Math.floor((100/scope.activeButtons.length))
             return newWidth.toString() + '%'
@@ -121,6 +125,7 @@ core.directive('navbarAddon', function($rootScope) {
         scope.pictureFunctions = [
         {
             state: "CAMERA",
+            id: '1',
             function: function(){
                 scope.takepicture()
                 scope.setButtons('addonStates')
@@ -134,6 +139,7 @@ core.directive('navbarAddon', function($rootScope) {
         },
         {
             state: "LIBRARY",
+            id: '2',
             function: function() {
                 scope.openphotolibrary()
                 scope.setButtons('addonStates')
@@ -146,9 +152,10 @@ core.directive('navbarAddon', function($rootScope) {
         },
         {
             state: "COMIFY",
+            id: '3',
             function: function() {
                 scope.setButtons('addonStates')
-                scope.picuretakenfalse()
+                scope.picturetakentrue()
             },
             style: {
                 'font-weight': 'bold',
@@ -157,6 +164,16 @@ core.directive('navbarAddon', function($rootScope) {
             }
         }
         ]
+
+        //--------BUTTON FUNCTIONS----------//
+        scope.comify = function(){
+            scope.setButtons('addonStates')
+            scope.picturetakentrue()
+        }
+
+
+
+
 
         //Functions from Camera Controller
         //Changes the addonStates below to the addonType clicked
@@ -229,6 +246,14 @@ core.directive('navbarAddon', function($rootScope) {
         scope.addonType = 'filter';
         // scope.activeButtons = scope.pictureFunctions
         window.onload = scope.setButtons('pictureFunctions');
+
+        scope.handleFileSelect = function(evt) {
+            scope.takepicture(evt)
+        }
+        window.onload = document.getElementById('getPicture').addEventListener('change', scope.handleFileSelect, false);
+       
+
+
 
     }
   };
