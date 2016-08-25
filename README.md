@@ -8,7 +8,7 @@ Comify your life!
 ## Viewing this project:
 
 You can watch our Beta presentation below, which includes a brief tech summary, or read on for a brief walkthrough.
-Youtube: https://www.youtube.com/watch?v=zlINZ9aqkcg
+Youtube: https://www.youtube.com/watch?v=cni-2cEVzt0
 
 ## Description
 
