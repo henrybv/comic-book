@@ -7,7 +7,7 @@ Comify your life!
 
 ## Viewing this project:
 
-You can watch our Beta presentation below, which includes a brief tech walkthrough, or read on for a brief walk through.
+You can watch our Beta presentation below, which includes a brief tech summary, or read on for a brief walkthrough.
 Youtube: https://www.youtube.com/watch?v=zlINZ9aqkcg
 
 ## Description
@@ -20,19 +20,19 @@ When users sign in, they are brought to our Home Screen, where they can view all
 
 ![HomePage](http://i.imgur.com/LoNmAOK.png)
 
-Clicking on a story will allow the user to view or edit a currently active story, or he can begin a new one by clicking the 'Create New Story' Button. Here, the user can give his story a title and add a few friends, or collaborators, to join them.
+Clicking on a story will allow the user to view or edit a currently active story, or he can begin a new one by clicking the 'Create New Story' Button. Here, the user can give his story a title and add a few friends, or collaborators, to join the fun.
 
 ![Story_nofriends](http://i.imgur.com/A3hZL72.png) ![Story_friends](http://i.imgur.com/tcw7J0Q.png)
 
-From here, our user is ready to make their own additions to the story, and is brought directly to our camera state.
+From here, our user is ready to make his/her own additions to the story, and is brought directly to our camera state.
 
 ![CameraState](http://i.imgur.com/XOSqmzN.png)
 
-Here, There is a live feed of the story, that will update along with the rest of our story viewing pages in real time as the stories collaborators add their own squares. We used Firebase to accomplish this.
+Here, there is a live feed of the story that updates (along with the rest of our story viewing pages) in real time as the stories other collaborators add their own additions to the story. This feed allows the user to see how the story is developing, and where his/her own addition to the story will be placed.
 
 ![LiveFeed](http://i.imgur.com/qWaaxbN.png)
 
-After taking a picture or selecting one from his/her photo library, the user can add filters, borders, responsive speech bubbles, or stickers to his image and submit it to the story.
+After taking a picture or selecting one from his/her photo library, the user can add filters, borders, responsive speech bubbles, and/or stickers to his image and submit it to the story.
 
 ![Filters](http://i.imgur.com/RuFGP3z.png)
 
