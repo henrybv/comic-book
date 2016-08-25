@@ -39,7 +39,7 @@ After taking a picture or selecting one from his/her photo library, the user can
 Finally, he can get a quick overview of the story in our 'Squares Page', or view the comic as it was intended to be viewed - A comic strip!
 
 ![Squares_View](http://i.imgur.com/NYdEzAt.png)
-![Strip_View](http://i.imgur.com/bKCqDXi.png)
+![Strip_View](http://i.imgur.com/oKI1vHu.png)
 
 ## Usage
 
