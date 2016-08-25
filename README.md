@@ -34,11 +34,11 @@ Here, There is a live feed of the story, that will update along with the rest of
 
 After taking a picture or selecting one from his/her photo library, the user can add filters, borders, responsive speech bubbles, or stickers to his image and submit it to the story.
 
-![Filters](http://i.imgur.com/HpstQK8.png)
+![Filters](http://i.imgur.com/RuFGP3z.png)
 
 Finally, he can get a quick overview of the story in our 'Squares Page', or view the comic as it was intended to be viewed - A comic strip!
 
-![Squares_View](http://i.imgur.com/9Fb8ei4.png)
+![Squares_View](http://i.imgur.com/NYdEzAt.png)
 ![Strip_View](http://i.imgur.com/bKCqDXi.png)
 
 ## Usage
