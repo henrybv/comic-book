@@ -3,7 +3,7 @@ Comic Pow-Wow
 
 Comify your life!
 
-![Screenshot1](http://i.imgur.com/OfhA8ZQs.png)
+![Screenshot1](http://i.imgur.com/pJlHh8z.png)
 
 ## Using this project
 
