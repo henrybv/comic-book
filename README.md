@@ -14,7 +14,8 @@ To test out the app, follow these brief instuctions:
 Chrome (recommended):
   1. Go to www.comicpowwow.com in a chrome browser
   2. Open up chrome dev tools by hitting 'Cmd' + 'option' + 'j' 
-  3. Use keyboard shortcut: 'Command" + "shift" + "m", or, in the upper left corner of your console, select the 'toggle device toolbar' button that looks like this: 
+  3. Use keyboard shortcut: 'Command" + "shift" + "m", or, in the upper left corner of your console, select the 'toggle device toolbar' button that looks like this:
+  
   ![Screenshot1](http://i.imgur.com/6GQTscC.png)
   4. You MUST select 'iphone 6' from the dropdown menu, located above the application like in the image below:
   ![Screenshot1](http://i.imgur.com/fFtM35U.png)
