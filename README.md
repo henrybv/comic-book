@@ -7,9 +7,9 @@ Comify your life!
 
 ## Viewing this project:
 
-Our Application is still under development, and has not yet been deployed as a mobile application.
+*Note: Our Application is still under development, and has not yet been deployed as a mobile application.
 
-HOWEVER, If you wish to test out the app, you can do so by following these instructions:
+To test out the app, follow these brief instuctions:
   1. Go to www.comicpowwow.com in a chrome browser
   2. Open up chrome dev tools by hitting 'Cmd' + 'option' + 'j' 
   3. In the upper left corner of your console, select the 'toggle device toolbar' button that looks like this: ![Screenshot1](http://i.imgur.com/6GQTscC.png)
