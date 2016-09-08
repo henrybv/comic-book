@@ -10,8 +10,8 @@ Comify your life!
 Our Application is still under development, and has not yet been deployed as a mobile application.
 
 HOWEVER, If you wish to test out the app, you can do so by following these instructions:
-  1. Go to www.comicpowwow.com
-  2. Open up chrome dev tools by hitting 'Cmd' + 'j'
+  1. Go to www.comicpowwow.com in a chrome browser
+  2. Open up chrome dev tools by hitting 'Cmd' + 'option' + 'j' 
   3. In the upper left corner of your console, select the 'toggle device toolbar' button that looks like this: ![Screenshot1](http://i.imgur.com/6GQTscC.png)
   4. You may also choose to dock your console to the right, by selecting the button visible in the image above
   5. Finally, you should sign in as --> email: admin@me.com, password: 123, to see some premade work, or create your own username
