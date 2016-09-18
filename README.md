@@ -82,3 +82,7 @@ In app.js, change base to current IP Address
 
 When Pushing to Heroku:
 Change base to an empty string
+
+***
+That's it. Check it out and let us know if you have any thoughts or suggestions. 
+Feel free to drop us a line at: hbn2018@icloud.com
