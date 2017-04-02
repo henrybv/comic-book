@@ -12,9 +12,9 @@ The result is an intuitive, addictive mobile app that has many use cases, rangin
 
 ## Viewing this project:
 
-*Note: Our Application is still under development, and our deployment is currently in beta.
+*Note: Our Application is under testing for release, and is open to beta users. To try the app with all its native mobile functionality, please email Henry at hbn2018@icloud.com with your name and nature of request. Thanks for your interest in seeing this come to life!
 
-To test out the app, follow these brief instructions:
+To test out the app on Web (limited functionality), follow these brief instructions:
 
 Chrome (recommended):
   1. Go to www.comicpowwow.com in a chrome browser
