@@ -3,7 +3,7 @@ Comic Pow-Wow
 
 Comic Pow-Wow is a collaborative mobile application that allows you to create comic strips with your friends in real-time. Users can add photos from their image library or instantly snap a live pic, "comify" their image using filters, borders, text bubbles and stickers, and add 'comified' squares to their comic strip.
 
-We used Ionic and AngularJS to build our mobile application. With Firebase, every time a new comic frame is added, all friends in the same story are instantly notified. In addition, we used MongoDB, HTML5/ CSS3, and CamanJS library to make the app come to life.
+We used Ionic and Angular to build our mobile application. With Firebase, every time a new comic frame is added, all friends in the same story are instantly notified. In addition, we used MongoDB, HTML5/ CSS3, and CamanJS library to make the app come to life.
 
 The result is an intuitive, addictive mobile app that has many use cases, ranging from a way to capture shared experiences with friends to an outlet for your imagination.
 
@@ -12,7 +12,7 @@ The result is an intuitive, addictive mobile app that has many use cases, rangin
 
 ## Viewing this project:
 
-*Note: Our Application is under testing for release, and is open to beta users. To try the app with all its native mobile functionality, please email Henry at hbn2018@icloud.com with your name and nature of request. Thanks for your interest in seeing this come to life!
+*Note: This is a cross-platform/ hybrid mobile app. To try the app with all its native mobile functionality, please email Henry at hbn2018@icloud.com with your name and nature of request for an invite. Thanks for your interest!
 
 To test out the app on Web (limited functionality), follow these brief instructions:
 
@@ -86,3 +86,7 @@ Change base to an empty string
 ***
 That's it. Check it out and let us know if you have any thoughts or suggestions. 
 Feel free to drop us a line at: hbn2018@icloud.com
+
+Namaste,
+
+Team ComicPowWow :)
