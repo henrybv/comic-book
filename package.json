@@ -6,14 +6,16 @@
   "scripts": {
     "start-dev": "nodemon --watch server -e js,html server/start.js",
     "start": "node server/start.js",
-    "postinstall": ""
+    "postinstall": "",
+    "test-unit": "grunt mochaTest",
+    "test": "./node_modules/mocha/bin/mocha tests/server/**/*.js"
   },
   "dependencies": {
     "angular-hammer": "^2.1.10",
     "babel-register": "^6.9.0",
     "bootbox": "^4.4.0",
     "chai": "^2.3.0",
-    "express-session": "^1.13.0",
+    "express-session": "^1.10.3",
     "express-static": "^1.0.3",
     "extend": "^3.0.0",
     "firebase": "^2.4.2",
@@ -25,11 +27,9 @@
     "hammerjs": "^2.0.8",
     "jasmine": "^2.4.1",
     "jsonwebtoken": "^6.2.0",
-    "lodash": "^3.10.1",
+    "lodash": "^3.9.3",
     "mocha": "^2.4.5",
     "express": "^4.12.0",
-        "lodash": "^3.9.3",
-    "mocha": "^2.4.5",
     "mocha-mongoose": "^1.0.3",
     "mongodb": "^1.4.33",
     "mongoose": "^4.0.7",
@@ -47,9 +47,7 @@
     "socket.io-client": "^1.3.5",
     "cookie-parser": "^1.3.4",
     "stripe": "^4.5.0",
-
     "connect-mongo": "^0.7.0",
-    "express-session": "^1.10.3",
     "path": "^0.12.7",
     "body-parser": "^1.12.0",
     "supertest": "^0.15.0"
@@ -69,9 +67,10 @@
     "bluebird": "^3.3.3",
     "bootstrap": "^3.3.4",
     "bower": "^1.3.3",
-    "chai": "^2.1.0",
+    "chai": "^2.3.0",
     "chalk": "^1.0.0",
     "eslint": "^2.8.0",
+    "grunt-mocha-test": "^0.12.7",
     "gulp": "^3.8.11",
     "gulp-babel": "^6.1.2",
     "gulp-concat": "^2.5.2",
@@ -96,6 +95,7 @@
     "karma-mocha": "^0.1.10",
     "karma-mocha-reporter": "^1.0.2",
     "karma-phantomjs-launcher": "^0.1.4",
+    "mocha": "^2.5.3",
     "nodemon": "^1.3.7",
     "supertest": "^0.15.0"
   },
